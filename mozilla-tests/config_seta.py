@@ -4,9 +4,8 @@ import httplib
 from datetime import date
 import sys
 
-#define seta branches and default values for skipcount and skiptimeout
+
 seta_branches = ['fx-team', 'mozilla-inbound']
-skipconfig_defaults = (7, 3600)
 # todo: should get platform names from PLATFORMS in config.py
 
 today = date.today().strftime("%Y-%m-%d")
@@ -23,6 +22,14 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   "android-4-3-armv7-api11": ("android-api-11", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"])
                   }
 
+#define seta branches and default values for skipcount and skiptimeout
+skipconfig_defaults_platform = {}
+for sp in seta_platforms:
+  for slave_sp in seta_platforms[sp][1]: 
+      if slave_sp not in ["xp-ix"]:
+          skipconfig_defaults_platform[slave_sp] = (7, 3600)
+      else:
+          skipconfig_defaults_platform[slave_sp] = (14, 7200)
 
 def get_seta_platforms(branch, platform_filter):
 
@@ -84,7 +91,7 @@ def print_configs(branch, plat, test_dict, BRANCHES):
         for t in test_dict[sp]:
             test = t.split()[-1]
             test_type = t.split()[-3]
-            test_config[test_type, test] = skipconfig_defaults
+            test_config[test_type, test] = skipconfig_defaults_platform[str(sp)]
             BRANCHES[branch]['platforms'][plat][str(sp)]['skipconfig'] = test_config
           
 
