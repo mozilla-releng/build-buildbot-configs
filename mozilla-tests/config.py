@@ -2494,7 +2494,6 @@ for branch in BRANCHES.keys():
             if branch.startswith('mozilla-b2g'):
                 continue
             if branch in TWIGS or ('gecko_version' in BRANCHES[branch] and BRANCHES[branch]['gecko_version'] != trunk_gecko_version):
-                BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_3 + MOCHITEST_DT_2
                 if slave_platform in ('ubuntu64_vm', 'ubuntu32_vm') and branch not in TWIGS:
                     BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_3 + MOCHITEST_DT_8
                 else:
