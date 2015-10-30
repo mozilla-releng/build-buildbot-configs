@@ -98,7 +98,8 @@ PLATFORMS['macosx64']['talos_slave_platforms'] = ['yosemite', 'yosemite_r7']
 PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
 PLATFORMS['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
-PLATFORMS['win32']['xp-ix'] = {'name': "Windows XP 32-bit"}
+PLATFORMS['win32']['xp-ix'] = {'name': "Windows XP 32-bit",
+                               'try_by_default': False}
 PLATFORMS['win32']['win7-ix'] = {'name': "Windows 7 32-bit"}
 PLATFORMS['win32']['stage_product'] = 'firefox'
 PLATFORMS['win32']['mozharness_config'] = {
