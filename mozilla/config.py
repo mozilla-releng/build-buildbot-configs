@@ -2422,6 +2422,7 @@ BRANCHES['mozilla-beta']['platforms']['android-api-9']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-11']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-9-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-11-debug']['enable_dep'] = True
+BRANCHES['mozilla-beta']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 
