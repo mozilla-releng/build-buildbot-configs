@@ -977,8 +977,6 @@ BRANCHES = {
         'lock_platforms': True,
         'platforms': {
             'linux64-b2g-haz': {},
-            'linux64_gecko': {},
-            'linux64_gecko-debug': {},
             'emulator': {},
             'emulator-debug': {},
             'emulator-l': {},
@@ -1187,7 +1185,6 @@ BRANCHES['mozilla-b2g44_v2_5']['start_hour'] = [0]
 BRANCHES['mozilla-b2g44_v2_5']['start_minute'] = [45]
 BRANCHES['mozilla-b2g44_v2_5']['periodic_start_minute'] = 30
 BRANCHES['mozilla-b2g44_v2_5']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
-BRANCHES['mozilla-b2g44_v2_5']['platforms']['linux64_gecko']['enable_nightly'] = False
 BRANCHES['mozilla-b2g44_v2_5']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g44_v2_5']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g44_v2_5']['platforms']['emulator']['enable_nightly'] = False
