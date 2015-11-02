@@ -2493,18 +2493,26 @@ for branch in BRANCHES.keys():
                 continue
             if branch.startswith('mozilla-b2g'):
                 continue
-            if branch in TWIGS or ('gecko_version' in BRANCHES[branch] and BRANCHES[branch]['gecko_version'] != trunk_gecko_version):
-                if slave_platform in ('ubuntu64_vm', 'ubuntu32_vm') and branch not in TWIGS:
-                    BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_3 + MOCHITEST_DT_8
-                else:
-                    BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_3 + MOCHITEST_DT_4
-                if slave_platform in ('ubuntu64-asan_vm',) and branch not in TWIGS:
-                    BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_3 + MOCHITEST_DT_8
-                else:
-                    BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_3 + MOCHITEST_DT_2
+            bc_suite = MOCHITEST_BC_3[:]
+            dt_opt_suite = MOCHITEST_DT_2[:]
+            dt_debug_suite = MOCHITEST_DT_4[:]
+            gecko_version = BRANCHES[branch].get('gecko_version')
+            if branch in TWIGS:
+                pass
+            elif gecko_version and gecko_version != trunk_gecko_version:
+                if gecko_version > 38:
+                    # gecko_version <= 38 is a no-op for this entire if statement
+                    if slave_platform in ('ubuntu64_vm', 'ubuntu32_vm'):
+                        dt_debug_suite += MOCHITEST_DT_8[:]
+                    if slave_platform in ('ubuntu64-asan_vm',):
+                        dt_opt_suite += MOCHITEST_DT_8[:]
             else:
-                BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_7 + MOCHITEST_DT_8
-                BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_7 + MOCHITEST_DT_8
+                dt_opt_suite = MOCHITEST_DT_8[:]
+                dt_debug_suite = MOCHITEST_DT_8[:]
+                bc_suite = MOCHITEST_BC_7[:]
+            BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += bc_suite + dt_opt_suite
+            BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += bc_suite + dt_debug_suite
+
 
 # Enable mediatests on gecko >= 44 (bug 1209258)
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
