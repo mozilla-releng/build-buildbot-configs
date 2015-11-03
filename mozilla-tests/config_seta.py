@@ -29,10 +29,12 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
 skipconfig_defaults_platform = {}
 for sp in seta_platforms:
   for slave_sp in seta_platforms[sp][1]: 
-      if slave_sp not in ["xp-ix"]:
-          skipconfig_defaults_platform[slave_sp] = (7, 3600)
-      else:
+      if slave_sp in ["xp-ix"]:
           skipconfig_defaults_platform[slave_sp] = (14, 7200)
+      elif slave_sp in ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"]:
+          skipconfig_defaults_platform[slave_sp] = (7, 7200)
+      else:
+          skipconfig_defaults_platform[slave_sp] = (7, 3600)
 
 def get_seta_platforms(branch, platform_filter):
 

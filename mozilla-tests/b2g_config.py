@@ -1615,7 +1615,6 @@ BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64_gecko']['enable_opt_unittes
 BRANCHES['mozilla-b2g37_v2_2r']['repo_path'] = "releases/mozilla-b2g37_v2_2r"
 BRANCHES['mozilla-b2g37_v2_2r']['platforms']['linux64_gecko']['enable_opt_unittests'] = True
 BRANCHES['mozilla-b2g44_v2_5']['repo_path'] = "releases/mozilla-b2g44_v2_5"
-BRANCHES['mozilla-b2g44_v2_5']['platforms']['linux64_gecko']['enable_opt_unittests'] = True
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"

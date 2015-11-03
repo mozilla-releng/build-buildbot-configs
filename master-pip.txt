@@ -14,3 +14,4 @@ argparse==1.2.1
 kombu==3.0.26
 pytz==2015.6
 wsgiref==0.1.2
+statsd==3.2.1
