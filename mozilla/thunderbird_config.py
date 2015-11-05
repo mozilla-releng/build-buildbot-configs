@@ -909,7 +909,7 @@ BRANCHES['comm-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'n
 
 ######## try
 # Try-specific configs
-BRANCHES['try-comm-central']['stage_username'] = 'tbirdtry'
+BRANCHES['try-comm-central']['stage_username'] = 'trybld'
 BRANCHES['try-comm-central']['stage_ssh_key'] = 'trybld_dsa'
 BRANCHES['try-comm-central']['stage_base_path'] = '/home/ftp/pub/thunderbird/try-builds'
 BRANCHES['try-comm-central']['enable_merging'] = False
