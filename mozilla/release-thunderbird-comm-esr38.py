@@ -6,7 +6,6 @@
 # you're starting a release without Release Kickoff. You have been warned.
 releaseConfig = {}
 
-releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api.pub.build.mozilla.org/clobberer/forceclobber'
 
 # Release Notification

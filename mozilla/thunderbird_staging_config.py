@@ -10,7 +10,6 @@ GLOBAL_VARS = {
     'graph_server': 'graphs.allizom.org',
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'https://api-pub-build.allizom.org/clobberer/lastclobber',
-    'disable_tinderbox_mail': True,
     'talos_masters': [],
     # List of unittest masters to notify of new builds to test,
     # if a failure to notify the master should result in a warning,
@@ -18,10 +17,6 @@ GLOBAL_VARS = {
     'unittest_masters': [
         ('dev-master1.srv.releng.scl3.mozilla.com:9901', True, 1),
         ],
-    'xulrunner_tinderbox_tree': 'ThunderbirdTest',
-    'weekly_tinderbox_tree': 'ThunderbirdTest',
-    'l10n_tinderbox_tree': 'MozillaStaging',
-    'packaged_unittest_tinderbox_tree': 'ThunderbirdTest',
     'tinderbox_tree': 'ThunderbirdTest',
     'hg_username': 'stage-tbirdbld',
     'base_bundle_urls': ['http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/thunderbird/bundles'],

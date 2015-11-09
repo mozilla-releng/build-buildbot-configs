@@ -111,7 +111,6 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + 'Linux %(branch)s',
             'mozconfig': 'linux/%(branch)s/nightly',
             'src_mozconfig': 'mail/config/mozconfigs/linux32/nightly',
-            'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/linux32/xulrunner',
             'profiled_build': False,
             'builds_before_reboot': thunderbird_localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
@@ -207,7 +206,6 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + 'Linux x86-64 %(branch)s',
             'mozconfig': 'linux64/%(branch)s/nightly',
             'src_mozconfig': 'mail/config/mozconfigs/linux64/nightly',
-            'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/linux64/xulrunner',
             'profiled_build': False,
             'builds_before_reboot': thunderbird_localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
@@ -299,7 +297,6 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + 'OS X 10.7 %(branch)s',
             'mozconfig': 'macosx64/%(branch)s/nightly',
             'src_mozconfig': 'mail/config/mozconfigs/macosx-universal/nightly',
-            'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/macosx-universal/xulrunner',
             'packageTests': True,
             'profiled_build': False,
             'builds_before_reboot': thunderbird_localconfig.BUILDS_BEFORE_REBOOT,
@@ -345,7 +342,6 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + 'WINNT 5.2 %(branch)s',
             'mozconfig': 'win32/%(branch)s/nightly',
             'src_mozconfig': 'mail/config/mozconfigs/win32/nightly',
-            'src_xulrunner_mozconfig': 'xulrunner/config/mozconfigs/win32/xulrunner',
             'profiled_build': False,
             'builds_before_reboot': thunderbird_localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
@@ -390,8 +386,6 @@ PLATFORM_VARS = {
             'base_name': builder_prefix + 'WINNT 6.1 x86-64 %(branch)s',
             'src_mozconfig': 'mail/config/mozconfigs/win64/nightly',
             'mozconfig': 'win64/%(branch)s/nightly',
-            # XXX we cannot build xulrunner on Win64 -- see bug 575912
-            'enable_xulrunner': False,
             'profiled_build': True,
             'builds_before_reboot': thunderbird_localconfig.BUILDS_BEFORE_REBOOT,
             'build_space': 12,
@@ -754,8 +748,6 @@ BRANCHES['comm-central']['l10n_repo_path'] = 'l10n-central'
 BRANCHES['comm-central']['enable_weekly_bundle'] = True
 BRANCHES['comm-central']['start_hour'] = [3]
 BRANCHES['comm-central']['start_minute'] = [2]
-# Enable XULRunner / SDK builds
-BRANCHES['comm-central']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['comm-central']['enable_mac_a11y'] = True
 BRANCHES['comm-central']['unittest_build_space'] = 6
@@ -799,7 +791,6 @@ BRANCHES['comm-esr38']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
 BRANCHES['comm-esr38']['enable_weekly_bundle'] = True
 BRANCHES['comm-esr38']['start_hour'] = [3]
 BRANCHES['comm-esr38']['start_minute'] = [2]
-BRANCHES['comm-esr38']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['comm-esr38']['enable_mac_a11y'] = True
 BRANCHES['comm-esr38']['unittest_build_space'] = 6
@@ -832,8 +823,6 @@ BRANCHES['comm-beta']['enable_weekly_bundle'] = True
 BRANCHES['comm-beta']['update_channel'] = 'beta'
 BRANCHES['comm-beta']['start_hour'] = [3]
 BRANCHES['comm-beta']['start_minute'] = [2]
-# Enable XULRunner / SDK builds
-BRANCHES['comm-beta']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['comm-beta']['enable_mac_a11y'] = True
 BRANCHES['comm-beta']['unittest_build_space'] = 6
@@ -870,8 +859,6 @@ BRANCHES['comm-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
 BRANCHES['comm-aurora']['enable_weekly_bundle'] = True
 BRANCHES['comm-aurora']['start_hour'] = [0]
 BRANCHES['comm-aurora']['start_minute'] = [40]
-# Enable XULRunner / SDK builds
-BRANCHES['comm-aurora']['enable_xulrunner'] = False
 # Enable unit tests
 BRANCHES['comm-aurora']['enable_mac_a11y'] = True
 BRANCHES['comm-aurora']['unittest_build_space'] = 6
@@ -922,8 +909,6 @@ BRANCHES['try-comm-central']['start_hour'] = [3]
 BRANCHES['try-comm-central']['start_minute'] = [2]
 # Disable Nightly builds
 BRANCHES['try-comm-central']['enable_nightly'] = False
-# Disable XULRunner / SDK builds
-BRANCHES['try-comm-central']['enable_xulrunner'] = False
 BRANCHES['try-comm-central']['enable_mac_a11y'] = True
 # only do unittests locally until they are switched over to talos-r3
 BRANCHES['try-comm-central']['enable_l10n'] = False
@@ -963,8 +948,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['periodic_start_hours'] = branchConfig.get('periodic_start_hours', range(0, 24, 6))
     BRANCHES[branch]['start_hour'] = branchConfig.get('start_hour', [4])
     BRANCHES[branch]['start_minute'] = branchConfig.get('start_minute', [2])
-    # Disable XULRunner / SDK builds
-    BRANCHES[branch]['enable_xulrunner'] = branchConfig.get('enable_xulrunner', False)
     # Enable unit tests
     BRANCHES[branch]['enable_mac_a11y'] = branchConfig.get('enable_mac_a11y', True)
     BRANCHES[branch]['unittest_build_space'] = branchConfig.get('unittest_build_space', 6)

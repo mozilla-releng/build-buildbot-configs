@@ -123,7 +123,7 @@ PLATFORMS['emulator-kk']['mozharness_config'] = {
 }
 
 # Lets be explicit instead of magical.
-for platform, platform_config in PLATFORMS.items():
+for platform, platform_config in PLATFORMS.iteritems():
     for slave_platform in platform_config['slave_platforms']:
         platform_config[slave_platform]['slaves'] = sorted(SLAVES[slave_platform])
         if slave_platform in TRY_SLAVES:
@@ -1519,21 +1519,21 @@ PLATFORM_UNITTEST_VARS = {
 
 # Copy unittest vars in first, then platform vars
 for branch in BRANCHES.keys():
-    for key, value in GLOBAL_VARS.items():
+    for key, value in GLOBAL_VARS.iteritems():
         # Don't override platforms if it's set
         if key == 'platforms' and 'platforms' in BRANCHES[branch]:
             continue
         BRANCHES[branch][key] = deepcopy(value)
 
-    for key, value in BRANCH_UNITTEST_VARS.items():
+    for key, value in BRANCH_UNITTEST_VARS.iteritems():
         # Don't override platforms if it's set and locked
         if key == 'platforms' and 'platforms' in BRANCHES[branch] and BRANCHES[branch].get('lock_platforms'):
             continue
         BRANCHES[branch][key] = deepcopy(value)
 
-    for platform, platform_config in PLATFORM_UNITTEST_VARS.items():
+    for platform, platform_config in PLATFORM_UNITTEST_VARS.iteritems():
         if platform in BRANCHES[branch]['platforms']:
-            for key, value in platform_config.items():
+            for key, value in platform_config.iteritems():
                 value = deepcopy(value)
                 if isinstance(value, str):
                     value = value % locals()
@@ -1541,14 +1541,14 @@ for branch in BRANCHES.keys():
 
     # Copy in local config
     if branch in b2g_localconfig.BRANCHES:
-        for key, value in b2g_localconfig.BRANCHES[branch].items():
+        for key, value in b2g_localconfig.BRANCHES[branch].iteritems():
             if key == 'platforms':
                 # Merge in these values
                 if 'platforms' not in BRANCHES[branch]:
                     BRANCHES[branch]['platforms'] = {}
 
-                for platform, platform_config in value.items():
-                    for key, value in platform_config.items():
+                for platform, platform_config in value.iteritems():
+                    for key, value in platform_config.iteritems():
                         value = deepcopy(value)
                         if isinstance(value, str):
                             value = value % locals()
@@ -1556,9 +1556,9 @@ for branch in BRANCHES.keys():
             else:
                 BRANCHES[branch][key] = deepcopy(value)
 
-    for platform, platform_config in b2g_localconfig.PLATFORM_VARS.items():
+    for platform, platform_config in b2g_localconfig.PLATFORM_VARS.iteritems():
         if platform in BRANCHES[branch]['platforms']:
-            for key, value in platform_config.items():
+            for key, value in platform_config.iteritems():
                 value = deepcopy(value)
                 if isinstance(value, str):
                     value = value % locals()
@@ -1657,7 +1657,7 @@ if __name__ == "__main__":
     if len(args) > 0:
         items = dict([(b, BRANCHES[b]) for b in args])
     else:
-        items = dict(BRANCHES.items())
+        items = dict(BRANCHES.iteritems())
 
     for k, v in sorted(items.iteritems()):
         out = pprint.pformat(v)
