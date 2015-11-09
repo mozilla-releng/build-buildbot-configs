@@ -1532,6 +1532,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-gl': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mochitest-gl-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'mochitest-jetpack': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
