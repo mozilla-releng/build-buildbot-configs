@@ -8,7 +8,6 @@ GRAPH_CONFIG = ['--resultsServer', 'graphs.allizom.org',
     '--resultsLink', '/server/collect.cgi']
 
 GLOBAL_VARS = {
-    'disable_tinderbox_mail': True,
     'tinderbox_tree': 'MozillaTest',
     'mobile_tinderbox_tree': 'MobileTest',
     'build_tools_repo_path': 'build/tools',

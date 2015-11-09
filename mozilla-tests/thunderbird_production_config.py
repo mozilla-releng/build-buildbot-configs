@@ -6,7 +6,6 @@ from production_config import \
 
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 
-GLOBAL_VARS['disable_tinderbox_mail'] = True
 GLOBAL_VARS['stage_username'] = 'tbirdbld'
 GLOBAL_VARS['stage_ssh_key'] = 'tbirdbld_dsa'
 

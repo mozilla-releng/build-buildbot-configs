@@ -36,9 +36,6 @@ GLOBAL_VARS.update({
     'unittest_masters': [
         ('buildbot-master81.build.mozilla.org:9301', True, 5),
     ],
-    'xulrunner_tinderbox_tree': None,
-    'weekly_tinderbox_tree': 'Thunderbird',
-    'l10n_tinderbox_tree': 'Mozilla-l10n',
     'base_bundle_urls': ['https://ftp-ssl.mozilla.org/pub/mozilla.org/thunderbird/bundles'],
 
     'tooltool_url_list': ['https://api.pub.build.mozilla.org/tooltool/'],
@@ -47,25 +44,20 @@ GLOBAL_VARS.update({
 # Local branch overrides
 BRANCHES = {
     'comm-central': {
-        'packaged_unittest_tinderbox_tree': 'Thunderbird',
         'tinderbox_tree': 'Thunderbird',
     },
     'comm-esr38': {
-        'packaged_unittest_tinderbox_tree': 'Thunderbird-Esr38',
         'tinderbox_tree': 'Thunderbird-Esr38',
     },
     'comm-beta': {
-        'packaged_unittest_tinderbox_tree': 'Thunderbird-Beta',
         'tinderbox_tree': 'Thunderbird-Beta',
     },
     'comm-aurora': {
-        'packaged_unittest_tinderbox_tree': 'Thunderbird-Aurora',
         'tinderbox_tree': 'Thunderbird-Aurora',
     },
     'try-comm-central': {
         'stage_server': 'upload.trybld.productdelivery.prod.mozaws.net',
         'tinderbox_tree': 'Try-Comm-Central',
-        'packaged_unittest_tinderbox_tree': 'Try-Comm-Central',
         'download_base_url': 'http://archive.mozilla.org/pub/thunderbird/try-builds',
         'enable_mail_notifier': True,
         'notify_real_author': True,

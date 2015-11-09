@@ -53,7 +53,6 @@ GLOBAL_VARS = {
                                     'ftp.mozilla.org,download.cdn.mozilla.net'],
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'https://api.pub.build.mozilla.org/clobberer/lastclobber',
-    'disable_tinderbox_mail': True,
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning,
     # and sendchange retry count before give up
@@ -66,9 +65,6 @@ GLOBAL_VARS = {
     'unittest_masters': [
         ('buildbot-master81.build.mozilla.org:9301', True, 5),
     ],
-    'xulrunner_tinderbox_tree': 'XULRunner',
-    'weekly_tinderbox_tree': 'Testing',
-    'l10n_tinderbox_tree': 'Mozilla-l10n',
     'base_bundle_urls': ['https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/bundles'],
     'tooltool_url_list': ['http://tooltool.pvt.build.mozilla.org/build'],
     'blob_upload': True,
@@ -85,50 +81,41 @@ SYMBOL_SERVER_HOST = 'symbolpush.mozilla.org'
 # Local branch overrides
 BRANCHES = {
     'mozilla-central': {
-        'packaged_unittest_tinderbox_tree': 'Firefox',
         'tinderbox_tree': 'Firefox',
         'mobile_tinderbox_tree': 'Mobile',
         'mobile_build_failure_emails': ['<mobile-build-failures@mozilla.org>'],
     },
     'mozilla-release': {
-        'packaged_unittest_tinderbox_tree': 'Mozilla-Release',
         'tinderbox_tree': 'Mozilla-Release',
         'mobile_tinderbox_tree': 'Mozilla-Release',
     },
     'mozilla-esr38': {
-        'packaged_unittest_tinderbox_tree': 'Mozilla-Esr38',
         'tinderbox_tree': 'Mozilla-Esr38',
         'mobile_tinderbox_tree': 'Mozilla-Esr38',
     },
     'mozilla-b2g37_v2_2': {
-        'packaged_unittest_tinderbox_tree': 'Mozilla-B2g37-v2.2',
         'tinderbox_tree': 'Mozilla-B2g37-v2.2',
         'mobile_tinderbox_tree': 'Mozilla-B2g37-v2.2',
     },
     'mozilla-b2g37_v2_2r': {
-        'packaged_unittest_tinderbox_tree': 'Mozilla-B2g37-v2.2r',
         'tinderbox_tree': 'Mozilla-B2g37-v2.2r',
         'mobile_tinderbox_tree': 'Mozilla-B2g37-v2.2r',
     },
     'mozilla-b2g44_v2_5': {
-        'packaged_unittest_tinderbox_tree': 'Mozilla-B2g44-v2.5',
         'tinderbox_tree': 'Mozilla-B2g44-v2.5',
         'mobile_tinderbox_tree': 'Mozilla-B2g44-v2.5',
     },
     'mozilla-beta': {
-        'packaged_unittest_tinderbox_tree': 'Mozilla-Beta',
         'tinderbox_tree': 'Mozilla-Beta',
         'mobile_tinderbox_tree': 'Mozilla-Beta',
     },
     'mozilla-aurora': {
-        'packaged_unittest_tinderbox_tree': 'Mozilla-Aurora',
         'tinderbox_tree': 'Mozilla-Aurora',
         'mobile_tinderbox_tree': 'Mozilla-Aurora',
     },
     'try': {
         'tinderbox_tree': 'Try',
         'mobile_tinderbox_tree': 'Try',
-        'packaged_unittest_tinderbox_tree': 'Try',
         'download_base_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/try-builds',
         'mobile_download_base_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/try-builds',
         'enable_mail_notifier': True,
@@ -166,7 +153,6 @@ PROJECTS = {
         'fuzzing_base_dir': '//mnt/pvt_builds/fuzzing/',
         # This is # of idle slaves per master
         'idle_slaves': 2,
-        'disable_tinderbox_mail': False,
     },
 }
 
@@ -174,17 +160,14 @@ BRANCH_PROJECTS = {
     'spidermonkey_tier_1': {
         'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
-        'disable_tinderbox_mail': False,
     },
     'spidermonkey_try': {
         'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
-        'disable_tinderbox_mail': False,
     },
     'spidermonkey_info': {
         'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
-        'disable_tinderbox_mail': False,
     },
 }
 

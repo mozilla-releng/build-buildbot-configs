@@ -39,7 +39,6 @@ GLOBAL_VARS = {
     'balrog_username': 'stage-ffxbld',
     'build_tools_repo_path': 'users/stage-ffxbld/tools',
     'base_clobber_url': 'https://api-pub-build.allizom.org/clobberer/lastclobber',
-    'disable_tinderbox_mail': True,
     # List of talos masters to notify of new builds,
     # and if a failure to notify the talos master should result in a warning,
     # and sendchange retry count before give up
@@ -52,10 +51,6 @@ GLOBAL_VARS = {
     'unittest_masters': [
         ('dev-master1.srv.releng.scl3.mozilla.com:9901', True, 1),
         ],
-    'xulrunner_tinderbox_tree': 'MozillaTest',
-    'weekly_tinderbox_tree': 'MozillaTest',
-    'l10n_tinderbox_tree': 'MozillaStaging',
-    'packaged_unittest_tinderbox_tree': 'MozillaTest',
     'tinderbox_tree': 'MozillaTest',
     'mobile_tinderbox_tree': 'MobileTest',
     'hg_username': 'stage-ffxbld',
@@ -145,7 +140,6 @@ PLATFORM_VARS = {}
 
 PROJECTS = {
     'fuzzing': {
-        'disable_tinderbox_mail': True,
         'scripts_repo': 'https://hg.mozilla.org/users/stage-ffxbld/tools',
         'lithium_repo': 'https://git.mozilla.org/mozsec/lithium.git',
         'funfuzz_repo': 'https://git.mozilla.org/mozsec/funfuzz.git',
@@ -161,16 +155,13 @@ BRANCH_PROJECTS = {
     'spidermonkey_tier_1': {
         'scripts_repo': 'https://hg.mozilla.org/users/stage-ffxbld/tools',
         'idle_slaves': 0,
-        'disable_tinderbox_mail': False,
     },
     'spidermonkey_try': {
         'scripts_repo': 'https://hg.mozilla.org/users/stage-ffxbld/tools',
         'idle_slaves': 0,
-        'disable_tinderbox_mail': False,
     },
     'spidermonkey_info': {
         'scripts_repo': 'https://hg.mozilla.org/users/stage-ffxbld/tools',
         'idle_slaves': 0,
-        'disable_tinderbox_mail': False,
     },
 }

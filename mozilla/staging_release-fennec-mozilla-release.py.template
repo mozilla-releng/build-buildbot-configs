@@ -7,7 +7,6 @@
 EMAIL_RECIPIENTS = []
 
 releaseConfig = {}
-releaseConfig['disable_tinderbox_mail'] = True
 releaseConfig['base_clobber_url'] = 'https://api-pub-build.allizom.org/clobberer/forceclobber'
 
 # Release Notification

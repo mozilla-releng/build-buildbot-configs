@@ -37,7 +37,6 @@ GLOBAL_VARS.update({
     },
     'enable_nightly': True,
     'enable_l10n': False,
-    'enable_xulrunner': False,
     'enabled_products': ['b2g', 'graphene', 'horizon'],
     'product_prefix': 'b2g',
     'unittest_suites': [],

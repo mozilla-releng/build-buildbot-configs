@@ -93,7 +93,6 @@ GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org',
                 '--resultsLink', '/server/collect.cgi']
 
 GLOBAL_VARS = {
-    'disable_tinderbox_mail': True,
     'build_tools_repo_path': 'build/tools',
     'mozharness_repo': 'https://hg.mozilla.org/build/mozharness',
     'mozharness_tag': 'production',

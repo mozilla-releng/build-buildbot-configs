@@ -7,7 +7,6 @@ from production_config import \
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 
 GLOBAL_VARS['tinderbox_tree'] = 'MozillaTest'
-GLOBAL_VARS['disable_tinderbox_mail'] = True
 GLOBAL_VARS['stage_username'] = 'ffxbld'
 GLOBAL_VARS['stage_ssh_key'] = 'ffxbld_rsa'
 
