@@ -1014,7 +1014,7 @@ PLATFORM_VARS = {
                     '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
-                'script_maxtime': int(5.5 * 3600),
+                'script_maxtime': int(7.5 * 3600),
             },
             'mozharness_desktop_l10n': {
                 'capable': True,
@@ -1083,7 +1083,7 @@ PLATFORM_VARS = {
                     '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
-                'script_maxtime': int(5.5 * 3600),
+                'script_maxtime': int(7.5 * 3600),
             },
             'mozharness_desktop_l10n': {
                 'capable': True,
@@ -1464,7 +1464,7 @@ PLATFORM_VARS = {
                     '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
-                'script_maxtime': int(5.5 * 3600),
+                'script_maxtime': int(7.5 * 3600),
             },
 
             'enable_nightly': False,
@@ -1510,7 +1510,7 @@ PLATFORM_VARS = {
                     '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
                 ],
                 'script_timeout': 3 * 3600,
-                'script_maxtime': int(5.5 * 3600),
+                'script_maxtime': int(7.5 * 3600),
             },
             'reboot_command': [
                 'c:/mozilla-build/python27/python', '-u',
