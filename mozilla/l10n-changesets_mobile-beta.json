@@ -56,7 +56,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "eo": {
-    "revision": "193815c50241",
+    "revision": "c70bdd60c029",
     "platforms": ["android", "android-multilocale"]
   },
   "es-AR": {
@@ -280,7 +280,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "zh-TW": {
-    "revision": "79c1e5d62bbb",
+    "revision": "b3175193022f",
     "platforms": ["android", "android-multilocale"]
   }
 }
