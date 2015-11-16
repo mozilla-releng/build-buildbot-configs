@@ -61,7 +61,7 @@ BRANCHES = {
         'download_base_url': 'http://archive.mozilla.org/pub/thunderbird/try-builds',
         'enable_mail_notifier': True,
         'notify_real_author': True,
-        'package_url': 'https://archive.mozilla.org/pub/thunderbird/try-builds',
+        'package_url': 'https://archive.mozilla.org/pub/thunderbird/try-builds/',
         'talos_masters': [],
         'platforms': {
             'win32': {
