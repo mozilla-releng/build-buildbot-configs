@@ -51,7 +51,7 @@ BRANCHES = {
         'download_base_url': 'http://ftp.stage.mozaws.net/pub/thunderbird/try-builds',
         'enable_mail_notifier': False, # Set to True when testing
         'email_override': [], # Set to your address when testing
-        'package_url': 'http://ftp.stage.mozaws.net/pub/thunderbird/try-builds',
+        'package_url': 'http://ftp.stage.mozaws.net/pub/thunderbird/try-builds/',
         'talos_masters': [],
         'platforms': {
             'win32': {
