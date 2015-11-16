@@ -1178,7 +1178,7 @@ BRANCHES['mozilla-b2g37_v2_2r']['platforms']['emulator-l-debug']['enable_nightly
 # HGURL + repo_path should be a valid repository
 BRANCHES['mozilla-b2g44_v2_5']['repo_path'] = 'releases/mozilla-b2g44_v2_5'
 # TODO: coordinate l1n repos with bug 1218060
-BRANCHES['mozilla-b2g44_v2_5']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['mozilla-b2g44_v2_5']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v2_5'
 BRANCHES['mozilla-b2g44_v2_5']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-aurora'
 BRANCHES['mozilla-b2g44_v2_5']['start_hour'] = [0]
 BRANCHES['mozilla-b2g44_v2_5']['start_minute'] = [45]

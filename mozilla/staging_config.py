@@ -116,7 +116,7 @@ BRANCHES = {
         'mobile_download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
         'enable_mail_notifier': False, # Set to True when testing
         'email_override': [], # Set to your address when testing
-        'package_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox/try-builds',
+        'package_url': 'http://ftp.stage.mozaws.net/pub/firefox/try-builds',
         'talos_masters': [],
         'platforms': {
             'win32': {
@@ -143,6 +143,7 @@ PROJECTS = {
         'scripts_repo': 'https://hg.mozilla.org/users/stage-ffxbld/tools',
         'lithium_repo': 'https://git.mozilla.org/mozsec/lithium.git',
         'funfuzz_repo': 'https://git.mozilla.org/mozsec/funfuzz.git',
+        'fuzzmanager_repo': 'https://git.mozilla.org/mozsec/FuzzManager.git',
         'funfuzz_private_repo': 'git+ssh://git.mozilla.org/private/funfuzz-private.git',
         'fuzzing_remote_host': 'stage-ffxbld@pvtbuilds2.dmz.scl3.mozilla.com',
         # Path needs extra leading slash due to optparse expansion on Win32

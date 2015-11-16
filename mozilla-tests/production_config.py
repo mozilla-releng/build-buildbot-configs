@@ -149,7 +149,7 @@ BRANCHES = {
         'notify_real_author': True,
         'enable_merging': False,
         'slave_key': 'try_slaves',
-        'package_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/try-builds',
+        'package_url': 'https://archive.mozilla.org/pub/firefox/try-builds',
         'package_dir': '%(who)s-%(got_revision)s',
         'stage_username': 'trybld',
         'stage_ssh_key': 'trybld_dsa',

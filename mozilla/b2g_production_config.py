@@ -14,7 +14,7 @@ GLOBAL_VARS.update({
 # Local branch overrides
 BRANCHES = {
     'try': {
-        'package_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/b2g/try-builds',
+        'package_url': 'https://archive.mozilla.org/pub/b2g/try-builds',
     },
 }
 
