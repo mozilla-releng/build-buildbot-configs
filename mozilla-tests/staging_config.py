@@ -24,7 +24,7 @@ BRANCHES = {
         'try': {
             'enable_mail_notifier': False, # Set to True when testing
             'email_override': [], # Set to your address when testing
-            'package_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox/try-builds',
+            'package_url': 'http://ftp.stage.mozaws.net/pub/firefox/try-builds',
             'package_dir': '%(who)s-%(got_revision)s',
             'stage_username': 'trybld',
             'stage_ssh_key': 'trybld_dsa',
