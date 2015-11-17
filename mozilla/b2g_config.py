@@ -1200,7 +1200,7 @@ BRANCHES['try']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
 BRANCHES['try']['gecko_l10n_root'] = 'https://hg.mozilla.org/l10n-central'
 BRANCHES['try']['enable_merging'] = False
 BRANCHES['try']['enable_try'] = True
-BRANCHES['try']['package_dir'] = '%(who)s-%(got_revision)s'
+BRANCHES['try']['package_dir'] = '%(who)s-%(got_revision)s/'
 BRANCHES['try']['stage_username'] = 'trybld'
 BRANCHES['try']['stage_ssh_key'] = 'trybld_dsa'
 # Disable Nightly builds

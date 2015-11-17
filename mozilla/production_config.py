@@ -120,7 +120,7 @@ BRANCHES = {
         'mobile_download_base_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/try-builds',
         'enable_mail_notifier': True,
         'notify_real_author': True,
-        'package_url': 'https://archive.mozilla.org/pub/firefox/try-builds/',
+        'package_url': 'https://archive.mozilla.org/pub/firefox/try-builds',
         'talos_masters': [],
         'platforms': {
             'win32': {

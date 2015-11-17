@@ -14,7 +14,7 @@ GLOBAL_VARS.update({
 # Local branch overrides
 BRANCHES = {
     'try': {
-        'package_url': 'http://ftp.stage.mozaws.net/pub/b2g/try-builds/',
+        'package_url': 'http://ftp.stage.mozaws.net/pub/b2g/try-builds',
     },
 }
 
