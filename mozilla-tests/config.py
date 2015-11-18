@@ -7,7 +7,7 @@ from config_common import loadDefaultValues, loadCustomTalosSuites, \
 
 import master_common
 reload(master_common)
-from master_common import setMainFirefoxVersions, items_at_least
+from master_common import setMainFirefoxVersions, items_at_least, items_before
 
 import project_branches
 reload(project_branches)
@@ -2566,13 +2566,22 @@ for platform in PLATFORMS.keys():
 
 # Enable linux64-cc, linux64-tsan, and win10 on Try only
 delete_slave_platform(BRANCHES, PLATFORMS, {'win64': 'win10_64'}, branch_exclusions=["try"])
-# Enable Yosemite testing on select branches only
-delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite_r7'}, branch_exclusions=["try"])
 
 # Enable web-platform-tests-e10s on windows 7 try opt
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS_E10S
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S
 
+ride_trains_branches = []
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 45):
+    ride_trains_branches.append(name)
+
+not_ride_trains_branches = []
+for name, branch in items_before(BRANCHES, 'gecko_version', 45):
+    not_ride_trains_branches.append(name)
+
+# Bug 1203128 - enable r7 on trunk and disable r5 on trunk
+delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite_r7'}, branch_exclusions=ride_trains_branches)
+delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=not_ride_trains_branches)
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
@@ -2590,19 +2599,17 @@ for branch in BRANCHES.keys():
                 tests[3] = [x for x in tests[3] if x not in platforms_for_os or x in enabled_platforms_for_os]
                 BRANCHES[branch]['%s_tests' % s] = tuple(tests)
 
-
 # Gtests run from the test package
 for platform in PLATFORMS.keys():
     if platform not in ['linux', 'linux64', 'linux64-asan', 'linux64-tsan', 'linux64-cc',
                         'macosx64', 'win32', 'win64']:
         continue
 
-
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 45):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
 
             # Not stable on windows XP
-            if slave_platform in ['xp-ix', 'win10_64', 'yosemite_r7']:
+            if slave_platform in ['xp-ix', 'win10_64', 'yosemite', 'yosemite_r7']:
                 continue
 
             if platform in BRANCHES[name]['platforms']:
@@ -2614,10 +2621,6 @@ for platform in PLATFORMS.keys():
                 else:
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += GTEST
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += GTEST
-
-ride_trains_branches = []
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 45):
-    ride_trains_branches.append(name)
 
 delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-cc': 'ubuntu64_vm'}, branch_exclusions=["try"])
 delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-cc': 'ubuntu64_vm_lnx_large'}, branch_exclusions=["try"])
