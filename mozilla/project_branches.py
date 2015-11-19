@@ -194,9 +194,9 @@ PROJECT_BRANCHES = {
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         'balrog_api_root': 'https://aus4-admin-dev.allizom.org/api',
-        'bouncerServer': 'download.mozilla.org',
         'tuxedoServerUrl':  'https://bounceradmin.mozilla.com/api',
-        'bouncerServer': 'download.mozilla.org',
+        'bouncer_submitter_config':  "releases/bouncer_firefox_date.py",
+        'bouncer_branch': "releases/date"
     },
     'elm': {
         'branch_projects': [],
