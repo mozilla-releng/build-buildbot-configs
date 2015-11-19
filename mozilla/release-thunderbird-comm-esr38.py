@@ -26,7 +26,7 @@ releaseConfig['mozilla_srcdir']      = 'mozilla'
 releaseConfig['version']             = '38.4.0'
 releaseConfig['appVersion']          = '38.4.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
+releaseConfig['buildNumber']         = 3
 releaseConfig['baseTag']             = 'THUNDERBIRD_38_4_0'
 releaseConfig['partialUpdates']      = {
 
@@ -57,7 +57,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr38',
         'path': 'releases/comm-esr38',
-        'revision': '502ef538ce9b',
+        'revision': '86aaf7d1e621',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -69,7 +69,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr38',
         'path': 'releases/mozilla-esr38',
-        'revision': '3c13c7dca621',
+        'revision': 'bea414cb5af0',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
