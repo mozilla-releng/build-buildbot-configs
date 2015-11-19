@@ -36,7 +36,7 @@ for i in range(1, 34) + range(35, 93) + range(95, 153) + range(154, 166):  # sla
 for i in range(1, 42) + range(43, 92) + range(93, 108):  #slaves 0042 and 0092 have been decommed
     SLAVES['yosemite']['t-yosemite-r5-%04i' % i] = {}
 
-for i in range(1, 65):
+for i in range(1, 201):
     SLAVES['yosemite_r7']['t-yosemite-r7-%04i' % i] = {}
 
 for i in range(22, 910):
