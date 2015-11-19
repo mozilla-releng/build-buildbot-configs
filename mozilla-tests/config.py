@@ -2514,6 +2514,24 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIATESTS
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIATESTS
 
+
+# Bug 1223072 - disable media-tests on linux asan, debug (on development and release-stabilization branches)
+development_branches = ('b2g-inbound', 'fx-team', 'mozilla-central', 'mozilla-inbound')
+release_stability_branches = ('mozilla-b2g37_v2_2', 'mozilla-beta', 'mozilla-esr38', 'mozilla-release', 'mozilla-aurora')
+
+for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm'):
+    for platform in ('linux64', 'linux64-asan'):
+        for branch in development_branches + release_stability_branches:
+            if platform not in BRANCHES[branch]['platforms']:
+                continue
+            if slave_platform in BRANCHES[branch]['platforms'][platform]:
+                if platform == 'linux64':
+                    BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] = [item for item in BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] if item not in MEDIATESTS]
+                elif platform == 'linux64-asan':
+                    BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] = [item for item in BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] if item not in MEDIATESTS]
+                    BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] = [item for item in BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] if item not in MEDIATESTS]
+
+
 ### Test suites that only run on Cedar ###
 # Turn off most suites on cedar (bug 1198400)
 for platform in PLATFORMS.keys():
