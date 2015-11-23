@@ -2460,6 +2460,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', aurora_gecko_versi
 
 # Bug 1215233 - Enable more e10s tests on Windows 7 only
 #   Turn on mochitest-gl-e10s - bug 1221102
+#   Turn on mochitest-e10s-devtools-chrome - bug 1221499
 for name, branch in items_at_least(BRANCHES, 'gecko_version', trunk_gecko_version):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
@@ -2467,8 +2468,10 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', trunk_gecko_versio
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if slave_platform in branch['platforms'][platform] and slave_platform in ('win7-ix',):
                 if name not in TWIGS:
-                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_WEBGL_E10S
-                    branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_WEBGL_E10S
+                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                        MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S
+                    branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
+                        MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S
 
 # Bug 1200437
 # Use 7 chunks for m-bc on branches > trunk, excluding twigs, 3 chunks elsewhere
