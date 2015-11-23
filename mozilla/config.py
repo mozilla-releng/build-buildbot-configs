@@ -2642,9 +2642,6 @@ BRANCHES['try']['platforms']['android-api-9-debug']['slaves'] = TRY_SLAVES['mock
 BRANCHES['try']['platforms']['android-api-11-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-x86']['slaves'] = TRY_SLAVES['mock']
 for platform in BRANCHES['try']['platforms'].keys():
-    # Sadly, the rule that mobile builds go to /mobile/
-    # isn't true for try :(
-    BRANCHES['try']['platforms'][platform]['stage_product'] = 'firefox'
     # Disable symbol upload across the board
     BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
 del BRANCHES['try']['platforms']['linux64-av']
