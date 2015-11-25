@@ -115,6 +115,7 @@ BRANCHES = {
     },
     'try': {
         'tinderbox_tree': 'Try',
+        'stage_server': 'upload.trybld.productdelivery.prod.mozaws.net',
         'mobile_tinderbox_tree': 'Try',
         'download_base_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/try-builds',
         'mobile_download_base_url': 'https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/try-builds',

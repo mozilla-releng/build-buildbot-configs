@@ -6,11 +6,6 @@ from localconfig import GLOBAL_VARS, BUILDS_BEFORE_REBOOT, \
 
 GLOBAL_VARS = deepcopy(localconfig.GLOBAL_VARS)
 
-# this can be removed when b2g has transitioned to S3
-GLOBAL_VARS.update({
-    'stage_server': 'stage.mozilla.org',
-})
-
 # Local branch overrides
 BRANCHES = {
     'try': {
