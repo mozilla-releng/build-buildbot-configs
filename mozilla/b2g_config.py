@@ -1097,6 +1097,11 @@ for platform in ('nexus-4', 'nexus-4_eng', 'nexus-5-l', 'nexus-5-l_eng',
     if platform in BRANCHES['cedar']['platforms']:
         del BRANCHES['cedar']['platforms'][platform]
 
+# bug 1222209 - Remove nexus-4 builds from pine
+for platform in ('nexus-4', 'nexus-4_eng'):
+    if platform in BRANCHES['pine']['platforms']:
+        del BRANCHES['pine']['platforms'][platform]
+
 ######## mozilla-central
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
