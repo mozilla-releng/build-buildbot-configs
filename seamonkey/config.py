@@ -154,7 +154,7 @@ GLOBAL_VARS = {
                             ],
     'mock_packages_x86-64' : ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
                             'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
-                            'gtk2-devel', 'libnotify-devel', 'yasm',
+                            'gtk2-devel', 'libnotify-devel', 'yasm', 'glibc.i686',
                             'alsa-lib-devel', 'libcurl-devel',
                             'wireless-tools-devel', 'libX11-devel',
                             'libXt-devel', 'mesa-libGL-devel',

@@ -229,7 +229,7 @@ builders.append({
                    'slavebuilddir': reallyShort(builderPrefix('tag'))}
 })
 
-linuxConfig = branchConfig['platforms']['linux64']
+linuxConfig = branchConfig['platforms']['linux']
 
 source_factory = CCSourceFactory(
     hgHost=branchConfig['hghost'],
