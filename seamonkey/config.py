@@ -120,10 +120,10 @@ GLOBAL_VARS = {
                             'wireless-tools-devel.i686', 'libX11-devel.i686',
                             'libXt-devel.i686', 'mesa-libGL-devel.i686',
                             'gnome-vfs2-devel.i686', 'GConf2-devel.i686', 'wget',
-                            'mpfr', # required for system compiler
-                            'xorg-x11-font*', # fonts required for PGO
-                            'imake', # required for makedepend!?!
-                            'gcc45_0moz3', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
+                            'mpfr',  # required for system compiler
+                            'xorg-x11-font*',  # fonts required for PGO
+                            'imake',  # required for makedepend!?!
+                            'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache',  # <-- from releng repo
                             'valgrind',
                             'pulseaudio-libs-devel.i686',
                             'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
@@ -230,7 +230,7 @@ PLATFORM_VARS = {
             'stage_product': 'seamonkey',
             'enable_pymake': False,
             'use_mock': True,
-            'mock_target': 'mozilla-centos6-i386',
+            'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': GLOBAL_VARS['mock_packages_i686'],
             'mock_copyin_files': [('/home/seabld/.ssh', '/home/mock_mozilla/.ssh'),
                                   ('/home/seabld/.hgrc', '/builds/.hgrc'),
@@ -407,7 +407,7 @@ PLATFORM_VARS = {
             'stage_product': 'seamonkey',
             'enable_pymake': False,
             'use_mock': True,
-            'mock_target': 'mozilla-centos6-i386',
+            'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': GLOBAL_VARS['mock_packages_i686'],
             'mock_copyin_files': [('/home/seabld/.ssh', '/home/mock_mozilla/.ssh'),
                                   ('/home/seabld/.hgrc', '/builds/.hgrc'),
