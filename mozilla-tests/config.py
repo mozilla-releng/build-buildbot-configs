@@ -2282,6 +2282,16 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-aurora']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['mozilla-aurora']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-aurora']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-aurora']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-aurora']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-aurora']['g3_tests'] = (1, False, {}, LINUX_ONLY)
+BRANCHES['mozilla-aurora']['g3-e10s_tests'] = (1, False, {}, LINUX_ONLY)
+BRANCHES['mozilla-aurora']['svgr-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-aurora']['dromaeojs-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['mozilla-aurora']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 ######### mozilla-esr38
 BRANCHES['mozilla-esr38']['repo_path'] = "releases/mozilla-esr38"
