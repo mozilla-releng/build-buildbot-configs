@@ -55,6 +55,7 @@ else:
         'mozilla-b2g37_v2_2',
         'mozilla-b2g37_v2_2r',
         'mozilla-b2g44_v2_5',
+        'b2g-ota',
     ])
     # MERGE DAY: Remove the following block when we are sure b2g CI is moved to
     # taskcluster

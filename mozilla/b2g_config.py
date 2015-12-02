@@ -982,6 +982,18 @@ BRANCHES = {
             'emulator-l-debug': {},
             'flame-kk': {},
             'flame-kk_eng': {},
+        },
+    },
+    'b2g-ota': {
+        'gecko_version': 45,
+        'b2g_version': (2, 6, 0),
+        'lock_platforms': True,
+        'platforms': {
+            'linux64-b2g-haz': {},
+            'emulator': {},
+            'emulator-debug': {},
+            'flame-kk': {},
+            'flame-kk_eng': {},
         }
     },
     'try': {
@@ -1123,6 +1135,21 @@ BRANCHES['mozilla-central']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-debug']['enable_nightly'] = True
+
+######## b2g-ota
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['b2g-ota']['repo_path'] = 'releases/b2g-ota'
+BRANCHES['b2g-ota']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['b2g-ota']['gecko_l10n_root'] = 'https://hg.mozilla.org/l10n-central'
+BRANCHES['b2g-ota']['start_hour'] = [0]
+BRANCHES['b2g-ota']['start_minute'] = [45]
+BRANCHES['b2g-ota']['periodic_start_minute'] = 30
+BRANCHES['b2g-ota']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
+BRANCHES['b2g-ota']['platforms']['flame-kk']['enable_nightly'] = True
+BRANCHES['b2g-ota']['platforms']['flame-kk_eng']['enable_nightly'] = True
+BRANCHES['b2g-ota']['platforms']['emulator']['enable_nightly'] = True
+BRANCHES['b2g-ota']['platforms']['emulator-debug']['enable_nightly'] = True
 
 ######## mozilla-b2g37_v2_2
 # This is a path, relative to HGURL, where the repository is located
