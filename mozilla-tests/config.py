@@ -2719,13 +2719,17 @@ ride_trains_branches = []
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 45):
     ride_trains_branches.append(name)
 
-not_ride_trains_branches = []
-for name, branch in items_before(BRANCHES, 'gecko_version', 45):
-    not_ride_trains_branches.append(name)
+r7_active_branches = []
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
+    r7_active_branches.append(name)
+
+r7_inactive_branches = []
+for name, branch in items_before(BRANCHES, 'gecko_version', 44):
+    r7_inactive_branches.append(name)
 
 # Bug 1203128 - enable r7 on trunk and disable r5 on trunk
-delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite_r7'}, branch_exclusions=ride_trains_branches)
-delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=not_ride_trains_branches)
+delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite_r7'}, branch_exclusions=r7_active_branches)
+delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=r7_inactive_branches)
 
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
