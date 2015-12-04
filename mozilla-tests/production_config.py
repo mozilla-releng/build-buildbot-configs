@@ -1,7 +1,6 @@
 SLAVES = {
     'xp-ix': {},
     'win7-ix': {},
-    'win7-spot': {},
     'win8': {},
     'win10': {},
     'snowleopard': {},
@@ -22,8 +21,6 @@ for i in range(1, 173):
 
 for i in range(1, 234):
     SLAVES['win7-ix']['t-w732-ix-%03i' % i] = {}
-for i in range(0, 400):
-    SLAVES['win7-spot']['t-w732-spot-%03i' % i] = {}
 
 for i in range(1, 102) + range(103, 195):  # Omit 102 for win10 // Bug 1191481
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
