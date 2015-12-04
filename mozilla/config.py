@@ -2377,6 +2377,7 @@ BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-release']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-release']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
 BRANCHES['mozilla-release']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
+BRANCHES['mozilla-release']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
