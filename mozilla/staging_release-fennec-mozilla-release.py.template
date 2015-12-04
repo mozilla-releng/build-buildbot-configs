@@ -145,12 +145,16 @@ releaseConfig['single_locale_options'] = {
         'single_locale/staging_release_mozilla-release_android_api_9.py',
         '--user-repo-override', 'users/stage-ffxbld',
         '--tag-override', '%s_RELEASE' % releaseConfig['baseTag'],
+        '--cfg', 'single_locale/staging.py',
+        '--no-taskcluster-upload',
     ],
     'android-api-11': [
         '--cfg',
         'single_locale/staging_release_mozilla-release_android_api_11.py',
         '--user-repo-override', 'users/stage-ffxbld',
         '--tag-override', '%s_RELEASE' % releaseConfig['baseTag'],
+        '--cfg', 'single_locale/staging.py',
+        '--no-taskcluster-upload',
     ],
 }
 

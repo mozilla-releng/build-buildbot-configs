@@ -141,11 +141,15 @@ releaseConfig['single_locale_options'] = {
         '--cfg',
         'single_locale/release_mozilla-release_android_api_9.py',
         '--tag-override', '%s_RELEASE' % releaseConfig['baseTag'],
+        '--cfg', 'single_locale/production.py',
+        '--no-taskcluster-upload',
     ],
     'android-api-11': [
         '--cfg',
         'single_locale/release_mozilla-release_android_api_11.py',
         '--tag-override', '%s_RELEASE' % releaseConfig['baseTag'],
+        '--cfg', 'single_locale/production.py',
+        '--no-taskcluster-upload',
     ],
 }
 
