@@ -150,16 +150,6 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgx', '--noChrome', '--tppagecycles', '10'],
         'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
     },
-    'remote-tcanvasmark': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tcanvasmark', '--noChrome'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID_NOT_PANDA),
-    },
-    'remote-trobocheck2': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tcheck2', '--noChrome', '--fennecIDs', '../fennec_ids.txt'],
-        'options': (TALOS_REMOTE_FENNEC_OPTS, ANDROID),
-    },
     'remote-tp4m_nochrome': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp4m', '--noChrome', '--rss'],
