@@ -13,7 +13,7 @@ today = date.today().strftime("%Y-%m-%d")
 #android has different slave platforms within the same opt|debug list
 seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"]),
                   "Windows XP 32-bit": ("win32", ["xp-ix"]),
-                  "Windows 7 32-bit": ("win32", ["win7-ix"]),
+                  "Windows 7 32-bit": ("win32", ["win7-ix", "win7-spot"]),
                   "Windows 8 64-bit": ("win64", ["win8_64"]),
                   "Ubuntu VM 12.04": ("linux", ["ubuntu32_vm"]),
                   "Ubuntu VM 12.04 x64": ("linux64", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
