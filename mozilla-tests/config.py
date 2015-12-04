@@ -95,13 +95,12 @@ PLATFORMS['macosx64']['mozharness_config'] = {
 }
 PLATFORMS['macosx64']['talos_slave_platforms'] = ['yosemite', 'yosemite_r7']
 
-PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix', 'win7-spot']
+PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
 PLATFORMS['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp-ix'] = {'name': "Windows XP 32-bit",
                                'try_by_default': False}
 PLATFORMS['win32']['win7-ix'] = {'name': "Windows 7 32-bit"}
-PLATFORMS['win32']['win7-spot'] = {'name': "Windows 7 VM 32-bit"}
 PLATFORMS['win32']['stage_product'] = 'firefox'
 PLATFORMS['win32']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
@@ -219,20 +218,20 @@ for platform, platform_config in PLATFORMS.iteritems():
 
 ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'macosx64', 'win64', ))
 LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', ))
-WIN7_HW_ONLY = ['win7-ix']
+WIN7_ONLY = ['win7-ix']
 
 SUITES = {
     'xperf': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5n', '--sampleConfig', 'xperf.config', '--mozAfterPaint', '--xperf_path',
                                   '"c:/Program Files/Microsoft Windows Performance Toolkit/xperf.exe"', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, WIN7_HW_ONLY),
+        'options': (TALOS_TP_NEW_OPTS, WIN7_ONLY),
     },
     'xperf-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5n', '--sampleConfig', 'xperf.config', '--mozAfterPaint', '--xperf_path',
                                   '"c:/Program Files/Microsoft Windows Performance Toolkit/xperf.exe"', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, WIN7_HW_ONLY),
+        'options': (TALOS_TP_NEW_OPTS, WIN7_ONLY),
     },
     'tp5o': {
         'enable_by_default': True,
@@ -1600,111 +1599,6 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
             },
-        },
-        'win7-spot': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + MARIONETTE + \
-                                   REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
-                                   WEB_PLATFORM_TESTS_CHUNKED,
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_ONE_CHUNK + XPCSHELL,
-            'suite_config': {
-                'mochitest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-push': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-e10s': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-csb': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-browser-chrome': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-e10s-browser-chrome': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-other': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-devtools-chrome': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-e10s-devtools-chrome': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-gl': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-gl-e10s': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mochitest-jetpack': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'webapprt-chrome': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'reftest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'reftest-e10s': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'jsreftest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'crashtest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'crashtest-e10s': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'reftest-no-accel': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'reftest-omtc': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'xpcshell': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'cppunit': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'gtest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'marionette': {
-                    'config_files': ["marionette/windows_config.py"],
-                },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
-                'jittest': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mozbase': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'web-platform-tests': {
-                    'config_files': ["web_platform_tests/prod_config_windows.py"],
-                },
-                'web-platform-tests-reftests': {
-                    'config_files': ["web_platform_tests/prod_config_windows.py"],
-                },
-                'web-platform-tests-e10s': {
-                    'config_files': ["web_platform_tests/prod_config_windows.py"],
-                },
-                'web-platform-tests-reftests-e10s': {
-                    'config_files': ["web_platform_tests/prod_config_windows.py"],
-                },
-            },
         }
     },
     'win64': {
@@ -2303,11 +2197,6 @@ PROJECTS = {
                 'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
                 'debug': True,
             },
-            'win7-spot': {
-                'ext': 'win32.zip',
-                'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
-                'debug': True,
-            },
         },
         'hgurl': 'https://hg.mozilla.org',
         'repo_path': 'projects/addon-sdk',
@@ -2339,7 +2228,7 @@ BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
-BRANCHES['mozilla-central']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_HW_ONLY)
+BRANCHES['mozilla-central']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['mozilla-central']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-central']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-central']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
@@ -2352,7 +2241,7 @@ BRANCHES['mozilla-central']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLA
 
 
 ######### mozilla-inbound
-BRANCHES['mozilla-inbound']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_HW_ONLY)
+BRANCHES['mozilla-inbound']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['mozilla-inbound']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-inbound']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-inbound']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
@@ -2365,7 +2254,7 @@ BRANCHES['mozilla-inbound']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLA
 
 
 ######### fx-team
-BRANCHES['fx-team']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_HW_ONLY)
+BRANCHES['fx-team']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['fx-team']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['fx-team']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['fx-team']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
@@ -2393,7 +2282,7 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-aurora']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_HW_ONLY)
+BRANCHES['mozilla-aurora']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['mozilla-aurora']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-aurora']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['mozilla-aurora']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
@@ -2426,7 +2315,7 @@ BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64']['talos_slave_platforms'] 
 
 ######## try
 BRANCHES['try']['repo_path'] = "try"
-BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_HW_ONLY)
+BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['other_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['g1_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
@@ -2446,7 +2335,7 @@ BRANCHES['try']['g3-e10s_tests'] = (1, False, {}, LINUX_ONLY)
 BRANCHES['try']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['svgr-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_HW_ONLY)
+BRANCHES['try']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
 BRANCHES['try']['dromaeojs-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 
@@ -2587,7 +2476,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', trunk_gecko_versio
         if platform not in branch['platforms']:
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7-ix', 'win7-spot',):
+            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7-ix',):
                 if name not in TWIGS:
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                         MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S
@@ -2633,7 +2522,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
             continue
-        for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win7-spot', 'win8_64', 'yosemite'):
+        for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win8_64', 'yosemite'):
             if slave_platform in branch['platforms'][platform]:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIATESTS
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIATESTS
@@ -2669,7 +2558,7 @@ for platform in PLATFORMS.keys():
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE
 
 # Enable media-youtube-tests (bug 1209327)
-for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win7-spot', 'win8_64', 'yosemite'):
+for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win8_64', 'yosemite'):
     for platform in PLATFORMS.keys():
         if platform not in BRANCHES['cedar']['platforms']:
             continue
@@ -2712,8 +2601,6 @@ delete_slave_platform(BRANCHES, PLATFORMS, {'win64': 'win10_64'}, branch_exclusi
 # Enable web-platform-tests-e10s on windows 7 try opt
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS_E10S
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S
-BRANCHES['try']['platforms']['win32']['win7-spot']['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS_E10S
-BRANCHES['try']['platforms']['win32']['win7-spot']['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S
 
 ride_trains_branches = []
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 45):

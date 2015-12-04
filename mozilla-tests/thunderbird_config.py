@@ -55,11 +55,10 @@ PLATFORMS['macosx64']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
     'system_bits': '64',
 }
-PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix', 'win7-spot']
+PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp-ix'] = {'name': builder_prefix + "Windows XP 32-bit"}
 PLATFORMS['win32']['win7-ix'] = {'name': builder_prefix + "Windows 7 32-bit"}
-PLATFORMS['win32']['win7-spot'] = {'name': builder_prefix + "Windows 7 VM 32-bit"}
 PLATFORMS['win32']['stage_product'] = 'thunderbird'
 PLATFORMS['win32']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
@@ -104,6 +103,8 @@ ALL_PLATFORMS = PLATFORMS['linux']['slave_platforms'] + \
     PLATFORMS['linux64']['slave_platforms'] + \
     PLATFORMS['win32']['slave_platforms'] + \
     PLATFORMS['macosx64']['slave_platforms']
+
+WIN7_ONLY = ['win7']
 
 NO_WIN = PLATFORMS['macosx64']['slave_platforms'] + PLATFORMS['linux']['slave_platforms'] + PLATFORMS['linux64']['slave_platforms']
 
@@ -219,18 +220,6 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win7-ix': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
-            'suite_config': {
-                'xpcshell': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-                'mozmill': {
-                    'config_files': ["unittests/win_unittest.py"],
-                },
-            },
-        },
-        'win7-spot': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
@@ -391,7 +380,7 @@ for branch in set(BRANCHES.keys()):
     if 'win7' not in BRANCHES[branch]['platforms']['win32']:
         continue
     del BRANCHES[branch]['platforms']['win32']['win7']
-    BRANCHES[branch]['platforms']['win32']['slave_platforms'] = ['xp-ix', 'win7-ix', 'win7-spot']
+    BRANCHES[branch]['platforms']['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
 
 for branch in set(BRANCHES.keys()):
     if 'linux' in BRANCHES[branch]['platforms']:
