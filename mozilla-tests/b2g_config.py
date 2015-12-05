@@ -23,14 +23,11 @@ GLOBAL_VARS['stage_username'] = 'ffxbld'
 GLOBAL_VARS.update(b2g_localconfig.GLOBAL_VARS.copy())
 
 BRANCHES = {
-    # Disabled in bug 1227277
-    #'alder': {},
-    # Disabled in bug 1227277
-    #'ash': {},
+    'alder': {},
+    'ash': {},
     # Not needed right now, see bug 977420
     # 'birch': {},
-    # Disabled in bug 1227277
-    #'cedar': {},
+    'cedar': {},
     # Disabled for bug 1151699
     # 'cypress': {},
     # Disabled for Bug 1150320
@@ -38,8 +35,7 @@ BRANCHES = {
     # disabled in bug 1215527
     # 'maple': {}
     'pine': {},
-    # Disabled in bug 1227277
-    #'fx-team': {},
+    'fx-team': {},
     'mozilla-b2g37_v2_2': {
         'gecko_version': 37,
         'b2g_version': (2, 2, 0),
@@ -1598,6 +1594,17 @@ for branch in BRANCHES.keys():
 
 # The following are exceptions to the defaults
 
+BRANCHES['alder']['branch_name'] = "Alder"
+BRANCHES['alder']['repo_path'] = "projects/alder"
+BRANCHES['ash']['branch_name'] = "Ash"
+BRANCHES['ash']['repo_path'] = "projects/ash"
+BRANCHES['cedar']['branch_name'] = "Cedar"
+BRANCHES['cedar']['repo_path'] = "projects/cedar"
+BRANCHES['cedar']['mozharness_tag'] = "default"
+BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = \
+    MOCHITEST + MARIONETTE + CPPUNIT
+BRANCHES['cedar']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_unittest_suites'] = \
+    MARIONETTE[:] + CPPUNIT
 BRANCHES['pine']['branch_name'] = "Pine"
 BRANCHES['pine']['repo_path'] = "projects/pine"
 BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['opt_unittest_suites'] = \
@@ -1606,6 +1613,7 @@ BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_uni
     MOCHITEST_EMULATOR_DEBUG[:] + REFTEST + CRASHTEST + MARIONETTE + XPCSHELL_CHUNKED
 # disabled for Bug 1150320
 # BRANCHES['jamun']['repo_path'] = "projects/jamun"
+BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = "releases/mozilla-b2g37_v2_2"
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64_gecko']['enable_opt_unittests'] = True
 BRANCHES['mozilla-b2g37_v2_2r']['repo_path'] = "releases/mozilla-b2g37_v2_2r"
