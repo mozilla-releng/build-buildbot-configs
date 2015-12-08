@@ -40,7 +40,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "da": {
-    "revision": "b9418386f451",
+    "revision": "fa0d8ce3b543",
     "platforms": ["android", "android-multilocale"]
   },
   "de": {
@@ -56,7 +56,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "eo": {
-    "revision": "569cc37a7c6c",
+    "revision": "4873ab16162c",
     "platforms": ["android", "android-multilocale"]
   },
   "es-AR": {
@@ -252,7 +252,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "te": {
-    "revision": "beedc50240f5",
+    "revision": "ad5ebb1f02d3",
     "platforms": ["android", "android-multilocale"]
   },
   "th": {
