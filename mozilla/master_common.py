@@ -177,23 +177,9 @@ def prioritizeBuilders(buildmaster, builders):
                 seen_slaves.add(s.slave.slavename)
     log("found %i available of %i connected slaves", len(avail_slaves), len(seen_slaves))
 
-    # Find which builders have slaves available
-    # If we're checking the jacuzzi allocations, then limit the available
-    # slaves by whatever the jacuzzi allocation is.
-    # If we don't incorporate the jacuzzi allocations here, we could end up
-    # with lower priority builders being discarded below which have available
-    # slaves attached and allocated.
-    from buildbotcustom.misc import J
     builders_with_slaves = []
     for b in builders:
         slaves = [s for s in b.slaves if s.slave.slavename in avail_slaves]
-        if getattr(prioritizeBuilders, 'check_jacuzzis', False):
-            try:
-                # Filter the available slaves through the jacuzzi bubbles..
-                slaves = J.get_slaves(b.name, slaves)
-            except Exception:
-                twlog.err("handled exception talking to jacuzzi; trying to carry on")
-
         if slaves:
             builders_with_slaves.append(b)
         else:
