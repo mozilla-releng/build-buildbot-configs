@@ -196,7 +196,8 @@ PROJECT_BRANCHES = {
         'balrog_api_root': 'https://aus4-admin-dev.allizom.org/api',
         'tuxedoServerUrl':  'https://bounceradmin.mozilla.com/api',
         'bouncer_submitter_config':  "releases/bouncer_firefox_date.py",
-        'bouncer_branch': "releases/date"
+        'bouncer_branch': "releases/date",
+        'bouncer_enabled': True
     },
     'elm': {
         'branch_projects': [],
