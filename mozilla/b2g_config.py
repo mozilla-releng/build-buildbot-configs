@@ -1312,15 +1312,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         else:
             BRANCHES[branch]['platforms'][platform]['mozconfig'] = platform + '/' + branchConfig.get('mozconfig_dir', 'generic') + '/nightly'
 
-# bug 1227277 - Disabling b2g builds on project branches other than pine
-B2GTWIGS = [x for x in ACTIVE_PROJECT_BRANCHES if x not in ('mozilla-inbound', 'b2g-inbound', 'fx-team', 'pine')]
-for branch in B2GTWIGS:
-    for platform in GLOBAL_VARS['platforms']:
-        if branch not in BRANCHES:
-            continue
-        if platform in BRANCHES[branch]['platforms']:
-            del BRANCHES[branch]['platforms'][platform]
-
 if __name__ == "__main__":
     import sys
     import pprint
