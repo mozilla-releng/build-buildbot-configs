@@ -34,5 +34,3 @@ SLAVES = TRY_SLAVES
 ENABLE_RELEASES = False
 
 QUEUEDIR = master_config.get("queuedir", "/dev/shm/queue")
-
-ENABLE_JACUZZIS = True
