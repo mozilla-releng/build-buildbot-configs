@@ -24,7 +24,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '38.5.0esr'
 releaseConfig['appVersion']          = '38.5.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_38_5_0esr'
 releaseConfig['partialUpdates']      = {
 
@@ -61,7 +61,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr38',
         'path': 'releases/mozilla-esr38',
-        'revision': 'b8244a3f55e1',
+        'revision': 'f6c1116a4295',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
