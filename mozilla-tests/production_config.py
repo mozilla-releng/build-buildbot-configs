@@ -19,7 +19,7 @@ SLAVES = {
 for i in range(1, 173):
     SLAVES['xp-ix']['t-xp32-ix-%03i' % i] = {}
 
-for i in range(1, 244):   # Move some XP test machines to the Windows 7 pool from 234 to 243 // Bug 1226729 
+for i in range(1, 234):
     SLAVES['win7-ix']['t-w732-ix-%03i' % i] = {}
 
 for i in range(1, 102) + range(103, 195):  # Omit 102 for win10 // Bug 1191481
