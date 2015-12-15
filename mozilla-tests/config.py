@@ -2324,8 +2324,6 @@ BRANCHES['try']['g3_tests'] = (1, False, {}, LINUX_ONLY)
 BRANCHES['try']['dromaeojs_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = None
 BRANCHES['try']['enable_try'] = True
-BRANCHES['try']['platforms']['macosx64']['yosemite_r7']['opt_unittest_suites'] = UNITTEST_SUITES['opt_unittest_suites'][:]
-BRANCHES['try']['platforms']['macosx64']['yosemite_r7']['debug_unittest_suites'] = UNITTEST_SUITES['debug_unittest_suites'][:]
 
 # now for e10s tests
 BRANCHES['try']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
