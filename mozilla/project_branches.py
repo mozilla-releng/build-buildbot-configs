@@ -79,7 +79,7 @@ PROJECT_BRANCHES = {
         'enable_perproduct_builds': True,
         'pgo_strategy': 'per-checkin',
         'enable_l10n': True,
-        'enable_l10n_onchange': True,
+        'enable_l10n_onchange': False,
         'l10n_repo_path': 'l10n-central',
         'l10n_platforms': ['linux', 'linux64', 'win32', 'macosx64', 'win64'],
         'l10nDatedDirs': True,

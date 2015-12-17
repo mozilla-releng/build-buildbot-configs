@@ -2301,7 +2301,7 @@ BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
-BRANCHES['mozilla-central']['enable_l10n_onchange'] = True
+BRANCHES['mozilla-central']['enable_l10n_onchange'] = False
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-central']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                                  'macosx64', 'win64']
@@ -2357,7 +2357,7 @@ BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['enable_mac_a11y'] = True
 # L10n configuration
 BRANCHES['mozilla-release']['enable_l10n'] = False
-BRANCHES['mozilla-release']['enable_l10n_onchange'] = True
+BRANCHES['mozilla-release']['enable_l10n_onchange'] = False
 BRANCHES['mozilla-release']['l10nNightlyUpdate'] = False
 BRANCHES['mozilla-release']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                                  'macosx64']
@@ -2393,7 +2393,7 @@ BRANCHES['mozilla-beta']['enable_mac_a11y'] = True
 BRANCHES['mozilla-beta']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['mozilla-beta']['enable_l10n'] = False
-BRANCHES['mozilla-beta']['enable_l10n_onchange'] = True
+BRANCHES['mozilla-beta']['enable_l10n_onchange'] = False
 BRANCHES['mozilla-beta']['l10nNightlyUpdate'] = False
 BRANCHES['mozilla-beta']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                               'macosx64']
@@ -2442,7 +2442,7 @@ BRANCHES['mozilla-aurora']['enable_mac_a11y'] = True
 BRANCHES['mozilla-aurora']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['mozilla-aurora']['enable_l10n'] = True
-BRANCHES['mozilla-aurora']['enable_l10n_onchange'] = True
+BRANCHES['mozilla-aurora']['enable_l10n_onchange'] = False
 BRANCHES['mozilla-aurora']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-aurora']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                                  'macosx64', 'win64']

@@ -753,7 +753,7 @@ BRANCHES['comm-central']['enable_mac_a11y'] = True
 BRANCHES['comm-central']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['comm-central']['enable_l10n'] = True
-BRANCHES['comm-central']['enable_l10n_onchange'] = True
+BRANCHES['comm-central']['enable_l10n_onchange'] = False
 BRANCHES['comm-central']['l10nNightlyUpdate'] = True
 BRANCHES['comm-central']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                               'macosx64']
@@ -828,7 +828,7 @@ BRANCHES['comm-beta']['enable_mac_a11y'] = True
 BRANCHES['comm-beta']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['comm-beta']['enable_l10n'] = False
-BRANCHES['comm-beta']['enable_l10n_onchange'] = True
+BRANCHES['comm-beta']['enable_l10n_onchange'] = False
 BRANCHES['comm-beta']['l10nNightlyUpdate'] = False
 BRANCHES['comm-beta']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                            'macosx64']
@@ -864,7 +864,7 @@ BRANCHES['comm-aurora']['enable_mac_a11y'] = True
 BRANCHES['comm-aurora']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['comm-aurora']['enable_l10n'] = True
-BRANCHES['comm-aurora']['enable_l10n_onchange'] = True
+BRANCHES['comm-aurora']['enable_l10n_onchange'] = False
 BRANCHES['comm-aurora']['l10nNightlyUpdate'] = True
 BRANCHES['comm-aurora']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                              'macosx64']
