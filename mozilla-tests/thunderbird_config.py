@@ -3,6 +3,10 @@ from copy import deepcopy
 from config import BRANCH_UNITTEST_VARS, MOZHARNESS_REBOOT_CMD
 from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS
 
+import config_common
+reload(config_common)
+from config_common import delete_slave_platform
+
 import thunderbird_localconfig
 reload(thunderbird_localconfig)
 import master_common
@@ -44,10 +48,11 @@ PLATFORMS = {
 
 builder_prefix = "TB "
 
-PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'yosemite']
+PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'yosemite', 'yosemite_r7']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['snowleopard'] = {'name': builder_prefix + "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['yosemite'] = {'name': builder_prefix + "Rev5 MacOSX Yosemite 10.10"}
+PLATFORMS['macosx64']['yosemite_r7'] = {'name': builder_prefix + "Rev5 MacOSX Yosemite 10.10.5"}
 PLATFORMS['macosx64']['stage_product'] = 'thunderbird'
 PLATFORMS['macosx64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -263,6 +268,18 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
+        'yosemite_r7': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'suite_config': {
+                'xpcshell': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mozmill': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+            },
+        },
     },
 }
 
@@ -436,6 +453,18 @@ for platform in PLATFORMS.keys():
                     except ValueError:
                         # wasn't in the list anyways
                         pass
+
+# Bug 1230763 - enable r7 on trunk and disable r5 on non-trunk
+ride_trains_branches = []
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
+    ride_trains_branches.append(name)
+
+not_ride_trains_branches = []
+for name, branch in items_before(BRANCHES, 'gecko_version', 46):
+    not_ride_trains_branches.append(name)
+
+delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite_r7'}, branch_exclusions=ride_trains_branches)
+delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=not_ride_trains_branches)
 
 # Enable mozharness pinning
 for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
