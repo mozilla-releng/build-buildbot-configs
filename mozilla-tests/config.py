@@ -2603,11 +2603,11 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 45):
     ride_trains_branches.append(name)
 
 r7_active_branches = []
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 43):
     r7_active_branches.append(name)
 
 r7_inactive_branches = []
-for name, branch in items_before(BRANCHES, 'gecko_version', 44):
+for name, branch in items_before(BRANCHES, 'gecko_version', 43):
     r7_inactive_branches.append(name)
 
 # Bug 1203128 - enable r7 on trunk and disable r5 on trunk
