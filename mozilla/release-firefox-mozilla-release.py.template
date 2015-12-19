@@ -35,7 +35,7 @@ releaseConfig['partialUpdates']      = {
 {% endfor %}
 }
 # What's New Page, should be revisited with each release.
-releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/{{ appVersion }}/whatsnew/?oldversion=%OLD_VERSION%'
+# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/{{ appVersion }}/whatsnew/?oldversion=%OLD_VERSION%'
 
 releaseConfig['HACK_first_released_version'] = {'win64': "42.0"}
 
