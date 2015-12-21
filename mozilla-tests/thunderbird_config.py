@@ -52,7 +52,7 @@ PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'yosemite', 'yosemite
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['snowleopard'] = {'name': builder_prefix + "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['yosemite'] = {'name': builder_prefix + "Rev5 MacOSX Yosemite 10.10"}
-PLATFORMS['macosx64']['yosemite_r7'] = {'name': builder_prefix + "Rev5 MacOSX Yosemite 10.10.5"}
+PLATFORMS['macosx64']['yosemite_r7'] = {'name': builder_prefix + "Rev7 MacOSX Yosemite 10.10.5"}
 PLATFORMS['macosx64']['stage_product'] = 'thunderbird'
 PLATFORMS['macosx64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
