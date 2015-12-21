@@ -21,47 +21,29 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '38.5.1esr'
-releaseConfig['appVersion']          = '38.5.1'
+releaseConfig['version']             = '38.5.2esr'
+releaseConfig['appVersion']          = '38.5.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_38_5_1esr'
+releaseConfig['baseTag']             = 'FIREFOX_38_5_2esr'
 releaseConfig['partialUpdates']      = {
 
-    '38.3.0esr': {
-        'appVersion': '38.3.0',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_38_3_0esr',
-    },
-
-    '38.0.1esr': {
-        'appVersion': '38.0.1',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_38_0_1esr',
-    },
-
-    '38.4.0esr': {
-        'appVersion': '38.4.0',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_38_4_0esr',
-    },
-
-    '38.5.0esr': {
-        'appVersion': '38.5.0',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_38_5_0esr',
+    '38.5.1esr': {
+        'appVersion': '38.5.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_38_5_1esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '38.5.1esrpre'
+releaseConfig['nextAppVersion']      = '38.5.2esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr38',
         'path': 'releases/mozilla-esr38',
-        'revision': '07df110a15c8',
+        'revision': 'c9a9b896145d',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
