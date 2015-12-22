@@ -90,6 +90,7 @@ PLATFORMS['macosx64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
     'config_file': 'talos/mac_config.py',
 }
 PLATFORMS['macosx64']['talos_slave_platforms'] = ['yosemite', 'yosemite_r7']
@@ -105,6 +106,7 @@ PLATFORMS['win32']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
     'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '32',
     'config_file': 'talos/windows_config.py',
 }
 
@@ -119,6 +121,7 @@ PLATFORMS['win64']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
     'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
     'config_file': 'talos/windows_config.py',
 }
 
@@ -130,6 +133,7 @@ PLATFORMS['linux']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '32',
     'config_file': 'talos/linux_config.py',
 }
 
@@ -145,6 +149,7 @@ PLATFORMS['linux64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
     'config_file': 'talos/linux_config.py',
 }
 
@@ -156,6 +161,7 @@ PLATFORMS['linux64-asan']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
     'config_file': 'talos/linux_config.py',
 }
 
@@ -175,6 +181,7 @@ PLATFORMS['linux64-tsan']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'system_bits': '64',
     'config_file': 'talos/linux_config.py',
 }
 
