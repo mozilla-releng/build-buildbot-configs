@@ -2516,6 +2516,16 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIATESTS
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIATESTS
 
+# Enable mediatest-youtube-tests on gecko >= 46 (bug 1221963)
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
+    for platform in PLATFORMS.keys():
+        if platform not in branch['platforms']:
+            continue
+        for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'yosemite_r7'):
+            if slave_platform in branch['platforms'][platform]:
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIA_YOUTUBE_TESTS
+                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIA_YOUTUBE_TESTS
+
 
 # Bug 1223072 - disable media-tests on linux asan, debug (on development and release-stabilization branches)
 
@@ -2543,15 +2553,6 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
 
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE
-
-# Enable media-youtube-tests (bug 1209327)
-for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win8_64', 'yosemite'):
-    for platform in PLATFORMS.keys():
-        if platform not in BRANCHES['cedar']['platforms']:
-            continue
-        if slave_platform in BRANCHES['cedar']['platforms'][platform]:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIA_YOUTUBE_TESTS
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIA_YOUTUBE_TESTS
 
 # Enable mozbase unit tests (bug 971687)
 for platform in PLATFORMS.keys():
