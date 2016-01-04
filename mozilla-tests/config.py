@@ -90,7 +90,6 @@ PLATFORMS['macosx64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
-    'system_bits': '64',
     'config_file': 'talos/mac_config.py',
 }
 PLATFORMS['macosx64']['talos_slave_platforms'] = ['yosemite', 'yosemite_r7']
@@ -106,7 +105,6 @@ PLATFORMS['win32']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
     'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
-    'system_bits': '32',
     'config_file': 'talos/windows_config.py',
 }
 
@@ -121,7 +119,6 @@ PLATFORMS['win64']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
     'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
-    'system_bits': '64',
     'config_file': 'talos/windows_config.py',
 }
 
@@ -133,7 +130,6 @@ PLATFORMS['linux']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
-    'system_bits': '32',
     'config_file': 'talos/linux_config.py',
 }
 
@@ -149,7 +145,6 @@ PLATFORMS['linux64']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
-    'system_bits': '64',
     'config_file': 'talos/linux_config.py',
 }
 
@@ -161,7 +156,6 @@ PLATFORMS['linux64-asan']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
-    'system_bits': '64',
     'config_file': 'talos/linux_config.py',
 }
 
@@ -181,7 +175,6 @@ PLATFORMS['linux64-tsan']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
-    'system_bits': '64',
     'config_file': 'talos/linux_config.py',
 }
 
@@ -2421,18 +2414,16 @@ for platform in PLATFORMS.keys():
 
 ### Tests Enabled in Gecko 43+ ###
 
-# On trunk and Aurora:
+# Starting in Firefox 44:
 #   Enable e10s Linux mochitests
 #   Enable e10s browser-chrome mochitests, opt builds only for all platforms (not ready for Xp).
 #   Enable e10s devtools tests for Linux opt
 #   Enable e10s reftests/crashtests for Linux opt
 #   Enable e10s marionette tests for Linux32 opt
 #   Enable e10s web-platform-tests
-# Fix this to a certain gecko version once e10s starts riding the trains
 # Bug 1200437 - Use 7 chunks for m-e10-bc on branches > trunk, excluding twigs, 3 chunks elsewhere
-aurora_gecko_version = BRANCHES['mozilla-aurora']['gecko_version']
 trunk_gecko_version = BRANCHES['mozilla-central']['gecko_version']
-for name, branch in items_at_least(BRANCHES, 'gecko_version', aurora_gecko_version):
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
             continue
