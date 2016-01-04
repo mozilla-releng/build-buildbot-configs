@@ -20,23 +20,23 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '43.0.3'
-releaseConfig['appVersion']          = '43.0.3'
+releaseConfig['version']             = '43.0.4'
+releaseConfig['appVersion']          = '43.0.4'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_43_0_3'
+releaseConfig['baseTag']             = 'FIREFOX_43_0_4'
 releaseConfig['partialUpdates']      = {
 
-    '42.0': {
-        'appVersion': '42.0',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_42_0',
+    '43.0.1': {
+        'appVersion': '43.0.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_43_0_1',
     },
 
-    '41.0.2': {
-        'appVersion': '41.0.2',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_41_0_2',
+    '43.0.3': {
+        'appVersion': '43.0.3',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_43_0_3',
     },
 
     '43.0.2': {
@@ -45,15 +45,9 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_43_0_2',
     },
 
-    '39.0': {
-        'appVersion': '39.0',
-        'buildNumber': 6,
-        'baseTag': 'FIREFOX_39_0',
-    },
-
 }
 # What's New Page, should be revisited with each release.
-# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/43.0.3/whatsnew/?oldversion=%OLD_VERSION%'
+# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/43.0.4/whatsnew/?oldversion=%OLD_VERSION%'
 
 releaseConfig['HACK_first_released_version'] = {'win64': "42.0"}
 
@@ -65,7 +59,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '362cb79ce600',
+        'revision': '413d833d300a',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
