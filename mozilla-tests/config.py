@@ -3,7 +3,7 @@ from copy import deepcopy
 import config_common
 reload(config_common)
 from config_common import loadDefaultValues, loadCustomTalosSuites, \
-    get_talos_slave_platforms, delete_slave_platform
+    get_talos_slave_platforms, delete_slave_platform, nested_haskey
 
 import master_common
 reload(master_common)
@@ -94,12 +94,13 @@ PLATFORMS['macosx64']['mozharness_config'] = {
 }
 PLATFORMS['macosx64']['talos_slave_platforms'] = ['yosemite', 'yosemite_r7']
 
-PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
+PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix', 'win7-all']
 PLATFORMS['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp-ix'] = {'name': "Windows XP 32-bit",
                                'try_by_default': False}
 PLATFORMS['win32']['win7-ix'] = {'name': "Windows 7 32-bit"}
+PLATFORMS['win32']['win7-all'] = {'name': "Windows 7 32-bit"}
 PLATFORMS['win32']['stage_product'] = 'firefox'
 PLATFORMS['win32']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
@@ -1592,6 +1593,111 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["web_platform_tests/prod_config_windows.py"],
                 },
             },
+        },
+        'win7-all': {
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + MARIONETTE + \
+                                   REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
+                                   WEB_PLATFORM_TESTS_CHUNKED,
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
+                                     REFTEST_ONE_CHUNK + XPCSHELL,
+            'suite_config': {
+                'mochitest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-push': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-csb': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-e10s-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-devtools-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-e10s-devtools-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gl': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gl-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'webapprt-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-omtc': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'cppunit': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'gtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
+                'media-tests': {
+                    'config_files': ["mediatests/buildbot_windows_config.py"],
+                },
+                'media-youtube-tests': {
+                    'config_files': ["mediatests/buildbot_windows_config.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mozbase': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-reftests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+            },
         }
     },
     'win64': {
@@ -2460,17 +2566,18 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
 # Bug 1215233 - Enable more e10s tests on Windows 7 only
 #   Turn on mochitest-gl-e10s - bug 1221102
 #   Turn on mochitest-e10s-devtools-chrome - bug 1221499
+#   Turn on mochitest-e10s - bug 1232780
 for name, branch in items_at_least(BRANCHES, 'gecko_version', trunk_gecko_version):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7-ix',):
+            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7-ix', 'win7-all'):
                 if name not in TWIGS:
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                         MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S
                     branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                        MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S
+                        MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S
 
 # Bug 1200437
 # Use 7 chunks for m-bc on branches > trunk, excluding twigs, 3 chunks elsewhere
@@ -2511,10 +2618,20 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
             continue
-        for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win8_64', 'yosemite'):
+        for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win7-all', 'win8_64', 'yosemite'):
             if slave_platform in branch['platforms'][platform]:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIATESTS
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIATESTS
+
+# Enable mediatest-youtube-tests on gecko >= 46 (bug 1221963)
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
+    for platform in PLATFORMS.keys():
+        if platform not in branch['platforms']:
+            continue
+        for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win7-all', 'yosemite_r7'):
+            if slave_platform in branch['platforms'][platform]:
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIA_YOUTUBE_TESTS
+                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIA_YOUTUBE_TESTS
 
 
 # Bug 1223072 - disable media-tests on linux asan, debug (on development and release-stabilization branches)
@@ -2543,15 +2660,6 @@ for platform in PLATFORMS.keys():
             BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
 
 BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE
-
-# Enable media-youtube-tests (bug 1209327)
-for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win8_64', 'yosemite'):
-    for platform in PLATFORMS.keys():
-        if platform not in BRANCHES['cedar']['platforms']:
-            continue
-        if slave_platform in BRANCHES['cedar']['platforms'][platform]:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIA_YOUTUBE_TESTS
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIA_YOUTUBE_TESTS
 
 # Enable mozbase unit tests (bug 971687)
 for platform in PLATFORMS.keys():
@@ -2588,6 +2696,8 @@ delete_slave_platform(BRANCHES, PLATFORMS, {'win64': 'win10_64'}, branch_exclusi
 # Enable web-platform-tests-e10s on windows 7 try opt
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS_E10S
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S
+BRANCHES['try']['platforms']['win32']['win7-all']['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS_E10S
+BRANCHES['try']['platforms']['win32']['win7-all']['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S
 
 ride_trains_branches = []
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 45):
@@ -2661,6 +2771,21 @@ for name in BRANCHES.keys():
     if 'ubuntu64_vm_lnx_large' not in BRANCHES[name]['platforms']['linux64']:
         continue
     del BRANCHES[name]['platforms']['linux64']['ubuntu64_vm_lnx_large']
+
+# Bug 1229790 - enable win7 virtual instances (ec2/spot) on try
+win7_vm_active_branches = ['try']
+win7_vm_inactive_branches = []
+for branch in BRANCHES.keys():
+    if branch not in win7_vm_active_branches:
+        win7_vm_inactive_branches.append(branch)
+delete_slave_platform(BRANCHES, PLATFORMS, {'win32': 'win7-all'}, branch_exclusions=win7_vm_active_branches)
+# Explicitly don't remove win7-ix from talos
+for branch in set(BRANCHES.keys()) - set(win7_vm_inactive_branches):
+    for platform in ('win32', 'win64'):
+        if platform not in BRANCHES[branch]['platforms']:
+            continue
+        if nested_haskey(BRANCHES[branch]['platforms'], platform, 'win7-ix'):
+            del BRANCHES[branch]['platforms'][platform]['win7-ix']
 
 if __name__ == "__main__":
     import sys

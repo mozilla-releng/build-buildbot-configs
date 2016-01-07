@@ -2538,8 +2538,8 @@ BRANCHES['mozilla-b2g37_v2_2']['enUS_binaryURL'] = \
 BRANCHES['mozilla-b2g37_v2_2']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2']['create_partial'] = False
 BRANCHES['mozilla-b2g37_v2_2']['enable_blocklist_update'] = False
-BRANCHES['mozilla-b2g37_v2_2']['enable_hsts_update'] = True
-BRANCHES['mozilla-b2g37_v2_2']['enable_hpkp_update'] = True
+BRANCHES['mozilla-b2g37_v2_2']['enable_hsts_update'] = False
+BRANCHES['mozilla-b2g37_v2_2']['enable_hpkp_update'] = False
 BRANCHES['mozilla-b2g37_v2_2']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g37_v2_2']['enabled_products'] = ['firefox']
 
@@ -2566,8 +2566,8 @@ BRANCHES['mozilla-b2g37_v2_2r']['enUS_binaryURL'] = \
 BRANCHES['mozilla-b2g37_v2_2r']['enable_nightly'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['create_partial'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['enable_blocklist_update'] = False
-BRANCHES['mozilla-b2g37_v2_2r']['enable_hsts_update'] = True
-BRANCHES['mozilla-b2g37_v2_2r']['enable_hpkp_update'] = True
+BRANCHES['mozilla-b2g37_v2_2r']['enable_hsts_update'] = False
+BRANCHES['mozilla-b2g37_v2_2r']['enable_hpkp_update'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g37_v2_2r']['enabled_products'] = ['firefox']
 
