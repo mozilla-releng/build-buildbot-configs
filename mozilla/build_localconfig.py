@@ -33,7 +33,6 @@ else:
         'mozilla-release',
         'mozilla-esr38',
         'mozilla-b2g37_v2_2',
-        'mozilla-b2g37_v2_2r',
         'mozilla-b2g44_v2_5',
     ])
 if 'limit_tb_branches' in master_config:
@@ -53,7 +52,6 @@ else:
     ACTIVE_B2G_BRANCHES.extend([
         'mozilla-central',
         'mozilla-b2g37_v2_2',
-        'mozilla-b2g37_v2_2r',
         'mozilla-b2g44_v2_5',
         'b2g-ota',
     ])
