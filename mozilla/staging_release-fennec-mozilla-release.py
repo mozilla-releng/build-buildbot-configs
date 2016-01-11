@@ -182,7 +182,7 @@ releaseConfig['mock_platforms'] = ('android-api-9', 'android-api-11', 'android-x
 releaseConfig['partialUpdates']      = {}
 releaseConfig['bouncerServer']       = 'download.allizom.org'
 
-releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.allizom.org/api'
+releaseConfig['tuxedoServerUrl']     = 'https://admin-bouncer.stage.mozaws.net/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_fennec.py'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['bouncer_aliases'] = {

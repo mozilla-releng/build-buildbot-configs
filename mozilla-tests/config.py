@@ -2654,7 +2654,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
             continue
-        for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win7-all', 'yosemite_r7'):
+        for slave_platform in ('win7-ix', 'win7-all', 'yosemite_r7'):
             if slave_platform in branch['platforms'][platform]:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIA_YOUTUBE_TESTS
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIA_YOUTUBE_TESTS
