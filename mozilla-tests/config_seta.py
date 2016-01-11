@@ -29,6 +29,8 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
 #define seta branches and default values for skipcount and skiptimeout
 skipconfig_defaults_platform = {}
 for sp in seta_platforms:
+    if sp == "android-4-3-armv7-api15":
+        continue
     for slave_sp in seta_platforms[sp][1]:
         if slave_sp in ["xp-ix"]:
             skipconfig_defaults_platform[slave_sp] = (14, 7200)
