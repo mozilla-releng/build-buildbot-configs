@@ -62,6 +62,8 @@ def get_seta_platforms(branch, platform_filter):
     c['jobtypes'] = data.get('jobtypes', None)
     platforms = []
     for p in c['jobtypes'][today]:
+        if "android-4-3-armv7-api15" in p:
+            continue
         if 'talos' in p:
             platform = ' '.join(p.encode('utf-8').split()[0:-3])
         else:
