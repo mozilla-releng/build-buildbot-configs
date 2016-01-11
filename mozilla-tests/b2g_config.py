@@ -43,10 +43,6 @@ BRANCHES = {
         'gecko_version': 37,
         'b2g_version': (2, 2, 0),
     },
-    'mozilla-b2g37_v2_2r': {
-        'gecko_version': 37,
-        'b2g_version': (2, 2, 0),
-    },
     'mozilla-b2g44_v2_5': {
         'gecko_version': 44,
         'b2g_version': (2, 5, 0),
@@ -1608,8 +1604,6 @@ BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_uni
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = "releases/mozilla-b2g37_v2_2"
 BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64_gecko']['enable_opt_unittests'] = True
-BRANCHES['mozilla-b2g37_v2_2r']['repo_path'] = "releases/mozilla-b2g37_v2_2r"
-BRANCHES['mozilla-b2g37_v2_2r']['platforms']['linux64_gecko']['enable_opt_unittests'] = True
 BRANCHES['mozilla-b2g44_v2_5']['repo_path'] = "releases/mozilla-b2g44_v2_5"
 BRANCHES['b2g-ota']['repo_path'] = "releases/b2g-ota"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"

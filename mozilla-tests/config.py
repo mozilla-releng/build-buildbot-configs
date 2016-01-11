@@ -550,6 +550,17 @@ MOCHITEST_E10S = [
     }),
 ]
 
+MOCHITEST_E10S_8 = [
+    ('mochitest-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'plain-chunked', '--e10s'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+        'totalChunks': 8,
+    }),
+]
+
 MOCHITEST_WO_BC = [
     ('mochitest', {
         'use_mozharness': True,
@@ -558,6 +569,17 @@ MOCHITEST_WO_BC = [
         'blob_upload': True,
         'script_maxtime': 7200,
         'totalChunks': 5,
+    }),
+]
+
+MOCHITEST_WO_BC_8 = [
+    ('mochitest', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'plain-chunked'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+        'totalChunks': 8,
     }),
 ]
 
@@ -614,7 +636,6 @@ MOCHITEST_WEBGL_E10S = [
 
 ### Mochitest Combinations ###
 MOCHITEST = MOCHITEST_WO_BC + MOCHITEST_OTHER
-MOCHITEST_WO_BC += MOCHITEST_OTHER
 
 ### Mozbase ###
 MOZBASE = [
@@ -2543,7 +2564,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
             if platform in ('linux', 'linux64', 'linux64-asan'):
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_E10S
             if platform in ('linux', 'linux64'):
-                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_E10S
+                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_E10S_8
+                # we want mochitests to be 8 chunks for debug on gecko version 44+
+                for test, config in branch['platforms'][platform][slave_platform]['debug_unittest_suites']:
+                    if test == 'mochitest':
+                        branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove((test,config))
+                        branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_WO_BC_8
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += CRASHTEST_E10S + \
                     REFTEST_E10S_TWO_CHUNKS
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += CRASHTEST_E10S + \
