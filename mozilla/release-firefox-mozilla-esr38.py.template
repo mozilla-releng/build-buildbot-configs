@@ -138,17 +138,10 @@ releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_esr.py'
 
-# Product details config
-releaseConfig["productDetailsRepo"] = "svn+ssh://ffxbld@svn.mozilla.org/libs/product-details"
-releaseConfig["mozillaComRepo"]     = "svn+ssh://ffxbld@svn.mozilla.org/projects/mozilla.com"
-releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/ffxbld_rsa"
-
 # Misc configuration
 releaseConfig['enableAutomaticPushToMirrors'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
-releaseConfig['ftpSymlinkName'] = 'latest-esr'
-
 releaseConfig['bouncer_aliases'] = {
     'Firefox-%(version)s': 'firefox-esr-latest',
 }

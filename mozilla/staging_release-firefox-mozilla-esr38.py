@@ -128,4 +128,3 @@ releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_esr.py'
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
-releaseConfig['ftpSymlinkName'] = 'latest-esr'

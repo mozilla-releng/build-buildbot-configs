@@ -153,13 +153,7 @@ releaseConfig['bouncer_aliases'] = {
     'Thunderbird-%(version)s': 'thunderbird-latest',
 }
 
-# Product details config
-releaseConfig["productDetailsRepo"] = "svn+ssh://tbirdbld@dev-stage01.srv.releng.scl3.mozilla.com/libs/product-details"
-releaseConfig["mozillaComRepo"]     = "svn+ssh://tbirdbld@dev-stage01.srv.releng.scl3.mozilla.com/projects/mozilla.com"
-releaseConfig["svnSshKey"]          = "/home/cltbld/.ssh/tbirdbld_dsa"
-
 # Misc configuration
 releaseConfig['build_tools_repo_path'] = "users/stage-ffxbld/tools"
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
-releaseConfig['ftpSymlinkName'] = 'latest'
