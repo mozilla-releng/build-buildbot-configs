@@ -195,7 +195,7 @@ PROJECT_BRANCHES = {
         "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "release_channels": ("date", ),
         'balrog_api_root':'https://aus4-admin-dev.allizom.org/api',
-        'tuxedoServerUrl': 'https://bounceradmin.allizom.org/api',
+        'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': "releases/bouncer_firefox_beta.py",
         'bouncer_branch': "releases/date",
         'bouncer_enabled': True
