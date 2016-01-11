@@ -114,6 +114,7 @@ def define_configs(branch, platforms, BRANCHES):
         if len(tests) > 0:
             tests_sorted = sorted(tests)
             platform = seta_platforms[p][0]
+            # temp fix for bug 1238752
             if platform == "android-api-15":
                continue
             if (len(seta_platforms[p][1])) == 1:
