@@ -22,8 +22,7 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   "Rev7 MacOSX Yosemite 10.10.5": ("macosx64", ["yosemite_r7"]),
                   "Ubuntu Code Coverage VM 12.04 x64": ("linux64-cc", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),                  
                   "android-2-3-armv7-api9": ("android-api-9", ["ubuntu64_vm_mobile", "ubuntu64_vm_large"]),
-                  "android-4-3-armv7-api11": ("android-api-11", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"]),
-                  "android-4-3-armv7-api15": ("android-api-15", [])
+                  "android-4-3-armv7-api11": ("android-api-11", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"])                  
                   }
 
 #define seta branches and default values for skipcount and skiptimeout
@@ -110,6 +109,8 @@ def define_configs(branch, platforms, BRANCHES):
     for p in platforms:
         tests = []
         for job in c['jobtypes'][today]:
+            if "android-4-3-armv7-api15" in job:
+                continue
             if p in job:
                 tests.append(job.encode('utf-8'))
         test_dict = {}
