@@ -44,7 +44,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "de": {
-    "revision": "5ddfb0061038",
+    "revision": "edc93d1c1556",
     "platforms": ["android", "android-multilocale"]
   },
   "dsb": {
@@ -232,7 +232,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "sl": {
-    "revision": "da8cbf7239a1",
+    "revision": "a2d057b6d9d6",
     "platforms": ["android", "android-multilocale"]
   },
   "son": {
