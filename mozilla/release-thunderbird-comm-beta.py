@@ -22,12 +22,18 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['relbranchPrefix']     = 'THUNDERBIRD'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '43.0b1'
-releaseConfig['appVersion']          = '43.0'
+releaseConfig['version']             = '44.0b1'
+releaseConfig['appVersion']          = '44.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 3
-releaseConfig['baseTag']             = 'THUNDERBIRD_43_0b1'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'THUNDERBIRD_44_0b1'
 releaseConfig['partialUpdates']      = {
+
+    '43.0b1': {
+        'appVersion': '43.0',
+        'buildNumber': 3,
+        'baseTag': 'THUNDERBIRD_43_0b1',
+    },
 
     '42.0b1': {
         'appVersion': '42.0',
@@ -41,12 +47,6 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'THUNDERBIRD_42_0b2',
     },
 
-    '41.0b2': {
-        'appVersion': '41.0',
-        'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_41_0b2',
-    },
-
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -56,8 +56,8 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': 'THUNDERBIRD430b1_2015120717_RELBRANCH',
-        'relbranch': 'THUNDERBIRD430b1_2015120717_RELBRANCH',
+        'revision': '8bfffb4cf500',
+        'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -68,8 +68,8 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'THUNDERBIRD430b1_2015120717_RELBRANCH',
-        'relbranch': 'THUNDERBIRD430b1_2015120717_RELBRANCH',
+        'revision': '40e457de9ce8',
+        'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
