@@ -99,12 +99,6 @@ BRANCHES = {
         'enable_hpkp_update': False,
         'file_update_on_closed_tree': False,
     },
-    'mozilla-b2g37_v2_2': {
-        'enable_blocklist_update': False,
-        'enable_hsts_update': False,
-        'enable_hpkp_update': False,
-        'file_update_on_closed_tree': False,
-    },
     'try': {
         'download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
         'mobile_download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
