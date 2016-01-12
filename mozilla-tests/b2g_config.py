@@ -57,35 +57,12 @@ BRANCHES = {
 setMainFirefoxVersions(BRANCHES)
 
 PLATFORMS = {
-    'linux64_gecko': {},
-    'macosx64_gecko': {},
     'emulator': {},
     'emulator-jb': {},
     'emulator-kk': {},
 }
 
 builder_prefix = "b2g"
-
-PLATFORMS['linux64_gecko']['slave_platforms'] = ['ubuntu64_vm-b2gdt', ]
-PLATFORMS['linux64_gecko']['env_name'] = 'linux-perf'
-PLATFORMS['linux64_gecko']['ubuntu64_vm-b2gdt'] = {'name': builder_prefix + "_ubuntu64_vm"}
-PLATFORMS['linux64_gecko']['stage_product'] = 'b2g'
-PLATFORMS['linux64_gecko']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
-    'use_mozharness': True,
-    'hg_bin': 'hg',
-    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
-}
-
-PLATFORMS['macosx64_gecko']['slave_platforms'] = []
-PLATFORMS['macosx64_gecko']['env_name'] = 'linux-perf'
-PLATFORMS['macosx64_gecko']['stage_product'] = 'b2g'
-PLATFORMS['macosx64_gecko']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
-    'use_mozharness': True,
-    'hg_bin': 'hg',
-    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
-}
 
 PLATFORMS['emulator']['slave_platforms'] = ['ubuntu64_vm-b2g-emulator', 'ubuntu64_vm-b2g-lg-emulator']
 PLATFORMS['emulator']['env_name'] = 'linux-perf'
@@ -134,8 +111,6 @@ BRANCH_UNITTEST_VARS = {
     'hghost': 'hg.mozilla.org',
     # turn on platforms as we get them running
     'platforms': {
-        'linux64_gecko': {},
-        'macosx64_gecko': {},
         'emulator': {},
         'emulator-jb': {},
         'emulator-kk': {},
@@ -756,230 +731,6 @@ UNITTEST_SUITES = {
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
-    'linux64_gecko': {
-        'product_name': 'b2g',
-        'app_name': 'b2g',
-        'brand_name': 'Gecko',
-        'builds_before_reboot': 1,
-        'unittest-env': {'DISPLAY': ':0'},
-        'enable_opt_unittests': False,
-        'enable_debug_unittests': False,
-        'ubuntu64_vm-b2gdt': {
-            'opt_unittest_suites': MOCHITEST_OOP_DESKTOP[:] + REFTEST_DESKTOP_OOP_SANITY[:] + \
-                    GAIA_UNITTESTS[:] + GAIA_LINTER[:] + GAIA_BUILD[:] + GAIA_BUILD_UNIT[:],
-            'debug_unittest_suites': [],
-            'suite_config': {
-                'gaia-integration': {
-                    'extra_args': [
-                        '--cfg', 'b2g/gaia_integration_config.py',
-                    ],
-                },
-                'gaia-js-integration-1': {
-                        'extra_args': [
-                            '--cfg', 'b2g/gaia_integration_config.py',
-                            '--this-chunk', 1, '--total-chunks', 10,
-                        ],
-                },
-                'gaia-js-integration-2': {
-                        'extra_args': [
-                            '--cfg', 'b2g/gaia_integration_config.py',
-                            '--this-chunk', 2, '--total-chunks', 10,
-                        ],
-                },
-                'gaia-js-integration-3': {
-                        'extra_args': [
-                            '--cfg', 'b2g/gaia_integration_config.py',
-                            '--this-chunk', 3, '--total-chunks', 10,
-                        ],
-                },
-                'gaia-js-integration-4': {
-                        'extra_args': [
-                            '--cfg', 'b2g/gaia_integration_config.py',
-                            '--this-chunk', 4, '--total-chunks', 10,
-                        ],
-                },
-                'gaia-js-integration-5': {
-                        'extra_args': [
-                            '--cfg', 'b2g/gaia_integration_config.py',
-                            '--this-chunk', 5, '--total-chunks', 10,
-                        ],
-                },
-                'gaia-js-integration-6': {
-                        'extra_args': [
-                            '--cfg', 'b2g/gaia_integration_config.py',
-                            '--this-chunk', 6, '--total-chunks', 10,
-                        ],
-                },
-                'gaia-js-integration-7': {
-                        'extra_args': [
-                            '--cfg', 'b2g/gaia_integration_config.py',
-                            '--this-chunk', 7, '--total-chunks', 10,
-                        ],
-                },
-                'gaia-js-integration-8': {
-                        'extra_args': [
-                            '--cfg', 'b2g/gaia_integration_config.py',
-                            '--this-chunk', 8, '--total-chunks', 10,
-                        ],
-                },
-                'gaia-js-integration-9': {
-                        'extra_args': [
-                            '--cfg', 'b2g/gaia_integration_config.py',
-                            '--this-chunk', 9, '--total-chunks', 10,
-                        ],
-                },
-                'gaia-js-integration-10': {
-                        'extra_args': [
-                            '--cfg', 'b2g/gaia_integration_config.py',
-                            '--this-chunk', 10, '--total-chunks', 10,
-                        ],
-                },
-                'gaia-build': {
-                    'extra_args': [
-                        '--cfg', 'b2g/gaia_integration_config.py',
-                    ],
-                },
-                'gaia-build-unit': {
-                    'extra_args': [
-                        '--cfg', 'b2g/gaia_integration_config.py',
-                    ],
-                },
-                'gaia-linter': {
-                    'extra_args': [
-                        '--cfg', 'b2g/gaia_integration_config.py',
-                    ],
-                },
-                'gaia-unit': {
-                    'extra_args': [
-                        '--cfg', 'b2g/gaia_unit_production_config.py',
-                    ],
-                },
-                'gaia-unit-oop': {
-                    'extra_args': [
-                        '--cfg', 'b2g/gaia_unit_production_config.py',
-                        '--browser-arg', '-oop',
-                    ],
-                },
-                'mochitest-1': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'mochitest',
-                        '--this-chunk', 1, '--total-chunks', 1,
-                    ],
-                },
-                'mochitest-oop-1': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'mochitest',
-                        '--this-chunk', 1, '--total-chunks', 1,
-                        '--browser-arg', '-oop',
-                    ],
-                },
-                'reftest-sanity': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-                    ],
-                },
-                'reftest-sanity-oop': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--test-manifest', 'tests/layout/reftests/reftest-sanity/reftest.list',
-                        '--browser-arg', '-oop',
-                    ],
-                },
-                'reftest-1': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 1, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-2': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 2, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-3': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 3, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-4': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 4, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-5': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 5, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-6': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 6, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-7': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 7, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-8': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 8, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-9': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 9, '--total-chunks', 10,
-                    ],
-                },
-                'reftest-10': {
-                    'extra_args': [
-                        '--cfg', 'b2g/desktop_automation_config.py',
-                        '--test-suite', 'reftest',
-                        '--this-chunk', 10, '--total-chunks', 10,
-                    ],
-                },
-            },
-        },
-    },
-    'macosx64_gecko': {
-        'product_name': 'b2g',
-        'app_name': 'b2g',
-        'brand_name': 'Gecko',
-        'builds_before_reboot': 1,
-        'unittest-env': {
-            "MOZ_NO_REMOTE": '1',
-            "NO_EM_RESTART": '1',
-            "XPCOM_DEBUG_BREAK": 'warn',
-            "MOZ_CRASHREPORTER_NO_REPORT": '1',
-            # for extracting dmg's
-            "PAGER": '/bin/cat',
-        },
-        'enable_opt_unittests': False,
-        'enable_debug_unittests': False,
-        'enable_talos': False,
-    },
     'emulator': {
         'product_name': 'b2g',
         'app_name': 'b2g',
@@ -1606,17 +1357,6 @@ BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"
 BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
-
-# Use chunked Gij in 36+ (bug 1081246)
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 36):
-    if nested_haskey(BRANCHES[name]['platforms'], 'linux64_gecko', 'ubuntu64_vm-b2gdt'):
-        BRANCHES[name]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
-            GAIA_JS_INTEGRATION[:]
-# ...and non-chunked Gij in earlier branches
-for name, branch in items_before(BRANCHES, 'gecko_version', 36):
-    if nested_haskey(BRANCHES[name]['platforms'], 'linux64_gecko', 'ubuntu64_vm-b2gdt'):
-        BRANCHES[name]['platforms']['linux64_gecko']['ubuntu64_vm-b2gdt']['opt_unittest_suites'] += \
-            GAIA_INTEGRATION[:]
 
 # add mochitest-chrome on B2G emulators as of gecko 38
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 38):

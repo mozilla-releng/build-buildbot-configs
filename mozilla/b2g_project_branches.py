@@ -19,12 +19,6 @@ PROJECT_BRANCHES = {
         'periodic_start_hours': range(2, 24, 3),
         'enable_perproduct_builds': True,
         'platforms': {
-            'macosx64_gecko': {
-                'enable_checktests': False,
-            },
-            'win32_gecko': {
-                'enable_checktests': False,
-            },
         },
     },
     #'services-central': {},  # Bug 1010674
