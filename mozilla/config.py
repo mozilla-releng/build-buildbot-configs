@@ -2147,22 +2147,6 @@ BRANCHES = {
             'win64-debug': {},
         },
     },
-    'mozilla-b2g37_v2_2': {
-        'merge_builds': False,
-        'branch_projects': [],
-        'lock_platforms': True,
-        'gecko_version': 37,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-        },
-    },
     'mozilla-b2g44_v2_5': {
         'merge_builds': False,
         'branch_projects': [],
@@ -2507,34 +2491,6 @@ BRANCHES['mozilla-esr38']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr38']['enable_hpkp_update'] = True
 BRANCHES['mozilla-esr38']['enable_valgrind'] = False
 BRANCHES['mozilla-esr38']['enabled_products'] = ['firefox']
-
-######## mozilla-b2g37_v2_2
-BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = 'releases/mozilla-b2g37_v2_2'
-BRANCHES['mozilla-b2g37_v2_2']['update_channel'] = 'nightly-b2g37'
-BRANCHES['mozilla-b2g37_v2_2']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
-BRANCHES['mozilla-b2g37_v2_2']['enable_weekly_bundle'] = True
-BRANCHES['mozilla-b2g37_v2_2']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g37_v2_2']['start_hour'] = [3]
-BRANCHES['mozilla-b2g37_v2_2']['start_minute'] = [15]
-BRANCHES['mozilla-b2g37_v2_2']['pgo_platforms'] = []
-BRANCHES['mozilla-b2g37_v2_2']['enable_mac_a11y'] = True
-BRANCHES['mozilla-b2g37_v2_2']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['mozilla-b2g37_v2_2']['enable_l10n'] = False
-BRANCHES['mozilla-b2g37_v2_2']['enable_l10n_onchange'] = False
-BRANCHES['mozilla-b2g37_v2_2']['l10nNightlyUpdate'] = False
-BRANCHES['mozilla-b2g37_v2_2']['l10n_platforms'] = ['linux', 'linux64',
-                                                    'win32', 'macosx64']
-BRANCHES['mozilla-b2g37_v2_2']['l10nDatedDirs'] = True
-BRANCHES['mozilla-b2g37_v2_2']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g37_v2_2'
-BRANCHES['mozilla-b2g37_v2_2']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['create_partial'] = False
-BRANCHES['mozilla-b2g37_v2_2']['enable_blocklist_update'] = False
-BRANCHES['mozilla-b2g37_v2_2']['enable_hsts_update'] = False
-BRANCHES['mozilla-b2g37_v2_2']['enable_hpkp_update'] = False
-BRANCHES['mozilla-b2g37_v2_2']['enable_valgrind'] = False
-BRANCHES['mozilla-b2g37_v2_2']['enabled_products'] = ['firefox']
 
 ######## mozilla-b2g44_v2_5
 BRANCHES['mozilla-b2g44_v2_5']['repo_path'] = 'releases/mozilla-b2g44_v2_5'

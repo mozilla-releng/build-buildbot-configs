@@ -45,18 +45,6 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
-    'mozilla-b2g37_v2_2': {
-        'datazilla_url': None,
-        'gecko_version': 37,
-        'platforms': {
-            # desktop per sicking in Bug 829513
-            'macosx64': {},
-            'win32': {},
-            'linux': {},
-            'linux64': {},
-        },
-        'lock_platforms': True,
-    },
     'try': {
         'coallesce_jobs': False,
     },
@@ -2422,15 +2410,6 @@ BRANCHES['mozilla-esr38']['platforms']['linux']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['linux64']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['win64']['talos_slave_platforms'] = []
-
-######### mozilla-b2g37_v2_2
-BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = "releases/mozilla-b2g37_v2_2"
-BRANCHES['mozilla-b2g37_v2_2']['pgo_strategy'] = None
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['macosx64']['slave_platforms'] = ['snowleopard']
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['macosx64']['talos_slave_platforms'] = []
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux']['talos_slave_platforms'] = []
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64']['talos_slave_platforms'] = []
 
 
 ######## try

@@ -933,27 +933,6 @@ for platform in PLATFORM_VARS.values():
 BRANCHES = {
     'mozilla-central': {
     },
-    'mozilla-b2g37_v2_2': {
-        'gecko_version': 37,
-        'b2g_version': (2, 2, 0),
-        'lock_platforms': True,
-        'platforms': {
-            'linux64-b2g-haz': {},
-            'linux64_gecko': {},
-            'linux64_gecko-debug': {},
-            'emulator': {},
-            'emulator-debug': {},
-            'emulator-jb': {},
-            'emulator-jb-debug': {},
-            'emulator-kk': {},
-            'emulator-kk-debug': {},
-            'emulator-l': {},
-            'emulator-l-debug': {},
-            'flame-kk': {},
-            'flame-kk_eng': {},
-            'flame-kk_eng-debug': {},
-        }
-    },
     'mozilla-b2g44_v2_5': {
         'gecko_version': 44,
         'b2g_version': (2, 5, 0),
@@ -1134,35 +1113,6 @@ BRANCHES['b2g-ota']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['b2g-ota']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['b2g-ota']['platforms']['emulator']['enable_nightly'] = True
 BRANCHES['b2g-ota']['platforms']['emulator-debug']['enable_nightly'] = True
-
-######## mozilla-b2g37_v2_2
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['mozilla-b2g37_v2_2']['repo_path'] = 'releases/mozilla-b2g37_v2_2'
-BRANCHES['mozilla-b2g37_v2_2']['gaia_l10n_root'] = 'https://hg.mozilla.org/releases/gaia-l10n/v2_2'
-BRANCHES['mozilla-b2g37_v2_2']['gecko_l10n_root'] = 'https://hg.mozilla.org/releases/l10n/mozilla-aurora'
-BRANCHES['mozilla-b2g37_v2_2']['start_hour'] = [3]
-BRANCHES['mozilla-b2g37_v2_2']['start_minute'] = [25]
-BRANCHES['mozilla-b2g37_v2_2']['periodic_start_minute'] = 30
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['linux64_gecko']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['flame-kk']['enable_nightly'] = True
-# Bug 1213864: need to continue using OTA for Flame on 2.2
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['flame-kk']['mozharness_config']['extra_args'] = [
-    '--target', 'flame-kk', '--config', 'b2g/releng-private-updates.py',
-    '--gaia-languages-file', 'locales/languages_all.json',
-    '--gecko-languages-file', 'gecko/b2g/locales/all-locales',
-    '--config', GLOBAL_VARS['mozharness_configs']['balrog']
-]
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['flame-kk_eng']['enable_nightly'] = True
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-debug']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-jb']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-jb-debug']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-kk']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-kk-debug']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-l']['enable_nightly'] = False
-BRANCHES['mozilla-b2g37_v2_2']['platforms']['emulator-l-debug']['enable_nightly'] = False
 
 ######## mozilla-b2g44_v2_5
 # This is a path, relative to HGURL, where the repository is located
