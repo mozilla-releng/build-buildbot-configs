@@ -38,7 +38,7 @@ for i in range(102, 103):  # Use win8's 102 for win10 // Bug 1191481
 for i in range(1, 34) + range(35, 93) + range(95, 153) + range(154, 166):  # slaves 0034&0093&0094&0153 have been decommed
     SLAVES['snowleopard']['t-snow-r4-%04i' % i] = {}
 
-for i in range(1, 8) + range(12, 42) + range(43, 51) + range(52, 54) + range(94, 104) + range(108, 109):   #slaves 0042 and 0092 have been decommed and other slaves decomm bug 1226180
+for i in range(1, 3) + range(4, 8) + range(41, 51):   #slaves decomm bug 1226180
     SLAVES['yosemite']['t-yosemite-r5-%04i' % i] = {}
 
 for i in range(1, 201):
