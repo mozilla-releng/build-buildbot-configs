@@ -82,12 +82,11 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-release'
 releaseConfig['otherReposToTag']     = {
     'users/stage-ffxbld/compare-locales': 'RELEASE_AUTOMATION',
     'users/stage-ffxbld/buildbot': 'production-0.8',
-    'users/stage-ffxbld/partner-repacks': 'default',
 }
 
 # Platform configuration
 # TODO: add win64 when we're ready to ship it
-releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
+releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'macosx64', 'win32', 'win64')
 releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = ()
 
@@ -183,8 +182,14 @@ releaseConfig['updateChannels'] = {
 }
 
 # Partner repack configuration
-releaseConfig['doPartnerRepacks']    = False
-releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
+releaseConfig['doPartnerRepacks'] = True
+releaseConfig['partnerRepackPlatforms'] = releaseConfig['l10nPlatforms']
+releaseConfig['partnerRepackConfig'] = {
+    'use_mozharness': True,
+    'script': 'scripts/desktop_partner_repacks.py',
+    'config_file': 'partner_repacks/staging_release_mozilla-release_desktop.py',
+    's3cfg': '/builds/partners-s3cfg',
+}
 
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://admin-bouncer.stage.mozaws.net/api'
