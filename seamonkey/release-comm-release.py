@@ -35,7 +35,7 @@ releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-release'
 releaseConfig['mozillaRepoRevision']        = 'FIREFOX_43_0_1_BUILD1'
-releaseConfig['mozillaRelbranchOverride']   = '' # put Gecko relbranch here that we base upon
+releaseConfig['mozillaRelbranchOverride']   = 'SEA_COMM430_20160106_RELBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
 releaseConfig['inspectorRepoRevision']      = 'SEA2_37_RELBRANCH'
