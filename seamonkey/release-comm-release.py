@@ -13,7 +13,7 @@ releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 releaseConfig['version']                    = '2.40'
 releaseConfig['appVersion']                 = '2.40'
 releaseConfig['milestone']                  = '43.0'
-releaseConfig['buildNumber']                = 2 
+releaseConfig['buildNumber']                = 1
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_40'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.39'
@@ -28,7 +28,7 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-release' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-release'
-releaseConfig['sourceRepoRevision']         = '860e55fe632e'
+releaseConfig['sourceRepoRevision']         = 'f30128a10d7f'
 releaseConfig['relbranchOverride']          = ''
 releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
@@ -50,7 +50,7 @@ releaseConfig['chatzillaRepoRevision']      = 'CHATZILLA_0_9_92_RELEASE'
 releaseConfig['chatzillaRelbranchOverride'] = ''
 #  L10n repositories
 releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRelbranchOverride']      = 'SEA_COMM430_20160106_RELBRANCH'
+releaseConfig['l10nRelbranchOverride']      = ''
 releaseConfig['l10nRevisionFile']           = 'l10n-changesets-comm-release'
 #  Support repositories
 #   not used yet
