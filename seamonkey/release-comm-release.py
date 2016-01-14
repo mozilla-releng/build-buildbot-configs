@@ -13,7 +13,7 @@ releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 releaseConfig['version']                    = '2.40'
 releaseConfig['appVersion']                 = '2.40'
 releaseConfig['milestone']                  = '43.0'
-releaseConfig['buildNumber']                = 1
+releaseConfig['buildNumber']                = 2 
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_40'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.39'
@@ -24,11 +24,11 @@ releaseConfig['oldRepoPath']                = 'releases/comm-release'
 #  Next (nightly) version info
 #     not yet available
 #  Repository configuration, for tagging
-releaseConfig['skip_tag']                   = False
+releaseConfig['skip_tag']                   = False 
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-release' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-release'
-releaseConfig['sourceRepoRevision']         = 'f30128a10d7f'
+releaseConfig['sourceRepoRevision']         = '860e55fe632e'
 releaseConfig['relbranchOverride']          = ''
 releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
