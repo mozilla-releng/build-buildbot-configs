@@ -12,7 +12,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "az": {
-    "revision": "5c8c0f4f34a4",
+    "revision": "8a88435d4b0c",
     "platforms": ["android", "android-multilocale"]
   },
   "be": {
@@ -240,7 +240,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "sq": {
-    "revision": "3ced2da01083",
+    "revision": "4a94b34a7226",
     "platforms": ["android", "android-multilocale"]
   },
   "sv-SE": {
