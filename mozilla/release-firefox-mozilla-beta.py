@@ -20,12 +20,18 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '44.0b8'
+releaseConfig['version']             = '44.0b9'
 releaseConfig['appVersion']          = '44.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_44_0b8'
+releaseConfig['baseTag']             = 'FIREFOX_44_0b9'
 releaseConfig['partialUpdates']      = {
+
+    '44.0b8': {
+        'appVersion': '44.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_44_0b8',
+    },
 
     '44.0b6': {
         'appVersion': '44.0',
@@ -37,12 +43,6 @@ releaseConfig['partialUpdates']      = {
         'appVersion': '44.0',
         'buildNumber': 1,
         'baseTag': 'FIREFOX_44_0b7',
-    },
-
-    '44.0b4': {
-        'appVersion': '44.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_44_0b4',
     },
 
 }
@@ -60,7 +60,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '0488d79e6d74',
+        'revision': '5c042dab34a2',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -86,6 +86,7 @@ releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mozilla-beta'
 releaseConfig['otherReposToTag']     = {
     'build/compare-locales': 'RELEASE_AUTOMATION',
     'build/buildbot': 'production-0.8',
+    'build/partner-repacks': 'default',
 }
 
 # Platform configuration
@@ -152,14 +153,8 @@ releaseConfig['updateChannels'] = {
 }
 
 # Partner repack configuration
-releaseConfig['doPartnerRepacks'] = True
-releaseConfig['partnerRepackPlatforms'] = releaseConfig['l10nPlatforms']
-releaseConfig['partnerRepackConfig'] = {
-    'use_mozharness': True,
-    'script': 'scripts/desktop_partner_repacks.py',
-    'config_file': 'partner_repacks/release_mozilla-release_desktop.py',
-    's3cfg': '/builds/partners-s3cfg',
-}
+releaseConfig['doPartnerRepacks']    = False
+releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
