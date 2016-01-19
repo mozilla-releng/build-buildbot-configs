@@ -13,7 +13,7 @@ releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 releaseConfig['version']                    = '2.40'
 releaseConfig['appVersion']                 = '2.40'
 releaseConfig['milestone']                  = '43.0'
-releaseConfig['buildNumber']                = 3
+releaseConfig['buildNumber']                = 4
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_40'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.39'
@@ -28,7 +28,7 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-release' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-release'
-releaseConfig['sourceRepoRevision']         = 'd78e9b3b660a'
+releaseConfig['sourceRepoRevision']         = '23f4b91a6dd6'
 releaseConfig['relbranchOverride']          = 'SEA_COMM430_20160106_RELBRANCH'
 releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
