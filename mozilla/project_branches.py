@@ -198,7 +198,8 @@ PROJECT_BRANCHES = {
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': "releases/bouncer_firefox_beta.py",
         'bouncer_branch': "releases/date",
-        'bouncer_enabled': True
+        'bouncer_enabled': True,
+        'push_to_candidates_enabled': True
     },
     'elm': {
         'branch_projects': [],
