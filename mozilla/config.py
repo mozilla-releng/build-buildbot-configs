@@ -930,6 +930,7 @@ PLATFORM_VARS = {
             'mozharness_python': '/tools/buildbot/bin/python',
             'reboot_command': ['scripts/external_tools/count_and_reboot.py',
                                '-f', '../reboot_count.txt', '-n', '1', '-z'],
+            'tools_repo_cache': '/tools/checkouts/build-tools',
             'mozharness_desktop_build': {
                 'script_name': 'scripts/fx_desktop_build.py',
                 'extra_args': [
@@ -1346,6 +1347,7 @@ PLATFORM_VARS = {
             'mozharness_python': '/tools/buildbot/bin/python',
             'reboot_command': ['scripts/external_tools/count_and_reboot.py',
                                '-f', '../reboot_count.txt', '-n', '1', '-z'],
+            'tools_repo_cache': '/tools/checkouts/build-tools',
             'mozharness_desktop_build': {
                 'script_name': 'scripts/fx_desktop_build.py',
                 'extra_args': [
@@ -1403,6 +1405,7 @@ PLATFORM_VARS = {
             'mozharness_python': '/tools/buildbot/bin/python',
             'reboot_command': ['scripts/external_tools/count_and_reboot.py',
                                '-f', '../reboot_count.txt', '-n', '1', '-z'],
+            'tools_repo_cache': '/tools/checkouts/build-tools',
             'mozharness_desktop_build': {
                 'script_name': 'scripts/fx_desktop_build.py',
                 'extra_args': [
