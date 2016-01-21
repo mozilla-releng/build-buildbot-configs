@@ -21,29 +21,29 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '38.5.2esr'
-releaseConfig['appVersion']          = '38.5.2'
+releaseConfig['version']             = '38.6.0esr'
+releaseConfig['appVersion']          = '38.6.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_38_5_2esr'
+releaseConfig['baseTag']             = 'FIREFOX_38_6_0esr'
 releaseConfig['partialUpdates']      = {
 
-    '38.5.1esr': {
-        'appVersion': '38.5.1',
+    '38.5.2esr': {
+        'appVersion': '38.5.2',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_38_5_1esr',
+        'baseTag': 'FIREFOX_38_5_2esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '38.5.2esrpre'
+releaseConfig['nextAppVersion']      = '38.6.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr38',
         'path': 'releases/mozilla-esr38',
-        'revision': 'c9a9b896145d',
+        'revision': '9632375c6aac',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -142,7 +142,6 @@ releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_firefox_esr.py'
 releaseConfig['enableAutomaticPushToMirrors'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
-
 releaseConfig['bouncer_aliases'] = {
     'Firefox-%(version)s': 'firefox-esr-latest',
 }
