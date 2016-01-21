@@ -77,6 +77,9 @@ releaseConfig['talosTestPlatforms']  = ()
 releaseConfig['unittestPlatforms']   = ()
 releaseConfig['enableUnittests']     = False
 
+# SDK
+releaseConfig['packageSDK']          = True
+
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
 releaseConfig['shippedLocalesPath']  = 'browser/locales/shipped-locales'

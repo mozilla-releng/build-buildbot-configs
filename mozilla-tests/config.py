@@ -459,6 +459,17 @@ MOCHITEST_BC_7_E10S = [
     }),
 ]
 
+### Mochitests (Browser-Chrome-Screenshots) ###
+MOCHITEST_BC_SCREENSHOTS = [
+    ('mochitest-browser-screenshots', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'browser-chrome-screenshots'],
+        'blob_upload': True,
+        'script_maxtime': 600,
+    }),
+]
+
 ### Mochitests (Devtools) ###
 MOCHITEST_DT_2 = [
     ('mochitest-devtools-chrome', {
@@ -2130,6 +2141,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-browser-chrome': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'mochitest-browser-screenshots': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'mochitest-e10s-browser-chrome': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -2704,6 +2718,9 @@ BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += WEB_P
 BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S
 BRANCHES['try']['platforms']['win32']['win7-all']['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS_E10S
 BRANCHES['try']['platforms']['win32']['win7-all']['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S
+
+# Enable browser chrome screenshots on yosemite try opt
+BRANCHES['try']['platforms']['macosx64']['yosemite_r7']['opt_unittest_suites'] += MOCHITEST_BC_SCREENSHOTS
 
 ride_trains_branches = []
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 45):
