@@ -23,7 +23,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '44.0'
 releaseConfig['appVersion']          = '44.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
+releaseConfig['buildNumber']         = 3
 releaseConfig['baseTag']             = 'FIREFOX_44_0'
 releaseConfig['partialUpdates']      = {
 
@@ -47,7 +47,7 @@ releaseConfig['partialUpdates']      = {
 
     '44.0': {
         'appVersion': '44.0',
-        'buildNumber': 1,
+        'buildNumber': 2,
         'baseTag': 'FIREFOX_44_0',
     },
 
@@ -65,7 +65,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '45a3e4181f46',
+        'revision': '7eabe4d30cde',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -101,6 +101,9 @@ releaseConfig['talosTestPlatforms']  = ()
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
 releaseConfig['enableUnittests']     = False
+
+# SDK
+releaseConfig['packageSDK']          = True
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
