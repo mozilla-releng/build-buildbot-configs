@@ -199,6 +199,8 @@ PROJECT_BRANCHES = {
         'bouncer_submitter_config': "releases/bouncer_firefox_beta.py",
         'bouncer_branch': "releases/date",
         'bouncer_enabled': True,
+        'postrelease_version_bump_enabled': True,
+        'postrelease_version_bump_config': 'releases/postrelease_date.py',
         'push_to_candidates_enabled': True
     },
     'elm': {
