@@ -449,6 +449,7 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
             'l10n_check_test': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/asan.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -474,6 +475,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
@@ -549,6 +551,7 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
             'l10n_check_test': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/tsan.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -574,6 +577,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
@@ -649,6 +653,7 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
             'l10n_check_test': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/asan.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -674,6 +679,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
@@ -749,6 +755,7 @@ PLATFORM_VARS = {
             'test_pretty_names': False,
             'l10n_check_test': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/clang.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -774,6 +781,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
@@ -1207,6 +1215,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': None,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux32/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -1252,6 +1261,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
@@ -1313,6 +1323,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': None,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -1337,6 +1348,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
                 ('/builds/gapi.data', '/builds/gapi.data'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
                 ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
@@ -1606,6 +1618,7 @@ PLATFORM_VARS = {
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1637,6 +1650,7 @@ PLATFORM_VARS = {
             'multi_locale_config_platform': 'android',
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'update_platform': 'Android_arm-eabi-gcc3',
             'updates_enabled': False,
         },
@@ -1691,6 +1705,7 @@ PLATFORM_VARS = {
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1722,6 +1737,7 @@ PLATFORM_VARS = {
             'multi_locale_script': 'scripts/multil10n.py',
             'multi_locale_config_platform': 'android',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'update_platform': 'Android_arm-eabi-gcc3',
             'updates_enabled': False,
         },
@@ -1773,6 +1789,7 @@ PLATFORM_VARS = {
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1801,6 +1818,7 @@ PLATFORM_VARS = {
             'multi_locale': True,
             'multi_locale_script': 'scripts/multil10n.py',
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android-x86/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'updates_enabled': False,
         },
         'android-api-9-debug': {
@@ -1854,6 +1872,7 @@ PLATFORM_VARS = {
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1880,6 +1899,7 @@ PLATFORM_VARS = {
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'updates_enabled': False,
         },
         'android-api-11-debug': {
@@ -1934,6 +1954,7 @@ PLATFORM_VARS = {
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -1960,6 +1981,7 @@ PLATFORM_VARS = {
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'updates_enabled': False,
         },
 }
