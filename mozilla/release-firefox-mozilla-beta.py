@@ -20,11 +20,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '44.0b9'
-releaseConfig['appVersion']          = '44.0'
+releaseConfig['version']             = '45.0b1'
+releaseConfig['appVersion']          = '45.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_44_0b9'
+releaseConfig['baseTag']             = 'FIREFOX_45_0b1'
 releaseConfig['partialUpdates']      = {
 
     '44.0b8': {
@@ -33,10 +33,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_44_0b8',
     },
 
-    '44.0b6': {
+    '44.0b9': {
         'appVersion': '44.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_44_0b6',
+        'baseTag': 'FIREFOX_44_0b9',
     },
 
     '44.0b7': {
@@ -60,7 +60,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '5c042dab34a2',
+        'revision': '76fdbc5ce8ea',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -96,6 +96,9 @@ releaseConfig['talosTestPlatforms']  = ()
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
 releaseConfig['enableUnittests']     = False
+
+# SDK
+releaseConfig['packageSDK']          = True
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
