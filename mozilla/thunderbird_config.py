@@ -455,6 +455,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': None,
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/linux32/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -499,6 +500,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
@@ -537,6 +539,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'talos_masters': None,
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/linux64/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
             'mock_target': 'mozilla-centos6-x86_64',
             'mock_packages': \
@@ -560,6 +563,7 @@ PLATFORM_VARS = {
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
                 ('/home/cltbld/.hgrc', '/builds/.hgrc'),
                 ('/home/cltbld/.boto', '/builds/.boto'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
             ],
