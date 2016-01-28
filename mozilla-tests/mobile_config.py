@@ -49,33 +49,12 @@ setMainFirefoxVersions(BRANCHES)
 
 # Talos
 PLATFORMS = {
-    'android': {},
     'android-api-9': {},
     'android-api-11': {},
+    'android-api-15': {},
     'android-x86': {},
 }
 
-PLATFORMS['android']['slave_platforms'] = \
-    ['panda_android', 'ubuntu64_vm_mobile', 'ubuntu64_vm_large', ]
-PLATFORMS['android']['env_name'] = 'android-perf'
-PLATFORMS['android']['is_mobile'] = True
-PLATFORMS['android']['panda_android'] = {
-    'name': "Android 4.0 Panda",
-    'mozharness_talos': True,
-}
-PLATFORMS['android']['ubuntu64_vm_mobile'] = {
-    'name': "Android 2.3 Emulator",
-}
-PLATFORMS['android']['ubuntu64_vm_large'] = {
-    'name': "Android 2.3 Emulator",
-}
-PLATFORMS['android']['stage_product'] = 'mobile'
-PLATFORMS['android']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
-    'hg_bin': 'hg',
-    'reboot_command': None,
-    'talos_script_maxtime': 10800,
-}
 
 
 # bug 1073772 - split 'android' into two based on api
@@ -120,6 +99,28 @@ PLATFORMS['android-api-11']['mozharness_config'] = {
     'talos_script_maxtime': 10800,
 }
 
+PLATFORMS['android-api-15']['slave_platforms'] = ['panda_android', 'ubuntu64_vm_armv7_mobile', 'ubuntu64_vm_armv7_large']
+PLATFORMS['android-api-15']['env_name'] = 'android-perf'
+PLATFORMS['android-api-15']['is_mobile'] = True
+PLATFORMS['android-api-15']['panda_android'] = {
+    'name': "Android 4.0 armv7 API 11+",
+    'mozharness_talos': True,
+}
+PLATFORMS['android-api-15']['ubuntu64_vm_armv7_mobile'] = {
+    'name': "Android 4.3 armv7 API 15+",
+    'mozharness_talos': True,
+}
+PLATFORMS['android-api-15']['ubuntu64_vm_armv7_large'] = {
+    'name': "Android 4.3 armv7 API 15+",
+    'mozharness_talos': True,
+}
+PLATFORMS['android-api-15']['stage_product'] = 'mobile'
+PLATFORMS['android-api-15']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'hg_bin': 'hg',
+    'reboot_command': None,
+    'talos_script_maxtime': 10800,
+}
 PLATFORMS['android-x86']['slave_platforms'] = ['ubuntu64_hw']
 PLATFORMS['android-x86']['env_name'] = 'android-perf'
 PLATFORMS['android-x86']['is_mobile'] = True
@@ -161,10 +162,10 @@ BRANCH_UNITTEST_VARS = {
     'hghost': 'hg.mozilla.org',
     # turn on platforms as we get them running
     'platforms': {
-        'android': {},
         'android-debug': {},
         'android-api-9': {},
         'android-api-11': {},
+        'android-api-15': {},
         'android-x86': {},
     },
 }
@@ -3074,16 +3075,6 @@ for suite in ANDROID_2_3_MOZHARNESS_DICT:
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
-    'android': {
-        'product_name': 'fennec',
-        'app_name': 'browser',
-        'brand_name': 'Minefield',
-        'is_remote': True,
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': True,
-        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-        'panda_android': deepcopy(ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT),
-    },
     'android-api-9': {
         'product_name': 'fennec',
         'app_name': 'browser',
@@ -3094,6 +3085,16 @@ PLATFORM_UNITTEST_VARS = {
         'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
     },
     'android-api-11': {
+        'product_name': 'fennec',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'is_remote': True,
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
+        'panda_android': deepcopy(ANDROID_MOZHARNESS_PANDA_UNITTEST_DICT),
+    },
+    'android-api-15': {
         'product_name': 'fennec',
         'app_name': 'browser',
         'brand_name': 'Minefield',
@@ -3201,9 +3202,8 @@ BRANCHES['mozilla-central']['mobile_talos_branch'] = "mobile"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['pgo_platforms'] = []
-BRANCHES['mozilla-central']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['android-api-9']['enable_debug_unittests'] = True
-BRANCHES['mozilla-central']['platforms']['android-api-11']['enable_debug_unittests'] = True
+BRANCHES['mozilla-central']['platforms']['android-api-15']['enable_debug_unittests'] = True
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
@@ -3222,9 +3222,8 @@ BRANCHES['mozilla-aurora']['pgo_platforms'] = []
 
 ######## try
 BRANCHES['try']['repo_path'] = "try"
-BRANCHES['try']['platforms']['android']['enable_debug_unittests'] = True
 BRANCHES['try']['platforms']['android-api-9']['enable_debug_unittests'] = True
-BRANCHES['try']['platforms']['android-api-11']['enable_debug_unittests'] = True
+BRANCHES['try']['platforms']['android-api-15']['enable_debug_unittests'] = True
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['pgo_platforms'] = []
 BRANCHES['try']['enable_try'] = True
@@ -3279,19 +3278,14 @@ for suite in ANDROID_4_3_MOZHARNESS_DICT:
         if suite[0].startswith('cppunit'):
             ANDROID_4_3_AWS_TRUNK_DICT['debug_unittest_suites'].append(suite)
 
-# bug 1073772 - enable new apk split builders will ride the trains
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 37):
+# Bug 1219094 - releng work for dropping honeycomb support
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
     # remove the soon to be replaced android builds
-    if 'android' in branch['platforms']:
-        del branch['platforms']['android']
-    if 'android-debug' in branch['platforms']:
-        del branch['platforms']['android-debug']
-    continue
-for name, branch in items_before(BRANCHES, 'gecko_version', 37):
-    if 'android-api-9' in branch['platforms']:
-        del branch['platforms']['android-api-9']
     if 'android-api-11' in branch['platforms']:
         del branch['platforms']['android-api-11']
+for name, branch in items_before(BRANCHES, 'gecko_version', 46):
+    if 'android-api-15' in branch['platforms']:
+        del branch['platforms']['android-api-15']
 
 # enable android 2.3 tests to ride the trains bug 1004791
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
@@ -3299,7 +3293,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
-        if platform not in ('android', 'android-api-9'):
+        if platform not in ('android-api-9'):
             continue
         BRANCHES[name]['platforms'][platform]['ubuntu64_vm_large'] = {
             'opt_unittest_suites': deepcopy(ANDROID_2_3_C3_DICT['opt_unittest_suites']),
@@ -3317,20 +3311,20 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
-        if platform not in ('android-api-11'):
+        if platform not in ('android-api-11', 'android-api-15'):
             continue
         for slave_plat in PLATFORMS[platform]['slave_platforms']:
             if not slave_plat in branch['platforms'][platform]:
                 continue
             if not 'panda' in slave_plat:
                 continue
-            BRANCHES[name]['platforms']['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
+            BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_mobile'] = {
             'opt_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['opt_unittest_suites']),
             'debug_unittest_suites': [],}
-            BRANCHES[name]['platforms']['android-api-11']['ubuntu64_vm_armv7_large'] = {
+            BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_large'] = {
             'opt_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
             'debug_unittest_suites': [],}
-            BRANCHES[name]['platforms']['android-api-11']['panda_android']['opt_unittest_suites'] = []
+            BRANCHES[name]['platforms'][platform]['panda_android']['opt_unittest_suites'] = []
 
 
 # bug 1030753 limit the debug tests run on trunk branches
@@ -3341,7 +3335,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 34):
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
-        if platform not in ('android', 'android-api-11'):
+        if platform not in ('android-api-11', 'android-api-15'):
             continue
         for slave_plat in PLATFORMS[platform]['slave_platforms']:
             if not slave_plat in branch['platforms'][platform]:
@@ -3364,7 +3358,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
-        if platform not in ('android-api-11'):
+        if platform not in ('android-api-11', 'android-api-15'):
             continue
         for slave_plat in PLATFORMS[platform]['slave_platforms']:
             if not slave_plat in branch['platforms'][platform]:
@@ -3380,21 +3374,21 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 41):
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
-        if platform not in ('android-api-11'):
+        if platform not in ('android-api-11', 'android-api-15'):
             continue
         for slave_plat in PLATFORMS[platform]['slave_platforms']:
             if not slave_plat in branch['platforms'][platform]:
                 continue
             if not 'panda' in slave_plat:
                 continue
-            BRANCHES[name]['platforms']['android-api-11']['ubuntu64_vm_armv7_large'] = {
+            BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_large'] = {
             'opt_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
             'debug_unittest_suites': deepcopy(ANDROID_4_3_C3_TRUNK_DICT['debug_unittest_suites']),}
-            BRANCHES[name]['platforms']['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
+            BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_mobile'] = {
                 'opt_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['opt_unittest_suites']),
                 'debug_unittest_suites': deepcopy(ANDROID_4_3_AWS_TRUNK_DICT['debug_unittest_suites']),
             }
-            BRANCHES[name]['platforms']['android-api-11']['panda_android']['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_PLAIN_REFTEST)
+            BRANCHES[name]['platforms'][platform]['panda_android']['debug_unittest_suites'] = deepcopy(ANDROID_MOZHARNESS_JSREFTEST + ANDROID_MOZHARNESS_CRASHTEST + ANDROID_MOZHARNESS_PLAIN_REFTEST)
 
 
 # bug 1183877 Increase total-chunks for Android 4.3 Debug crashtests, js-reftests, and reftests
@@ -3402,21 +3396,21 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
-        if platform not in ('android-api-11'):
+        if platform not in ('android-api-11', 'android-api-15'):
             continue
         for slave_plat in PLATFORMS[platform]['slave_platforms']:
             if not slave_plat in branch['platforms'][platform]:
                 continue
             if not 'panda' in slave_plat:
                 continue
-            BRANCHES[name]['platforms']['android-api-11']['ubuntu64_vm_armv7_large'] = {
+            BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_large'] = {
             'opt_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
             'debug_unittest_suites': deepcopy(ANDROID_4_3_C3_TRUNK_DICT['debug_unittest_suites'] + ANDROID_4_3_MOZHARNESS_DEBUG_TRUNK),}
-            BRANCHES[name]['platforms']['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
+            BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_mobile'] = {
                 'opt_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['opt_unittest_suites']),
                 'debug_unittest_suites': deepcopy(ANDROID_4_3_AWS_TRUNK_DICT['debug_unittest_suites']),
             }
-            BRANCHES[name]['platforms']['android-api-11']['panda_android']['debug_unittest_suites'] = []
+            BRANCHES[name]['platforms'][platform]['panda_android']['debug_unittest_suites'] = []
 
 def remove_suite_from_slave_platform(BRANCHES, PLATFORMS, suite_to_remove, slave_platform, branches_to_keep=[]):
     """Remove suites named like |suite_to_remove| from all branches on slave platforms named like |slave_platform|.
@@ -3461,8 +3455,8 @@ remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'mochitest-chrome', 'ubunt
 remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'mochitest-chrome', 'ubuntu64_vm_large', branches_to_keep=trunk_branches)
 
 # bug 1214362 - Enable DOM push Mochitests on Android Fennec
-BRANCHES['cedar']['platforms']['android-api-11']['ubuntu64_vm_armv7_mobile']['opt_unittest_suites'] += ANDROID_4_3_MOCHITEST_PUSH
-BRANCHES['cedar']['platforms']['android-api-11']['ubuntu64_vm_armv7_large']['debug_unittest_suites'] += ANDROID_4_3_MOCHITEST_PUSH
+BRANCHES['cedar']['platforms']['android-api-15']['ubuntu64_vm_armv7_mobile']['opt_unittest_suites'] += ANDROID_4_3_MOCHITEST_PUSH
+BRANCHES['cedar']['platforms']['android-api-15']['ubuntu64_vm_armv7_large']['debug_unittest_suites'] += ANDROID_4_3_MOCHITEST_PUSH
 
 loadSkipConfig(BRANCHES, "mobile")
 

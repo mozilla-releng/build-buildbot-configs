@@ -116,6 +116,7 @@ releaseConfig['mozconfigs']          = {
     'win32': 'browser/config/mozconfigs/win32/beta',
     'win64': 'browser/config/mozconfigs/win64/beta',
 }
+releaseConfig['source_mozconfig']    = 'browser/config/mozconfigs/linux64/source'
 releaseConfig['releaseChannel']        = 'beta'
 releaseConfig['updateChannels'] = {
     "beta": {
