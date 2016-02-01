@@ -20,17 +20,17 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '45.0b1'
+releaseConfig['version']             = '45.0b2'
 releaseConfig['appVersion']          = '45.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_45_0b1'
+releaseConfig['baseTag']             = 'FIREFOX_45_0b2'
 releaseConfig['partialUpdates']      = {
 
-    '44.0b8': {
-        'appVersion': '44.0',
+    '45.0b1': {
+        'appVersion': '45.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_44_0b8',
+        'baseTag': 'FIREFOX_45_0b1',
     },
 
     '44.0b9': {
@@ -39,10 +39,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_44_0b9',
     },
 
-    '44.0b7': {
+    '44.0b8': {
         'appVersion': '44.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_44_0b7',
+        'baseTag': 'FIREFOX_44_0b8',
     },
 
 }
@@ -60,7 +60,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '76fdbc5ce8ea',
+        'revision': '6c89dbce18b2',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
