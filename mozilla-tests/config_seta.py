@@ -4,6 +4,7 @@ import httplib
 from datetime import date
 import sys
 import os
+import re
 
 
 seta_branches = ['fx-team', 'mozilla-inbound']
@@ -22,14 +23,16 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   "Rev7 MacOSX Yosemite 10.10.5": ("macosx64", ["yosemite_r7"]),
                   "Ubuntu Code Coverage VM 12.04 x64": ("linux64-cc", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),                  
                   "android-2-3-armv7-api9": ("android-api-9", ["ubuntu64_vm_mobile", "ubuntu64_vm_large"]),
-                  "android-4-3-armv7-api11": ("android-api-15", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"])
+                  "android-4-3-armv7-api15": ("android-api-15", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"])
                   }
+
+#platforms and tests to exclude from configs because they are deprecated or lacking data
+platform_exclusions = ['android-4-3-armv7-api11']
+test_exclusions = re.compile('\[funsize\]|\[TC\]|talos')
 
 #define seta branches and default values for skipcount and skiptimeout
 skipconfig_defaults_platform = {}
 for sp in seta_platforms:
-    if sp == "android-4-3-armv7-api15":
-        continue
     for slave_sp in seta_platforms[sp][1]:
         if slave_sp in ["xp-ix"]:
             skipconfig_defaults_platform[slave_sp] = (14, 7200)
@@ -62,12 +65,9 @@ def get_seta_platforms(branch, platform_filter):
     c['jobtypes'] = data.get('jobtypes', None)
     platforms = []
     for p in c['jobtypes'][today]:
-        if "android-4-3-armv7-api15" in p:
+        platform = p.encode('utf-8').split(branch)[0].rstrip()
+        if platform in platform_exclusions:
             continue
-        if 'talos' in p:
-            platform = ' '.join(p.encode('utf-8').split()[0:-3])
-        else:
-            platform = ' '.join(p.encode('utf-8').split()[0:-4])
         if platform_filter == "mobile" and "android" not in platform:
             continue
         if platform_filter == "desktop" and "android" in platform:
@@ -77,22 +77,18 @@ def get_seta_platforms(branch, platform_filter):
     return(platforms)
 
 
-def sort_android_tests(platform, slave_platform, tests):
+def sort_android_tests(platform, worker_platform, tests):
     """create a dictionary that maps slave platform to tests"""
     """initialize the dictionary of tests per platform"""
-    tests_by_slave_platform = {}
-    for s in slave_platform:
-        tests_by_slave_platform[s] = []
+    tests_by_worker_platform = {}
+    for s in worker_platform:
+        tests_by_worker_platform[s] = []
     for t in tests:
-        if t.split()[-1].startswith('plain-reftest'):
-            tests_by_slave_platform[slave_platform[1]].append(t)
-        elif t.split()[-1].startswith('crashtest'):
-            tests_by_slave_platform[slave_platform[1]].append(t)
-        elif t.split()[-1].startswith('jsreftest'):
-            tests_by_slave_platform[slave_platform[1]].append(t)
+        if any([t.split()[-1].startswith(target) for target in ['plain-reftest', 'crashtest', 'jsreftest']]):
+            tests_by_worker_platform[worker_platform[1]].append(t)
         else:
-            tests_by_slave_platform[slave_platform[0]].append(t)
-    return tests_by_slave_platform
+            tests_by_worker_platform[worker_platform[0]].append(t)
+    return tests_by_worker_platform
 
 
 def print_configs(branch, plat, test_dict, BRANCHES):
@@ -101,7 +97,7 @@ def print_configs(branch, plat, test_dict, BRANCHES):
         test_config = {}
         for t in test_dict[sp]:
             test = t.split()[-1]
-            test_type = t.split()[-3]
+            test_type = (t.split(branch)[1]).split()[0]
             test_config[test_type, test] = skipconfig_defaults_platform[str(sp)]
             BRANCHES[branch]['platforms'][plat][str(sp)]['skipconfig'] = test_config
 
@@ -111,7 +107,9 @@ def define_configs(branch, platforms, BRANCHES):
     for p in platforms:
         tests = []
         for job in c['jobtypes'][today]:
-            if "android-4-3-armv7-api15" in job:
+            if p in platform_exclusions:
+                continue
+            if re.search(test_exclusions, job):
                 continue
             if p in job:
                 tests.append(job.encode('utf-8'))
@@ -119,17 +117,15 @@ def define_configs(branch, platforms, BRANCHES):
         if len(tests) > 0:
             tests_sorted = sorted(tests)
             platform = seta_platforms[p][0]
-            # temp fix for bug 1238752
-            if platform == "android-api-15":
-               continue
-            if (len(seta_platforms[p][1])) == 1:
-                slave_platform = seta_platforms[p][1][0]
-                test_dict[slave_platform] = tests_sorted
-            else:
-                slave_platform = seta_platforms[p][1]
-                test_dict = sort_android_tests(platform, slave_platform, tests_sorted)
+        if (len(seta_platforms[p][1])) == 1:
+            worker_platform = seta_platforms[p][1][0]
+            test_dict[worker_platform] = tests_sorted
+        else:
+            worker_platform = seta_platforms[p][1]
+            test_dict = sort_android_tests(platform, worker_platform, tests_sorted)
 
-            print_configs(branch, platform, test_dict, BRANCHES)
+        print_configs(branch, platform, test_dict, BRANCHES)
+
 
 c = {}
 
