@@ -20,11 +20,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '44.0'
-releaseConfig['appVersion']          = '44.0'
+releaseConfig['version']             = '44.0.1'
+releaseConfig['appVersion']          = '44.0.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 3
-releaseConfig['baseTag']             = 'FIREFOX_44_0'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'FIREFOX_44_0_1'
 releaseConfig['partialUpdates']      = {
 
     '42.0': {
@@ -47,13 +47,13 @@ releaseConfig['partialUpdates']      = {
 
     '44.0': {
         'appVersion': '44.0',
-        'buildNumber': 2,
+        'buildNumber': 3,
         'baseTag': 'FIREFOX_44_0',
     },
 
 }
 # What's New Page, should be revisited with each release.
-# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/44.0/whatsnew/?oldversion=%OLD_VERSION%'
+# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/44.0.1/whatsnew/?oldversion=%OLD_VERSION%'
 
 releaseConfig['HACK_first_released_version'] = {'win64': "42.0"}
 
@@ -65,7 +65,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '7eabe4d30cde',
+        'revision': 'f5b36c7a56c0',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
@@ -158,7 +158,7 @@ releaseConfig['updateChannels'] = {
         },
     },
     "beta": {
-        "enabled": True,
+        "enabled": False,
         # For the beta channel, we want to able to provide updates to this
         # from prior betas or prior RCs that were shipped to the beta channel,
         # so this regex matches either.
