@@ -5,6 +5,7 @@ from datetime import date
 import sys
 import os
 import re
+import time
 
 
 seta_branches = ['fx-team', 'mozilla-inbound']
@@ -41,6 +42,24 @@ for sp in seta_platforms:
         else:
             skipconfig_defaults_platform[slave_sp] = (7, 3600)
 
+def wfetch(url, retries=5):
+    while True:
+        try:
+            return urllib2.urlopen(url, timeout=30)
+        except urllib2.HTTPError, e:
+            print("Failed to fetch '%s': %s" % (url, str(e)))
+        except urllib2.URLError, e:
+            print("Failed to fetch '%s': %s" % (url, str(e)))
+        except socket.timeout, e:
+            print("Time out accessing %s: %s" % (url, str(e)))
+        except socket.error, e:
+            print("Socket error when accessing %s: %s" % (url, str(e)))
+        if retries < 1:
+            raise Exception("Could not fetch url '%s'" % url)
+        retries -= 1
+        print("Retrying")
+        time.sleep(60)
+
 def get_seta_platforms(branch, platform_filter):
     # For offline work
     if os.environ.get('DISABLE_SETA'):
@@ -48,21 +67,7 @@ def get_seta_platforms(branch, platform_filter):
 
 
     url = "http://alertmanager.allizom.org/data/setadetails/?date=" + today + "&buildbot=1&branch=" + branch + "&inactive=1"
-    try:
-        response = urllib2.urlopen(url)
-    except urllib2.HTTPError, e:
-        print('HTTPError = ' + str(e.code))
-        raise
-    except urllib2.URLError, e:
-        print('URLError = ' + str(e.reason))
-        raise
-    except httplib.HTTPException, e:
-        print('HTTPException')
-        raise
-    except Exception:
-        import traceback
-        print('generic exception: ' + traceback.format_exc())
-        raise
+    response = wfetch(url)
     data = json.loads(response.read())
     c['jobtypes'] = data.get('jobtypes', None)
     platforms = []

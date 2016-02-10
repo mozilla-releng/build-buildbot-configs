@@ -201,7 +201,8 @@ PROJECT_BRANCHES = {
         'bouncer_enabled': True,
         'postrelease_version_bump_enabled': True,
         'postrelease_version_bump_config': 'releases/postrelease_date.py',
-        'push_to_candidates_enabled': True
+        'push_to_candidates_enabled': True,
+        'updates_config': 'releases/updates_date.py',
     },
     'elm': {
         'branch_projects': [],
