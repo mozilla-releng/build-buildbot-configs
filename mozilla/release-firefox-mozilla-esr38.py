@@ -21,30 +21,30 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '38.6.0esr'
-releaseConfig['appVersion']          = '38.6.0'
+releaseConfig['version']             = '38.6.1esr'
+releaseConfig['appVersion']          = '38.6.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_38_6_0esr'
+releaseConfig['baseTag']             = 'FIREFOX_38_6_1esr'
 releaseConfig['partialUpdates']      = {
 
-    '38.5.2esr': {
-        'appVersion': '38.5.2',
+    '38.6.0esr': {
+        'appVersion': '38.6.0',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_38_5_2esr',
+        'baseTag': 'FIREFOX_38_6_0esr',
     },
 
 }
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '38.6.0esrpre'
+releaseConfig['nextAppVersion']      = '38.6.1esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr38',
         'path': 'releases/mozilla-esr38',
-        'revision': '9632375c6aac',
-        'relbranch': None,
+        'revision': 'GECKO3860esr_2016012100_RELBRANCH',
+        'relbranch': 'GECKO3860esr_2016012100_RELBRANCH',
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -75,6 +75,9 @@ releaseConfig['talosTestPlatforms']  = ()
 # Unittests
 releaseConfig['unittestPlatforms']   = ()
 releaseConfig['enableUnittests']     = False
+
+# SDK
+releaseConfig['packageSDK']          = True
 
 # L10n configuration
 releaseConfig['l10nPlatforms']       = releaseConfig['enUSPlatforms']
