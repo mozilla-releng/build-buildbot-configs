@@ -133,7 +133,7 @@ PROJECT_BRANCHES = {
     'cypress': {
         'lock_platforms': True,
         'platforms': {
-            # Limit B2G to none for Bug 1164935
+            # Limit B2G to none for Bug 787208
         },
     },
     # B2G builds not required on date

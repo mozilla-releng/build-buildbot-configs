@@ -1026,6 +1026,15 @@ for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
     branch['mozharness_archiver_repo_path'] = '%(moz_repo_path)s'
     branch['mozharness_archiver_rev'] = 'default'
 
+# Cypress is the m-c in c-c repo, so set some specifics
+BRANCHES['cypress']['mozharness_archiver_repo_path'] = '%(repo_path)s'
+BRANCHES['cypress']['pgo_strategy'] = None
+# Enable unit tests
+BRANCHES['cypress']['enable_mac_a11y'] = True
+BRANCHES['cypress']['unittest_build_space'] = 6
+BRANCHES['cypress']['mozilla_srcdir'] = None
+
+
 if __name__ == "__main__":
     import sys
     import pprint

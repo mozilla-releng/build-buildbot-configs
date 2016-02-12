@@ -125,15 +125,9 @@ PROJECT_BRANCHES = {
         },
     },
     'cypress': {
-        'gecko_version': 40,
-        'enable_perproduct_builds': False,
-        'enable_talos': True,
-        'pgo_strategy': 'per-checkin',
         'lock_platforms': True,
         'platforms': {
-            # Limit to win64 for Bug 1164935
-            'win64': {},
-            'win64-debug': {},
+            # Limit Firefox to none for Bug 787208
         },
     },
     'date': {
