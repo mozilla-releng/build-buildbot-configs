@@ -845,11 +845,13 @@ for branch in BRANCHES.keys():
         # Don't override platforms if it's set and locked
         if key == 'platforms' and 'platforms' in BRANCHES[branch] and BRANCHES[branch].get('lock_platforms'):
             continue
-        # Don't override something that's set
-        elif key in ('enable_weekly_bundle',) and key in BRANCHES[branch]:
-            continue
         else:
             BRANCHES[branch][key] = deepcopy(value)
+
+        # bug 1218589 - Enable nightly mozilla-central builds of graphene     
+        if key == 'platforms' and branch == 'mozilla-central':
+            graphene = {'linux64_graphene': {}, 'macosx64_graphene': {}, 'win64_graphene': {}}
+            BRANCHES[branch][key].update(graphene)
 
     for platform, platform_config in PLATFORM_VARS.items():
         if platform in BRANCHES[branch]['platforms']:
@@ -944,6 +946,14 @@ BRANCHES['mozilla-central']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['emulator-debug']['enable_nightly'] = True
+# bug 1218589 - Enable nightly mozilla-central builds of graphene     
+BRANCHES['mozilla-central']['platforms']['linux64_graphene']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['macosx64_graphene']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['win64_graphene']['enable_nightly'] = True
+BRANCHES['mozilla-central']['platforms']['linux64_graphene']['slaves'] = SLAVES['mock']
+BRANCHES['mozilla-central']['platforms']['macosx64_graphene']['slaves'] = SLAVES['macosx64-lion']
+BRANCHES['mozilla-central']['platforms']['win64_graphene']['slaves'] = SLAVES['win64-rev2']
+
 
 ######## b2g-ota
 # This is a path, relative to HGURL, where the repository is located

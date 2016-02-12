@@ -97,10 +97,6 @@ GLOBAL_VARS = {
     # List of keys in BRANCH_PROJECTS that will be activated for the BRANCH
     'branch_projects': ['spidermonkey_tier_1'],
 
-    # if true, this branch will get bundled and uploaded to ftp.m.o for users
-    # to download and thereby accelerate their cloning
-    'enable_weekly_bundle': False,
-
     'hash_type': 'sha512',
     'updates_enabled': False,
     'create_partial': False,
@@ -2389,9 +2385,6 @@ for branch in BRANCHES.keys():
         # Don't override platforms if it's set and locked
         if key == 'platforms' and 'platforms' in BRANCHES[branch] and BRANCHES[branch].get('lock_platforms'):
             continue
-        # Don't override something that's set
-        elif key in ('enable_weekly_bundle','branch_projects',) and key in BRANCHES[branch]:
-            continue
         # If the key is already set then we won't override with GLOBAL_VARS
         # The "platforms" key is handle separatedely (see next for loop)
         elif key == 'platforms' or key not in BRANCHES[branch]:
@@ -2465,7 +2458,6 @@ for branch in BRANCHES.keys():
 BRANCHES['mozilla-central']['repo_path'] = 'mozilla-central'
 BRANCHES['mozilla-central']['l10n_repo_path'] = 'l10n-central'
 BRANCHES['mozilla-central']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-central']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-central']['start_hour'] = [3]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 # Enable PGO Builds on this branch
@@ -2524,7 +2516,6 @@ BRANCHES['mozilla-central']['l10n_extra_configure_args'] = ['--with-macbundlenam
 BRANCHES['mozilla-release']['repo_path'] = 'releases/mozilla-release'
 BRANCHES['mozilla-release']['update_channel'] = 'release'
 BRANCHES['mozilla-release']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['mozilla-release']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-release']['start_hour'] = [3]
 BRANCHES['mozilla-release']['start_minute'] = [2]
 # Enable PGO Builds on this branch
@@ -2560,7 +2551,6 @@ BRANCHES['mozilla-release']['platforms']['macosx64']['platform_objdir'] = "%s/x8
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
 BRANCHES['mozilla-beta']['l10n_repo_path'] = 'releases/l10n/mozilla-beta'
-BRANCHES['mozilla-beta']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-beta']['update_channel'] = 'beta'
 BRANCHES['mozilla-beta']['start_hour'] = [3]
 BRANCHES['mozilla-beta']['start_minute'] = [2]
@@ -2614,7 +2604,6 @@ BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
 BRANCHES['mozilla-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
 BRANCHES['mozilla-aurora']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-aurora']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-aurora']['start_hour'] = [0]
 BRANCHES['mozilla-aurora']['start_minute'] = [40]
 BRANCHES['mozilla-aurora']['periodic_start_hours'] = range(1, 24, 6)
@@ -2677,7 +2666,6 @@ BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-esr38']['repo_path'] = 'releases/mozilla-esr38'
 BRANCHES['mozilla-esr38']['update_channel'] = 'nightly-esr38'
 BRANCHES['mozilla-esr38']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['mozilla-esr38']['enable_weekly_bundle'] = True
 BRANCHES['mozilla-esr38']['start_hour'] = [0]
 BRANCHES['mozilla-esr38']['start_minute'] = [15]
 BRANCHES['mozilla-esr38']['pgo_strategy'] = 'per-checkin'
@@ -2706,7 +2694,6 @@ BRANCHES['mozilla-esr38']['enabled_products'] = ['firefox']
 BRANCHES['mozilla-b2g44_v2_5']['repo_path'] = 'releases/mozilla-b2g44_v2_5'
 BRANCHES['mozilla-b2g44_v2_5']['update_channel'] = 'nightly-b2g44-2.5'
 BRANCHES['mozilla-b2g44_v2_5']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
-BRANCHES['mozilla-b2g44_v2_5']['enable_weekly_bundle'] = False
 BRANCHES['mozilla-b2g44_v2_5']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-b2g44_v2_5']['start_hour'] = [3]
 BRANCHES['mozilla-b2g44_v2_5']['start_minute'] = [45]
@@ -2735,7 +2722,6 @@ BRANCHES['mozilla-b2g44_v2_5']['enabled_products'] = ['firefox']
 BRANCHES['b2g-ota']['repo_path'] = 'releases/b2g-ota'
 BRANCHES['b2g-ota']['update_channel'] = 'b2g-ota'
 BRANCHES['b2g-ota']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['b2g-ota']['enable_weekly_bundle'] = False
 BRANCHES['b2g-ota']['enable_perproduct_builds'] = True
 BRANCHES['b2g-ota']['start_hour'] = [3]
 BRANCHES['b2g-ota']['start_minute'] = [45]

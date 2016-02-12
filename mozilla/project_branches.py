@@ -9,14 +9,12 @@ PROJECT_BRANCHES = {
         'enable_nightly': False,
         'pgo_strategy': 'periodic',
         'periodic_start_hours': range(2, 24, 3),
-        'enable_weekly_bundle': True,
     },
     'mozilla-inbound': {
         'merge_builds': False,
         'repo_path': 'integration/mozilla-inbound',
         'enable_perproduct_builds': True,
         'mozconfig_dir': 'mozilla-central',
-        'enable_weekly_bundle': True,
         'pgo_strategy': 'periodic',
         'periodic_start_hours': range(1, 24, 3),
         'talos_suites': {
@@ -31,7 +29,6 @@ PROJECT_BRANCHES = {
         'mozconfig_dir': 'mozilla-central',
         'pgo_strategy': 'periodic',
         'periodic_start_hours': range(2, 24, 3),
-        'enable_weekly_bundle': True,
         'talos_suites': {
             'xperf': 1,
         },
@@ -61,7 +58,6 @@ PROJECT_BRANCHES = {
     'alder': {
         "enable_nightly": True,
         'desktop_mozharness_repacks_enabled': True,
-        "enable_weekly_bundle": True,
         "pgo_strategy": None,
         "platforms": {
             "android-api-9": {
@@ -129,15 +125,9 @@ PROJECT_BRANCHES = {
         },
     },
     'cypress': {
-        'gecko_version': 40,
-        'enable_perproduct_builds': False,
-        'enable_talos': True,
-        'pgo_strategy': 'per-checkin',
         'lock_platforms': True,
         'platforms': {
-            # Limit to win64 for Bug 1164935
-            'win64': {},
-            'win64-debug': {},
+            # Limit Firefox to none for Bug 787208
         },
     },
     'date': {

@@ -68,10 +68,6 @@ GLOBAL_VARS.update({
     'enable_valgrind': False,
     'valgrind_platforms': ('linux', 'linux64'),
 
-    # if true, this branch will get bundled and uploaded to ftp.m.o for users
-    # to download and thereby accelerate their cloning
-    'enable_weekly_bundle': False,
-
     'hash_type': 'sha512',
     'updates_enabled': False,
     'create_partial': False,
@@ -673,9 +669,6 @@ for branch in BRANCHES.keys():
             continue
         elif key == 'mobile_platforms' and 'mobile_platforms' in BRANCHES[branch]:
             continue
-        # Don't override something that's set
-        elif key in ('enable_weekly_bundle',) and key in BRANCHES[branch]:
-            continue
         else:
             BRANCHES[branch][key] = deepcopy(value)
 
@@ -749,7 +742,6 @@ BRANCHES['comm-central']['skip_blank_repos'] = True
 BRANCHES['comm-central']['call_client_py'] = True
 BRANCHES['comm-central']['repo_path'] = 'comm-central'
 BRANCHES['comm-central']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['comm-central']['enable_weekly_bundle'] = True
 BRANCHES['comm-central']['start_hour'] = [3]
 BRANCHES['comm-central']['start_minute'] = [2]
 # Enable unit tests
@@ -792,7 +784,6 @@ BRANCHES['comm-esr38']['update_channel'] = 'nightly-esr38'
 BRANCHES['comm-esr38']['skip_blank_repos'] = True
 BRANCHES['comm-esr38']['call_client_py'] = True
 BRANCHES['comm-esr38']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['comm-esr38']['enable_weekly_bundle'] = True
 BRANCHES['comm-esr38']['start_hour'] = [3]
 BRANCHES['comm-esr38']['start_minute'] = [2]
 # Enable unit tests
@@ -823,7 +814,6 @@ BRANCHES['comm-beta']['skip_blank_repos'] = True
 BRANCHES['comm-beta']['call_client_py'] = True
 BRANCHES['comm-beta']['repo_path'] = 'releases/comm-beta'
 BRANCHES['comm-beta']['l10n_repo_path'] = 'releases/l10n/mozilla-beta'
-BRANCHES['comm-beta']['enable_weekly_bundle'] = True
 BRANCHES['comm-beta']['update_channel'] = 'beta'
 BRANCHES['comm-beta']['start_hour'] = [3]
 BRANCHES['comm-beta']['start_minute'] = [2]
@@ -860,7 +850,6 @@ BRANCHES['comm-aurora']['skip_blank_repos'] = True
 BRANCHES['comm-aurora']['call_client_py'] = True
 BRANCHES['comm-aurora']['repo_path'] = 'releases/comm-aurora'
 BRANCHES['comm-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
-BRANCHES['comm-aurora']['enable_weekly_bundle'] = True
 BRANCHES['comm-aurora']['start_hour'] = [0]
 BRANCHES['comm-aurora']['start_minute'] = [40]
 # Enable unit tests
@@ -1036,6 +1025,15 @@ for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
     # like Thunderbird
     branch['mozharness_archiver_repo_path'] = '%(moz_repo_path)s'
     branch['mozharness_archiver_rev'] = 'default'
+
+# Cypress is the m-c in c-c repo, so set some specifics
+BRANCHES['cypress']['mozharness_archiver_repo_path'] = '%(repo_path)s'
+BRANCHES['cypress']['pgo_strategy'] = None
+# Enable unit tests
+BRANCHES['cypress']['enable_mac_a11y'] = True
+BRANCHES['cypress']['unittest_build_space'] = 6
+BRANCHES['cypress']['mozilla_srcdir'] = None
+
 
 if __name__ == "__main__":
     import sys
