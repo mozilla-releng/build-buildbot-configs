@@ -4,7 +4,8 @@ PROJECT_BRANCHES = {
     #####  TWIGS aka RENTABLE BRANCHES
     # Booked for Thunderbird
     'cypress': {
-        # Full set of project branch defaults
+        # mozilla_dir is blank
+        'mozilla_dir': '',
     },
 }
 
