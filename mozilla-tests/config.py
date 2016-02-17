@@ -947,6 +947,9 @@ PLATFORM_UNITTEST_VARS = {
                 'jsreftest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'jsreftest-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'crashtest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1062,6 +1065,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'jsreftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jsreftest-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'crashtest': {
@@ -1183,6 +1189,9 @@ PLATFORM_UNITTEST_VARS = {
                 'jsreftest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'jsreftest-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'crashtest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1298,6 +1307,9 @@ PLATFORM_UNITTEST_VARS = {
                 'jsreftest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'jsreftest-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'crashtest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1411,6 +1423,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'jsreftest': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'jsreftest-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'crashtest': {
@@ -1535,6 +1550,9 @@ PLATFORM_UNITTEST_VARS = {
                 'jsreftest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'jsreftest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'crashtest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1649,6 +1667,9 @@ PLATFORM_UNITTEST_VARS = {
                 'jsreftest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'jsreftest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'crashtest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1761,6 +1782,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'jsreftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jsreftest-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'crashtest': {
@@ -1885,6 +1909,9 @@ PLATFORM_UNITTEST_VARS = {
                 'jsreftest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'jsreftest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'crashtest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1985,6 +2012,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'jsreftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jsreftest-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'crashtest': {
@@ -2098,6 +2128,9 @@ PLATFORM_UNITTEST_VARS = {
                 'jsreftest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'jsreftest-e10s': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'crashtest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -2201,6 +2234,9 @@ PLATFORM_UNITTEST_VARS = {
                 'jsreftest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'jsreftest-e10s': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'crashtest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -2302,6 +2338,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'jsreftest': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'jsreftest-e10s': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'crashtest': {
