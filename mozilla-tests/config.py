@@ -2557,6 +2557,27 @@ BRANCHES['fx-team']['dromaeojs-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS
 BRANCHES['fx-team']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 
+######### b2g-inbound
+BRANCHES['b2g-inbound']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['b2g-inbound']['tp5o_tests'] = (0, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['b2g-inbound']['g1_tests'] = (0, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['b2g-inbound']['g2_tests'] = (0, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['b2g-inbound']['other_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['b2g-inbound']['svgr_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['b2g-inbound']['dromaeojs_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['b2g-inbound']['chromez_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['b2g-inbound']['xperf-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
+BRANCHES['b2g-inbound']['tp5o-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['b2g-inbound']['g1-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['b2g-inbound']['g2-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
+BRANCHES['b2g-inbound']['other-e10s_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['b2g-inbound']['g3_tests'] = (0, False, {}, LINUX_ONLY)
+BRANCHES['b2g-inbound']['g3-e10s_tests'] = (0, False, {}, LINUX_ONLY)
+BRANCHES['b2g-inbound']['svgr-e10s_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['b2g-inbound']['dromaeojs-e10s_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+BRANCHES['b2g-inbound']['chromez-e10s_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+
+
 ######### mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
 BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
