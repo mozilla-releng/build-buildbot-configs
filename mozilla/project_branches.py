@@ -135,46 +135,22 @@ PROJECT_BRANCHES = {
         'use_mozharness_repo_cache': False,
         'branch_projects': [],
         'enable_talos': False,
-        'enable_opt_unittests': False,
-        'enable_debug_unittests': False,
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
         'lock_platforms': True,
         'platforms': {
-            'linux': {
-                "slave_platforms": [],
-            },
-            'linux64': {
-                "slave_platforms": [],
-            },
-            'win32': {
-                "slave_platforms": [],
-            },
-            'macosx64': {
-                "slave_platforms": [],
-            },
-            'linux-debug': {
-                "slave_platforms": [],
-            },
-            'linux64-debug': {
-                "slave_platforms": [],
-            },
-            'linux64-asan': {
-                "slave_platforms": [],
-            },
-            'linux64-asan-debug': {
-                "slave_platforms": [],
-            },
-            'macosx64-debug': {
-                "slave_platforms": [],
-            },
-            'win32-debug': {
-                "slave_platforms": [],
-            },
-            'win64': {
-                "slave_platforms": [],
-            },
-            'win64-debug': {
-                "slave_platforms": [],
-            },
+            'linux': {},
+            'linux64': {},
+            'win32': {},
+            'macosx64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'linux64-asan': {},
+            'linux64-asan-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+            'win64': {},
+            'win64-debug': {},
         },
         'enable_valgrind': False,
         'pgo_strategy': 'per-checkin',
@@ -194,6 +170,7 @@ PROJECT_BRANCHES = {
         'postrelease_version_bump_config': 'releases/postrelease_date.py',
         'push_to_candidates_enabled': True,
         'updates_config': 'releases/updates_date.py',
+        'update_verify_chunks': 6,
     },
     'elm': {
         'branch_projects': [],
