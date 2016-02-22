@@ -155,6 +155,7 @@ PROJECT_BRANCHES = {
         'enable_valgrind': False,
         'pgo_strategy': 'per-checkin',
         'enable_release_promotion': True,
+        'build_tools_repo_path': 'users/raliiev_mozilla.com/tools',
         'partners_repo_path': 'build/partner-repacks',
         'partner_repack_platforms': ('linux', 'linux64', 'win32', 'win64', 'macosx64'),
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
