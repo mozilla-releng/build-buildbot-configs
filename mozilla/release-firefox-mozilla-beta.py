@@ -23,26 +23,26 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '45.0b9'
 releaseConfig['appVersion']          = '45.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_45_0b9'
 releaseConfig['partialUpdates']      = {
+
+    '45.0b8': {
+        'appVersion': '45.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_45_0b8',
+    },
+
+    '45.0b7': {
+        'appVersion': '45.0',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_45_0b7',
+    },
 
     '45.0b6': {
         'appVersion': '45.0',
         'buildNumber': 1,
         'baseTag': 'FIREFOX_45_0b6',
-    },
-
-    '45.0b5': {
-        'appVersion': '45.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_45_0b5',
-    },
-
-    '45.0b4': {
-        'appVersion': '45.0',
-        'buildNumber': 1,
-        'baseTag': 'FIREFOX_45_0b4',
     },
 
 }
@@ -60,7 +60,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': '5154bb929236',
+        'revision': '30d48874cea4',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
