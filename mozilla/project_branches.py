@@ -171,6 +171,12 @@ PROJECT_BRANCHES = {
         'push_to_candidates_enabled': True,
         'updates_config': 'releases/updates_date.py',
         'update_verify_chunks': 6,
+        'beetmover_credentials': '/builds/dev-beetmover-s3.credentials',
+        'beetmover_candidates_bucket': 'mozilla-releng-beet-mover-dev',
+        'stage_product': {
+            'firefox': 'firefox',
+            'fennec': 'mobile',
+        },
     },
     'elm': {
         'branch_projects': [],
