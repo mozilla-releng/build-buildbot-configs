@@ -2847,6 +2847,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
 #   Turn on crashtest-e10s - bug 1240825
 #   Turn on jsreftest-e10s - bug 1246627
 #   Turn on mochitest-push-e10s - bug 1248729
+#   Turn on web platform tests for e10s - bug 1245559
 for name, branch in items_at_least(BRANCHES, 'gecko_version', trunk_gecko_version):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
@@ -2855,9 +2856,13 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', trunk_gecko_versio
             if slave_platform in branch['platforms'][platform] and slave_platform in ('win7-ix', 'win7-all'):
                 if name not in TWIGS:
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                        MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + REFTEST_E10S + CRASHTEST_E10S + JSREFTEST_E10S + MOCHITEST_PUSH_E10S
+                        MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + REFTEST_E10S + CRASHTEST_E10S + \
+                        JSREFTEST_E10S + MOCHITEST_PUSH_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + \
+                        WEB_PLATFORM_REFTESTS_E10S
                     branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                        MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + REFTEST_E10S + CRASHTEST_E10S + JSREFTEST_E10S + MOCHITEST_PUSH_E10S
+                        MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + REFTEST_E10S + \
+                        CRASHTEST_E10S + JSREFTEST_E10S + MOCHITEST_PUSH_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S + \
+                        WEB_PLATFORM_REFTESTS_E10S
 
 # Bug 1200437
 # Use 7 chunks for m-bc on branches > trunk, excluding twigs, 3 chunks elsewhere
@@ -2987,12 +2992,6 @@ for platform in PLATFORMS.keys():
 
 # Enable linux64-cc, linux64-tsan, and win10 on Try only
 delete_slave_platform(BRANCHES, PLATFORMS, {'win64': 'win10_64'}, branch_exclusions=["try"])
-
-# Enable web-platform-tests-e10s on windows 7 try opt
-BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS_E10S
-BRANCHES['try']['platforms']['win32']['win7-ix']['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S
-BRANCHES['try']['platforms']['win32']['win7-all']['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS_E10S
-BRANCHES['try']['platforms']['win32']['win7-all']['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S
 
 
 ride_trains_branches = []
