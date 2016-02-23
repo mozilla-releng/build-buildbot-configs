@@ -477,6 +477,17 @@ for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
     branch['mozharness_archiver_repo_path'] = '%(moz_repo_path)s'
     branch['mozharness_archiver_rev'] = 'default'
 
+# Cypress is the m-c in c-c repo, so set some specifics
+BRANCHES['cypress']['mozharness_archiver_repo_path'] = '%(repo_path)s'
+if 'mozharness_archiver_rev' in BRANCHES['cypress']:
+    # Without this retriggers wouldn't use the repo rev for mozharness.
+    del BRANCHES['cypress']['mozharness_archiver_rev']
+BRANCHES['cypress']['script_repo_manifest'] = \
+    "https://hg.mozilla.org/%(repo_path)s/raw-file/%(revision)s/" + \
+    "testing/mozharness/mozharness.json"
+BRANCHES['cypress']['pgo_strategy'] = None
+
+
 if __name__ == "__main__":
     import sys
     import pprint
