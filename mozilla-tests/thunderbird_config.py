@@ -143,6 +143,16 @@ XPCSHELL = [
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
+XPCSHELL_TWO_CHUNKS = [
+    ('xpcshell', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--xpcshell-suite', 'xpcshell',
+                       '--cfg', 'unittests/thunderbird_extra.py'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+        'totalChunks': 2,
+    }),
 ]
 MOZMILL = [
     ('mozmill', {
@@ -159,6 +169,7 @@ MOZMILL = [
 UNITTEST_SUITES = {
     'opt_unittest_suites': MOZMILL + XPCSHELL,
     'debug_unittest_suites': MOZMILL + XPCSHELL,
+    'debug_unittest_suites_two_chunks': MOZMILL + XPCSHELL_TWO_CHUNKS,
 }
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
@@ -173,7 +184,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'ubuntu32_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites_two_chunks'][:],
             'suite_config': {
                 'xpcshell': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -194,7 +205,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'ubuntu64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites_two_chunks'][:],
             'suite_config': {
                 'xpcshell': {
                     'config_files': ["unittests/linux_unittest.py"],
