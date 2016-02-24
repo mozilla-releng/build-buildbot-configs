@@ -178,6 +178,7 @@ PROJECT_BRANCHES = {
             'firefox': 'firefox',
             'fennec': 'mobile',
         },
+        'push_to_releases_automatic': True,
     },
     'elm': {
         'branch_projects': [],
