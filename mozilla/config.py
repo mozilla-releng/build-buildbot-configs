@@ -2930,8 +2930,6 @@ for b, branch in BRANCHES.items():
         assert branch_project_name not in PROJECTS, '%s already in PROJECTS' % name
         PROJECTS[branch_project_name] = project
 
-PROJECTS["spidermonkey_tier_1__alder"]["enable_schedulers"] = False
-
 # ant test on try
 ## ant rides the trains (Bug 971841)
 # for name, branch in items_before(BRANCHES, 'gecko_version', 30):
