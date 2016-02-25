@@ -32,6 +32,9 @@ BRANCHES = {
     'comm-esr38': {
         'gecko_version': 38
     },
+    'comm-esr45': {
+        'gecko_version': 45
+    },
     'try-comm-central': {
         'coallesce_jobs': False
     },
@@ -385,6 +388,11 @@ BRANCHES['comm-aurora']['moz_repo_path'] = "releases/mozilla-aurora"
 BRANCHES['comm-esr38']['pgo_strategy'] = None
 BRANCHES['comm-esr38']['repo_path'] = "releases/comm-esr38"
 BRANCHES['comm-esr38']['moz_repo_path'] = "releases/mozilla-esr38"
+
+######## comm-esr45
+BRANCHES['comm-esr45']['pgo_strategy'] = None
+BRANCHES['comm-esr45']['repo_path'] = "releases/comm-esr45"
+BRANCHES['comm-esr45']['moz_repo_path'] = "releases/mozilla-esr45"
 
 ######## try
 BRANCHES['try-comm-central']['enable_try'] = True

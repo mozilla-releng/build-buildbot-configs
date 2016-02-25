@@ -45,6 +45,17 @@ BRANCHES = {
         },
         'lock_platforms': True,
     },
+    'mozilla-esr45': {
+        'gecko_version': 45,
+        'platforms': {
+            'macosx64': {},
+            'win32': {},
+            'win64': {},
+            'linux': {},
+            'linux64': {},
+        },
+        'lock_platforms': True,
+    },
     'try': {
         'coallesce_jobs': False,
     },
@@ -2664,6 +2675,15 @@ BRANCHES['mozilla-esr38']['platforms']['linux64']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['mozilla-esr38']['platforms']['win64']['talos_slave_platforms'] = []
 
+######### mozilla-esr45
+BRANCHES['mozilla-esr45']['repo_path'] = "releases/mozilla-esr45"
+BRANCHES['mozilla-esr45']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-esr45']['platforms']['win32']['talos_slave_platforms'] = []
+BRANCHES['mozilla-esr45']['platforms']['macosx64']['talos_slave_platforms'] = []
+BRANCHES['mozilla-esr45']['platforms']['linux']['talos_slave_platforms'] = []
+BRANCHES['mozilla-esr45']['platforms']['linux64']['talos_slave_platforms'] = []
+BRANCHES['mozilla-esr45']['platforms']['win32']['talos_slave_platforms'] = []
+BRANCHES['mozilla-esr45']['platforms']['win64']['talos_slave_platforms'] = []
 
 ######## try
 BRANCHES['try']['repo_path'] = "try"
