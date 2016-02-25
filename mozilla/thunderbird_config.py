@@ -651,6 +651,9 @@ BRANCHES = {
     'comm-esr38': {
         'gecko_version': 38,
     },
+    'comm-esr45': {
+        'gecko_version': 45,
+    },
     'try-comm-central': {
     },
 }
@@ -807,6 +810,37 @@ BRANCHES['comm-esr38']['create_partial'] = True
 BRANCHES['comm-esr38']['enable_blocklist_update'] = True
 BRANCHES['comm-esr38']['file_update_on_closed_tree'] = False
 BRANCHES['comm-esr38']['enable_valgrind'] = False
+
+######## comm-esr45
+BRANCHES['comm-esr45']['repo_path'] = 'releases/comm-esr45'
+BRANCHES['comm-esr45']['moz_repo_path'] = 'releases/mozilla-esr45'
+BRANCHES['comm-esr45']['update_channel'] = 'nightly-esr45'
+BRANCHES['comm-esr45']['skip_blank_repos'] = True
+BRANCHES['comm-esr45']['call_client_py'] = True
+BRANCHES['comm-esr45']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['comm-esr45']['start_hour'] = [3]
+BRANCHES['comm-esr45']['start_minute'] = [2]
+# Enable unit tests
+BRANCHES['comm-esr45']['enable_mac_a11y'] = True
+BRANCHES['comm-esr45']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['comm-esr45']['enable_l10n'] = False
+BRANCHES['comm-esr45']['enable_l10n_onchange'] = False
+BRANCHES['comm-esr45']['l10nNightlyUpdate'] = False
+BRANCHES['comm-esr45']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                            'macosx64']
+BRANCHES['comm-esr45']['l10nDatedDirs'] = True
+BRANCHES['comm-esr45']['l10n_tree'] = 'tbrel'
+BRANCHES['comm-esr45']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-esr45'
+BRANCHES['comm-esr45']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-esr45' % (GLOBAL_VARS['hgurl'])
+BRANCHES['comm-esr45']['enable_nightly'] = True
+BRANCHES['comm-esr45']['updates_enabled'] = True
+BRANCHES['comm-esr45']['create_partial'] = True
+BRANCHES['comm-esr45']['enable_blocklist_update'] = True
+BRANCHES['comm-esr45']['file_update_on_closed_tree'] = False
+BRANCHES['comm-esr45']['enable_valgrind'] = False
 
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'

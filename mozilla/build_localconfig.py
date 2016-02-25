@@ -32,6 +32,7 @@ else:
         'mozilla-aurora',
         'mozilla-release',
         'mozilla-esr38',
+        'mozilla-esr45',
         'mozilla-b2g44_v2_5',
     ])
 if 'limit_tb_branches' in master_config:
@@ -43,6 +44,7 @@ else:
         'comm-beta',
         'comm-aurora',
         'comm-esr38',
+        'comm-esr45',
     ])
 if 'limit_b2g_branches' in master_config:
     ACTIVE_B2G_BRANCHES = [x.encode("utf-8") for x in master_config['limit_b2g_branches']]
