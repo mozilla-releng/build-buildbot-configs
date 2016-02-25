@@ -55,21 +55,7 @@ PROJECT_BRANCHES = {
     },
     #'services-central': {},  # Bug 1010674
     # customized for bug 1156408
-    'alder': {
-        "enable_nightly": True,
-        'desktop_mozharness_repacks_enabled': True,
-        "pgo_strategy": None,
-        "platforms": {
-            "android-api-9": {
-                "is_mobile_l10n": True,
-            },
-        },
-        "enable_onchange_scheduler": False,
-        "enable_nightly_scheduler": False,
-        "enable_periodic_scheduler": False,
-        "enable_weekly_scheduler": False,
-        "enable_triggered_nightly_scheduler": False,
-    },
+    # 'alder': {},
     'ash': {
         'merge_builds': False,
         'enable_perproduct_builds': True,
