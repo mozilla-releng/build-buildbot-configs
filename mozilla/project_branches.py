@@ -179,6 +179,7 @@ PROJECT_BRANCHES = {
             'fennec': 'mobile',
         },
         'push_to_releases_automatic': True,
+        'merge_builds': False,
     },
     'elm': {
         'branch_projects': [],
