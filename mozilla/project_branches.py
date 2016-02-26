@@ -120,7 +120,6 @@ PROJECT_BRANCHES = {
         'desktop_mozharness_builds_enabled': True,
         'use_mozharness_repo_cache': False,
         'branch_projects': [],
-        'enable_talos': False,
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'lock_platforms': True,
