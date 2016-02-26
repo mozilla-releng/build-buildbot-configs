@@ -24,7 +24,6 @@ GLOBAL_VARS.update({
     'platforms': {
         'macosx64-mulet': {},
         'win32-mulet': {},
-        'linux64-b2g-haz': {},
         'nexus-4': {},
         'nexus-4_eng': {},
         'nexus-5-l': {},
@@ -458,36 +457,6 @@ PLATFORM_VARS = {
         'enable_dep': False,
         'maxTime': 6 * 3600,
     },
-    'linux64-b2g-haz': {
-        'mozharness_config': {
-            'script_name': 'scripts/hazard_build.py',
-            'extra_args': [
-                '--target', 'emulator-jb',
-                '--config-file', 'b2g/releng-emulator.py',
-                '--b2g-config-dir', 'emulator-jb',
-                '--config-file', 'hazards/common.py',
-                '--config-file', 'hazards/build_b2g.py',
-            ],
-            'mozharness_repo_cache': '/tools/checkouts/mozharness',
-            'tools_repo_cache': '/tools/checkouts/build-tools',
-        },
-        'env': {
-            'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-        },
-        'stage_product': 'b2g',
-        'product_name': 'b2g',
-        'base_name': builder_prefix + '_%(branch)s_%(platform)s',
-        'slaves': SLAVES['mock'],
-        'maxTime': 6 * 3600,
-        'try_by_default': True,
-        'consider_for_nightly': False,
-        'mock_target': 'mozilla-centos6-x86_64',
-        'reboot_command': [
-            '/tools/checkouts/mozharness/external_tools/count_and_reboot.py',
-            '-f', '../reboot_count.txt', '-n', '1', '-z'
-        ],
-        'builds_before_reboot': b2g_localconfig.BUILDS_BEFORE_REBOOT,
-    },
     'flame-kk': {
         'mozharness_config': {
             'script_name': 'scripts/b2g_build.py',
@@ -784,7 +753,6 @@ BRANCHES = {
         'b2g_version': (2, 5, 0),
         'lock_platforms': True,
         'platforms': {
-            'linux64-b2g-haz': {},
             'emulator': {},
             'emulator-debug': {},
             'emulator-l': {},
@@ -798,7 +766,6 @@ BRANCHES = {
         'b2g_version': (2, 6, 0),
         'lock_platforms': True,
         'platforms': {
-            'linux64-b2g-haz': {},
             'emulator': {},
             'emulator-debug': {},
             'flame-kk': {},
@@ -808,7 +775,6 @@ BRANCHES = {
     'try': {
         'lock_platforms': True,
         'platforms': {
-            'linux64-b2g-haz': {},
             'macosx64-mulet': {},
             'win32-mulet': {},
             'linux64_graphene': {},
@@ -916,7 +882,7 @@ for branch in BRANCHES.keys():
 ######## remove most B2G builds from cedar
 for platform in ('nexus-4', 'nexus-4_eng', 'nexus-5-l', 'nexus-5-l_eng',
                  'flame-kk', 'flame-kk_eng', 'flame-kk_eng-debug',
-                 'linux64-b2g-haz', 'macosx64-mulet', 'win32-mulet'):
+                 'macosx64-mulet', 'win32-mulet'):
     if platform in BRANCHES['cedar']['platforms']:
         del BRANCHES['cedar']['platforms'][platform]
 
@@ -935,7 +901,6 @@ BRANCHES['mozilla-central']['start_hour'] = [3, 15]
 BRANCHES['mozilla-central']['start_minute'] = [2]
 BRANCHES['mozilla-central']['periodic_start_hours'] = range(1, 24, 3)
 BRANCHES['mozilla-central']['periodic_start_minute'] = 30
-BRANCHES['mozilla-central']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['nexus-4']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['nexus-4_eng']['consider_for_nightly'] = False
@@ -964,7 +929,6 @@ BRANCHES['b2g-ota']['gecko_l10n_root'] = 'https://hg.mozilla.org/l10n-central'
 BRANCHES['b2g-ota']['start_hour'] = [0]
 BRANCHES['b2g-ota']['start_minute'] = [45]
 BRANCHES['b2g-ota']['periodic_start_minute'] = 30
-BRANCHES['b2g-ota']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['b2g-ota']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['b2g-ota']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['b2g-ota']['platforms']['emulator']['enable_nightly'] = True
@@ -980,7 +944,6 @@ BRANCHES['mozilla-b2g44_v2_5']['gecko_l10n_root'] = 'https://hg.mozilla.org/rele
 BRANCHES['mozilla-b2g44_v2_5']['start_hour'] = [0]
 BRANCHES['mozilla-b2g44_v2_5']['start_minute'] = [45]
 BRANCHES['mozilla-b2g44_v2_5']['periodic_start_minute'] = 30
-BRANCHES['mozilla-b2g44_v2_5']['platforms']['linux64-b2g-haz']['enable_nightly'] = False
 BRANCHES['mozilla-b2g44_v2_5']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-b2g44_v2_5']['platforms']['flame-kk_eng']['enable_nightly'] = True
 BRANCHES['mozilla-b2g44_v2_5']['platforms']['emulator']['enable_nightly'] = False
@@ -1002,7 +965,6 @@ BRANCHES['try']['stage_username'] = 'trybld'
 BRANCHES['try']['stage_ssh_key'] = 'trybld_dsa'
 # Disable Nightly builds
 BRANCHES['try']['enable_nightly'] = False
-BRANCHES['try']['platforms']['linux64-b2g-haz']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64_graphene']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['macosx64_graphene']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['macosx64-mulet']['slaves'] = TRY_SLAVES['macosx64-lion']
