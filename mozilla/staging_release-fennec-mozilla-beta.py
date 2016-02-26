@@ -29,6 +29,7 @@ releaseConfig['buildNumber']         = 1
 releaseConfig['baseTag']             = 'FENNEC_15_0b4'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
+releaseConfig['nextVersion']         = releaseConfig['version']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
