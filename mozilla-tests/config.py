@@ -2518,41 +2518,7 @@ for branch in BRANCHES.keys():
 
 ### PROJECTS ###
 PROJECTS = {
-    'jetpack': {
-        'branches': ['fx-team'],
-        'platforms': {
-            'ubuntu64_vm': {
-                'ext': 'linux-x86_64.tar.bz2',
-                'env': 'linux-perf',
-                'debug': True
-            },
-            'ubuntu64-asan_vm': {
-                'ext': 'linux-x86_64-asan.tar.bz2',
-                'env': 'linux-perf',
-                'debug': False
-            },
-            'ubuntu32_vm': {
-                'ext': 'linux-i686.tar.bz2',
-                'env': 'linux-perf',
-                'debug': True
-            },
-            'snowleopard': {'ext': '(mac|mac64).dmg', 'debug': True},
-            'yosemite': {'ext': '(mac|mac64).dmg', 'debug': True},
-            'xp-ix': {
-                'ext': 'win32.zip',
-                'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
-                'debug': True,
-            },
-            'win7-ix': {
-                'ext': 'win32.zip',
-                'env': PLATFORM_UNITTEST_VARS['win32']['env_name'],
-                'debug': True,
-            },
-        },
-        'hgurl': 'https://hg.mozilla.org',
-        'repo_path': 'projects/addon-sdk',
-        'ftp_url': 'ftp://ftp.mozilla.org/pub/mozilla.org/firefox/tinderbox-builds/%(branch)s-%(platform)s',
-    },
+
 }
 for k, v in localconfig.PROJECTS.iteritems():
     if k not in PROJECTS:

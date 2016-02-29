@@ -66,9 +66,6 @@ PROJECT_BRANCHES = {
             'emulator-jb-debug': {
                 'enable_nightly': True,
             },
-            'linux64-b2g-haz': {
-                'enable_nightly': False,
-            },
             'emulator-kk': {
                 'enable_nightly': True,
             },
