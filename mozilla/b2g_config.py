@@ -909,8 +909,6 @@ BRANCHES['mozilla-central']['platforms']['nexus-5-l_eng']['enable_nightly'] = Tr
 BRANCHES['mozilla-central']['platforms']['nexus-5-l_eng']['consider_for_nightly'] = False
 BRANCHES['mozilla-central']['platforms']['flame-kk']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['flame-kk_eng']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['emulator']['enable_nightly'] = True
-BRANCHES['mozilla-central']['platforms']['emulator-debug']['enable_nightly'] = True
 # bug 1218589 - Enable nightly mozilla-central builds of graphene
 BRANCHES['mozilla-central']['platforms']['linux64_graphene']['enable_nightly'] = True
 BRANCHES['mozilla-central']['platforms']['macosx64_graphene']['enable_nightly'] = True
@@ -1046,6 +1044,14 @@ for branch in B2GTWIGS:
         if branch not in BRANCHES:
             continue
         if platform in BRANCHES[branch]['platforms']:
+            del BRANCHES[branch]['platforms'][platform]
+
+# Bug 1250953 - Disable ICS emulator builds/tests on trunk
+for branch in BRANCHES.keys():
+    for platform in BRANCHES[branch]['platforms'].keys():
+        if branch in ['mozilla-b2g44_v2_5', 'try', 'b2g-ota']:
+            continue
+        if platform in ['emulator', 'emulator-debug']:
             del BRANCHES[branch]['platforms'][platform]
 
 if __name__ == "__main__":

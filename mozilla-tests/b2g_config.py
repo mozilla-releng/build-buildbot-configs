@@ -1373,6 +1373,14 @@ for branch in BRANCHES.keys():
 
 PROJECTS = {}
 
+# Bug 1250953 - Disable ICS emulator builds/tests on trunk
+for branch in BRANCHES.keys():
+    for platform in BRANCHES[branch]['platforms'].keys():
+        if branch in ['mozilla-b2g44_v2_5', 'try', 'b2g-ota']:
+            continue
+        if platform in ['emulator']:
+            del BRANCHES[branch]['platforms'][platform]
+
 if __name__ == "__main__":
     import sys
     import pprint
