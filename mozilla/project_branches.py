@@ -124,17 +124,27 @@ PROJECT_BRANCHES = {
         'enable_debug_unittests': True,
         'lock_platforms': True,
         'platforms': {
-            'linux': {},
-            'linux64': {},
-            'win32': {},
-            'macosx64': {},
+            'linux': {
+                'dep_signing_servers': 'release-signing',
+            },
+            'linux64': {
+                'dep_signing_servers': 'release-signing',
+            },
+            'macosx64': {
+                'dep_signing_servers': 'release-signing',
+            },
+            'win32': {
+                'dep_signing_servers': 'release-signing',
+            },
+            'win64': {
+                'dep_signing_servers': 'release-signing',
+            },
             'linux-debug': {},
             'linux64-debug': {},
             'linux64-asan': {},
             'linux64-asan-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
-            'win64': {},
             'win64-debug': {},
         },
         'enable_valgrind': False,
