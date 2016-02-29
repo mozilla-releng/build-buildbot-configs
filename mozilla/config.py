@@ -2603,16 +2603,10 @@ BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['enable_valgrind'] = False
 BRANCHES['mozilla-beta']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-beta']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
-# TODO - remove android-api-11 line when gecko 46 reaches m-b
-BRANCHES['mozilla-beta']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
 BRANCHES['mozilla-beta']['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15'
 BRANCHES['mozilla-beta']['platforms']['android-api-9']['enable_dep'] = True
-# TODO - remove android-api-11 line when gecko 46 reaches m-b
-BRANCHES['mozilla-beta']['platforms']['android-api-11']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-15']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-9-debug']['enable_dep'] = True
-# TODO - remove android-api-11 line when gecko 46 reaches m-b
-BRANCHES['mozilla-beta']['platforms']['android-api-11-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-15-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
@@ -2664,9 +2658,6 @@ BRANCHES['mozilla-aurora']['enable_hpkp_update'] = True
 BRANCHES['mozilla-aurora']['enable_valgrind'] = False
 BRANCHES['mozilla-aurora']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
 BRANCHES['mozilla-aurora']['platforms']['android-api-9']['updates_enabled'] = True
-# TODO - remove android-api-11 line when gecko 46 reaches m-a
-BRANCHES['mozilla-aurora']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
-BRANCHES['mozilla-aurora']['platforms']['android-api-11']['updates_enabled'] = True
 BRANCHES['mozilla-aurora']['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15'
 BRANCHES['mozilla-aurora']['platforms']['android-api-15']['updates_enabled'] = True
 BRANCHES['mozilla-aurora']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
