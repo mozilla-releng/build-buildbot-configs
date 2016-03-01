@@ -168,7 +168,11 @@ PROJECT_BRANCHES = {
         'updates_config': 'releases/updates_date.py',
         'update_verify_chunks': 6,
         'beetmover_credentials': '/builds/dev-beetmover-s3.credentials',
-        'beetmover_candidates_bucket': 'mozilla-releng-beet-mover-dev',
+        'beetmover_buckets': {
+            'firefox': 'mozilla-releng-beet-mover-dev',
+            # TODO - add fennec support
+            # 'fennec': '',
+        },
         'stage_product': {
             'firefox': 'firefox',
             'fennec': 'mobile',
