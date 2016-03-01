@@ -655,6 +655,26 @@ MOCHITEST_PUSH_E10S = [
     }),
 ]
 
+MOCHITEST_MEDIA = [
+    ('mochitest-media', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'mochitest-media'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
+MOCHITEST_MEDIA_E10S = [
+    ('mochitest-media-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'mochitest-media', '--e10s'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
 MOCHITEST_WEBGL = [
     ('mochitest-gl', {
         'use_mozharness': True,
@@ -2721,6 +2741,24 @@ for platform in PLATFORMS.keys():
                         WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS
 
 
+### Tests Enabled in Gecko 47+ ###
+
+# Bug 1242682 - Split out mochitest-media in 47+
+for platform in PLATFORMS.keys():
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_MEDIA
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']+= MOCHITEST_MEDIA
+
+            # excluding linux64 due to builder limits and it will be in taskcluster soon
+            if platform in ('linux', 'linux64-asan') and platform in BRANCHES[name]['platforms']:
+                BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_MEDIA_E10S
+            if platform in ('linux') and platform in BRANCHES[name]['platforms']:
+                BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_MEDIA_E10S
+
+
 ### Tests Enabled in Gecko 40+ ###
 
 # Bug 1156357 - Enable mochitest-push to ride the trains
@@ -2848,7 +2886,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', trunk_gecko_versio
                     branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                         MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + REFTEST_E10S + \
                         CRASHTEST_E10S + JSREFTEST_E10S + MOCHITEST_PUSH_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S + \
-                        WEB_PLATFORM_REFTESTS_E10S
+                        WEB_PLATFORM_REFTESTS_E10S + MOCHITEST_MEDIA_E10S
 
 # Bug 1200437
 # Use 7 chunks for m-bc on branches > trunk, excluding twigs, 3 chunks elsewhere
