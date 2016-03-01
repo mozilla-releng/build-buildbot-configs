@@ -96,7 +96,7 @@ releaseConfig['updateChannels'] = {
     # ruleId needs to be updated with the ID from AUS
     "esr": {
         "versionRegex": r"^.*$",
-        "ruleId": 57,
+        "ruleId": "esr45-dev",
         "patcherConfig": "mozEsr45-branch-patcher2.cfg",
         "localTestChannel": "esr-localtest",
         "cdnTestChannel": "esr-cdntest",
@@ -108,10 +108,10 @@ releaseConfig['updateChannels'] = {
         },
         "testChannels": {
             "esr-cdntest": {
-                "ruleId": 58,
+                "ruleId": "esr45-cdntest-dev",
             },
             "esr-localtest": {
-                "ruleId": 59,
+                "ruleId": "esr45-localtest-dev",
             },
         }
     }
