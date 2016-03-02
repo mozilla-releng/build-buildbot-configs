@@ -27,8 +27,7 @@ PROJECT_BRANCHES = {
         'repo_path': 'integration/b2g-inbound',
         'enable_perproduct_builds': True,
         'mozconfig_dir': 'mozilla-central',
-        'pgo_strategy': 'periodic',
-        'periodic_start_hours': range(2, 24, 3),
+        'pgo_strategy': None,
         'talos_suites': {
             'xperf': 1,
         },
