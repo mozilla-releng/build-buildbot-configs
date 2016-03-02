@@ -2777,7 +2777,7 @@ for platform in PLATFORMS.keys():
 
 ### Tests Enabled in Gecko 43+ ###
 
-# Starting in Firefox 44:
+# Starting in Firefox 46:
 #   Enable e10s Linux mochitests
 #   Enable e10s browser-chrome mochitests, opt builds only for all platforms (not ready for Xp).
 #   Enable e10s devtools tests for Linux opt
@@ -2786,7 +2786,7 @@ for platform in PLATFORMS.keys():
 #   Enable e10s web-platform-tests
 # Bug 1200437 - Use 7 chunks for m-e10-bc on branches > trunk, excluding twigs, 3 chunks elsewhere
 trunk_gecko_version = BRANCHES['mozilla-central']['gecko_version']
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
             continue
@@ -2801,7 +2801,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_E10S
             if platform in ('linux', 'linux64'):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_E10S_8
-                # we want mochitests to be 8 chunks for debug on gecko version 44+
+                # we want mochitests to be 8 chunks for debug on gecko version 46+
                 for test, config in branch['platforms'][platform][slave_platform]['debug_unittest_suites']:
                     if test == 'mochitest':
                         branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove((test,config))
