@@ -2981,7 +2981,7 @@ delete_slave_platform(BRANCHES, PLATFORMS, {'win64': 'win10_64'}, branch_exclusi
 
 
 ride_trains_branches = []
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 45):
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
     ride_trains_branches.append(name)
 
 r7_active_branches = []
@@ -3018,7 +3018,7 @@ for platform in PLATFORMS.keys():
                         'macosx64', 'win32', 'win64']:
         continue
 
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 45):
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
 
             # Not stable on windows XP
