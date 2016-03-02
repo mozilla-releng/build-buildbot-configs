@@ -20,7 +20,7 @@ SLAVES = {
 for i in range(1, 133):  # XP slaves from 153 to 173 moved to Win 7 pool // Bug 1226729 // Bug 1239785
     SLAVES['xp-ix']['t-xp32-ix-%03i' % i] = {}
 
-for i in range(1, 281):   # Move some XP test machines to the Windows 7 pool from 234 to 253 // Bug 1226729 // Bug 1239785 // Bug 1252258
+for i in range(1, 282):   # Move some XP test machines to the Windows 7 pool from 234 to 253 // Bug 1226729 // Bug 1239785 // Bug 1252258
     SLAVES['win7-ix']['t-w732-ix-%03i' % i] = {}
     SLAVES['win7-all']['t-w732-ix-%03i' % i] = {}
 
