@@ -2697,6 +2697,7 @@ BRANCHES['mozilla-esr45']['start_minute'] = [15]
 BRANCHES['mozilla-esr45']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr45']['enable_mac_a11y'] = True
 BRANCHES['mozilla-esr45']['unittest_build_space'] = 6
+BRANCHES['mozilla-esr45']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
 # L10n configuration
 BRANCHES['mozilla-esr38']['enable_l10n'] = False
 BRANCHES['mozilla-esr38']['enable_l10n_onchange'] = False
