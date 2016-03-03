@@ -19,6 +19,7 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   "Windows 8 64-bit": ("win64", ["win8_64"]),
                   "Ubuntu VM 12.04": ("linux", ["ubuntu32_vm"]),
                   "Ubuntu VM 12.04 x64": ("linux64", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
+                  "Ubuntu HW 12.04 x64": ("linux64", ["ubuntu64_hw"]),
                   "Ubuntu ASAN VM 12.04 x64": ("linux64-asan", ["ubuntu64-asan_vm", "ubuntu64-asan_vm_lnx_large"]),
                   "Ubuntu TSAN VM 12.04 x64": ("linux64-tsan", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
                   "Rev7 MacOSX Yosemite 10.10.5": ("macosx64", ["yosemite_r7"]),
@@ -120,10 +121,13 @@ def define_configs(branch, platforms, BRANCHES):
                 continue
             if p in job:
                 tests.append(job.encode('utf-8'))
+
+        if not tests:
+            continue
+
         test_dict = {}
-        if len(tests) > 0:
-            tests_sorted = sorted(tests)
-            platform = seta_platforms[p][0]
+        tests_sorted = sorted(tests)
+        platform = seta_platforms[p][0]
         if (len(seta_platforms[p][1])) == 1:
             worker_platform = seta_platforms[p][1][0]
             test_dict[worker_platform] = tests_sorted
