@@ -139,7 +139,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'enable_build_analysis': True,
             'talos_masters': None,
-            'test_pretty_names': True,
+            'test_pretty_names': False,
             'l10n_check_test': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
@@ -235,7 +235,7 @@ PLATFORM_VARS = {
             'enable_checktests': True,
             'enable_build_analysis': True,
             'talos_masters': None,
-            'test_pretty_names': True,
+            'test_pretty_names': False,
             'l10n_check_test': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
@@ -325,7 +325,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': None,
-            'test_pretty_names': True,
+            'test_pretty_names': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'mail/config/tooltool-manifests/macosx64/releng.manifest',
@@ -368,7 +368,7 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'enable_checktests': True,
             'talos_masters': None,
-            'test_pretty_names': True,
+            'test_pretty_names': False,
             'l10n_check_test': False,
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
@@ -1045,6 +1045,13 @@ for branch in branches:
         BRANCHES[branch]['platforms']['linux64-debug']['unittest-env'] = {
             'LD_LIBRARY_PATH': '/tools/gcc-4.3.3/installed/lib64',
         }
+
+# Only test pretty names on train branches, not c-c.
+for branch in branches:
+    if branch != "comm-central":
+        for platform in ("linux", "linux64", "macosx64", "win32", "win64"):
+            if platform in BRANCHES[branch]['platforms']:
+                BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
 
 # This does not currently affect Thunderbird builds since mozharness is not
 # enabled yet.
