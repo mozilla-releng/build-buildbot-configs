@@ -3059,6 +3059,60 @@ ANDROID_4_3_MOCHITEST_PUSH = [
     ),
 ]
 
+# bug 1242682 - Enable DOM media Mochitests on Android Fennec
+ANDROID_4_3_MOCHITEST_MEDIA = [
+    ('mochitest-media-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-media-1',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('mochitest-media-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm_4_3.py',
+            '--test-suite', 'mochitest-media-2',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+]
+ANDROID_2_3_MOCHITEST_MEDIA = [
+    ('mochitest-media-1', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'mochitest-media-1',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+    ('mochitest-media-2', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'mochitest-media-2',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+        },
+    ),
+]
+
 for suite in ANDROID_2_3_MOZHARNESS_DICT:
     if suite[0].startswith('mochitest-gl'):
         continue
@@ -3304,6 +3358,25 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
             'debug_unittest_suites': []
         }
 
+# enable android 2.3 mochitest media to ride the trains (bug 1242682)
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
+    # Loop removes it from any branch that gets beyond here
+    for platform in branch['platforms']:
+        if not platform in PLATFORMS:
+            continue
+        if platform not in ('android-api-9'):
+            continue
+        BRANCHES[name]['platforms'][platform]['ubuntu64_vm_large'] = {
+            'opt_unittest_suites': deepcopy(ANDROID_2_3_C3_DICT['opt_unittest_suites']),
+            'debug_unittest_suites': []
+        }
+        BRANCHES[name]['platforms'][platform]['ubuntu64_vm_mobile'] = {
+            'opt_unittest_suites': deepcopy(ANDROID_2_3_AWS_DICT['opt_unittest_suites']),
+            'debug_unittest_suites': []
+        }
+        BRANCHES[name]['platforms'][platform]['ubuntu64_vm_mobile']['opt_unittest_suites'] += ANDROID_2_3_MOCHITEST_MEDIA
+
+
 # bug 1133833 enable Android 4.3 on trunk for opt only
 # while disabling corresponding 4.0 tests
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
@@ -3412,6 +3485,31 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
             }
             BRANCHES[name]['platforms'][platform]['panda_android']['debug_unittest_suites'] = []
 
+
+# bug 1242682 add mochitest-media
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
+    for platform in branch['platforms']:
+        if not platform in PLATFORMS:
+            continue
+        if platform not in ('android-api-11', 'android-api-15'):
+            continue
+        for slave_plat in PLATFORMS[platform]['slave_platforms']:
+            if not slave_plat in branch['platforms'][platform]:
+                continue
+            if not 'panda' in slave_plat:
+                continue
+            BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_large'] = {
+            'opt_unittest_suites': deepcopy(ANDROID_4_3_C3_DICT['opt_unittest_suites']),
+            'debug_unittest_suites': deepcopy(ANDROID_4_3_C3_TRUNK_DICT['debug_unittest_suites'] + ANDROID_4_3_MOZHARNESS_DEBUG_TRUNK),}
+            BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_mobile'] = {
+                'opt_unittest_suites': deepcopy(ANDROID_4_3_AWS_DICT['opt_unittest_suites']),
+                'debug_unittest_suites': deepcopy(ANDROID_4_3_AWS_TRUNK_DICT['debug_unittest_suites']),
+            }
+            BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_large']['opt_unittest_suites'] += ANDROID_4_3_MOCHITEST_MEDIA
+            BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_large']['debug_unittest_suites'] += ANDROID_4_3_MOCHITEST_MEDIA
+            BRANCHES[name]['platforms'][platform]['panda_android']['debug_unittest_suites'] = []
+
+
 def remove_suite_from_slave_platform(BRANCHES, PLATFORMS, suite_to_remove, slave_platform, branches_to_keep=[]):
     """Remove suites named like |suite_to_remove| from all branches on slave platforms named like |slave_platform|.
 
@@ -3419,7 +3517,6 @@ Updates BRANCHES in place.  Consumes PLATFORMS without side
 effects. Does not remove any suites from the specified
 |branches_to_keep|."""
 
-    tuples_to_delete = []
     for branch in BRANCHES:
         # Loop removes it from any branch that gets beyond here.
         if branch in branches_to_keep:

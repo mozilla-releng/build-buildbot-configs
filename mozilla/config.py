@@ -2688,16 +2688,6 @@ BRANCHES['mozilla-esr38']['start_minute'] = [15]
 BRANCHES['mozilla-esr38']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr38']['enable_mac_a11y'] = True
 BRANCHES['mozilla-esr38']['unittest_build_space'] = 6
-######## mozilla-esr45
-BRANCHES['mozilla-esr45']['repo_path'] = 'releases/mozilla-esr45'
-BRANCHES['mozilla-esr45']['update_channel'] = 'nightly-esr45'
-BRANCHES['mozilla-esr45']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['mozilla-esr45']['start_hour'] = [0]
-BRANCHES['mozilla-esr45']['start_minute'] = [15]
-BRANCHES['mozilla-esr45']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-esr45']['enable_mac_a11y'] = True
-BRANCHES['mozilla-esr45']['unittest_build_space'] = 6
-BRANCHES['mozilla-esr45']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
 # L10n configuration
 BRANCHES['mozilla-esr38']['enable_l10n'] = False
 BRANCHES['mozilla-esr38']['enable_l10n_onchange'] = False
@@ -2716,13 +2706,23 @@ BRANCHES['mozilla-esr38']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr38']['enable_hpkp_update'] = True
 BRANCHES['mozilla-esr38']['enable_valgrind'] = False
 BRANCHES['mozilla-esr38']['enabled_products'] = ['firefox']
-# L10n configuration - mozilla-esr45
+######## mozilla-esr45
+BRANCHES['mozilla-esr45']['repo_path'] = 'releases/mozilla-esr45'
+BRANCHES['mozilla-esr45']['update_channel'] = 'nightly-esr45'
+BRANCHES['mozilla-esr45']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['mozilla-esr45']['start_hour'] = [0]
+BRANCHES['mozilla-esr45']['start_minute'] = [15]
+BRANCHES['mozilla-esr45']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-esr45']['enable_mac_a11y'] = True
+BRANCHES['mozilla-esr45']['unittest_build_space'] = 6
+BRANCHES['mozilla-esr45']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
+# L10n configuration
 BRANCHES['mozilla-esr45']['enable_l10n'] = False
 BRANCHES['mozilla-esr45']['enable_l10n_onchange'] = False
 BRANCHES['mozilla-esr45']['l10nNightlyUpdate'] = False
-BRANCHES['mozilla-esr45']['l10n_platforms'] = ['linux', 'linux64', 'win32', 'macosx64']
+BRANCHES['mozilla-esr45']['l10n_platforms'] = ['linux', 'linux64', 'win32', 'macosx64', 'win64']
 BRANCHES['mozilla-esr45']['l10nDatedDirs'] = True
-BRANCHES['mozilla-esr45']['l10n_tree'] = 'fxesr38'
+BRANCHES['mozilla-esr45']['l10n_tree'] = 'fxesr45'
 BRANCHES['mozilla-esr45']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr45'
 BRANCHES['mozilla-esr45']['enable_nightly'] = True
