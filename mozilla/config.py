@@ -2618,6 +2618,34 @@ BRANCHES['mozilla-beta']['platforms']['android-api-15-debug']['enable_dep'] = Tr
 BRANCHES['mozilla-beta']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
+### Release Promotion
+BRANCHES['mozilla-beta']['enable_release_promotion'] = True
+# used by process/release.py
+BRANCHES['mozilla-beta']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
+BRANCHES['mozilla-beta']['bouncer_submitter_config'] = "releases/bouncer_firefox_beta.py"
+BRANCHES['mozilla-beta']['bouncer_branch'] = "releases/mozilla-beta"
+BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = "releases/postrelease_beta.py"
+BRANCHES['mozilla-beta']['updates_config'] = "releases/updates_date.py"
+BRANCHES['mozilla-beta']['update_verify_chunks'] = 6
+BRANCHES['mozilla-beta']['beetmover_credentials'] = "/builds/release-s3.credentials"
+BRANCHES['mozilla-beta']['stage_product'] = {
+    'firefox': 'firefox',
+    'fennec': 'mobile'
+}
+# used by releasetasks
+BRANCHES['mozilla-beta']['bouncer_enabled'] = True,
+BRANCHES['mozilla-beta']['postrelease_version_bump_enabled'] = True,
+BRANCHES['mozilla-beta']['push_to_candidates_enabled'] = True,
+BRANCHES['mozilla-beta']['push_to_releases_automatic'] = True,
+BRANCHES['mozilla-beta']['release_channels'] = ("beta",)
+BRANCHES['mozilla-beta']['beetmover_buckets'] = {
+    "firefox": "net-mozaws-prod-delivery-firefox",
+    # TODO - add fennec support
+    # 'fennec': 'net-mozaws-prod-delivery-archive',
+}
+BRANCHES['mozilla-beta']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-beta']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+###
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
@@ -2970,8 +2998,9 @@ for b in ('b2g-inbound',):
 # END B2G's INBOUND
 
 ma_gecko_version = BRANCHES['mozilla-aurora']['gecko_version']
-# enable mozharness desktop builds on m-a, m-c, and m-c related branches
-for name, branch in items_at_least(BRANCHES, 'gecko_version', ma_gecko_version):
+mb_gecko_version = BRANCHES['mozilla-beta']['gecko_version']
+# enable mozharness desktop builds on m-b, m-a, m-c, and m-c related branches
+for name, branch in items_at_least(BRANCHES, 'gecko_version', mb_gecko_version):
     # if true, any platform with mozharness_desktop_build in its config
     # will use mozharness instead of MozillaBuildFactory
     branch['desktop_mozharness_builds_enabled'] = True
