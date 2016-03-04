@@ -2848,7 +2848,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
 #   Turn on jsreftest-e10s - bug 1246627
 #   Turn on mochitest-push-e10s - bug 1248729
 #   Turn on web platform tests for e10s - bug 1245559
-for name, branch in items_at_least(BRANCHES, 'gecko_version', trunk_gecko_version):
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
             continue
