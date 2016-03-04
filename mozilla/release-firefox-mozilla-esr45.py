@@ -24,7 +24,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '45.0esr'
 releaseConfig['appVersion']          = '45.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_45_0esr'
 releaseConfig['partialUpdates']      = {
 
@@ -35,6 +35,9 @@ releaseConfig['partialUpdates']      = {
     },
 
 }
+
+releaseConfig['HACK_first_released_version'] = {'win64': "45.0"}
+
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = '45.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
@@ -68,7 +71,7 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'win32', 'macosx64')
+releaseConfig['enUSPlatforms']       = ('linux', 'linux64', 'macosx64', 'win32', 'win64')
 releaseConfig['notifyPlatforms']     = releaseConfig['enUSPlatforms']
 releaseConfig['talosTestPlatforms']  = ()
 
@@ -106,6 +109,7 @@ releaseConfig['mozconfigs']          = {
     'linux64': 'browser/config/mozconfigs/linux64/release',
     'macosx64': 'browser/config/mozconfigs/macosx-universal/release',
     'win32': 'browser/config/mozconfigs/win32/release',
+    'win64': 'browser/config/mozconfigs/win64/release',
 }
 releaseConfig['releaseChannel']        = 'esr'
 releaseConfig['updateChannels'] = {
@@ -117,10 +121,11 @@ releaseConfig['updateChannels'] = {
         "localTestChannel": "esr-localtest",
         "cdnTestChannel": "esr-cdntest",
         "verifyConfigs": {
-            "linux":  "mozEsr45-firefox-linux.cfg",
-            "linux64":  "mozEsr45-firefox-linux64.cfg",
-            "macosx64": "mozEsr45-firefox-mac64.cfg",
-            "win32":  "mozEsr45-firefox-win32.cfg",
+            "linux":  "mozilla-esr45-firefox-linux.cfg",
+            "linux64":  "mozilla-esr45-firefox-linux64.cfg",
+            "macosx64": "mozilla-esr45-firefox-mac64.cfg",
+            "win32":  "mozilla-esr45-firefox-win32.cfg",
+            "win64":  "mozilla-esr45-firefox-win64.cfg",
         },
         "testChannels": {
             "esr-localtest": {
