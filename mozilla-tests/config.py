@@ -53,6 +53,7 @@ BRANCHES = {
             'win64': {},
             'linux': {},
             'linux64': {},
+            'linux64-asan': {},
         },
         'lock_platforms': True,
     },
@@ -896,14 +897,14 @@ XPCSHELL = [
     }),
 ]
 
-XPCSHELL_TWO_CHUNKS = [
+XPCSHELL_FOUR_CHUNKS = [
     ('xpcshell', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--xpcshell-suite', 'xpcshell'],
         'blob_upload': True,
         'script_maxtime': 7200,
-        'totalChunks': 2,
+        'totalChunks': 4,
     }),
 ]
 
@@ -913,8 +914,7 @@ XPCSHELL_TWO_CHUNKS = [
 # will additionally require other various suites to be run, which are set in the
 # sections below.
 UNITTEST_SUITES = {
-    'opt_unittest_suites': CPPUNIT + MOCHITEST + OTHER_REFTESTS + MOCHITEST_WEBGL + \
-                           XPCSHELL,
+    'opt_unittest_suites': CPPUNIT + MOCHITEST + OTHER_REFTESTS + MOCHITEST_WEBGL,
     'debug_unittest_suites': CPPUNIT + MARIONETTE + MOCHITEST + MOCHITEST_WEBGL + \
                              OTHER_REFTESTS,
 }
@@ -935,7 +935,7 @@ PLATFORM_UNITTEST_VARS = {
                                    MARIONETTE + REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS + \
                                    WEB_PLATFORM_REFTESTS + WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST_CHUNKED + \
-                                     REFTEST_FOUR_CHUNKS + XPCSHELL_TWO_CHUNKS,
+                                     REFTEST_FOUR_CHUNKS,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -943,13 +943,13 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-push': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-push-10s': {
+                'mochitest-push-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-media': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-media-10s': {
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1064,7 +1064,7 @@ PLATFORM_UNITTEST_VARS = {
                                    MARIONETTE + REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS + \
                                    WEB_PLATFORM_REFTESTS + WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST_CHUNKED + \
-                                    REFTEST_FOUR_CHUNKS + XPCSHELL_TWO_CHUNKS,
+                                    REFTEST_FOUR_CHUNKS,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -1078,7 +1078,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-media': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-media-10s': {
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1198,7 +1198,7 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST_CHUNKED + \
                                    REFTEST_TWO_CHUNKS,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST_CHUNKED + \
-                                     REFTEST_FOUR_CHUNKS + XPCSHELL_TWO_CHUNKS,
+                                     REFTEST_FOUR_CHUNKS,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -1212,7 +1212,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-media': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-media-10s': {
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1339,7 +1339,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-media': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-media-10s': {
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1466,7 +1466,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-media': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-media-10s': {
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1583,7 +1583,7 @@ PLATFORM_UNITTEST_VARS = {
                                    MARIONETTE + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_ONE_CHUNK + XPCSHELL,
+                                     REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1703,7 +1703,7 @@ PLATFORM_UNITTEST_VARS = {
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_ONE_CHUNK + XPCSHELL,
+                                     REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1829,7 +1829,7 @@ PLATFORM_UNITTEST_VARS = {
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_ONE_CHUNK + XPCSHELL,
+                                     REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1966,7 +1966,7 @@ PLATFORM_UNITTEST_VARS = {
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_ONE_CHUNK + XPCSHELL,
+                                     REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -2086,7 +2086,7 @@ PLATFORM_UNITTEST_VARS = {
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_ONE_CHUNK + XPCSHELL,
+                                     REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -2206,7 +2206,7 @@ PLATFORM_UNITTEST_VARS = {
         'snowleopard': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + REFTEST_ONE_CHUNK,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_ONE_CHUNK + XPCSHELL,
+                                     REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -2320,8 +2320,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'yosemite': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_ONE_CHUNK,
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + REFTEST_ONE_CHUNK + \
-                                     XPCSHELL,
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -2435,8 +2434,7 @@ PLATFORM_UNITTEST_VARS = {
         },
         'yosemite_r7': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_ONE_CHUNK,
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + REFTEST_ONE_CHUNK + \
-                                     XPCSHELL,
+            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -2913,28 +2911,29 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
                     branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_3_E10S
                 else:
                     branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_7_E10S
-            if platform in ('linux', 'linux64', 'linux64-asan'):
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_E10S
+            # asan is a special snowflake, so treat it as such
+            if platform in ['linux64-asan']:
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += CRASHTEST_E10S + \
+                    JSREFTEST_E10S + MOCHITEST_E10S + MOCHITEST_PUSH_E10S + MOCHITEST_WEBGL_E10S
             if platform in ('linux', 'linux64'):
-                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_E10S_8
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += CRASHTEST_E10S + \
+                    JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_E10S + MOCHITEST_PUSH_E10S + MOCHITEST_WEBGL_E10S + \
+                    REFTEST_E10S
+                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += CRASHTEST_E10S + \
+                    JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_E10S_8 + MOCHITEST_PUSH_E10S + MOCHITEST_WEBGL_E10S + \
+                    REFTEST_E10S_TWO_CHUNKS
                 # we want mochitests to be 8 chunks for debug on gecko version 46+
                 for test, config in branch['platforms'][platform][slave_platform]['debug_unittest_suites']:
                     if test == 'mochitest':
                         branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove((test,config))
                         branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_WO_BC_8
-                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += CRASHTEST_E10S + \
-                    REFTEST_E10S_TWO_CHUNKS
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += CRASHTEST_E10S + \
-                    REFTEST_E10S
                 if name in TWIGS or ('gecko_version' in branch and branch['gecko_version'] != trunk_gecko_version):
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_3_E10S
                     branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_DT_2_E10S
                 else:
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_7_E10S
                     branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_DT_8_E10S
-            if platform == 'linux':
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MARIONETTE_E10S
-            # wpt-10s
+            # wpt-e10s
             if (platform in ('linux64', 'linux') or
                 (platform == "macosx64" and slave_platform != "snowleopard")):
 
@@ -2999,6 +2998,22 @@ for branch in BRANCHES.keys():
             BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += bc_suite + dt_opt_suite
             BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += bc_suite + dt_debug_suite
 
+# Use 4 xpcshell chunks on linux debug/asan builds and 1 everywhere else
+for branch in BRANCHES.keys():
+    for platform in PLATFORMS.keys():
+        if platform not in BRANCHES[branch]['platforms']:
+            continue
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform not in BRANCHES[branch]['platforms'][platform]:
+                continue
+            xpc_opt_suite = XPCSHELL[:]
+            xpc_debug_suite = XPCSHELL[:]
+            if slave_platform in ('ubuntu64_vm', 'ubuntu32_vm', 'ubuntu64-asan_vm'):
+                xpc_debug_suite = XPCSHELL_FOUR_CHUNKS[:]
+            if slave_platform in ('ubuntu64-asan_vm'):
+                xpc_opt_suite = XPCSHELL_FOUR_CHUNKS[:]
+            BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += xpc_opt_suite
+            BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += xpc_debug_suite
 
 # Enable mediatests on gecko >= 44 (bug 1209258)
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
