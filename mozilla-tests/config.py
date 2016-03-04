@@ -956,6 +956,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-gl-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'mochitest-jetpack': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1079,6 +1082,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-gl-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'mochitest-jetpack': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1113,6 +1119,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+                'marionette-e10s': {
                     'config_files': ["marionette/prod_config.py"],
                 },
                 'media-tests': {
@@ -1204,6 +1213,9 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-gl': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-gl-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'mochitest-jetpack': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1238,6 +1250,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'marionette': {
+                    'config_files': ["marionette/prod_config.py"],
+                },
+                'marionette-e10s': {
                     'config_files': ["marionette/prod_config.py"],
                 },
                 'media-tests': {
