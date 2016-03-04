@@ -53,6 +53,7 @@ BRANCHES = {
             'win64': {},
             'linux': {},
             'linux64': {},
+            'linux64-asan': {},
         },
         'lock_platforms': True,
     },

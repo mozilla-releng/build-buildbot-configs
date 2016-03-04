@@ -2352,6 +2352,7 @@ BRANCHES = {
             'macosx64': {},
             'win32': {},
             'win64': {},
+            'linux64-asan': {},
             'linux64-av': {},
             'linux-debug': {},
             'linux64-debug': {},
