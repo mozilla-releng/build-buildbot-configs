@@ -2862,6 +2862,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
 #   Turn on web platform tests for e10s - bug 1245559
 # Bug 1194533 - Enable tests on OSX 10.10
 #   Turn on e10s tests for opt builds - bug 1253710
+#   Turn on Mn-e10s and mochitest-e10s-browser-chrome - bug 1253714
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
@@ -2879,6 +2880,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
                         WEB_PLATFORM_REFTESTS_E10S
             if slave_platform in branch['platforms'][platform] and slave_platform in ('yosemite_r7'):
                 if name not in TWIGS:
+                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                        MARIONETTE_E10S + MOCHITEST_BC_7_E10S
                     branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                         CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + \
                         MOCHITEST_PUSH_E10S + MOCHITEST_WEBGL_E10S + REFTEST_E10S
