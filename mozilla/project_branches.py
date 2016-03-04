@@ -168,9 +168,9 @@ PROJECT_BRANCHES = {
         'update_verify_chunks': 6,
         'beetmover_credentials': '/builds/dev-beetmover-s3.credentials',
         'beetmover_buckets': {
-            'firefox': 'mozilla-releng-beet-mover-dev',
+            'firefox': 'net-mozaws-stage-delivery-firefox',
             # TODO - add fennec support
-            # 'fennec': '',
+            # 'fennec': 'net-mozaws-stage-delivery-archive',
         },
         'stage_product': {
             'firefox': 'firefox',
