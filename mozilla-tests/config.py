@@ -943,13 +943,13 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-push': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-push-10s': {
+                'mochitest-push-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-media': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-media-10s': {
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1078,7 +1078,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-media': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-media-10s': {
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1212,7 +1212,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-media': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-media-10s': {
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1339,7 +1339,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-media': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-media-10s': {
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1466,7 +1466,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-media': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-media-10s': {
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -2932,7 +2932,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
                 else:
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_7_E10S
                     branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_DT_8_E10S
-            # wpt-10s
+            # wpt-e10s
             if (platform in ('linux64', 'linux') or
                 (platform == "macosx64" and slave_platform != "snowleopard")):
 
