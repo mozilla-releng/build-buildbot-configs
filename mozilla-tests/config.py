@@ -656,6 +656,26 @@ MOCHITEST_PUSH_E10S = [
     }),
 ]
 
+MOCHITEST_MEDIA = [
+    ('mochitest-media', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'mochitest-media'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
+MOCHITEST_MEDIA_E10S = [
+    ('mochitest-media-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'mochitest-media', '--e10s'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
 MOCHITEST_WEBGL = [
     ('mochitest-gl', {
         'use_mozharness': True,
@@ -926,6 +946,12 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-push-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-media': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-media-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'mochitest-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1051,6 +1077,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-push-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-media': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1187,6 +1219,12 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-push-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-media': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-media-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'mochitest-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1314,6 +1352,12 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-push-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-media': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-media-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'mochitest-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1433,6 +1477,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-push-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-media': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1560,6 +1610,12 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-push-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mochitest-media': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-media-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'mochitest-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1675,6 +1731,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-push-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-media': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1798,6 +1860,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-push-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-media': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -1934,6 +2002,12 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-push-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mochitest-media': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-media-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'mochitest-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -2049,6 +2123,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-push-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-media': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -2168,6 +2248,12 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-push-e10s': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'mochitest-media': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-media-e10s': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'mochitest-e10s': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -2282,6 +2368,12 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-push-e10s': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'mochitest-media': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-media-e10s': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'mochitest-e10s': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -2388,6 +2480,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'mochitest-push-e10s': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-media': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-media-e10s': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'mochitest-e10s': {
@@ -2760,6 +2858,28 @@ for platform in PLATFORMS.keys():
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                         WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS
+
+
+### Tests Enabled in Gecko 48+ ###
+
+# Bug 1242682 - Split out mochitest-media in 48+
+for platform in PLATFORMS.keys():
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
+        #TODO: remove when bug 1242682 has green running jobs on try
+        if name != 'try':
+            continue
+
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if platform in BRANCHES[name]['platforms']:
+                if slave_platform in BRANCHES[name]['platforms'][platform]:
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_MEDIA
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']+= MOCHITEST_MEDIA
+
+            if platform in ('linux', 'linux64', 'linux64-asan') and platform in BRANCHES[name]['platforms'] or \
+               slave_platform in ('win7-ix', 'win7-all', 'yosemite_r7'):
+                BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_MEDIA_E10S
+            if platform in ('linux', 'linux64') and platform in BRANCHES[name]['platforms']:
+                BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_MEDIA_E10S
 
 
 ### Tests Enabled in Gecko 40+ ###
