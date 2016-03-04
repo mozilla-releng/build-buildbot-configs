@@ -2911,7 +2911,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
                     branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_3_E10S
                 else:
                     branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_7_E10S
-            if platform in ('linux64-asan'):
+            # asan is a special snowflake, so treat it as such
+            if platform in ['linux64-asan']:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += CRASHTEST_E10S + \
                     JSREFTEST_E10S + MOCHITEST_E10S + MOCHITEST_PUSH_E10S + MOCHITEST_WEBGL_E10S
             if platform in ('linux', 'linux64'):
