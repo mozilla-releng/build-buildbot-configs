@@ -923,7 +923,7 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-push': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
-                'mochitest-push-10s': {
+                'mochitest-push-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-e10s': {
