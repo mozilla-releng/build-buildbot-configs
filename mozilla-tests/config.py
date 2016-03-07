@@ -2873,11 +2873,11 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                         MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + REFTEST_E10S + CRASHTEST_E10S + \
                         JSREFTEST_E10S + MOCHITEST_PUSH_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + \
-                        WEB_PLATFORM_REFTESTS_E10S
+                        WEB_PLATFORM_REFTESTS_E10S + MARIONETTE_E10S
                     branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                         MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + REFTEST_E10S + \
                         CRASHTEST_E10S + JSREFTEST_E10S + MOCHITEST_PUSH_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S + \
-                        WEB_PLATFORM_REFTESTS_E10S
+                        WEB_PLATFORM_REFTESTS_E10S + MARIONETTE_E10S
             if slave_platform in branch['platforms'][platform] and slave_platform in ('yosemite_r7'):
                 if name not in TWIGS:
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
