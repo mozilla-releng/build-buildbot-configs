@@ -149,7 +149,7 @@ releaseConfig['updateChannels'] = {
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks'] = True
-releaseConfig['partnerRepackPlatforms'] = releaseConfig['10nPlatforms']
+releaseConfig['partnerRepackPlatforms'] = releaseConfig['l10nPlatforms']
 releaseConfig['partnerRepackConfig'] = {
     'use_mozharness': True,
     'script': 'scripts/desktop_partner_repacks.py',
