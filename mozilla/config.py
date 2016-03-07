@@ -2128,6 +2128,7 @@ PLATFORM_VARS = {
                 ('/builds/adjust-sdk.token', '/builds/adjust-sdk.token'),
                 ('/builds/adjust-sdk-beta.token', '/builds/adjust-sdk-beta.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/tools/tooltool.py', '/builds/tooltool.py'),
             ],
             'env': {
                 'DISPLAY': ':2',
@@ -2154,6 +2155,7 @@ PLATFORM_VARS = {
             'stage_product': 'mobile',
             'post_upload_include_platform': True,
             'tooltool_manifest_src': 'mobile/android/config/tooltool-manifests/android/releng.manifest',
+            'tooltool_script': ['/builds/tooltool.py'],
             'updates_enabled': False,
         },
 }
