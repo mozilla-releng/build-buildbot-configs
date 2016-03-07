@@ -2691,11 +2691,16 @@ BRANCHES['mozilla-beta']['stage_product'] = {
     'firefox': 'firefox',
     'fennec': 'mobile'
 }
+BRANCHES['mozilla-beta']['platforms']['linux']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-beta']['platforms']['linux64']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-beta']['platforms']['macosx64']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-beta']['platforms']['win32']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-beta']['platforms']['win64']['dep_signing_servers'] = 'release-signing'
 # used by releasetasks
 BRANCHES['mozilla-beta']['bouncer_enabled'] = True,
 BRANCHES['mozilla-beta']['postrelease_version_bump_enabled'] = True,
 BRANCHES['mozilla-beta']['push_to_candidates_enabled'] = True,
-BRANCHES['mozilla-beta']['push_to_releases_automatic'] = True,
+BRANCHES['mozilla-beta']['push_to_releases_automatic'] = False,
 BRANCHES['mozilla-beta']['release_channels'] = ("beta",)
 BRANCHES['mozilla-beta']['beetmover_buckets'] = {
     "firefox": "net-mozaws-prod-delivery-firefox",
