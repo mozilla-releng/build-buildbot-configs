@@ -1632,6 +1632,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
                 },
+                'marionette-e10s': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
                 'media-tests': {
                     'config_files': ["mediatests/buildbot_windows_config.py"],
                 },
@@ -1752,6 +1755,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
                 },
+                'marionette-e10s': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
                 'media-tests': {
                     'config_files': ["mediatests/buildbot_windows_config.py"],
                 },
@@ -1870,6 +1876,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'marionette': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
+                'marionette-e10s': {
                     'config_files': ["marionette/windows_config.py"],
                 },
                 'media-tests': {
@@ -1997,6 +2006,9 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette': {
                     'config_files': ["marionette/windows_config.py"],
                 },
+                'marionette-e10s': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
                 'media-tests': {
                     'config_files': ["mediatests/buildbot_windows_config.py"],
                 },
@@ -2103,6 +2115,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'marionette': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
+                'marionette-e10s': {
                     'config_files': ["marionette/windows_config.py"],
                 },
                 'media-tests': {
