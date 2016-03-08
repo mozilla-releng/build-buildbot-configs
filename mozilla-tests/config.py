@@ -1036,6 +1036,7 @@ PLATFORM_UNITTEST_VARS = {
         'unittest-env': {'DISPLAY': ':0'},
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
+        'ubuntu64_hw': {},
         'ubuntu64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST_CHUNKED + \
                                    MARIONETTE + REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS + \

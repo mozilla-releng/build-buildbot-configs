@@ -1,18 +1,17 @@
 import json
 import urllib2
-import httplib
 from datetime import date
-import sys
 import os
 import re
 import time
+import socket
 
 
 seta_branches = ['fx-team', 'mozilla-inbound']
 # todo: should get platform names from PLATFORMS in config.py
 
 today = date.today().strftime("%Y-%m-%d")
-#android has different slave platforms within the same opt|debug list
+# android has different slave platforms within the same opt|debug list
 seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"]),
                   "Windows XP 32-bit": ("win32", ["xp-ix"]),
                   "Windows 7 32-bit": ("win32", ["win7-ix"]),
@@ -23,18 +22,18 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   "Ubuntu ASAN VM 12.04 x64": ("linux64-asan", ["ubuntu64-asan_vm", "ubuntu64-asan_vm_lnx_large"]),
                   "Ubuntu TSAN VM 12.04 x64": ("linux64-tsan", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
                   "Rev7 MacOSX Yosemite 10.10.5": ("macosx64", ["yosemite_r7"]),
-                  "Ubuntu Code Coverage VM 12.04 x64": ("linux64-cc", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),                  
+                  "Ubuntu Code Coverage VM 12.04 x64": ("linux64-cc", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
                   "android-2-3-armv7-api9": ("android-api-9", ["ubuntu64_vm_mobile", "ubuntu64_vm_large"]),
                   "android-4-3-armv7-api11": ("android-api-15", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"]),
                   "android-4-3-armv7-api15": ("android-api-15", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"])
                   }
 
-#platforms and tests to exclude from configs because they are deprecated or lacking data
-#platform_exclusions = ['android-4-3-armv7-api11']
+# platforms and tests to exclude from configs because they are deprecated or lacking data
+# platform_exclusions = ['android-4-3-armv7-api11']
 platform_exclusions = []
-test_exclusions = re.compile('\[funsize\]|\[TC\]|talos')
+test_exclusions = re.compile('\[funsize\]|\[TC\]')
 
-#define seta branches and default values for skipcount and skiptimeout
+# define seta branches and default values for skipcount and skiptimeout
 skipconfig_defaults_platform = {}
 for sp in seta_platforms:
     for slave_sp in seta_platforms[sp][1]:
@@ -42,6 +41,7 @@ for sp in seta_platforms:
             skipconfig_defaults_platform[slave_sp] = (14, 7200)
         else:
             skipconfig_defaults_platform[slave_sp] = (7, 3600)
+
 
 def wfetch(url, retries=5):
     while True:
@@ -61,11 +61,11 @@ def wfetch(url, retries=5):
         print("Retrying")
         time.sleep(60)
 
+
 def get_seta_platforms(branch, platform_filter):
     # For offline work
     if os.environ.get('DISABLE_SETA'):
         return []
-
 
     url = "http://alertmanager.allizom.org/data/setadetails/?date=" + today + "&buildbot=1&branch=" + branch + "&inactive=1"
     response = wfetch(url)
@@ -107,7 +107,7 @@ def print_configs(branch, plat, test_dict, BRANCHES):
             test = t.split()[-1]
             test_type = (t.split(branch)[1]).split()[0]
             test_config[test_type, test] = skipconfig_defaults_platform[str(sp)]
-            BRANCHES[branch]['platforms'][plat][str(sp)]['skipconfig'] = test_config
+        BRANCHES[branch]['platforms'][plat][str(sp)]['skipconfig'] = test_config
 
 
 def define_configs(branch, platforms, BRANCHES):
@@ -139,6 +139,7 @@ def define_configs(branch, platforms, BRANCHES):
 
 
 c = {}
+
 
 def loadSkipConfig(BRANCHES, platform_filter):
     """arguments are desktop|android"""
