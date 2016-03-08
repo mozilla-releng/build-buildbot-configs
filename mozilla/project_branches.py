@@ -157,6 +157,7 @@ PROJECT_BRANCHES = {
         "release_channels": ("date", ),
         # temp balrog
         'balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
+        'funsize_balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': "releases/bouncer_firefox_date.py",
         'bouncer_branch': "releases/date",

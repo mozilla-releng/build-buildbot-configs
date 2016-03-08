@@ -48,6 +48,8 @@ GLOBAL_VARS = {
     'mobile_download_base_url': 'http://archive.mozilla.org/pub/mobile',
     'graph_server': 'graphs.mozilla.org',
     'balrog_api_root': 'https://aus4-admin.mozilla.org/api',
+    # Used by special docker workers with balrogVpnProxy feature enabled
+    'funsize_balrog_api_root': 'http://balrog/api',
     'balrog_username': 'ffxbld',
     'balrog_submitter_extra_args': ['--url-replacement',
                                     'ftp.mozilla.org,download.cdn.mozilla.net'],
@@ -66,7 +68,7 @@ GLOBAL_VARS = {
         ('buildbot-master81.build.mozilla.org:9301', True, 5),
     ],
     'base_bundle_urls': ['https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/bundles'],
-    'tooltool_url_list': ['http://tooltool.pvt.build.mozilla.org/build'],
+    'tooltool_url_list': ['https://api.pub.build.mozilla.org/tooltool/'],
     'blob_upload': True,
     'mozharness_configs': {
         'balrog': 'balrog/production.py',
