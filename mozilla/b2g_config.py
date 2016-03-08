@@ -1045,7 +1045,7 @@ for branch in B2GTWIGS:
             continue
         if platform in BRANCHES[branch]['platforms']:
             del BRANCHES[branch]['platforms'][platform]
-			
+
 # Bug 1250953 - Disable ICS emulator builds/tests on trunk
 for branch in BRANCHES.keys():
     for platform in BRANCHES[branch]['platforms'].keys():
@@ -1053,6 +1053,12 @@ for branch in BRANCHES.keys():
             continue
         if platform in ['emulator', 'emulator-debug']:
             del BRANCHES[branch]['platforms'][platform]
+
+# Bug 1253630 - Turn off B2G device builds on trunk branches (buildbot only)
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
+    for platform in BRANCHES[name]['platforms'].keys():
+        if platform in ['flame-kk', 'flame-kk_eng', 'nexus-4', 'nexus-4_eng', 'nexus-5-l', 'nexus-5-l_eng']:
+            del BRANCHES[name]['platforms'][platform]
 
 if __name__ == "__main__":
     import sys
