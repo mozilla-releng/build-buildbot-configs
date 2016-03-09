@@ -130,11 +130,11 @@ releaseConfig['updateChannels'] = {
         "localTestChannel": "beta-localtest",
         "cdnTestChannel": "beta-cdntest",
         "verifyConfigs": {
-            "linux":  "mozBeta-firefox-linux.cfg",
-            "linux64":  "mozBeta-firefox-linux64.cfg",
-            "macosx64": "mozBeta-firefox-mac64.cfg",
-            "win32":  "mozBeta-firefox-win32.cfg",
-            "win64":  "mozBeta-firefox-win64.cfg",
+            "linux":  "beta-firefox-linux.cfg",
+            "linux64":  "beta-firefox-linux64.cfg",
+            "macosx64": "beta-firefox-macosx64.cfg",
+            "win32":  "beta-firefox-win32.cfg",
+            "win64":  "beta-firefox-win64.cfg",
         },
         "testChannels": {
             "beta-cdntest": {
