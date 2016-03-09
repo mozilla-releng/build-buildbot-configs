@@ -192,6 +192,7 @@ PLATFORM_VARS = {
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
             ],
         },
         'linux64': {
@@ -268,6 +269,7 @@ PLATFORM_VARS = {
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
             ],
         },
         'linux64-av': {
@@ -499,6 +501,7 @@ PLATFORM_VARS = {
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
             ],
         },
         'linux64-debug': {
@@ -562,6 +565,7 @@ PLATFORM_VARS = {
                 ('/tools/tooltool.py', '/builds/tooltool.py'),
                 ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                 ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
+                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
             ],
         },
         'macosx64-debug': {
