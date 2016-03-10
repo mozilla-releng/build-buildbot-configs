@@ -2828,6 +2828,18 @@ for platform in PLATFORMS.keys():
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_PUSH
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']+= MOCHITEST_PUSH
 
+# Bug 1253858 - Turn off mochitest-push on esr45
+for branch in BRANCHES.keys():
+    if branch not in ['mozilla-esr45']:
+        continue
+    for platform in PLATFORMS.keys():
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if platform in BRANCHES[branch]['platforms']:
+                if slave_platform in BRANCHES[branch]['platforms'][platform]:
+                    x = BRANCHES[branch]['platforms'][platform][slave_platform]
+                    x['opt_unittest_suites'] = [i for i in x['opt_unittest_suites'] if i not in MOCHITEST_PUSH]
+                    x['debug_unittest_suites'] = [i for i in x['debug_unittest_suites'] if i not in MOCHITEST_PUSH]
+
 # Talos g2 for all talos platforms
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
     if name.startswith('mozilla-b2g'):
