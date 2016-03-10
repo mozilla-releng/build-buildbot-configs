@@ -222,7 +222,7 @@ SUITES = {
         'options': (TALOS_TP_NEW_OPTS, WIN7_ONLY),
     },
     'xperf-e10s': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5n', '--sampleConfig', 'xperf.config', '--mozAfterPaint', '--xperf_path',
                                   '"c:/Program Files/Microsoft Windows Performance Toolkit/xperf.exe"', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, WIN7_ONLY),
@@ -233,7 +233,7 @@ SUITES = {
         'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
     'tp5o-e10s': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
@@ -243,27 +243,27 @@ SUITES = {
         'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
     'g1-e10s': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o_scroll', '--filter', 'ignore_first:1', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
     'g2': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'damp', '--filter', 'ignore_first:1', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
     'g2-e10s': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'damp', '--filter', 'ignore_first:1', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
     'g3': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_dom'],
         'options': ({}, LINUX_ONLY),
     },
     'g3-e10s': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_dom'],
         'options': ({}, LINUX_ONLY),
     },
@@ -273,7 +273,7 @@ SUITES = {
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'other-e10s': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
@@ -283,7 +283,7 @@ SUITES = {
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'svgr-e10s': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
@@ -293,7 +293,7 @@ SUITES = {
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'dromaeojs-e10s': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom:kraken:v8_7'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
@@ -303,7 +303,7 @@ SUITES = {
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'chromez-e10s': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
@@ -2684,64 +2684,13 @@ BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
-BRANCHES['mozilla-central']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['mozilla-central']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-central']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-central']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-central']['g3_tests'] = (1, False, {}, LINUX_ONLY)
-BRANCHES['mozilla-central']['g3-e10s_tests'] = (1, False, {}, LINUX_ONLY)
-BRANCHES['mozilla-central']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-central']['svgr-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-central']['dromaeojs-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-central']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-
-
-######### mozilla-inbound
-BRANCHES['mozilla-inbound']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['mozilla-inbound']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-inbound']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-inbound']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-inbound']['g3_tests'] = (1, False, {}, LINUX_ONLY)
-BRANCHES['mozilla-inbound']['g3-e10s_tests'] = (1, False, {}, LINUX_ONLY)
-BRANCHES['mozilla-inbound']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-inbound']['svgr-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-inbound']['dromaeojs-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-inbound']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-
-
-######### fx-team
-BRANCHES['fx-team']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['fx-team']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['fx-team']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['fx-team']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['fx-team']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['fx-team']['g3_tests'] = (1, False, {}, LINUX_ONLY)
-BRANCHES['fx-team']['g3-e10s_tests'] = (1, False, {}, LINUX_ONLY)
-BRANCHES['fx-team']['svgr-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['fx-team']['dromaeojs-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['fx-team']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-
 
 ######### b2g-inbound
-BRANCHES['b2g-inbound']['xperf_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['b2g-inbound']['tp5o_tests'] = (0, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['b2g-inbound']['g1_tests'] = (0, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['b2g-inbound']['g2_tests'] = (0, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['b2g-inbound']['other_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['b2g-inbound']['svgr_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['b2g-inbound']['dromaeojs_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['b2g-inbound']['chromez_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['b2g-inbound']['xperf-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['b2g-inbound']['tp5o-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['b2g-inbound']['g1-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['b2g-inbound']['g2-e10s_tests'] = (0, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['b2g-inbound']['other-e10s_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['b2g-inbound']['g3_tests'] = (0, False, {}, LINUX_ONLY)
-BRANCHES['b2g-inbound']['g3-e10s_tests'] = (0, False, {}, LINUX_ONLY)
-BRANCHES['b2g-inbound']['svgr-e10s_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['b2g-inbound']['dromaeojs-e10s_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['b2g-inbound']['chromez-e10s_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-
+BRANCHES['b2g-inbound']['platforms']['win32']['talos_slave_platforms'] = []
+BRANCHES['b2g-inbound']['platforms']['macosx64']['talos_slave_platforms'] = []
+BRANCHES['b2g-inbound']['platforms']['linux']['talos_slave_platforms'] = []
+BRANCHES['b2g-inbound']['platforms']['linux64']['talos_slave_platforms'] = []
+BRANCHES['b2g-inbound']['platforms']['win64']['talos_slave_platforms'] = []
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
@@ -2759,16 +2708,6 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-aurora']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['mozilla-aurora']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-aurora']['g1-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-aurora']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-aurora']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-aurora']['g3_tests'] = (1, False, {}, LINUX_ONLY)
-BRANCHES['mozilla-aurora']['g3-e10s_tests'] = (1, False, {}, LINUX_ONLY)
-BRANCHES['mozilla-aurora']['svgr-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-aurora']['dromaeojs-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['mozilla-aurora']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 ######### mozilla-esr38
 BRANCHES['mozilla-esr38']['repo_path'] = "releases/mozilla-esr38"
@@ -2792,27 +2731,23 @@ BRANCHES['mozilla-esr45']['platforms']['win64']['talos_slave_platforms'] = []
 
 ######## try
 BRANCHES['try']['repo_path'] = "try"
-BRANCHES['try']['xperf_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['try']['tp5o_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['other_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['g1_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['g2_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['g3_tests'] = (1, False, {}, LINUX_ONLY)
-BRANCHES['try']['dromaeojs_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 BRANCHES['try']['pgo_strategy'] = None
 BRANCHES['try']['enable_try'] = True
 
-# now for e10s tests
-BRANCHES['try']['tp5o-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['g1-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['g2-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['g3-e10s_tests'] = (1, False, {}, LINUX_ONLY)
-BRANCHES['try']['other-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['svgr-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['chromez-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-BRANCHES['try']['xperf-e10s_tests'] = (1, False, TALOS_TP_NEW_OPTS, WIN7_ONLY)
-BRANCHES['try']['dromaeojs-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
+######### elm
+#BRANCHES['elm']['platforms']['win32']['talos_slave_platforms'] = []
+#BRANCHES['elm']['platforms']['macosx64']['talos_slave_platforms'] = []
+BRANCHES['elm']['platforms']['linux']['talos_slave_platforms'] = []
+BRANCHES['elm']['platforms']['linux64']['talos_slave_platforms'] = []
+#BRANCHES['elm']['platforms']['win64']['talos_slave_platforms'] = []
+
+######### jamun
+BRANCHES['jamun']['platforms']['win32']['talos_slave_platforms'] = []
+BRANCHES['jamun']['platforms']['macosx64']['talos_slave_platforms'] = []
+BRANCHES['jamun']['platforms']['linux']['talos_slave_platforms'] = []
+BRANCHES['jamun']['platforms']['linux64']['talos_slave_platforms'] = []
+BRANCHES['jamun']['platforms']['win64']['talos_slave_platforms'] = []
 
 loadSkipConfig(BRANCHES, "desktop")
 
@@ -2892,6 +2827,18 @@ for platform in PLATFORMS.keys():
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_PUSH
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']+= MOCHITEST_PUSH
+
+# Bug 1253858 - Turn off mochitest-push on esr45
+for branch in BRANCHES.keys():
+    if branch not in ['mozilla-esr45']:
+        continue
+    for platform in PLATFORMS.keys():
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if platform in BRANCHES[branch]['platforms']:
+                if slave_platform in BRANCHES[branch]['platforms'][platform]:
+                    x = BRANCHES[branch]['platforms'][platform][slave_platform]
+                    x['opt_unittest_suites'] = [i for i in x['opt_unittest_suites'] if i not in MOCHITEST_PUSH]
+                    x['debug_unittest_suites'] = [i for i in x['debug_unittest_suites'] if i not in MOCHITEST_PUSH]
 
 # Talos g2 for all talos platforms
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
