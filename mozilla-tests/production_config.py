@@ -7,7 +7,6 @@ SLAVES = {
     'snowleopard': {},
     'yosemite': {},
     'yosemite_r7': {},
-    'panda_android': {},
     'ubuntu32_vm': {},
     'ubuntu64_vm': {},
     'ubuntu64_vm_large': {},
@@ -43,12 +42,6 @@ for i in range(1, 3) + range(7, 8):   #slaves decomm bug 1226180
 
 for i in range(1, 201):
     SLAVES['yosemite_r7']['t-yosemite-r7-%04i' % i] = {}
-
-for i in range(22, 910):
-    SLAVES['panda_android']['panda-%04i' % i] = {
-        'http_port': '30%03i' % i,
-        'ssl_port': '31%03i' % i,
-    }
 
 for i in range(1, 800) + range(1000, 1100):
     SLAVES['ubuntu32_vm']['tst-linux32-spot-%03i' % i] = {}
