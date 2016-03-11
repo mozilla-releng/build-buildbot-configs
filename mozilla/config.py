@@ -3103,6 +3103,13 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 46):
         if 'api-15' in platform:
             del branch['platforms'][platform]
 
+# Bug 1250999 - releng - releng work for dropping api 9-10
+# disable api-9-10 mobile builds on >= 48 based branches
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
+    for platform in branch['platforms'].keys():
+        if 'api-9' in platform:
+            del branch['platforms'][platform]
+
 if __name__ == "__main__":
     import sys
     import pprint

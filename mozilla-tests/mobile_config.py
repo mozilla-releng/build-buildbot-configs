@@ -2630,7 +2630,6 @@ BRANCHES['mozilla-central']['mobile_talos_branch'] = "mobile"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
 BRANCHES['mozilla-central']['pgo_platforms'] = []
-BRANCHES['mozilla-central']['platforms']['android-api-9']['enable_debug_unittests'] = True
 BRANCHES['mozilla-central']['platforms']['android-api-15']['enable_debug_unittests'] = True
 
 ######### mozilla-release
@@ -2650,7 +2649,6 @@ BRANCHES['mozilla-aurora']['pgo_platforms'] = []
 
 ######## try
 BRANCHES['try']['repo_path'] = "try"
-BRANCHES['try']['platforms']['android-api-9']['enable_debug_unittests'] = True
 BRANCHES['try']['platforms']['android-api-15']['enable_debug_unittests'] = True
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['pgo_platforms'] = []
@@ -2659,9 +2657,6 @@ BRANCHES['try']['enable_try'] = True
 ######## cedar
 # Until we green out these Android x86 tests
 BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] = ANDROID_X86_NOT_GREEN_DICT[:]
-# Remove all panda tests from cedar
-if 'android-api-9' in BRANCHES['cedar']['platforms']:
-    del BRANCHES['cedar']['platforms']['android-api-9']
 
 #split 2.3 tests to ones that can run on ix and AWS
 for suite in ANDROID_2_3_MOZHARNESS_DICT:
@@ -2734,10 +2729,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
 
 # enable android 2.3 mochitest media to ride the trains (bug 1242682)
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
-    #TODO: remove when bug 1242682 has green running jobs on try
-    if name != 'try':
-        continue
-
     # Loop removes it from any branch that gets beyond here
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
@@ -2807,10 +2798,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
 
 # bug 1242682 add mochitest-media
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
-    #TODO: remove when bug 1242682 has green running jobs on try
-    if name != 'try':
-        continue
-
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
@@ -2828,7 +2815,13 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
             }
             BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_large']['opt_unittest_suites'] += ANDROID_4_3_MOCHITEST_MEDIA
             BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_large']['debug_unittest_suites'] += ANDROID_4_3_MOCHITEST_MEDIA
-            
+
+# Bug 1250999 - releng - releng work for dropping api 9-10
+# disable api-9-10 mobile builds on >= 48 based branches
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
+    if 'android-api-9' in branch['platforms']:
+        del branch['platforms']['android-api-9']
+
 def remove_suite_from_slave_platform(BRANCHES, PLATFORMS, suite_to_remove, slave_platform, branches_to_keep=[]):
     """Remove suites named like |suite_to_remove| from all branches on slave platforms named like |slave_platform|.
 

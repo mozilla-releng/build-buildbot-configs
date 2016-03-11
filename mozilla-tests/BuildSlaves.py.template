@@ -35,7 +35,6 @@ SlavePasswords = {
     "w764": "pass",
     "win64_vm": "pass",
     "vista": "pass",
-    "panda_android": "pass",
 }
 
 datazillaAuth = {
