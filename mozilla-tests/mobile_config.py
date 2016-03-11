@@ -2729,10 +2729,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
 
 # enable android 2.3 mochitest media to ride the trains (bug 1242682)
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
-    #TODO: remove when bug 1242682 has green running jobs on try
-    if name != 'try':
-        continue
-
     # Loop removes it from any branch that gets beyond here
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
@@ -2802,10 +2798,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
 
 # bug 1242682 add mochitest-media
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
-    #TODO: remove when bug 1242682 has green running jobs on try
-    if name != 'try':
-        continue
-
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue

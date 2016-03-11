@@ -2800,19 +2800,14 @@ for platform in PLATFORMS.keys():
 # Bug 1242682 - Split out mochitest-media in 48+
 for platform in PLATFORMS.keys():
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
-        #TODO: remove when bug 1242682 has green running jobs on try
-        if name != 'try':
-            continue
-
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_MEDIA
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']+= MOCHITEST_MEDIA
+                    if platform not in ('win64') and slave_platform not in ('snowleopard', 'xp-ix'):
+                        BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_MEDIA_E10S
 
-            if platform in ('linux', 'linux64', 'linux64-asan') and platform in BRANCHES[name]['platforms'] or \
-               slave_platform in ('win7-ix', 'win7-all', 'yosemite_r7'):
-                BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_MEDIA_E10S
             if platform in ('linux', 'linux64') and platform in BRANCHES[name]['platforms']:
                 BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_MEDIA_E10S
 
