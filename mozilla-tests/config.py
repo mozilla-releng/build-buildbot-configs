@@ -3235,6 +3235,42 @@ for name in BRANCHES.keys():
         continue
     del BRANCHES[name]['platforms']['linux64']['ubuntu64_vm_lnx_large']
 
+# Run only e10s tests on Ash
+for platform in PLATFORMS.keys():
+    if platform not in BRANCHES['ash']['platforms']:
+        continue
+
+    base_tests = CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
+                 MOCHITEST_DT_8_E10S + MOCHITEST_E10S + MOCHITEST_MEDIA_E10S + MOCHITEST_PUSH_E10S + \
+                 MOCHITEST_WEBGL_E10S + WEB_PLATFORM_REFTESTS_E10S
+
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in BRANCHES['ash']['platforms'][platform]:
+            continue
+
+        if slave_platform in branch['platforms'][platform] and platform in ['linux64-asan']:
+            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
+                base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
+                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+        if slave_platform in branch['platforms'][platform] and platform in ('linux', 'linux64'):
+            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
+                base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
+                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
+                base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
+                WEB_PLATFORM_TESTS_CHUNKED_E10S
+        if slave_platform in branch['platforms'][platform] and slave_platform in ('xp-ix', 'yosemite_r7'):
+            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
+                base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
+                base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
+        if slave_platform in branch['platforms'][platform] and slave_platform in ('win7-ix', 'win7-all', 'win8_64'):
+            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
+                base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
+                base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
+
+
 # Bug 1229790 - enable win7 virtual instances (ec2/spot) on try
 win7_vm_active_branches = ['try']
 win7_vm_inactive_branches = []
