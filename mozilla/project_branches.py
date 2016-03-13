@@ -53,45 +53,41 @@ PROJECT_BRANCHES = {
         },
     },
     #'services-central': {},  # Bug 1010674
-    # customized for bug 1156408
     # 'alder': {},
+    # Bug 1252292 - Schedule e10s tests on Ash for all desktop platforms
     'ash': {
+        'enable_talos': False,
+        'enable_valgrind': False,
+        'lock_platforms': True,
         'merge_builds': False,
-        'enable_perproduct_builds': True,
-        'pgo_strategy': 'per-checkin',
-        'enable_l10n': True,
-        'enable_l10n_onchange': False,
-        'l10n_repo_path': 'l10n-central',
-        'l10n_platforms': ['linux', 'linux64', 'win32', 'macosx64', 'win64'],
-        'l10nDatedDirs': True,
-        'l10n_tree': 'fxcentral',
-        'updates_enabled': True,
-        'l10nNightlyUpdate': True,
-        'enUS_binaryURL': '/nightly/latest-ash',
-        'enable_mac_a11y': True,
-        'enable_multi_locale': True,
-        'create_partial': True,
-        'create_partial_l10n': True,
-        'upload_mobile_symbols': True,
-        'desktop_mozharness_repacks_enabled': True,
-        'l10n_extra_configure_args': ['--with-macbundlename-prefix=Firefox'],
-        'enable_nightly': True,
+        'periodic_start_hours': range(9, 0, 12),
+        'pgo_strategy': 'periodic',
         'platforms': {
             'linux': {
-                'nightly_signing_servers': 'nightly-signing',
+                'slave_platforms': ['ubuntu32_vm'],
+            },
+            'linux-debug': {
+                'slave_platforms': ['ubuntu32_vm'],
             },
             'linux64': {
-                'nightly_signing_servers': 'nightly-signing',
+                'slave_platforms': ['ubuntu64_vm'],
             },
-            'win32': {
-                'nightly_signing_servers': 'nightly-signing',
+            'linux64-asan': {
+                'slave_platforms': ['ubuntu64-asan_vm'],
+            },
+            'linux64-debug': {
+                'slave_platforms': ['ubuntu64_vm'],
             },
             'macosx64': {
-                'nightly_signing_servers': 'nightly-signing',
+                'slave_platforms': ['yosemite_r7'],
             },
-            'win64': {
-                'nightly_signing_servers': 'nightly-signing',
+            'macosx64-debug': {
+                'slave_platforms': ['yosemite_r7'],
             },
+            'win32': {},
+            'win32-debug': {},
+            'win64': {},
+            'win64-debug': {},
         },
     },
     #'birch': {},  # Bug 1010674
@@ -197,7 +193,7 @@ PROJECT_BRANCHES = {
             'linux64-debug': {},
         },
     },
-    # Dsiabled by Bug 1135702
+    # Disabled by Bug 1135702
     # 'fig': {},
     # Disabled by Bug 1206269
     # 'gum': {},
