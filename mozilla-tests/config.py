@@ -2887,12 +2887,6 @@ for branch in BRANCHES.keys():
                     x['opt_unittest_suites'] = [i for i in x['opt_unittest_suites'] if i not in MOCHITEST_PUSH]
                     x['debug_unittest_suites'] = [i for i in x['debug_unittest_suites'] if i not in MOCHITEST_PUSH]
 
-# Talos g2 for all talos platforms
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
-    if name.startswith('mozilla-b2g'):
-        continue
-    branch['g2_tests'] = (1, False, TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS)
-
 
 ### Tests Enabled in Gecko 42+ ###
 

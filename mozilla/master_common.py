@@ -41,7 +41,8 @@ BRANCH_PRIORITIES = {
     'try': 5,
     'try-comm-central': 5,
     'alder': 5,
-    'ash': 5,
+    # Bug 1252292 - Ash being used as a "production" branch for e10s tests
+    'ash': 3,
     'birch': 5,
     'cedar': 5,
     'cypress': 5,
