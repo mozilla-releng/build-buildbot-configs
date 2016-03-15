@@ -3248,8 +3248,7 @@ for platform in PLATFORMS.keys():
                 WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
         if slave_platform in branch['platforms'][platform] and platform in ('linux', 'linux64'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
-                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+                base_tests + REFTEST_E10S_TWO_CHUNKS + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
                 WEB_PLATFORM_TESTS_CHUNKED_E10S
@@ -3260,7 +3259,7 @@ for platform in PLATFORMS.keys():
                 base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
         if slave_platform in branch['platforms'][platform] and slave_platform in ('win7-ix', 'win7-all', 'win8_64'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+                base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
 
