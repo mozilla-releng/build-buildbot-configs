@@ -24,7 +24,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '45.0.1esr'
 releaseConfig['appVersion']          = '45.0.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'FIREFOX_45_0_1esr'
 releaseConfig['partialUpdates']      = {
 
@@ -46,10 +46,14 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr45',
         'path': 'releases/mozilla-esr45',
-        'revision': '9b294782389a',
+        'revision': 'cab241354c10',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
+                'version': releaseConfig['appVersion'],
+                'nextVersion': releaseConfig['nextAppVersion']
+            },
+            'browser/config/version_display.txt': {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
             },
