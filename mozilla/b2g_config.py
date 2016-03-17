@@ -87,6 +87,7 @@ PLATFORM_VARS = {
         'upload_symbols': False,
         'download_symbols': False,
         'slaves': SLAVES['macosx64-lion'],
+        'try_by_default': False,
         'platform_objdir': OBJDIR,
         'stage_product': 'b2g',
         'stage_platform': 'macosx64-mulet',
@@ -146,6 +147,7 @@ PLATFORM_VARS = {
         'updates_enabled': False,
         'create_partial': False,
         'slaves': SLAVES['win64-rev2'],
+        'try_by_default': False,
         'platform_objdir': OBJDIR,
         'unittest_masters': [],
         'unittest_platform': 'win32-mulet-opt',
@@ -292,6 +294,7 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'try_by_default': False,
         'maxTime': 6 * 3600,
     },
     'emulator-debug': {
@@ -314,6 +317,7 @@ PLATFORM_VARS = {
         'product_name': 'b2g',
         'base_name': builder_prefix + '_%(branch)s_%(platform)s',
         'slaves': SLAVES['mock'],
+        'try_by_default': False,
         'maxTime': 6 * 3600,
     },
     'emulator-jb': {
