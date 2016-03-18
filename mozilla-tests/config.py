@@ -3242,22 +3242,22 @@ for platform in PLATFORMS.keys():
         if slave_platform not in BRANCHES['ash']['platforms'][platform]:
             continue
 
-        if slave_platform in branch['platforms'][platform] and platform in ['linux64-asan']:
+        if slave_platform in BRANCHES['ash']['platforms'][platform] and platform in ['linux64-asan']:
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
                 WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
-        if slave_platform in branch['platforms'][platform] and platform in ('linux', 'linux64'):
+        if slave_platform in BRANCHES['ash']['platforms'][platform] and platform in ('linux', 'linux64'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
                 WEB_PLATFORM_TESTS_CHUNKED_E10S
-        if slave_platform in branch['platforms'][platform] and slave_platform in ('xp-ix', 'yosemite_r7'):
+        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('xp-ix', 'yosemite_r7'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
                 base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
-        if slave_platform in branch['platforms'][platform] and slave_platform in ('win7-ix', 'win7-all', 'win8_64'):
+        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('win7-ix', 'win7-all', 'win8_64'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
                 base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
@@ -3278,6 +3278,18 @@ for branch in set(BRANCHES.keys()) - set(win7_vm_inactive_branches):
             continue
         if nested_haskey(BRANCHES[branch]['platforms'], platform, 'win7-ix'):
             del BRANCHES[branch]['platforms'][platform]['win7-ix']
+
+# Bug 1253341 - run talos jobs on AWS
+for branch in ('try',):
+    BRANCHES[branch]['platforms']['linux64']['talos_slave_platforms'] = ['ubuntu64_hw', 'ubuntu64_vm']
+    # Add ubuntu64_vm to the talos suites
+    for test, test_config in BRANCHES[branch].items():
+        if not test.endswith('_tests'):
+            continue
+        tests, merge, extra, platforms = test_config
+        if 'ubuntu64_hw' in platforms and 'ubuntu64_vm' not in platforms:
+            platforms = platforms + ['ubuntu64_vm']
+            BRANCHES[branch][test] = (tests, merge, extra, platforms)
 
 if __name__ == "__main__":
     import sys
