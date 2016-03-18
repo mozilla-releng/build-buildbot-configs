@@ -3242,22 +3242,22 @@ for platform in PLATFORMS.keys():
         if slave_platform not in BRANCHES['ash']['platforms'][platform]:
             continue
 
-        if slave_platform in branch['platforms'][platform] and platform in ['linux64-asan']:
+        if slave_platform in BRANCHES['ash']['platforms'][platform] and platform in ['linux64-asan']:
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
                 WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
-        if slave_platform in branch['platforms'][platform] and platform in ('linux', 'linux64'):
+        if slave_platform in BRANCHES['ash']['platforms'][platform] and platform in ('linux', 'linux64'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
                 WEB_PLATFORM_TESTS_CHUNKED_E10S
-        if slave_platform in branch['platforms'][platform] and slave_platform in ('xp-ix', 'yosemite_r7'):
+        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('xp-ix', 'yosemite_r7'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
                 base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
-        if slave_platform in branch['platforms'][platform] and slave_platform in ('win7-ix', 'win7-all', 'win8_64'):
+        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('win7-ix', 'win7-all', 'win8_64'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
                 base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
