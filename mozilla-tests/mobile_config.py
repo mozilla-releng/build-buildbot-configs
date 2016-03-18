@@ -2515,22 +2515,6 @@ ANDROID_4_3_MOZHARNESS_DEBUG_TRUNK = ANDROID_4_3_MOZHARNESS_DEBUG_JSREFTEST_TRUN
 
 # End of Android 4.3 configurations
 
-# bug 1214362 - Enable DOM push Mochitests on Android Fennec
-ANDROID_4_3_MOCHITEST_PUSH = [
-    ('mochitest-push-1', {
-        'use_mozharness': True,
-        'script_path': 'scripts/android_emulator_unittest.py',
-        'extra_args': [
-            '--cfg', 'android/androidarm_4_3.py',
-            '--test-suite', 'mochitest-push-1',
-        ],
-        'blob_upload': True,
-        'timeout': 2400,
-        'script_maxtime': 14400,
-        },
-    ),
-]
-
 # bug 1242682 - Enable DOM media Mochitests on Android Fennec
 ANDROID_4_3_MOCHITEST_MEDIA = [
     ('mochitest-media-1', {
@@ -2954,10 +2938,6 @@ remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'mochitest-chrome', 'ubunt
 remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'mochitest-chrome', 'ubuntu64_vm_armv7_large', branches_to_keep=trunk_branches)
 remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'mochitest-chrome', 'ubuntu64_vm_mobile', branches_to_keep=trunk_branches)
 remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'mochitest-chrome', 'ubuntu64_vm_large', branches_to_keep=trunk_branches)
-
-# bug 1214362 - Enable DOM push Mochitests on Android Fennec
-BRANCHES['cedar']['platforms']['android-api-15']['ubuntu64_vm_armv7_mobile']['opt_unittest_suites'] += ANDROID_4_3_MOCHITEST_PUSH
-BRANCHES['cedar']['platforms']['android-api-15']['ubuntu64_vm_armv7_large']['debug_unittest_suites'] += ANDROID_4_3_MOCHITEST_PUSH
 
 loadSkipConfig(BRANCHES, "mobile")
 
