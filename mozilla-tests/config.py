@@ -2869,7 +2869,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
         if platform not in branch['platforms']:
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7-ix', 'win7-all'):
+            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7-ix', 'win7-all', 'win10_64'):
                 if name not in TWIGS:
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                         MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + REFTEST_E10S + CRASHTEST_E10S + \
