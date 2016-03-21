@@ -2647,6 +2647,11 @@ BRANCHES['mozilla-release']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EX
 BRANCHES['mozilla-release']['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11'
 BRANCHES['mozilla-release']['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15'
 BRANCHES['mozilla-release']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
+# Release promotion related
+BRANCHES['mozilla-release']['release_channel_mappings'] = [
+    [r"^\d+\.0$", ["beta", "release"]],  # RC, 45.0
+    [r"^\d+\.\d+\.\d+$", ["release"]],  # Other (dot releaseas), 45.0.4
+]
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -2717,7 +2722,7 @@ BRANCHES['mozilla-beta']['bouncer_enabled'] = True
 BRANCHES['mozilla-beta']['postrelease_version_bump_enabled'] = True
 BRANCHES['mozilla-beta']['push_to_candidates_enabled'] = True
 BRANCHES['mozilla-beta']['push_to_releases_automatic'] = False
-BRANCHES['mozilla-beta']['release_channels'] = ("beta",)
+BRANCHES['mozilla-beta']['release_channel_mappings'] = [["^.*$", ["beta"]]]
 BRANCHES['mozilla-beta']['beetmover_buckets'] = {
     "firefox": "net-mozaws-prod-delivery-firefox",
     # TODO - add fennec support
