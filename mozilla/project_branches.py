@@ -150,7 +150,7 @@ PROJECT_BRANCHES = {
         'partner_repack_platforms': ('linux', 'linux64', 'win32', 'win64', 'macosx64'),
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
-        "release_channels": ("date", ),
+        "release_channel_mappings": [["^.*$", ["date"]]],
         # temp balrog
         'balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
         'funsize_balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
