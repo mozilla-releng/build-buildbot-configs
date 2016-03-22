@@ -39,15 +39,15 @@ releaseConfig['sourceRepositories']  = {
         'bumpFiles': {
             'browser/config/version_display.txt': {
                 'version': releaseConfig['version'],
-                'nextVersion': releaseConfig['nextVersion']
+                'nextVersion': lambda x: x
             },
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
-                'nextVersion': releaseConfig['nextAppVersion']
+                'nextVersion': lambda x: x
             },
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
-                'nextVersion': releaseConfig['nextMilestone']
+                'nextVersion': lambda x: x
             },
         }
     }
