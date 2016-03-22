@@ -2702,10 +2702,22 @@ BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-beta']['enable_release_promotion'] = True
 # used by process/release.py
 BRANCHES['mozilla-beta']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
-BRANCHES['mozilla-beta']['bouncer_submitter_config'] = "releases/bouncer_firefox_beta.py"
+BRANCHES['mozilla-beta']['bouncer_submitter_config'] = {
+    "firefox": "releases/bouncer_firefox_beta.py",
+    # TODO - fennec
+    "fennec": "",
+}
 BRANCHES['mozilla-beta']['bouncer_branch'] = "releases/mozilla-beta"
-BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = "releases/postrelease_beta.py"
-BRANCHES['mozilla-beta']['updates_config'] = "releases/updates_date.py"
+BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = {
+    "firefox": 'releases/postrelease_firefox_beta.py',
+    # TODO - fennec
+    "fennec": "",
+}
+BRANCHES['mozilla-beta']['updates_config'] = {
+    "firefox": 'releases/updates_firefox_beta.py',
+    # TODO - fennec
+    "fennec": "",
+}
 BRANCHES['mozilla-beta']['update_verify_chunks'] = 6
 BRANCHES['mozilla-beta']['beetmover_credentials'] = "/builds/release-s3.credentials"
 BRANCHES['mozilla-beta']['stage_product'] = {

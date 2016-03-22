@@ -150,18 +150,33 @@ PROJECT_BRANCHES = {
         'partner_repack_platforms': ('linux', 'linux64', 'win32', 'win64', 'macosx64'),
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
-        "release_channel_mappings": [["^.*$", ["date"]]],
+        "single_locale_branch_config": "dev-mozilla-beta",
+        "release_channel_mappings": [["^.*$", ["beta-dev"]]],
         # temp balrog
         'balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
         'funsize_balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
-        'bouncer_submitter_config': "releases/bouncer_firefox_date.py",
+        'bouncer_submitter_config': {
+            "firefox": "releases/bouncer_firefox_beta.py",
+            # TODO - fennec
+            "fennec": "",
+        },
+        # TODO - is this used? seems like an invalid value and bouncer_submitter.py doesn't
+        # contain any usages with 'branch'
         'bouncer_branch': "releases/date",
         'bouncer_enabled': True,
         'postrelease_version_bump_enabled': True,
-        'postrelease_version_bump_config': 'releases/postrelease_date.py',
+        'postrelease_version_bump_config': {
+            "firefox": 'releases/dev_postrelease_firefox_beta.py',
+            # TODO - fennec
+            "fennec": "",
+        },
         'push_to_candidates_enabled': True,
-        'updates_config': 'releases/updates_date.py',
+        'updates_config': {
+            "firefox": 'releases/dev_updates_firefox_beta.py',
+            # TODO - fennec
+            "fennec": "",
+        },
         'update_verify_chunks': 6,
         'beetmover_credentials': '/builds/dev-beetmover-s3.credentials',
         'beetmover_buckets': {
