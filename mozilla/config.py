@@ -2721,7 +2721,7 @@ BRANCHES['mozilla-beta']['platforms']['win64']['dep_signing_servers'] = 'release
 BRANCHES['mozilla-beta']['bouncer_enabled'] = True
 BRANCHES['mozilla-beta']['postrelease_version_bump_enabled'] = True
 BRANCHES['mozilla-beta']['push_to_candidates_enabled'] = True
-BRANCHES['mozilla-beta']['push_to_releases_automatic'] = False
+BRANCHES['mozilla-beta']['push_to_releases_automatic'] = True
 BRANCHES['mozilla-beta']['release_channel_mappings'] = [["^.*$", ["beta"]]]
 BRANCHES['mozilla-beta']['beetmover_buckets'] = {
     "firefox": "net-mozaws-prod-delivery-firefox",
