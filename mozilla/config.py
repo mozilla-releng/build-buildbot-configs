@@ -2448,13 +2448,6 @@ BRANCHES = {
         'gecko_version': 44,
         'platforms': {},
     },
-    'b2g-ota': {
-        'merge_builds': False,
-        'branch_projects': [],
-        'lock_platforms': True,
-        'gecko_version': 45,
-        'platforms': {},
-    },
     'try': {
         'branch_projects': ['spidermonkey_try'],
         # The following platforms are not part of the default set,
@@ -2702,10 +2695,22 @@ BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-beta']['enable_release_promotion'] = True
 # used by process/release.py
 BRANCHES['mozilla-beta']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
-BRANCHES['mozilla-beta']['bouncer_submitter_config'] = "releases/bouncer_firefox_beta.py"
+BRANCHES['mozilla-beta']['bouncer_submitter_config'] = {
+    "firefox": "releases/bouncer_firefox_beta.py",
+    # TODO - fennec
+    "fennec": "",
+}
 BRANCHES['mozilla-beta']['bouncer_branch'] = "releases/mozilla-beta"
-BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = "releases/postrelease_beta.py"
-BRANCHES['mozilla-beta']['updates_config'] = "releases/updates_beta.py"
+BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = {
+    "firefox": 'releases/postrelease_firefox_beta.py',
+    # TODO - fennec
+    "fennec": "",
+}
+BRANCHES['mozilla-beta']['updates_config'] = {
+    "firefox": 'releases/updates_firefox_beta.py',
+    # TODO - fennec
+    "fennec": "",
+}
 BRANCHES['mozilla-beta']['update_verify_chunks'] = 6
 BRANCHES['mozilla-beta']['beetmover_credentials'] = "/builds/release-s3.credentials"
 BRANCHES['mozilla-beta']['stage_product'] = {
@@ -2721,7 +2726,7 @@ BRANCHES['mozilla-beta']['platforms']['win64']['dep_signing_servers'] = 'release
 BRANCHES['mozilla-beta']['bouncer_enabled'] = True
 BRANCHES['mozilla-beta']['postrelease_version_bump_enabled'] = True
 BRANCHES['mozilla-beta']['push_to_candidates_enabled'] = True
-BRANCHES['mozilla-beta']['push_to_releases_automatic'] = False
+BRANCHES['mozilla-beta']['push_to_releases_automatic'] = True
 BRANCHES['mozilla-beta']['release_channel_mappings'] = [["^.*$", ["beta"]]]
 BRANCHES['mozilla-beta']['beetmover_buckets'] = {
     "firefox": "net-mozaws-prod-delivery-firefox",
@@ -2872,33 +2877,6 @@ BRANCHES['mozilla-b2g44_v2_5']['enable_hpkp_update'] = True
 BRANCHES['mozilla-b2g44_v2_5']['enable_valgrind'] = False
 BRANCHES['mozilla-b2g44_v2_5']['enabled_products'] = ['firefox']
 
-
-######## b2g-ota
-BRANCHES['b2g-ota']['repo_path'] = 'releases/b2g-ota'
-BRANCHES['b2g-ota']['update_channel'] = 'b2g-ota'
-BRANCHES['b2g-ota']['l10n_repo_path'] = 'l10n-central'
-BRANCHES['b2g-ota']['enable_perproduct_builds'] = True
-BRANCHES['b2g-ota']['start_hour'] = [3]
-BRANCHES['b2g-ota']['start_minute'] = [45]
-BRANCHES['b2g-ota']['pgo_platforms'] = []
-BRANCHES['b2g-ota']['enable_mac_a11y'] = True
-BRANCHES['b2g-ota']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['b2g-ota']['enable_l10n'] = False
-BRANCHES['b2g-ota']['enable_l10n_onchange'] = False
-BRANCHES['b2g-ota']['l10nNightlyUpdate'] = False
-BRANCHES['b2g-ota']['l10n_platforms'] = ['linux', 'linux64',
-                                                    'win32', 'macosx64']
-BRANCHES['b2g-ota']['l10nDatedDirs'] = True
-BRANCHES['b2g-ota']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-b2g-ota'
-BRANCHES['b2g-ota']['enable_nightly'] = False
-BRANCHES['b2g-ota']['create_partial'] = False
-BRANCHES['b2g-ota']['enable_blocklist_update'] = False
-BRANCHES['b2g-ota']['enable_hsts_update'] = True
-BRANCHES['b2g-ota']['enable_hpkp_update'] = True
-BRANCHES['b2g-ota']['enable_valgrind'] = False
-BRANCHES['b2g-ota']['enabled_products'] = ['firefox']
 
 ######## try
 # Try-specific configs
