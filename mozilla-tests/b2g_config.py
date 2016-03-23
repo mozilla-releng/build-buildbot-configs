@@ -43,10 +43,6 @@ BRANCHES = {
         'gecko_version': 44,
         'b2g_version': (2, 5, 0),
     },
-    'b2g-ota': {
-        'gecko_version': 45,
-        'b2g_version': (2, 6, 0),
-    },
     'mozilla-central': {},
     'mozilla-inbound': {},
     'b2g-inbound': {},
@@ -1350,7 +1346,6 @@ BRANCHES['pine']['platforms']['emulator']['ubuntu64_vm-b2g-emulator']['debug_uni
 # BRANCHES['jamun']['repo_path'] = "projects/jamun"
 BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-b2g44_v2_5']['repo_path'] = "releases/mozilla-b2g44_v2_5"
-BRANCHES['b2g-ota']['repo_path'] = "releases/b2g-ota"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
 BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"
@@ -1376,7 +1371,7 @@ PROJECTS = {}
 # Bug 1250953 - Disable ICS emulator builds/tests on trunk
 for branch in BRANCHES.keys():
     for platform in BRANCHES[branch]['platforms'].keys():
-        if branch in ['mozilla-b2g44_v2_5', 'try', 'b2g-ota']:
+        if branch in ['mozilla-b2g44_v2_5', 'try']:
             continue
         if platform in ['emulator']:
             del BRANCHES[branch]['platforms'][platform]
