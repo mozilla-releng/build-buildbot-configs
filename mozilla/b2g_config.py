@@ -765,6 +765,17 @@ BRANCHES = {
             'flame-kk_eng': {},
         },
     },
+    'b2g-ota': {
+        'gecko_version': 45,
+        'b2g_version': (2, 6, 0),
+        'lock_platforms': True,
+        'platforms': {
+            'emulator': {},
+            'emulator-debug': {},
+            'flame-kk': {},
+            'flame-kk_eng': {},
+        }
+    },
     'try': {
         'lock_platforms': True,
         'platforms': {
@@ -911,6 +922,20 @@ BRANCHES['mozilla-central']['platforms']['macosx64_graphene']['slaves'] = SLAVES
 BRANCHES['mozilla-central']['platforms']['win64_graphene']['slaves'] = SLAVES['win64-rev2']
 
 
+######## b2g-ota
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['b2g-ota']['repo_path'] = 'releases/b2g-ota'
+BRANCHES['b2g-ota']['gaia_l10n_root'] = 'https://hg.mozilla.org/gaia-l10n'
+BRANCHES['b2g-ota']['gecko_l10n_root'] = 'https://hg.mozilla.org/l10n-central'
+BRANCHES['b2g-ota']['start_hour'] = [0]
+BRANCHES['b2g-ota']['start_minute'] = [45]
+BRANCHES['b2g-ota']['periodic_start_minute'] = 30
+BRANCHES['b2g-ota']['platforms']['flame-kk']['enable_nightly'] = True
+BRANCHES['b2g-ota']['platforms']['flame-kk_eng']['enable_nightly'] = True
+BRANCHES['b2g-ota']['platforms']['emulator']['enable_nightly'] = True
+BRANCHES['b2g-ota']['platforms']['emulator-debug']['enable_nightly'] = True
+
 ######## mozilla-b2g44_v2_5
 # This is a path, relative to HGURL, where the repository is located
 # HGURL + repo_path should be a valid repository
@@ -1028,7 +1053,7 @@ for branch in B2GTWIGS:
 # Bug 1250953 - Disable ICS emulator builds/tests on trunk
 for branch in BRANCHES.keys():
     for platform in BRANCHES[branch]['platforms'].keys():
-        if branch in ['mozilla-b2g44_v2_5', 'try']:
+        if branch in ['mozilla-b2g44_v2_5', 'try', 'b2g-ota']:
             continue
         if platform in ['emulator', 'emulator-debug']:
             del BRANCHES[branch]['platforms'][platform]

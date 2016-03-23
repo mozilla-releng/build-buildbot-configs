@@ -52,7 +52,8 @@ else:
     ACTIVE_B2G_BRANCHES = ACTIVE_B2G_PROJECT_BRANCHES[:]
     ACTIVE_B2G_BRANCHES.extend([
         'mozilla-central',
-        'mozilla-b2g44_v2_5'
+        'mozilla-b2g44_v2_5',
+        'b2g-ota',
     ])
     # MERGE DAY: Remove the following block when we are sure b2g CI is moved to
     # taskcluster
