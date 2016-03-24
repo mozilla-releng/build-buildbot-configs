@@ -44,7 +44,8 @@ for sp in seta_platforms:
 def wfetch(url, retries=5):
     while True:
         try:
-            return urllib2.urlopen(url, timeout=30)
+            response = urllib2.urlopen(url, timeout=30)
+            return json.loads(response.read())
         except urllib2.HTTPError, e:
             print("Failed to fetch '%s': %s" % (url, str(e)))
         except urllib2.URLError, e:
@@ -53,6 +54,8 @@ def wfetch(url, retries=5):
             print("Time out accessing %s: %s" % (url, str(e)))
         except socket.error, e:
             print("Socket error when accessing %s: %s" % (url, str(e)))
+        except ValueError, e:
+            print("JSON parsing error %s: %s" % (url, str(e)))
         if retries < 1:
             raise Exception("Could not fetch url '%s'" % url)
         retries -= 1
@@ -66,8 +69,7 @@ def get_seta_platforms(branch, platform_filter):
         return []
 
     url = "http://alertmanager.allizom.org/data/setadetails/?date=" + today + "&buildbot=1&branch=" + branch + "&inactive=1"
-    response = wfetch(url)
-    data = json.loads(response.read())
+    data = wfetch(url)
     c['jobtypes'] = data.get('jobtypes', None)
     platforms = []
     for p in c['jobtypes'][today]:
