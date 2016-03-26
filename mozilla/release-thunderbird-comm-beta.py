@@ -22,12 +22,18 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['relbranchPrefix']     = 'THUNDERBIRD'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '45.0b2'
+releaseConfig['version']             = '45.0b3'
 releaseConfig['appVersion']          = '45.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_45_0b2'
+releaseConfig['buildNumber']         = 2
+releaseConfig['baseTag']             = 'THUNDERBIRD_45_0b3'
 releaseConfig['partialUpdates']      = {
+
+    '45.0b2': {
+        'appVersion': '45.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_45_0b2',
+    },
 
     '45.0b1': {
         'appVersion': '45.0',
@@ -41,12 +47,6 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'THUNDERBIRD_44_0b1',
     },
 
-    '43.0b1': {
-        'appVersion': '43.0',
-        'buildNumber': 3,
-        'baseTag': 'THUNDERBIRD_43_0b1',
-    },
-
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
@@ -56,8 +56,8 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': '9e83eb98346f',
-        'relbranch': None,
+        'revision': 'THUNDERBIRD450b3_2016032415_RELBRANCH',
+        'relbranch': 'THUNDERBIRD450b3_2016032415_RELBRANCH',
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -66,10 +66,10 @@ releaseConfig['sourceRepositories']  = {
         }
     },
     'mozilla': {
-        'name': 'mozilla-beta',
-        'path': 'releases/mozilla-beta',
-        'revision': 'THUNDERBIRD450b2_2016020915_RELBRANCH',
-        'relbranch': 'THUNDERBIRD450b2_2016020915_RELBRANCH',
+        'name': 'mozilla-esr45',
+        'path': 'releases/mozilla-esr45',
+        'revision': 'bab23fd1d89b',
+        'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
                 'version': releaseConfig['milestone'],
