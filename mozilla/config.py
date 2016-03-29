@@ -2706,6 +2706,11 @@ BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = {
     # TODO - fennec
     "fennec": "",
 }
+BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_config'] = {
+    "firefox": 'releases/bouncer_firefox_beta.py',
+    # TODO - fennec
+    "fennec": "",
+}
 BRANCHES['mozilla-beta']['updates_config'] = {
     "firefox": 'releases/updates_firefox_beta.py',
     # TODO - fennec
@@ -2725,6 +2730,7 @@ BRANCHES['mozilla-beta']['platforms']['win64']['dep_signing_servers'] = 'release
 # used by releasetasks
 BRANCHES['mozilla-beta']['bouncer_enabled'] = True
 BRANCHES['mozilla-beta']['postrelease_version_bump_enabled'] = True
+BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_enabled'] = True
 BRANCHES['mozilla-beta']['push_to_candidates_enabled'] = True
 BRANCHES['mozilla-beta']['push_to_releases_automatic'] = True
 BRANCHES['mozilla-beta']['release_channel_mappings'] = [["^.*$", ["beta"]]]
