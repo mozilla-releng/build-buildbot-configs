@@ -171,6 +171,12 @@ PROJECT_BRANCHES = {
             # TODO - fennec
             "fennec": "",
         },
+        'postrelease_bouncer_aliases_enabled': True,
+        'postrelease_bouncer_aliases_config': {
+            "firefox": 'releases/dev_bouncer_firefox_beta.py',
+            # TODO - fennec
+            "fennec": "",
+        },
         'push_to_candidates_enabled': True,
         'updates_config': {
             "firefox": 'releases/dev_updates_firefox_beta.py',
