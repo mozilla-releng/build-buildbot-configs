@@ -1,3 +1,4 @@
+# noinspection PyInterpreter
 PROJECT_BRANCHES = {
     ### PLEASE ADD NEW BRANCHES ALPHABETICALLY (twigs at the bottom, also alphabetically)
     # 'build-system': {},  # Bug 1010674
@@ -161,9 +162,6 @@ PROJECT_BRANCHES = {
             # TODO - fennec
             "fennec": "",
         },
-        # TODO - is this used? seems like an invalid value and bouncer_submitter.py doesn't
-        # contain any usages with 'branch'
-        'bouncer_branch': "releases/date",
         'bouncer_enabled': True,
         'postrelease_version_bump_enabled': True,
         'postrelease_version_bump_config': {
@@ -233,24 +231,113 @@ PROJECT_BRANCHES = {
     # disabled in bug 1215527
     # 'holly': {},
     'jamun': {
+        'desktop_mozharness_builds_enabled': True,
+        'use_mozharness_repo_cache': False,
+        'branch_projects': [],
+        ## TODO - enabled tests.
+        # note - to enable tests you must also remove:
+        # platforms[platform]["slave_platforms"] item override below
+        'enable_opt_unittests': False,
+        'enable_debug_unittests': False,
+        'enable_talos': False,
+        ##
         'lock_platforms': True,
         'platforms': {
-            'linux': {},
-            'linux64': {},
-            'linux-debug': {},
-            'linux64-br-haz': {},
-            'linux64-asan': {},
-            'linux64-asan-debug': {},
-            'linux64-debug': {},
-            'linux64-st-an-debug': {},
-            'macosx64-debug': {},
-            'win32': {},
-            'win32-debug': {},
-            'win64': {},
-            'win64-debug': {},
-            'macosx64': {},
-            'macosx64-st-an-debug': {},
-        }
+            # use default 'dep-signing' for now while in development
+            'linux': {
+                # 'dep_signing_servers': 'release-signing',
+                "slave_platforms": [],
+            },
+            'linux64': {
+                # 'dep_signing_servers': 'release-signing',
+                "slave_platforms": [],
+            },
+            'win32': {
+                # 'dep_signing_servers': 'release-signing',
+                "slave_platforms": [],
+            },
+            'win64': {
+                # 'dep_signing_servers': 'release-signing',
+                "slave_platforms": [],
+            },
+            'macosx64': {
+                # 'dep_signing_servers': 'release-signing',
+                "slave_platforms": [],
+            },
+            'linux-debug': {
+                "slave_platforms": [],
+            },
+            'linux64-debug': {
+                "slave_platforms": [],
+            },
+            'linux64-asan': {
+                "slave_platforms": [],
+            },
+            'linux64-asan-debug': {
+                "slave_platforms": [],
+            },
+            'macosx64-debug': {
+                "slave_platforms": [],
+            },
+            'win32-debug': {
+                "slave_platforms": [],
+            },
+            'win64-debug': {
+                "slave_platforms": [],
+            },
+        },
+        'enable_valgrind': False,
+        'pgo_strategy': 'per-checkin',
+        'enable_release_promotion': True,
+        'build_tools_repo_path': 'users/raliiev_mozilla.com/tools',
+        'partners_repo_path': 'build/partner-repacks',
+        'partner_repack_platforms': ('linux', 'linux64', 'win32', 'win64', 'macosx64'),
+        "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
+        "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
+        "single_locale_branch_config": "dev-mozilla-release",
+        "release_channels_mappings": [
+            [r"^\d+\.0$", ["beta-dev", "release-dev"]],  # RC, 45.0
+            [r"^\d+\.\d+\.\d+$", ["release-dev"]],  # Other (dot releaseas), 45.0.4
+        ],
+        # TODO - define only one place that dictates which channels require mirrors.
+        # in other words - pass this to releasetasks mozharness updates.py call in task def and
+        # remove mozharness config's 'requires_mirrors' item.
+        "mirror_requiring_channels": ['release-dev'],
+        # temp balrog
+        'balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
+        'funsize_balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
+        'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
+        'bouncer_submitter_config': {
+            "firefox": "releases/bouncer_firefox_release.py",
+            # TODO - fennec
+            "fennec": "",
+        },
+        'bouncer_enabled': True,
+        'postrelease_version_bump_enabled': True,
+        'postrelease_version_bump_config': {
+            "firefox": 'releases/dev_postrelease_firefox_release.py',
+            # TODO - fennec
+            "fennec": "",
+        },
+        'push_to_candidates_enabled': True,
+        'updates_config': {
+            "firefox": 'releases/dev_updates_firefox_release.py',
+            # TODO - fennec
+            "fennec": "",
+        },
+        'update_verify_chunks': 6,
+        'beetmover_credentials': '/builds/dev-beetmover-s3.credentials',
+        'beetmover_buckets': {
+            'firefox': 'net-mozaws-stage-delivery-firefox',
+            # TODO - add fennec support
+            # 'fennec': 'net-mozaws-stage-delivery-archive',
+        },
+        'stage_product': {
+            'firefox': 'firefox',
+            'fennec': 'mobile',
+        },
+        'push_to_releases_automatic': False,
+        'merge_builds': False,
     },
     'larch': {
         'lock_platforms': True,
