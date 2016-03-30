@@ -196,6 +196,18 @@ PROJECT_BRANCHES = {
         },
         'push_to_releases_automatic': False,
         'merge_builds': False,
+        'partner_repacks_platforms': ("linux", "linux64", "win32", "win64", "macosx64"),
+        'partner_repack_config': {
+            "firefox": {
+                "script_name": "scripts/desktop_partner_repacks.py",
+                "extra_args": [
+                    "--cfg", "partner_repacks/release_mozilla-release_desktop.py",
+                    "--s3cfg", "/builds/partners-s3cfg",
+                ],
+            },
+            # TODO - add fennec support
+            # 'fennec': {}
+        },
     },
     'elm': {
         'branch_projects': [],

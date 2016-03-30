@@ -2741,6 +2741,18 @@ BRANCHES['mozilla-beta']['beetmover_buckets'] = {
 }
 BRANCHES['mozilla-beta']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-beta']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-beta']['partner_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-beta']['partner_repack_config'] = {
+    "firefox": {
+        "script_name": "scripts/desktop_partner_repacks.py",
+        "extra_args": [
+            "--cfg", "partner_repacks/release_mozilla-release_desktop.py",
+            "--s3cfg", "/builds/partners-s3cfg",
+        ],
+    },
+    # TODO - add fennec support
+    # 'fennec': {}
+}
 ###
 
 ######## mozilla-aurora
