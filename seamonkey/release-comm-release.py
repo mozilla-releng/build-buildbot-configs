@@ -73,8 +73,11 @@ releaseConfig['hgSshKey']                   = '~seabld/.ssh/seabld_dsa'
 # Update-specific configuration
 releaseConfig['patcherConfig']              = 'mozRelease-seamonkey-branch-patcher2.cfg'
 releaseConfig['patcherToolsTag']            = 'UPDATE_PACKAGING_R18'
-releaseConfig['ftpServer']                  = 'ftp.mozilla.org'
+releaseConfig['ftpServer']                  = 'archive.mozilla.org'
 releaseConfig['stagingServer']              = 'stage.mozilla.org'
+releaseConfig['stagingUploadServer']        = 'upload.seabld.productdelivery.prod.mozaws.net'
+releaseConfig['S3Credentials']              = '/builds/release-s3.credentials'
+releaseConfig['S3Bucket']                   = 'net-mozaws-prod-delivery-archive'
 releaseConfig['bouncerServer']              = 'download.mozilla.org'
 releaseConfig['ausServerUrl']               = 'https://aus2-community.mozilla.org'
 releaseConfig['testOlderPartials']          = False

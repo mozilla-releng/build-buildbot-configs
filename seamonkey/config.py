@@ -124,7 +124,7 @@ GLOBAL_VARS = {
                             'xorg-x11-font*',  # fonts required for PGO
                             'imake',  # required for makedepend!?!
                             'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache',  # <-- from releng repo
-                            'valgrind',
+                            'valgrind', 'mozilla-python27-virtualenv',
                             'pulseaudio-libs-devel.i686',
                             'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
                             # Packages already installed in the mock environment, as x86_64
@@ -163,7 +163,7 @@ GLOBAL_VARS = {
                             'xorg-x11-font*', # fonts required for PGO
                             'imake', # required for makedepend!?!
                             'gcc45_0moz3', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
-                            'valgrind', 'dbus-x11',
+                            'valgrind', 'dbus-x11', 'mozilla-python27-virtualenv',
                             'pulseaudio-libs-devel',
                             'gstreamer-devel', 'gstreamer-plugins-base-devel',
                             'freetype-2.3.11-6.el6_1.8.x86_64',
@@ -235,6 +235,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [('/home/seabld/.ssh', '/home/mock_mozilla/.ssh'),
                                   ('/home/seabld/.hgrc', '/builds/.hgrc'),
                                   ('/tools/tooltool.py', '/builds/tooltool.py'),
+                                  ('/builds/release-s3.credentials', '/builds/release-s3.credentials'),
                                   ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),]
         },
         'linux64': {
@@ -287,6 +288,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [('/home/seabld/.ssh', '/home/mock_mozilla/.ssh'),
                                   ('/home/seabld/.hgrc', '/builds/.hgrc'),
                                   ('/tools/tooltool.py', '/builds/tooltool.py'),
+                                  ('/builds/release-s3.credentials', '/builds/release-s3.credentials'),
                                   ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),]
         },
         'macosx64': {
@@ -413,6 +415,7 @@ PLATFORM_VARS = {
             'mock_copyin_files': [('/home/seabld/.ssh', '/home/mock_mozilla/.ssh'),
                                   ('/home/seabld/.hgrc', '/builds/.hgrc'),
                                   ('/tools/tooltool.py', '/builds/tooltool.py'),
+                                  ('/builds/release-s3.credentials', '/builds/release-s3.credentials'),
                                   ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),]
         },
         'macosx64-debug': {
