@@ -2700,7 +2700,6 @@ BRANCHES['mozilla-beta']['bouncer_submitter_config'] = {
     # TODO - fennec
     "fennec": "",
 }
-BRANCHES['mozilla-beta']['bouncer_branch'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = {
     "firefox": 'releases/postrelease_firefox_beta.py',
     # TODO - fennec
