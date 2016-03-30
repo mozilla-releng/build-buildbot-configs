@@ -372,6 +372,7 @@ for platform in releaseConfig['enUSPlatforms']:
             chatzillaRepoPath=releaseConfig['chatzillaRepoPath'],
             l10nRepoPath=releaseConfig['l10nRepoPath'],
             mergeLocales=releaseConfig['mergeLocales'],
+            archiveServer=branchConfig['archive_server'],
             stageServer=branchConfig['stage_server'],
             stageUsername=branchConfig['stage_username'],
             stageSshKey=branchConfig['stage_ssh_key'],

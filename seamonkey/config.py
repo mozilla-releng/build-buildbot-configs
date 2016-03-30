@@ -93,9 +93,10 @@ GLOBAL_VARS = {
     # staging/production-dependent settings - all is production for us
     'config_repo_path': 'build/buildbot-configs',
     'buildbotcustom_repo_path': 'build/buildbotcustom',
-    'stage_server': 'stage.mozilla.org',
+    'stage_server': 'upload.seabld.productdelivery.prod.mozaws.net',
+    'archive_server': 'archive.mozilla.org',
     'aus2_host': 'aus2-community.mozilla.org',
-    'download_base_url': 'http://ftp.mozilla.org/pub/mozilla.org/seamonkey',
+    'download_base_url': 'http://ftp.mozilla.org/pub/seamonkey',
     'graph_server': 'graphs.mozilla.org',
     'build_tools_repo_path': 'users/Callek_gmail.com/tools',
     # 'build_tools_repo_path': 'build/tools',
