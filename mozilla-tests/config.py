@@ -3158,7 +3158,7 @@ for branch in set(BRANCHES.keys()) - set(win7_vm_inactive_branches):
             del BRANCHES[branch]['platforms'][platform]['win7-ix']
 
 # Bug 1253341 - run talos jobs on AWS
-for branch in ('try',):
+for branch in ():
     BRANCHES[branch]['platforms']['linux64']['talos_slave_platforms'] = ['ubuntu64_hw', 'ubuntu64_vm']
     # Add ubuntu64_vm to the talos suites
     for test, test_config in BRANCHES[branch].items():
