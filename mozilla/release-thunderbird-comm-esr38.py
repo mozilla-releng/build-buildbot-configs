@@ -23,11 +23,11 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['relbranchPrefix']     = 'THUNDERBIRD'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '38.7.1'
-releaseConfig['appVersion']          = '38.7.1'
+releaseConfig['version']             = '38.7.2'
+releaseConfig['appVersion']          = '38.7.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_38_7_1'
+releaseConfig['baseTag']             = 'THUNDERBIRD_38_7_2'
 releaseConfig['partialUpdates']      = {
 
     '38.6.0': {
@@ -42,10 +42,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'THUNDERBIRD_38_7_0',
     },
 
-    '38.5.1': {
-        'appVersion': '38.5.1',
-        'buildNumber': 2,
-        'baseTag': 'THUNDERBIRD_38_5_1',
+    '38.7.1': {
+        'appVersion': '38.7.1',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_38_7_1',
     },
 
 }
