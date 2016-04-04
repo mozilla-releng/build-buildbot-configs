@@ -129,9 +129,6 @@ GLOBAL_VARS.update(localconfig.GLOBAL_VARS.copy())
 
 # shorthand, because these are used often
 OBJDIR = GLOBAL_VARS['objdir']
-SYMBOL_SERVER_PATH = GLOBAL_VARS['symbol_server_path']
-SYMBOL_SERVER_POST_UPLOAD_CMD = GLOBAL_VARS['symbol_server_post_upload_cmd']
-SYMBOL_SERVER_MOBILE_PATH = GLOBAL_VARS['symbol_server_mobile_path']
 
 GLOBAL_ENV = {
     'MOZ_CRASHREPORTER_NO_REPORT': '1',
@@ -192,11 +189,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -315,12 +307,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -429,12 +415,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-asan',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -532,12 +512,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-tsan',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -635,12 +609,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-asan-debug',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -738,12 +706,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64-st-an-debug',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -889,12 +851,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'linux64',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -986,12 +942,6 @@ PLATFORM_VARS = {
                 'HG_SHARE_BASE_DIR': '/builds/hg-shared',
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/Users/cltbld/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'macosx64',
                 'CHOWN_ROOT': '~/bin/chown_root',
                 'CHOWN_REVERT': '~/bin/chown_revert',
                 'LC_ALL': 'C',
@@ -1064,11 +1014,6 @@ PLATFORM_VARS = {
             'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_rsa",
                 'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
@@ -1137,12 +1082,6 @@ PLATFORM_VARS = {
             'enable_shared_checkouts': True,
             'env': {
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
-                'SYMBOL_SERVER_SSH_KEY': "/c/Users/cltbld/.ssh/ffxbld_rsa",
-                'MOZ_SYMBOLS_EXTRA_BUILDID': 'win64',
                 'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
                 'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
                 'PATH': "${MOZILLABUILD}\\nsis-3.0b1;${MOZILLABUILD}\\nsis-2.46u;${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
@@ -1695,11 +1634,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
@@ -1784,11 +1718,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
@@ -1873,11 +1802,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
@@ -1959,11 +1883,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
                 'CCACHE_UMASK': '002',
@@ -2044,11 +1963,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
@@ -2128,11 +2042,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
@@ -2212,11 +2121,6 @@ PLATFORM_VARS = {
                 'TOOLTOOL_CACHE': '/builds/tooltool_cache',
                 'TOOLTOOL_HOME': '/builds',
                 'MOZ_OBJDIR': OBJDIR,
-                'SYMBOL_SERVER_HOST': localconfig.SYMBOL_SERVER_HOST,
-                'SYMBOL_SERVER_USER': 'ffxbld',
-                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_MOBILE_PATH,
-                'SYMBOL_SERVER_SSH_KEY': "/home/mock_mozilla/.ssh/ffxbld_rsa",
-                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
                 'SHIP_LICENSED_FONTS': '1',
                 'CCACHE_DIR': '/builds/ccache',
                 'CCACHE_COMPRESS': '1',
@@ -2590,11 +2494,8 @@ BRANCHES['mozilla-central']['create_partial_l10n'] = True
 BRANCHES['mozilla-central']['enable_blocklist_update'] = True
 BRANCHES['mozilla-central']['enable_hsts_update'] = True
 BRANCHES['mozilla-central']['enable_hpkp_update'] = True
-BRANCHES['mozilla-central']['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86'
 BRANCHES['mozilla-central']['platforms']['android-x86']['updates_enabled'] = True
-BRANCHES['mozilla-central']['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9'
 BRANCHES['mozilla-central']['platforms']['android-api-9']['updates_enabled'] = True
-BRANCHES['mozilla-central']['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15'
 BRANCHES['mozilla-central']['platforms']['android-api-15']['updates_enabled'] = True
 BRANCHES['mozilla-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
@@ -2700,7 +2601,6 @@ BRANCHES['mozilla-beta']['bouncer_submitter_config'] = {
     # TODO - fennec
     "fennec": "",
 }
-BRANCHES['mozilla-beta']['bouncer_branch'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = {
     "firefox": 'releases/postrelease_firefox_beta.py',
     # TODO - fennec
@@ -2741,6 +2641,18 @@ BRANCHES['mozilla-beta']['beetmover_buckets'] = {
 }
 BRANCHES['mozilla-beta']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-beta']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-beta']['partner_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-beta']['partner_repack_config'] = {
+    "firefox": {
+        "script_name": "scripts/desktop_partner_repacks.py",
+        "extra_args": [
+            "--cfg", "partner_repacks/release_mozilla-release_desktop.py",
+            "--s3cfg", "/builds/partners-s3cfg",
+        ],
+    },
+    # TODO - add fennec support
+    # 'fennec': {}
+}
 ###
 
 ######## mozilla-aurora
@@ -2972,24 +2884,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
     BRANCHES[branch]['l10nUploadPath'] = \
         '/home/ftp/pub/mozilla.org/firefox/nightly/latest-' + branch + '-l10n/'
     BRANCHES[branch]['enUS_binaryURL'] = GLOBAL_VARS['download_base_url'] + branchConfig.get('enUS_binaryURL', '')
-    if 'linux' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['linux']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-    if 'android-api-9' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['android-api-9']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-9-' + branch
-    # TODO - project branch could be based on any gecko num. we should remove this once api-11 is
-    # gone from all release branches
-    if 'android-api-11' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['android-api-11']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-11-' + branch
-    if 'android-api-15' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['android-api-15']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-api-15-' + branch
-    if 'android-x86' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['android-x86']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'android-x86-' + branch
-    if 'linux64' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['linux64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'linux64-' + branch
-    if 'win32' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['win32']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = branch
-    if 'macosx64' in BRANCHES[branch]['platforms']:
-        BRANCHES[branch]['platforms']['macosx64']['env']['MOZ_SYMBOLS_EXTRA_BUILDID'] = 'macosx64-' + branch
     # Platform-specific defaults/interpretation
     for platform in BRANCHES[branch]['platforms']:
         # point to the mozconfigs, default is generic
