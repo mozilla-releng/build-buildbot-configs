@@ -295,7 +295,7 @@ PROJECT_BRANCHES = {
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "single_locale_branch_config": "dev-mozilla-release",
-        "release_channels_mappings": [
+        "release_channel_mappings": [
             [r"^\d+\.0$", ["beta-dev", "release-dev"]],  # RC, 45.0
             [r"^\d+\.\d+\.\d+$", ["release-dev"]],  # Other (dot releaseas), 45.0.4
         ],
