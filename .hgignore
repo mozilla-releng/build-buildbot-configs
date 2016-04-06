@@ -2,6 +2,7 @@
 \.pyc$
 \.pck$
 ^\.tox
+^\.idea
 twistd\.pid$
 twistd\.log$
 twistd\.log\.[0-9]+$
@@ -15,3 +16,5 @@ test-output
 ^thunderbird.*/comm-central-.*
 ^thunderbird.*/trunk-.*
 ^thunderbird.*/logs
+
+^mozilla/localconfig.py$
