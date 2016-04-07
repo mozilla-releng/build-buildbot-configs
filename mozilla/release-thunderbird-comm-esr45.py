@@ -23,29 +23,35 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['relbranchPrefix']     = 'THUNDERBIRD'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '45.0b3'
+releaseConfig['version']             = '45.0'
 releaseConfig['appVersion']          = '45.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_45_0b3'
+releaseConfig['baseTag']             = 'THUNDERBIRD_45_0'
 releaseConfig['partialUpdates']      = {
 
-    '45.0b2': {
-        'appVersion': '45.0',
+    '38.6.0': {
+        'appVersion': '38.6.0',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_45_0b2',
+        'baseTag': 'THUNDERBIRD_38_6_0',
     },
 
-    '45.0b1': {
-        'appVersion': '45.0',
-        'buildNumber': 3,
-        'baseTag': 'THUNDERBIRD_45_0b1',
+    '38.7.0': {
+        'appVersion': '38.7.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_38_7_0',
     },
 
-    '44.0b1': {
-        'appVersion': '44.0',
+    '38.7.1': {
+        'appVersion': '38.7.1',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_44_0b1',
+        'baseTag': 'THUNDERBIRD_38_7_1',
+    },
+
+    '38.7.2': {
+        'appVersion': '38.7.2',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_38_7_2',
     },
 
 }
@@ -57,7 +63,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr45',
         'path': 'releases/comm-esr45',
-        'revision': '9c119ae49414',
+        'revision': 'ba394d3e413c',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -69,7 +75,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr45',
         'path': 'releases/mozilla-esr45',
-        'revision': 'bab23fd1d89b',
+        'revision': '983d1ccaea8f',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
