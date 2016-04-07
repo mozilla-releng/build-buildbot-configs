@@ -20,11 +20,11 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '45.0.1'
-releaseConfig['appVersion']          = '45.0.1'
+releaseConfig['version']             = '45.0.2'
+releaseConfig['appVersion']          = '45.0.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_45_0_1'
+releaseConfig['baseTag']             = 'FIREFOX_45_0_2'
 releaseConfig['partialUpdates']      = {
 
     '42.0': {
@@ -39,21 +39,21 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'FIREFOX_41_0_2',
     },
 
-    '45.0': {
-        'appVersion': '45.0',
-        'buildNumber': 2,
-        'baseTag': 'FIREFOX_45_0',
-    },
-
     '39.0': {
         'appVersion': '39.0',
         'buildNumber': 6,
         'baseTag': 'FIREFOX_39_0',
     },
 
+    '45.0.1': {
+        'appVersion': '45.0.1',
+        'buildNumber': 1,
+        'baseTag': 'FIREFOX_45_0_1',
+    },
+
 }
 # What's New Page, should be revisited with each release.
-# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/45.0.1/whatsnew/?oldversion=%OLD_VERSION%'
+# releaseConfig['openURL'] = 'https://www.mozilla.org/%LOCALE%/firefox/45.0.2/whatsnew/?oldversion=%OLD_VERSION%'
 
 releaseConfig['HACK_first_released_version'] = {'win64': "42.0"}
 
@@ -65,7 +65,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '7e7b02185615',
+        'revision': 'ac2c157c4bd7',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
