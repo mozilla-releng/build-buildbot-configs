@@ -137,7 +137,7 @@ releaseConfig['updateChannels'] = {
     # ruleId needs to be updated with the ID from AUS
     "release": {
         "versionRegex": r"^.*$",
-        "ruleId": None,
+        "ruleId": 332,
         "patcherConfig": "mozEsr45-thunderbird-branch-patcher2.cfg",
         "localTestChannel": "release-localtest",
         "cdnTestChannel": "release-cdntest",
@@ -149,10 +149,10 @@ releaseConfig['updateChannels'] = {
         },
         "testChannels": {
             "release-localtest": {
-                "ruleId": None,
+                "ruleId": 333,
             },
             "release-cdntest": {
-                "ruleId": None,
+                "ruleId": 334,
             },
         },
     },
