@@ -24,7 +24,7 @@ releaseConfig['appName']             = 'browser'
 releaseConfig['version']             = '45.0.2esr'
 releaseConfig['appVersion']          = '45.0.2'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
+releaseConfig['buildNumber']         = 3
 releaseConfig['baseTag']             = 'FIREFOX_45_0_2esr'
 releaseConfig['partialUpdates']      = {
 
@@ -47,7 +47,7 @@ releaseConfig['sourceRepositories']  = {
         'name': 'mozilla-esr45',
         'path': 'releases/mozilla-esr45',
         'revision': 'GECKO4501esr_2016031618_RELBRANCH',
-        'relbranch': 'GECKO4501esr_2016031618_RELBRANCH',
+        'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
                 'version': releaseConfig['appVersion'],
