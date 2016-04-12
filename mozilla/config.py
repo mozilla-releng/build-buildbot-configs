@@ -2621,6 +2621,8 @@ BRANCHES['mozilla-beta']['platforms']['win32']['dep_signing_servers'] = 'release
 BRANCHES['mozilla-beta']['platforms']['win64']['dep_signing_servers'] = 'release-signing'
 # used by releasetasks
 BRANCHES['mozilla-beta']['bouncer_enabled'] = True
+BRANCHES['mozilla-beta']['updates_builder_enabled'] = True
+BRANCHES['mozilla-beta']['update_verify_enabled'] = True
 BRANCHES['mozilla-beta']['postrelease_version_bump_enabled'] = True
 BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_enabled'] = True
 BRANCHES['mozilla-beta']['push_to_candidates_enabled'] = True

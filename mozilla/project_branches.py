@@ -163,6 +163,8 @@ PROJECT_BRANCHES = {
             "fennec": "",
         },
         'bouncer_enabled': True,
+        'updates_builder_enabled': True,
+        'update_verify_enabled': True,
         'postrelease_version_bump_enabled': True,
         'postrelease_version_bump_config': {
             "firefox": 'releases/dev_postrelease_firefox_beta.py',
@@ -313,6 +315,8 @@ PROJECT_BRANCHES = {
             "fennec": "",
         },
         'bouncer_enabled': True,
+        'updates_builder_enabled': True,
+        'update_verify_enabled': True,
         'postrelease_version_bump_enabled': True,
         'postrelease_version_bump_config': {
             "firefox": 'releases/dev_postrelease_firefox_release.py',
