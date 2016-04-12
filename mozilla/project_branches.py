@@ -245,23 +245,23 @@ PROJECT_BRANCHES = {
         'platforms': {
             # use default 'dep-signing' for now while in development
             'linux': {
-                # 'dep_signing_servers': 'release-signing',
+                'dep_signing_servers': 'release-signing',
                 "slave_platforms": [],
             },
             'linux64': {
-                # 'dep_signing_servers': 'release-signing',
+                'dep_signing_servers': 'release-signing',
                 "slave_platforms": [],
             },
             'win32': {
-                # 'dep_signing_servers': 'release-signing',
+                'dep_signing_servers': 'release-signing',
                 "slave_platforms": [],
             },
             'win64': {
-                # 'dep_signing_servers': 'release-signing',
+                'dep_signing_servers': 'release-signing',
                 "slave_platforms": [],
             },
             'macosx64': {
-                # 'dep_signing_servers': 'release-signing',
+                'dep_signing_servers': 'release-signing',
                 "slave_platforms": [],
             },
             'linux-debug': {
