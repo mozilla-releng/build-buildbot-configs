@@ -827,7 +827,7 @@ WEB_PLATFORM_TESTS_CHUNKED = [
         'use_mozharness': True,
         'script_path': 'scripts/web_platform_tests.py',
         'extra_args': ["--test-type=testharness"],
-        'totalChunks': 4,
+        'totalChunks': 5,
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
@@ -838,7 +838,7 @@ WEB_PLATFORM_TESTS_CHUNKED_MORE = [
         'use_mozharness': True,
         'script_path': 'scripts/web_platform_tests.py',
         'extra_args': ["--test-type=testharness"],
-        'totalChunks': 8,
+        'totalChunks': 10,
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
@@ -859,7 +859,7 @@ WEB_PLATFORM_TESTS_CHUNKED_E10S = [
         'use_mozharness': True,
         'script_path': 'scripts/web_platform_tests.py',
         'extra_args': ["--test-type=testharness", "--e10s"],
-        'totalChunks': 4,
+        'totalChunks': 5,
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
@@ -870,7 +870,7 @@ WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S = [
         'use_mozharness': True,
         'script_path': 'scripts/web_platform_tests.py',
         'extra_args': ["--test-type=testharness", "--e10s"],
-        'totalChunks': 8,
+        'totalChunks': 10,
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
@@ -3158,15 +3158,15 @@ for branch in set(BRANCHES.keys()) - set(win7_vm_inactive_branches):
             del BRANCHES[branch]['platforms'][platform]['win7-ix']
 
 # Bug 1253341 - run talos jobs on AWS
-for branch in ():
-    BRANCHES[branch]['platforms']['linux64']['talos_slave_platforms'] = ['ubuntu64_hw', 'ubuntu64_vm']
+for branch in ('try',):
+    BRANCHES[branch]['platforms']['linux64']['talos_slave_platforms'] = ['ubuntu64_hw', 'ubuntu64_vm_large']
     # Add ubuntu64_vm to the talos suites
     for test, test_config in BRANCHES[branch].items():
         if not test.endswith('_tests'):
             continue
         tests, merge, extra, platforms = test_config
-        if 'ubuntu64_hw' in platforms and 'ubuntu64_vm' not in platforms:
-            platforms = platforms + ['ubuntu64_vm']
+        if 'ubuntu64_hw' in platforms and 'ubuntu64_vm_large' not in platforms:
+            platforms = platforms + ['ubuntu64_vm_large']
             BRANCHES[branch][test] = (tests, merge, extra, platforms)
 
 if __name__ == "__main__":
