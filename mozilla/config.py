@@ -2787,6 +2787,7 @@ BRANCHES['mozilla-b2g44_v2_5']['enabled_products'] = ['firefox']
 
 ######## try
 # Try-specific configs
+BRANCHES['try']['l10n_repo_path'] = 'l10n-central'
 BRANCHES['try']['stage_username'] = 'trybld'
 BRANCHES['try']['stage_username_mobile'] = 'trybld'
 BRANCHES['try']['stage_ssh_key'] = 'trybld_dsa'
@@ -2805,8 +2806,11 @@ BRANCHES['try']['start_minute'] = [2]
 # Disable Nightly builds
 BRANCHES['try']['enable_nightly'] = False
 BRANCHES['try']['enable_mac_a11y'] = True
-# only do unittests locally until they are switched over to talos-r3
-BRANCHES['try']['enable_l10n'] = False
+BRANCHES['try']['enable_l10n'] = True
+BRANCHES['try']['desktop_mozharness_repacks_enabled'] = True
+BRANCHES['try']['l10n_platforms'] = ['linux', 'linux64', 'win32', 'macosx64',
+                                     'win64']
+BRANCHES['try']['enable_l10n_dep_scheduler'] = False
 BRANCHES['try']['enable_l10n_onchange'] = False
 BRANCHES['try']['l10nNightlyUpdate'] = False
 BRANCHES['try']['l10nDatedDirs'] = False
@@ -2838,6 +2842,9 @@ BRANCHES['try']['platforms']['android-x86']['slaves'] = TRY_SLAVES['mock']
 for platform in BRANCHES['try']['platforms'].keys():
     # Disable symbol upload across the board
     BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
+    # only one l10n builder
+    if BRANCHES['try']['platforms'][platform].get('mozharness_desktop_l10n', {}).get('l10n_chunks'):
+       BRANCHES['try']['platforms'][platform]['mozharness_desktop_l10n']['l10n_chunks'] = 1
 del BRANCHES['try']['platforms']['linux64-av']
 
 ######## generic branch configs
