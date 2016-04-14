@@ -13,8 +13,8 @@ seta_branches = ['fx-team', 'mozilla-inbound']
 today = date.today().strftime("%Y-%m-%d")
 # android has different slave platforms within the same opt|debug list
 seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"]),
-                  "Windows XP 32-bit": ("win32", ["xp-ix"]),
-                  "Windows 7 32-bit": ("win32", ["win7-ix"]),
+                  "Windows XP 32-bit": ("win32", ["xp_ix"]),
+                  "Windows 7 32-bit": ("win32", ["win7_ix"]),
                   "Windows 8 64-bit": ("win64", ["win8_64"]),
                   "Ubuntu VM 12.04": ("linux", ["ubuntu32_vm"]),
                   "Ubuntu VM 12.04 x64": ("linux64", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
@@ -35,7 +35,7 @@ test_exclusions = re.compile('\[funsize\]|\[TC\]')
 skipconfig_defaults_platform = {}
 for sp in seta_platforms:
     for slave_sp in seta_platforms[sp][1]:
-        if slave_sp in ["xp-ix"]:
+        if slave_sp in ["xp_ix"]:
             skipconfig_defaults_platform[slave_sp] = (14, 7200)
         else:
             skipconfig_defaults_platform[slave_sp] = (7, 3600)

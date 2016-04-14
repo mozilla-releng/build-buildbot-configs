@@ -1,7 +1,7 @@
 SLAVES = {
-    'xp-ix': {},
-    'win7-ix': {},
-    'win7-all': {},
+    'xp_ix': {},
+    'win7_ix': {},
+    'win7_vm_gfx': {},
     'win8': {},
     'win10': {},
     'snowleopard': {},
@@ -17,14 +17,13 @@ SLAVES = {
 }
 
 for i in range(1, 123):  # XP slaves from 123 onwards moved to Win7 and Win8 pools // Bug 1226729 // Bug 1239785 // Bug 1255812
-    SLAVES['xp-ix']['t-xp32-ix-%03i' % i] = {}
+    SLAVES['xp_ix']['t-xp32-ix-%03i' % i] = {}
 
 for i in range(1, 282):   # Move some XP test machines to the Windows 7 pool from 234 to 253 // Bug 1226729 // Bug 1239785 // Bug 1252258
-    SLAVES['win7-ix']['t-w732-ix-%03i' % i] = {}
-    SLAVES['win7-all']['t-w732-ix-%03i' % i] = {}
+    SLAVES['win7_ix']['t-w732-ix-%03i' % i] = {}
 
-for i in range(1, 400):
-    SLAVES['win7-all']['t-w732-spot-%03i' % i] = {}
+for i in range(1, 100):
+    SLAVES['win7_vm_gfx']['t-w732-spot-%03i' % i] = {}
 
 for i in range(1, 102) + range(103, 205):  # Omit 102 for win10 // Bug 1191481 // Bug 1255812
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
