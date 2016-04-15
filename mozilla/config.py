@@ -2536,7 +2536,69 @@ BRANCHES['mozilla-release']['enable_blocklist_update'] = True
 BRANCHES['mozilla-release']['enable_valgrind'] = False
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-release']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
-# Release promotion related
+### Release Promotion
+BRANCHES['mozilla-release']['enable_release_promotion'] = True
+# used by process/release.py
+BRANCHES['mozilla-release']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
+BRANCHES['mozilla-release']['bouncer_submitter_config'] = {
+    "firefox": "releases/bouncer_firefox_release.py",
+    # TODO - fennec
+    "fennec": "",
+}
+BRANCHES['mozilla-release']['postrelease_version_bump_config'] = {
+    "firefox": 'releases/postrelease_firefox_release.py',
+    # TODO - fennec
+    "fennec": "",
+}
+BRANCHES['mozilla-release']['postrelease_bouncer_aliases_config'] = {
+    "firefox": 'releases/bouncer_firefox_release.py',
+    # TODO - fennec
+    "fennec": "",
+}
+BRANCHES['mozilla-release']['updates_config'] = {
+    "firefox": 'releases/updates_firefox_release.py',
+    # TODO - fennec
+    "fennec": "",
+}
+BRANCHES['mozilla-release']['update_verify_chunks'] = 6
+BRANCHES['mozilla-release']['beetmover_credentials'] = "/builds/release-s3.credentials"
+BRANCHES['mozilla-release']['stage_product'] = {
+    'firefox': 'firefox',
+    'fennec': 'mobile'
+}
+BRANCHES['mozilla-release']['platforms']['linux']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-release']['platforms']['linux64']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-release']['platforms']['macosx64']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-release']['platforms']['win32']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-release']['platforms']['win64']['dep_signing_servers'] = 'release-signing'
+# used by releasetasks
+BRANCHES['mozilla-release']['bouncer_enabled'] = True
+BRANCHES['mozilla-release']['postrelease_version_bump_enabled'] = True
+BRANCHES['mozilla-release']['postrelease_bouncer_aliases_enabled'] = True
+BRANCHES['mozilla-release']['push_to_candidates_enabled'] = True
+BRANCHES['mozilla-release']['push_to_releases_automatic'] = False
+BRANCHES['mozilla-release']['beetmover_buckets'] = {
+    "firefox": "net-mozaws-prod-delivery-firefox",
+    # TODO - add fennec support
+    # 'fennec': 'net-mozaws-prod-delivery-archive',
+}
+BRANCHES['mozilla-release']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-release']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-release']['partner_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-release']['partner_repack_config'] = {
+    "firefox": {
+        "script_name": "scripts/desktop_partner_repacks.py",
+        "extra_args": [
+            "--cfg", "partner_repacks/release_mozilla-release_desktop.py",
+            "--s3cfg", "/builds/partners-s3cfg",
+        ],
+    },
+    # TODO - add fennec support
+    # 'fennec': {}
+}
+BRANCHES['mozilla-release']['updates_builder_enabled'] = True
+BRANCHES['mozilla-release']['update_verify_enabled'] = True
+BRANCHES['mozilla-release']['mirror_requiring_channels'] = ['release']
 BRANCHES['mozilla-release']['release_channel_mappings'] = [
     [r"^\d+\.0$", ["beta", "release"]],  # RC, 45.0
     [r"^\d+\.\d+\.\d+$", ["release"]],  # Other (dot releaseas), 45.0.4
@@ -2621,6 +2683,8 @@ BRANCHES['mozilla-beta']['platforms']['win32']['dep_signing_servers'] = 'release
 BRANCHES['mozilla-beta']['platforms']['win64']['dep_signing_servers'] = 'release-signing'
 # used by releasetasks
 BRANCHES['mozilla-beta']['bouncer_enabled'] = True
+BRANCHES['mozilla-beta']['updates_builder_enabled'] = True
+BRANCHES['mozilla-beta']['update_verify_enabled'] = True
 BRANCHES['mozilla-beta']['postrelease_version_bump_enabled'] = True
 BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_enabled'] = True
 BRANCHES['mozilla-beta']['push_to_candidates_enabled'] = True
