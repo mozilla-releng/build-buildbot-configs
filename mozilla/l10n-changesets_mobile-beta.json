@@ -5,7 +5,7 @@
   },
   "ar": {
     "revision": "9c4b301989ca",
-    "platforms": ["android", "android-multilocale"]
+    "platforms": ["android"]
   },
   "as": {
     "revision": "866666bf57f0",
@@ -85,7 +85,7 @@
   },
   "fa": {
     "revision": "08a5df3946ee",
-    "platforms": ["android", "android-multilocale"]
+    "platforms": ["android"]
   },
   "ff": {
     "revision": "8373353b43c4",
@@ -281,7 +281,7 @@
   },
   "xh": {
     "revision": "f3eb8f92afe8",
-    "platforms": ["android", "android-multilocale"]
+    "platforms": ["android"]
   },
   "zh-CN": {
     "revision": "d73d448f89d6",
