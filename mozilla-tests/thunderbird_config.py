@@ -63,10 +63,10 @@ PLATFORMS['macosx64']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
     'system_bits': '64',
 }
-PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
+PLATFORMS['win32']['slave_platforms'] = ['xp_ix', 'win7_ix']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
-PLATFORMS['win32']['xp-ix'] = {'name': builder_prefix + "Windows XP 32-bit"}
-PLATFORMS['win32']['win7-ix'] = {'name': builder_prefix + "Windows 7 32-bit"}
+PLATFORMS['win32']['xp_ix'] = {'name': builder_prefix + "Windows XP 32-bit"}
+PLATFORMS['win32']['win7_ix'] = {'name': builder_prefix + "Windows 7 32-bit"}
 PLATFORMS['win32']['stage_product'] = 'thunderbird'
 PLATFORMS['win32']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
@@ -227,7 +227,7 @@ PLATFORM_UNITTEST_VARS = {
         'env_name': 'win32-perf-unittest',
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
-        'xp-ix': {
+        'xp_ix': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
@@ -239,7 +239,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-        'win7-ix': {
+        'win7_ix': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
             'suite_config': {
@@ -417,7 +417,7 @@ for branch in set(BRANCHES.keys()):
     if 'win7' not in BRANCHES[branch]['platforms']['win32']:
         continue
     del BRANCHES[branch]['platforms']['win32']['win7']
-    BRANCHES[branch]['platforms']['win32']['slave_platforms'] = ['xp-ix', 'win7-ix']
+    BRANCHES[branch]['platforms']['win32']['slave_platforms'] = ['xp_ix', 'win7_ix']
 
 for branch in set(BRANCHES.keys()):
     if 'linux' in BRANCHES[branch]['platforms']:

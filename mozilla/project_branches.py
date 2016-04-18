@@ -35,12 +35,12 @@ PROJECT_BRANCHES = {
         'platforms': {
             'win32': {
                 'enable_checktests': False,
-                'slave_platforms': ['win7-ix'],
-                'talos_slave_platforms': ['win7-ix'],
+                'slave_platforms': ['win7_ix'],
+                'talos_slave_platforms': ['win7_ix'],
             },
             'win32-debug': {
                 'enable_checktests': False,
-                'slave_platforms': ['win7-ix'],
+                'slave_platforms': ['win7_ix'],
             },
             'macosx64': {
                 'enable_checktests': False,

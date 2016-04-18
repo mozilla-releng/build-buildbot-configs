@@ -94,13 +94,14 @@ PLATFORMS['macosx64']['mozharness_config'] = {
 }
 PLATFORMS['macosx64']['talos_slave_platforms'] = ['yosemite', 'yosemite_r7']
 
-PLATFORMS['win32']['slave_platforms'] = ['xp-ix', 'win7-ix', 'win7-all']
-PLATFORMS['win32']['talos_slave_platforms'] = ['xp-ix', 'win7-ix']
+PLATFORMS['win32']['slave_platforms'] = ['xp_ix', 'win7_ix', 'win7_vm_gfx']
+PLATFORMS['win32']['talos_slave_platforms'] = ['xp_ix', 'win7_ix']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
-PLATFORMS['win32']['xp-ix'] = {'name': "Windows XP 32-bit",
+PLATFORMS['win32']['xp_ix'] = {'name': "Windows XP 32-bit",
                                'try_by_default': False}
-PLATFORMS['win32']['win7-ix'] = {'name': "Windows 7 32-bit"}
-PLATFORMS['win32']['win7-all'] = {'name': "Windows 7 32-bit"}
+PLATFORMS['win32']['win7_ix'] = {'name': "Windows 7 32-bit"}
+PLATFORMS['win32']['win7_vm_gfx'] = {'name': "Windows 7 VM-GFX 32-bit",
+                                     'try_by_default': False}
 PLATFORMS['win32']['stage_product'] = 'firefox'
 PLATFORMS['win32']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
@@ -212,7 +213,7 @@ for platform, platform_config in PLATFORMS.iteritems():
 
 ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'macosx64', 'win64', ))
 LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', ))
-WIN7_ONLY = ['win7-ix']
+WIN7_ONLY = ['win7_ix']
 
 SUITES = {
     'xperf': {
@@ -1575,7 +1576,7 @@ PLATFORM_UNITTEST_VARS = {
         'env_name': 'win32-perf-unittest',
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
-        'xp-ix': {
+        'xp_ix': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + \
                                    MARIONETTE + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
@@ -1695,7 +1696,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-        'win7-ix': {
+        'win7_ix': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + MARIONETTE + \
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
@@ -1815,7 +1816,7 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-        'win7-all': {
+        'win7_vm_gfx': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + MARIONETTE + \
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
@@ -1934,7 +1935,7 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
             },
-        }
+        },
     },
     'win64': {
         'product_name': 'firefox',
@@ -2759,7 +2760,7 @@ for platform in PLATFORMS.keys():
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_MEDIA
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']+= MOCHITEST_MEDIA
-                    if platform not in ('win64') and slave_platform not in ('snowleopard', 'xp-ix'):
+                    if platform not in ('win64') and slave_platform not in ('snowleopard', 'xp_ix'):
                         BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_MEDIA_E10S
 
             if platform in ('linux', 'linux64') and platform in BRANCHES[name]['platforms']:
@@ -2819,7 +2820,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if platform in branch['platforms'] and slave_platform in branch['platforms'][platform] and \
-                    not slave_platform == 'xp-ix':
+                    not slave_platform == 'xp_ix':
                 if name in TWIGS or ('gecko_version' in branch and branch['gecko_version'] != trunk_gecko_version):
                     branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_3_E10S
                 else:
@@ -2869,7 +2870,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
         if platform not in branch['platforms']:
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7-ix', 'win7-all', 'win10_64'):
+            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7_ix', 'win10_64'):
                 if name not in TWIGS:
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                         MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + REFTEST_E10S + CRASHTEST_E10S + \
@@ -2942,7 +2943,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
             continue
-        for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7-ix', 'win7-all', 'win8_64', 'yosemite'):
+        for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7_ix', 'win8_64', 'yosemite'):
             if slave_platform in branch['platforms'][platform]:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIATESTS
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIATESTS
@@ -2952,7 +2953,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
             continue
-        for slave_platform in ('win7-ix', 'win7-all', 'yosemite_r7'):
+        for slave_platform in ('win7_ix', 'yosemite_r7'):
             if slave_platform in branch['platforms'][platform]:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIA_YOUTUBE_TESTS
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIA_YOUTUBE_TESTS
@@ -3075,7 +3076,7 @@ for platform in PLATFORMS.keys():
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
 
             # Not stable on windows XP
-            if slave_platform in ['xp-ix', 'win10_64', 'yosemite', 'yosemite_r7']:
+            if slave_platform in ['xp_ix', 'win10_64', 'yosemite', 'yosemite_r7']:
                 continue
 
             if platform in BRANCHES[name]['platforms']:
@@ -3130,32 +3131,21 @@ for platform in PLATFORMS.keys():
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
                 WEB_PLATFORM_TESTS_CHUNKED_E10S
-        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('xp-ix', 'yosemite_r7'):
+        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('xp_ix', 'yosemite_r7'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
                 base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
-        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('win7-ix', 'win7-all', 'win8_64'):
+        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('win7_ix', 'win8_64'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
                 base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
 
-
-# Bug 1229790 - enable win7 virtual instances (ec2/spot) on try
-win7_vm_active_branches = ['try']
-win7_vm_inactive_branches = []
-for branch in BRANCHES.keys():
-    if branch not in win7_vm_active_branches:
-        win7_vm_inactive_branches.append(branch)
-delete_slave_platform(BRANCHES, PLATFORMS, {'win32': 'win7-all'}, branch_exclusions=win7_vm_active_branches)
-# Explicitly don't remove win7-ix from talos
-for branch in set(BRANCHES.keys()) - set(win7_vm_inactive_branches):
-    for platform in ('win32', 'win64'):
-        if platform not in BRANCHES[branch]['platforms']:
-            continue
-        if nested_haskey(BRANCHES[branch]['platforms'], platform, 'win7-ix'):
-            del BRANCHES[branch]['platforms'][platform]['win7-ix']
+# Bug 1254580 - Only run Windows in AWS for try
+for branch in set(BRANCHES) - set(['try']):
+    if nested_haskey(BRANCHES[branch]['platforms'], 'win32', 'win7_vm_gfx'):
+        del BRANCHES[branch]['platforms']['win32']['win7_vm_gfx']
 
 # Bug 1253341 - run talos jobs on AWS
 for branch in ('try',):
