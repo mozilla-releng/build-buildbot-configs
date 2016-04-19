@@ -57,20 +57,6 @@ BRANCHES = {
         'email_override': [], # Set to your address when testing
         'package_url': 'http://ftp.stage.mozaws.net/pub/thunderbird/try-builds',
         'talos_masters': [],
-        'platforms': {
-            'win32': {
-                'env': {
-                    'SYMBOL_SERVER_HOST': 'dev-stage01.srv.releng.scl3.mozilla.com',
-                    'MOZ_OBJDIR': 'objdir-tb',
-                    'TINDERBOX_OUTPUT': '1',
-                    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                    # Source server support, bug 506702
-                    'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
-                    'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
-                    'PATH': "${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
-                }
-            }
-        }
     },
 }
 

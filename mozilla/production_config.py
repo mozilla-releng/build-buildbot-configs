@@ -121,21 +121,6 @@ BRANCHES = {
         'notify_real_author': True,
         'package_url': 'https://archive.mozilla.org/pub/firefox/try-builds',
         'talos_masters': [],
-        'platforms': {
-            'win32': {
-                'env': {
-                    'SYMBOL_SERVER_HOST': 'relengweb1.dmz.scl3.mozilla.com',
-                    'MOZ_OBJDIR': 'obj-firefox',
-                    'TINDERBOX_OUTPUT': '1',
-                    'MOZ_CRASHREPORTER_NO_REPORT': '1',
-                    # Source server support, bug 506702
-                    'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
-                    'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
-                    'BINSCOPE': 'C:\Program Files\Microsoft\SDL BinScope\Binscope.exe',
-                    'PATH': "${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
-                }
-            }
-        }
     },
 }
 
