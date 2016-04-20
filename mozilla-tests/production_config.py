@@ -86,7 +86,6 @@ GLOBAL_VARS = {
     'stage_server': 'upload.ffxbld.productdelivery.prod.mozaws.net',
     'stage_username': 'ffxbld',
     'stage_ssh_key': 'ffxbld_rsa',
-    'datazilla_url': 'https://datazilla.mozilla.org/talos',
     'blob_upload': True,
 }
 

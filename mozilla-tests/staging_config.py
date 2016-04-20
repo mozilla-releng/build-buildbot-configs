@@ -16,7 +16,6 @@ GLOBAL_VARS = {
     'stage_server': 'dev-stage01.srv.releng.scl3.mozilla.com',
     'stage_username': 'ffxbld',
     'stage_ssh_key': 'ffxbld_rsa',
-    'datazilla_url': 'https://datazilla.mozilla.org/test',
     'blob_upload': True,
 }
 
