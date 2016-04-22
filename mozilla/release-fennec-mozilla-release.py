@@ -107,6 +107,7 @@ releaseConfig['mozconfigs']          = {
     'android-api-15': 'mobile/android/config/mozconfigs/android-api-15/release',
     'android-x86': 'mobile/android/config/mozconfigs/android-x86/release',
 }
+releaseConfig['source_mozconfig']    = 'browser/config/mozconfigs/linux64/source'
 releaseConfig['releaseChannel']        = 'release'
 releaseConfig["updateChannels"] = {
     "release": {
