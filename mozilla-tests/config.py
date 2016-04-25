@@ -62,7 +62,7 @@ BRANCHES = {
     },
 }
 
-TWIGS = [x for x in ACTIVE_PROJECT_BRANCHES if x not in ('mozilla-inbound', 'fx-team', 'b2g-inbound')]
+TWIGS = [x for x in ACTIVE_PROJECT_BRANCHES if x not in ('mozilla-inbound', 'fx-team')]
 
 setMainFirefoxVersions(BRANCHES)
 
@@ -2639,13 +2639,6 @@ BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
 BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
 BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
-
-######### b2g-inbound
-BRANCHES['b2g-inbound']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['b2g-inbound']['platforms']['macosx64']['talos_slave_platforms'] = []
-BRANCHES['b2g-inbound']['platforms']['linux']['talos_slave_platforms'] = []
-BRANCHES['b2g-inbound']['platforms']['linux64']['talos_slave_platforms'] = []
-BRANCHES['b2g-inbound']['platforms']['win64']['talos_slave_platforms'] = []
 
 ######### mozilla-release
 BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"

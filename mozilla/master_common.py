@@ -36,7 +36,6 @@ BRANCH_PRIORITIES = {
     'comm-aurora': 3,
     # Unlisted branches are prioritized at this level
     'mozilla-inbound': 4,
-    'b2g-inbound': 4,
     'fx-team': 4,
     'try': 5,
     'try-comm-central': 5,

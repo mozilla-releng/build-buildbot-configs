@@ -3011,13 +3011,6 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
         if platform in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
 
-# B2G's INBOUND
-for b in ('b2g-inbound',):
-    for p in BRANCHES[b]['platforms'].keys():
-        if 'linux' not in p:
-            BRANCHES[b]['platforms'][p]['enable_checktests'] = False
-# END B2G's INBOUND
-
 ma_gecko_version = BRANCHES['mozilla-aurora']['gecko_version']
 mb_gecko_version = BRANCHES['mozilla-beta']['gecko_version']
 # enable mozharness desktop builds on m-b, m-a, m-c, and m-c related branches

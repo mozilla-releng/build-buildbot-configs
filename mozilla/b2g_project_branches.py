@@ -14,13 +14,6 @@ PROJECT_BRANCHES = {
         'periodic_start_hours': range(1, 24, 3),
         'enable_perproduct_builds': True,
     },
-    'b2g-inbound': {
-        'repo_path': 'integration/b2g-inbound',
-        'periodic_start_hours': range(2, 24, 3),
-        'enable_perproduct_builds': True,
-        'platforms': {
-        },
-    },
     #'services-central': {},  # Bug 1010674
     # B2G builds not required on the UX branch
     #'ux': {
