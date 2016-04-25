@@ -23,36 +23,6 @@ PROJECT_BRANCHES = {
         },
         'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
     },
-    'b2g-inbound': {
-        'merge_builds': False,
-        'repo_path': 'integration/b2g-inbound',
-        'enable_perproduct_builds': True,
-        'mozconfig_dir': 'mozilla-central',
-        'pgo_strategy': None,
-        'talos_suites': {
-            'xperf': 1,
-        },
-        'platforms': {
-            'win32': {
-                'enable_checktests': False,
-                'slave_platforms': ['win7_ix'],
-                'talos_slave_platforms': ['win7_ix'],
-            },
-            'win32-debug': {
-                'enable_checktests': False,
-                'slave_platforms': ['win7_ix'],
-            },
-            'macosx64': {
-                'enable_checktests': False,
-                'slave_platforms': ['snowleopard'],
-                'talos_slave_platforms': ['snowleopard'],
-            },
-            'macosx64-debug': {
-                'enable_checktests': False,
-                'slave_platforms': ['snowleopard'],
-            },
-        },
-    },
     #'services-central': {},  # Bug 1010674
     # 'alder': {},
     # Bug 1252292 - Schedule e10s tests on Ash for all desktop platforms

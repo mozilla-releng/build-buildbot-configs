@@ -45,7 +45,6 @@ BRANCHES = {
     },
     'mozilla-central': {},
     'mozilla-inbound': {},
-    'b2g-inbound': {},
     #'services-central': {},  # Bug 1010674
     'try': {},
 }
@@ -1348,8 +1347,6 @@ BRANCHES['fx-team']['repo_path'] = "integration/fx-team"
 BRANCHES['mozilla-b2g44_v2_5']['repo_path'] = "releases/mozilla-b2g44_v2_5"
 BRANCHES['mozilla-central']['branch_name'] = "Firefox"
 BRANCHES['mozilla-inbound']['repo_path'] = "integration/mozilla-inbound"
-BRANCHES['b2g-inbound']['branch_name'] = "B2g-Inbound"
-BRANCHES['b2g-inbound']['repo_path'] = "integration/b2g-inbound"
 BRANCHES['try']['pgo_strategy'] = "try"
 BRANCHES['try']['enable_try'] = True
 
