@@ -473,7 +473,7 @@ for _, branch in items_at_least(BRANCHES, 'gecko_version', 30):
     branch['mozharness_archiver_rev'] = 'default'
 
 #Setup Cypress based on default values first
-loadDefaultValues(BRANCHES, cypress, BRANCHES['cypress'])
+loadDefaultValues(BRANCHES, 'cypress', BRANCHES['cypress'])
 if 'mozharness_archiver_rev' in BRANCHES['cypress']:
     # Without this retriggers wouldn't use the repo rev for mozharness.
     del BRANCHES['cypress']['mozharness_archiver_rev']
