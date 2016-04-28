@@ -22,12 +22,18 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['relbranchPrefix']     = 'THUNDERBIRD'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '45.0b4'
-releaseConfig['appVersion']          = '45.0'
+releaseConfig['version']             = '45.1b1'
+releaseConfig['appVersion']          = '45.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_45_0b4'
+releaseConfig['baseTag']             = 'THUNDERBIRD_45_1b1'
 releaseConfig['partialUpdates']      = {
+
+    '45.0b3': {
+        'appVersion': '45.0',
+        'buildNumber': 2,
+        'baseTag': 'THUNDERBIRD_45_0b3',
+    },
 
     '45.0b2': {
         'appVersion': '45.0',
@@ -35,16 +41,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'THUNDERBIRD_45_0b2',
     },
 
-    '45.0b1': {
+    '45.0b4': {
         'appVersion': '45.0',
-        'buildNumber': 3,
-        'baseTag': 'THUNDERBIRD_45_0b1',
-    },
-
-    '44.0b1': {
-        'appVersion': '44.0',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_44_0b1',
+        'baseTag': 'THUNDERBIRD_45_0b4',
     },
 
 }
@@ -56,8 +56,8 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': 'THUNDERBIRD450b3_2016032415_RELBRANCH',
-        'relbranch': 'THUNDERBIRD450b3_2016032415_RELBRANCH',
+        'revision': 'THUNDERBIRD451b1_2016042214_RELBRANCH',
+        'relbranch': 'THUNDERBIRD451b1_2016042214_RELBRANCH',
         'bumpFiles': {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
@@ -68,7 +68,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr45',
         'path': 'releases/mozilla-esr45',
-        'revision': '983d1ccaea8f',
+        'revision': '70c9bb7161ca',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
