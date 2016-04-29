@@ -3140,18 +3140,6 @@ for branch in set(BRANCHES) - set(['try']):
     if nested_haskey(BRANCHES[branch]['platforms'], 'win32', 'win7_vm_gfx'):
         del BRANCHES[branch]['platforms']['win32']['win7_vm_gfx']
 
-# Bug 1253341 - run talos jobs on AWS
-for branch in ('try',):
-    BRANCHES[branch]['platforms']['linux64']['talos_slave_platforms'] = ['ubuntu64_hw', 'ubuntu64_vm_lnx_large']
-    # Add ubuntu64_vm_lnx_large to the talos suites
-    for test, test_config in BRANCHES[branch].items():
-        if not test.endswith('_tests'):
-            continue
-        tests, merge, extra, platforms = test_config
-        if 'ubuntu64_hw' in platforms and 'ubuntu64_vm_lnx_large' not in platforms:
-            platforms = platforms + ['ubuntu64_vm_lnx_large']
-            BRANCHES[branch][test] = (tests, merge, extra, platforms)
-
 if __name__ == "__main__":
     import sys
     import pprint
