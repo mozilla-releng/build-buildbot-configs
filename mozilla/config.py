@@ -2466,7 +2466,6 @@ BRANCHES['mozilla-central']['enable_mac_a11y'] = True
 BRANCHES['mozilla-central']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['mozilla-central']['enable_l10n'] = True
-BRANCHES['mozilla-central']['enable_l10n_onchange'] = False
 BRANCHES['mozilla-central']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-central']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                                  'macosx64', 'win64']
@@ -2518,7 +2517,6 @@ BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-release']['enable_mac_a11y'] = True
 # L10n configuration
 BRANCHES['mozilla-release']['enable_l10n'] = False
-BRANCHES['mozilla-release']['enable_l10n_onchange'] = False
 BRANCHES['mozilla-release']['l10nNightlyUpdate'] = False
 BRANCHES['mozilla-release']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                                  'macosx64']
@@ -2617,7 +2615,6 @@ BRANCHES['mozilla-beta']['enable_mac_a11y'] = True
 BRANCHES['mozilla-beta']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['mozilla-beta']['enable_l10n'] = False
-BRANCHES['mozilla-beta']['enable_l10n_onchange'] = False
 BRANCHES['mozilla-beta']['l10nNightlyUpdate'] = False
 BRANCHES['mozilla-beta']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                               'macosx64']
@@ -2726,7 +2723,6 @@ BRANCHES['mozilla-aurora']['enable_mac_a11y'] = True
 BRANCHES['mozilla-aurora']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['mozilla-aurora']['enable_l10n'] = True
-BRANCHES['mozilla-aurora']['enable_l10n_onchange'] = False
 BRANCHES['mozilla-aurora']['l10nNightlyUpdate'] = True
 BRANCHES['mozilla-aurora']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                                  'macosx64', 'win64']
@@ -2777,7 +2773,6 @@ BRANCHES['mozilla-esr38']['enable_mac_a11y'] = True
 BRANCHES['mozilla-esr38']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['mozilla-esr38']['enable_l10n'] = False
-BRANCHES['mozilla-esr38']['enable_l10n_onchange'] = False
 BRANCHES['mozilla-esr38']['l10nNightlyUpdate'] = False
 BRANCHES['mozilla-esr38']['l10n_platforms'] = ['linux', 'linux64', 'win32', 'macosx64']
 BRANCHES['mozilla-esr38']['l10nDatedDirs'] = True
@@ -2805,7 +2800,6 @@ BRANCHES['mozilla-esr45']['unittest_build_space'] = 6
 BRANCHES['mozilla-esr45']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
 # L10n configuration
 BRANCHES['mozilla-esr45']['enable_l10n'] = False
-BRANCHES['mozilla-esr45']['enable_l10n_onchange'] = False
 BRANCHES['mozilla-esr45']['l10nNightlyUpdate'] = False
 BRANCHES['mozilla-esr45']['l10n_platforms'] = ['linux', 'linux64', 'win32', 'macosx64', 'win64']
 BRANCHES['mozilla-esr45']['l10nDatedDirs'] = True
@@ -2833,7 +2827,6 @@ BRANCHES['mozilla-b2g44_v2_5']['enable_mac_a11y'] = True
 BRANCHES['mozilla-b2g44_v2_5']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['mozilla-b2g44_v2_5']['enable_l10n'] = False
-BRANCHES['mozilla-b2g44_v2_5']['enable_l10n_onchange'] = False
 BRANCHES['mozilla-b2g44_v2_5']['l10nNightlyUpdate'] = False
 BRANCHES['mozilla-b2g44_v2_5']['l10n_platforms'] = ['linux', 'linux64',
                                                     'win32', 'macosx64']
@@ -2875,7 +2868,6 @@ BRANCHES['try']['desktop_mozharness_repacks_enabled'] = True
 BRANCHES['try']['l10n_platforms'] = ['linux', 'linux64', 'win32', 'macosx64',
                                      'win64']
 BRANCHES['try']['enable_l10n_dep_scheduler'] = False
-BRANCHES['try']['enable_l10n_onchange'] = False
 BRANCHES['try']['l10nNightlyUpdate'] = False
 BRANCHES['try']['l10nDatedDirs'] = False
 # need this or the master.cfg will bail

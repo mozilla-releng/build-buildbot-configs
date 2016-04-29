@@ -726,7 +726,6 @@ BRANCHES['comm-central']['enable_mac_a11y'] = True
 BRANCHES['comm-central']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['comm-central']['enable_l10n'] = True
-BRANCHES['comm-central']['enable_l10n_onchange'] = False
 BRANCHES['comm-central']['l10nNightlyUpdate'] = True
 BRANCHES['comm-central']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                               'macosx64']
@@ -768,7 +767,6 @@ BRANCHES['comm-esr38']['enable_mac_a11y'] = True
 BRANCHES['comm-esr38']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['comm-esr38']['enable_l10n'] = False
-BRANCHES['comm-esr38']['enable_l10n_onchange'] = False
 BRANCHES['comm-esr38']['l10nNightlyUpdate'] = False
 BRANCHES['comm-esr38']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                             'macosx64']
@@ -799,7 +797,6 @@ BRANCHES['comm-esr45']['enable_mac_a11y'] = True
 BRANCHES['comm-esr45']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['comm-esr45']['enable_l10n'] = False
-BRANCHES['comm-esr45']['enable_l10n_onchange'] = False
 BRANCHES['comm-esr45']['l10nNightlyUpdate'] = False
 BRANCHES['comm-esr45']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                             'macosx64']
@@ -830,7 +827,6 @@ BRANCHES['comm-beta']['enable_mac_a11y'] = True
 BRANCHES['comm-beta']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['comm-beta']['enable_l10n'] = False
-BRANCHES['comm-beta']['enable_l10n_onchange'] = False
 BRANCHES['comm-beta']['l10nNightlyUpdate'] = False
 BRANCHES['comm-beta']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                            'macosx64']
@@ -865,7 +861,6 @@ BRANCHES['comm-aurora']['enable_mac_a11y'] = True
 BRANCHES['comm-aurora']['unittest_build_space'] = 6
 # L10n configuration
 BRANCHES['comm-aurora']['enable_l10n'] = True
-BRANCHES['comm-aurora']['enable_l10n_onchange'] = False
 BRANCHES['comm-aurora']['l10nNightlyUpdate'] = True
 BRANCHES['comm-aurora']['l10n_platforms'] = ['linux', 'linux64', 'win32',
                                              'macosx64']
@@ -913,7 +908,6 @@ BRANCHES['try-comm-central']['enable_nightly'] = False
 BRANCHES['try-comm-central']['enable_mac_a11y'] = True
 # only do unittests locally until they are switched over to talos-r3
 BRANCHES['try-comm-central']['enable_l10n'] = False
-BRANCHES['try-comm-central']['enable_l10n_onchange'] = False
 BRANCHES['try-comm-central']['l10nNightlyUpdate'] = False
 BRANCHES['try-comm-central']['l10nDatedDirs'] = False
 # need this or the master.cfg will bail
