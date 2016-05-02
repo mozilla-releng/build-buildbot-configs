@@ -63,7 +63,6 @@ GLOBAL_VARS = {
         'win64': {},
         'macosx64': {},
         'linux-debug': {},
-        'linux64-br-haz': {},
         'linux64-debug': {},
         'linux64-asan': {},
         'linux64-asan-debug': {},
@@ -756,59 +755,6 @@ PLATFORM_VARS = {
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
             'consider_for_nightly': False,
-        },
-        'linux64-sh-haz': {
-            'mozharness_config': {
-                'script_name': 'scripts/spidermonkey_build.py',
-                'extra_args': [
-                    '--config-file', 'hazards/build_shell.py',
-                    '--config-file', 'hazards/common.py',
-                ],
-                'mozharness_repo_cache': '/tools/checkouts/mozharness',
-                'tools_repo_cache': '/tools/checkouts/build-tools',
-            },
-            'env': {
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-            },
-            'stage_product': 'firefox',
-            'product_name': 'firefox',
-            'base_name': '%(platform)s_%(branch)s',
-            'slaves': SLAVES['mock'],
-            'try_by_default': False,
-            'consider_for_nightly': False,
-            'mock_target': 'mozilla-centos6-x86_64',
-            'reboot_command': [
-                '/tools/checkouts/mozharness/external_tools/count_and_reboot.py',
-                '-f', '../reboot_count.txt', '-n', '1', '-z'
-            ],
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-        },
-        'linux64-br-haz': {
-            'mozharness_config': {
-                'script_name': 'scripts/spidermonkey_build.py',
-                'extra_args': [
-                    '--config-file', 'hazards/build_browser.py',
-                    '--config-file', 'hazards/common.py',
-                ],
-                'mozharness_repo_cache': '/tools/checkouts/mozharness',
-                'tools_repo_cache': '/tools/checkouts/build-tools',
-            },
-
-            'env': {
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-            },
-            'stage_product': 'firefox',
-            'product_name': 'firefox',
-            'base_name': '%(platform)s_%(branch)s',
-            'slaves': SLAVES['mock'],
-            'try_by_default': True,
-            'consider_for_nightly': False,
-            'mock_target': 'mozilla-centos6-x86_64',
-            'reboot_command': [
-                '/tools/checkouts/mozharness/external_tools/count_and_reboot.py',
-                '-f', '../reboot_count.txt', '-n', '1', '-z'
-            ],
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
         },
         'linux64-cc': {
             'mozharness_python': '/tools/buildbot/bin/python',
@@ -2159,13 +2105,6 @@ PROJECTS = {
     },
 }
 
-# For bug 978211, we are using MOZ_AUTOMATION to trigger the automation build
-# steps from mach. However, these build variants already use mach, and so they
-# would inadvertently trigger the automation steps. We can remove the
-# MOZ_AUTOMATION environment variable for them, since it's not used anyway.
-del PLATFORM_VARS["linux64-sh-haz"]["env"]["MOZ_AUTOMATION"]
-del PLATFORM_VARS["linux64-br-haz"]["env"]["MOZ_AUTOMATION"]
-
 # Override config settings with local settings
 def apply_localconfig(config, local):
     for k, v in local.items():
@@ -2357,7 +2296,6 @@ BRANCHES = {
         # The following platforms are not part of the default set,
         # so only run on Try.
         'extra_platforms': {
-            'linux64-sh-haz': {},
             'linux64-cc': {},
             'linux64-tsan': {},
             'win32-st-an-debug': {},
@@ -2883,8 +2821,6 @@ BRANCHES['try']['platforms']['linux64-asan']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-asan-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-st-an-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-tsan']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux64-sh-haz']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux64-br-haz']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-cc']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['win32-st-an-debug']['slaves'] = TRY_SLAVES['win64-rev2']
