@@ -141,6 +141,12 @@ PROJECT_BRANCHES = {
             # TODO - fennec
             "fennec": "",
         },
+        'uptake_monitoring_enabled': True,
+        'uptake_monitoring_config': {
+            "firefox": 'releases/dev_bouncer_firefox_beta.py',
+            # TODO - fennec
+            "fennec": "",
+        },
         'postrelease_bouncer_aliases_enabled': True,
         'postrelease_bouncer_aliases_config': {
             "firefox": 'releases/dev_bouncer_firefox_beta.py',
@@ -290,6 +296,12 @@ PROJECT_BRANCHES = {
         'postrelease_version_bump_enabled': True,
         'postrelease_version_bump_config': {
             "firefox": 'releases/dev_postrelease_firefox_release.py',
+            # TODO - fennec
+            "fennec": "",
+        },
+        'uptake_monitoring_enabled': True,
+        'uptake_monitoring_config': {
+            "firefox": 'releases/dev_bouncer_firefox_beta.py',
             # TODO - fennec
             "fennec": "",
         },
