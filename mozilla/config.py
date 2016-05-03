@@ -2952,9 +2952,8 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
             BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
 
 ma_gecko_version = BRANCHES['mozilla-aurora']['gecko_version']
-mb_gecko_version = BRANCHES['mozilla-beta']['gecko_version']
-# enable mozharness desktop builds on m-b, m-a, m-c, and m-c related branches
-for name, branch in items_at_least(BRANCHES, 'gecko_version', mb_gecko_version):
+# enable mozharness desktop builds on 46.0 and higher
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
     # if true, any platform with mozharness_desktop_build in its config
     # will use mozharness instead of MozillaBuildFactory
     branch['desktop_mozharness_builds_enabled'] = True
