@@ -46,7 +46,7 @@ GLOBAL_VARS = {
     'stage_server': 'upload.ffxbld.productdelivery.prod.mozaws.net',
     'download_base_url': 'http://archive.mozilla.org/pub/firefox',
     'mobile_download_base_url': 'http://archive.mozilla.org/pub/mobile',
-    'graph_server': 'graphs.mozilla.org',
+    'graph_server': None,
     'balrog_api_root': 'https://aus4-admin.mozilla.org/api',
     # Used by special docker workers with balrogVpnProxy feature enabled
     'funsize_balrog_api_root': 'http://balrog/api',
