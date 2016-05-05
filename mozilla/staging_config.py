@@ -34,7 +34,7 @@ GLOBAL_VARS = {
     'stage_server': 'upload.ffxbld.productdelivery.stage.mozaws.net',
     'download_base_url': 'http://ftp.stage.mozaws.net/pub/firefox',
     'mobile_download_base_url': 'http://ftp.stage.mozaws.net/pub/mobile',
-    'graph_server': 'graphs.allizom.org',
+    'graph_server': None,
     'balrog_api_root': 'https://aus4-admin-dev.allizom.org/api',
     'balrog_username': 'stage-ffxbld',
     'build_tools_repo_path': 'users/stage-ffxbld/tools',

@@ -7,7 +7,7 @@ GLOBAL_VARS = {
     'stage_server': 'upload.tbirdbld.productdelivery.stage.mozaws.net',
     'balrog_username': 'stage-tbirdbld',
     'download_base_url': 'http://ftp.stage.mozaws.net/pub/thunderbird',
-    'graph_server': 'graphs.allizom.org',
+    'graph_server': None,
     'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'https://api-pub-build.allizom.org/clobberer/lastclobber',
     'talos_masters': [],
