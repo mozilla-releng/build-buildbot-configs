@@ -3264,6 +3264,7 @@ for branch in set(BRANCHES) - set(['try']):
     if nested_haskey(BRANCHES[branch]['platforms'], 'win32', 'win7_vm_gfx'):
         del BRANCHES[branch]['platforms']['win32']['win7_vm_gfx']
 
+
 # Bug 1253341 - run talos jobs on AWS
 for branch in ('try',):
     BRANCHES[branch]['platforms']['linux64']['talos_slave_platforms'] = ['ubuntu64_hw', 'ubuntu64_vm_large']
@@ -3275,6 +3276,17 @@ for branch in ('try',):
         if 'ubuntu64_hw' in platforms and 'ubuntu64_vm_large' not in platforms:
             platforms = platforms + ['ubuntu64_vm_large']
             BRANCHES[branch][test] = (tests, merge, extra, platforms)
+
+
+#Bug 1269543 - Stop running tests on OS X 10.6 on Firefox 49+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
+    if name in ['try']:
+        continue
+    for platform in branch['platforms'].keys():
+        if platform not in ['macosx64']:
+            continue
+        for slave_platform in ['snowleopard']:
+            del BRANCHES[name]['platforms'][platform][slave_platform]
 
 if __name__ == "__main__":
     import sys
