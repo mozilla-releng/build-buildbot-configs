@@ -3257,6 +3257,7 @@ for platform in PLATFORMS.keys():
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
 
+
 # Bug 1254580 - Only run Windows in AWS for try
 for branch in set(BRANCHES) - set(['try']):
     if nested_haskey(BRANCHES[branch]['platforms'], 'win32', 'win7_vm'):
@@ -3287,6 +3288,15 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
             continue
         for slave_platform in ['snowleopard']:
             del BRANCHES[name]['platforms'][platform][slave_platform]
+
+
+#Bug 1268542 - Disable Linux64 Debug builds and tests in buildbot
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
+    for platform in branch['platforms'].keys():
+        if platform not in ['linux64']:
+            continue
+        for slave_platform in ['ubuntu64_vm']:
+            BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
 
 if __name__ == "__main__":
     import sys
