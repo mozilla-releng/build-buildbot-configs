@@ -654,7 +654,7 @@ MOCHITEST_WEBGL = [
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'mochitest-gl'],
         'blob_upload': True,
-        'script_maxtime': 12000,
+        'script_maxtime': 5400,
     }),
 ]
 
@@ -664,7 +664,7 @@ MOCHITEST_WEBGL_E10S = [
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'mochitest-gl', '--e10s'],
         'blob_upload': True,
-        'script_maxtime': 1800,
+        'script_maxtime': 5400,
     }),
 ]
 
