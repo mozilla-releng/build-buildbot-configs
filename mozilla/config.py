@@ -2985,14 +2985,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
         if 'api-9' in platform:
             del branch['platforms'][platform]
 
-
-##Bug 1268542 - Disable Linux64 Debug builds and tests in buildbot
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
-    for platform in branch['platforms'].keys():
-        if platform not in ['linux64-debug']:
-            continue
-        del branch['platforms'][platform]
-
 if __name__ == "__main__":
     import sys
     import pprint
