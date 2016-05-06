@@ -654,7 +654,7 @@ MOCHITEST_WEBGL = [
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'mochitest-gl'],
         'blob_upload': True,
-        'script_maxtime': 12000,
+        'script_maxtime': 5400,
     }),
 ]
 
@@ -664,7 +664,7 @@ MOCHITEST_WEBGL_E10S = [
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'mochitest-gl', '--e10s'],
         'blob_upload': True,
-        'script_maxtime': 1800,
+        'script_maxtime': 5400,
     }),
 ]
 
@@ -3263,6 +3263,16 @@ for branch in set(BRANCHES) - set(['try']):
         del BRANCHES[branch]['platforms']['win32']['win7_vm']
     if nested_haskey(BRANCHES[branch]['platforms'], 'win32', 'win7_vm_gfx'):
         del BRANCHES[branch]['platforms']['win32']['win7_vm_gfx']
+
+#Bug 1269543 - Stop running tests on OS X 10.6 on Firefox 49+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
+    if name in ['try']:
+        continue
+    for platform in branch['platforms'].keys():
+        if platform not in ['macosx64']:
+            continue
+        for slave_platform in ['snowleopard']:
+            del BRANCHES[name]['platforms'][platform][slave_platform]
 
 if __name__ == "__main__":
     import sys
