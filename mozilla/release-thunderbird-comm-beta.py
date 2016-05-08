@@ -50,6 +50,7 @@ releaseConfig['partialUpdates']      = {
 }
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['appVersion']
+releaseConfig['nextVersion']         = releaseConfig['version']
 releaseConfig['nextMilestone']       = releaseConfig['milestone']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
@@ -62,6 +63,10 @@ releaseConfig['sourceRepositories']  = {
             'mail/config/version.txt': {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
+            },
+            'mail/config/version_display.txt': {
+                'version': releaseConfig['version'],
+                'nextVersion': releaseConfig['nextVersion']
             },
         }
     },
