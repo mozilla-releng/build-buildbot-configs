@@ -26,7 +26,7 @@ releaseConfig['mozilla_srcdir']      = 'mozilla'
 releaseConfig['version']             = '45.1.0'
 releaseConfig['appVersion']          = '45.1.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
+releaseConfig['buildNumber']         = 3
 releaseConfig['baseTag']             = 'THUNDERBIRD_45_1_0'
 releaseConfig['partialUpdates']      = {
 
@@ -57,7 +57,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr45',
         'path': 'releases/comm-esr45',
-        'revision': 'a8554f3ada02',
+        'revision': '18202500eb6a',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -69,7 +69,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr45',
         'path': 'releases/mozilla-esr45',
-        'revision': '999f56e779ad',
+        'revision': '04ca47a6ad05',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
