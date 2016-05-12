@@ -41,7 +41,7 @@ for i in range(1, 34) + range(35, 93) + range(95, 147) + range(164, 166):  # sla
 for i in range(1, 3) + range(7, 8):   #slaves decomm bug 1226180
     SLAVES['yosemite']['t-yosemite-r5-%04i' % i] = {}
 
-for i in range(1, 201):
+for i in range(1, 393):
     SLAVES['yosemite_r7']['t-yosemite-r7-%04i' % i] = {}
 
 for i in range(1, 800) + range(1000, 1100):
