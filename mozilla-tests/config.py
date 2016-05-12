@@ -3257,15 +3257,44 @@ for platform in PLATFORMS.keys():
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
 
+###
+# Bug 1271355 - Run Windows tests in AWS
+# Remove the new AWS platforms from older branches where they won't be running
+for name, branch in items_before(BRANCHES, 'gecko_version', 49):
+    if nested_haskey(BRANCHES[name]['platforms'], 'win32', 'win7_vm'):
+        del BRANCHES[name]['platforms']['win32']['win7_vm']
+    if nested_haskey(BRANCHES[name]['platforms'], 'win32', 'win7_vm_gfx'):
+        del BRANCHES[name]['platforms']['win32']['win7_vm_gfx']
 
-# Bug 1254580 - Only run Windows in AWS for try
-for branch in set(BRANCHES) - set(['try']):
-    if nested_haskey(BRANCHES[branch]['platforms'], 'win32', 'win7_vm'):
-        del BRANCHES[branch]['platforms']['win32']['win7_vm']
-    if nested_haskey(BRANCHES[branch]['platforms'], 'win32', 'win7_vm_gfx'):
-        del BRANCHES[branch]['platforms']['win32']['win7_vm_gfx']
+# Only enable suites in AWS that are working
+WORKING_WIN7_AWS_OPT_SUITES = WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS + GTEST + CPPUNIT + JITTEST + OTHER_REFTESTS
+WORKING_WIN7_AWS_DEBUG_SUITES = GTEST + CPPUNIT + JITTEST + WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS + OTHER_REFTESTS
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
+    # Leave all suites running on try
+    if name == 'try':
+        continue
 
-#Bug 1269543 - Stop running tests on OS X 10.6 on Firefox 49+
+    # Skip branches where win32 isn't running
+    if not nested_haskey(branch, 'platforms', 'win32'):
+        continue
+
+    win32 = branch['platforms']['win32']
+
+    if 'win7_vm' in win32:
+        win32['win7_vm']['opt_unittest_suites'] = WORKING_WIN7_AWS_OPT_SUITES
+        win32['win7_vm']['debug_unittest_suites'] = WORKING_WIN7_AWS_DEBUG_SUITES
+
+    # Disable these suites from the IX machines
+    if 'win7_ix' in win32:
+        for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
+            for t in win32['win7_vm'][test_type]:
+                if t in win32['win7_ix'][test_type]:
+                    win32['win7_ix'][test_type].remove(t)
+    if 'win7_vm_gfx' in win32:
+        del win32['win7_vm_gfx']
+
+###
+# Bug 1269543 - Stop running tests on OS X 10.6 on Firefox 49+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
     if name in ['try']:
         continue
