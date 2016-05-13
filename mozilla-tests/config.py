@@ -100,8 +100,7 @@ PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp_ix'] = {'name': "Windows XP 32-bit",
                                'try_by_default': False}
 PLATFORMS['win32']['win7_ix'] = {'name': "Windows 7 32-bit"}
-PLATFORMS['win32']['win7_vm'] = {'name': "Windows 7 VM 32-bit",
-                                     'try_by_default': False}
+PLATFORMS['win32']['win7_vm'] = {'name': "Windows 7 VM 32-bit"}
 PLATFORMS['win32']['win7_vm_gfx'] = {'name': "Windows 7 VM-GFX 32-bit",
                                      'try_by_default': False}
 PLATFORMS['win32']['stage_product'] = 'firefox'
