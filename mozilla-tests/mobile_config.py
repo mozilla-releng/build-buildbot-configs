@@ -2689,6 +2689,22 @@ ANDROID_2_3_MOCHITEST_MEDIA = [
     ),
 ]
 
+ANDROID_4_3_GPU_CHROME = [
+    ('mochitest-gpu', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'mochitest-plain',
+            '--test-suite', 'mochitest-chrome',
+            '--subsuite=gpu',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    }),
+]
+
 for suite in ANDROID_2_3_MOZHARNESS_DICT:
     if suite[0].startswith('mochitest-gl'):
         continue
@@ -3015,6 +3031,19 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
             }
             BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_large']['opt_unittest_suites'] += ANDROID_4_3_MOCHITEST_MEDIA
             BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_large']['debug_unittest_suites'] += ANDROID_4_3_MOCHITEST_MEDIA
+
+# Add gl-chrome on try for Android 4.3 API 15+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
+    if name not in ('try' ):
+       continue
+    for platform in branch['platforms']:
+        if platform not in branch['platforms'] or platform not in ('android-api-15',):
+            continue
+        branch['platforms'][platform]['ubuntu64_vm_armv7_mobile']['opt_unittest_suites'] += \
+                ANDROID_4_3_GPU_CHROME
+        branch['platforms'][platform]['ubuntu64_vm_armv7_mobile']['debug_unittest_suites'] += \
+                ANDROID_4_3_GPU_CHROME
+
 
 # Bug 1250999 - releng - releng work for dropping api 9-10
 # disable api-9-10 mobile builds on >= 48 based branches

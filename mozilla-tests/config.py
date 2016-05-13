@@ -668,6 +668,31 @@ MOCHITEST_WEBGL_E10S = [
     }),
 ]
 
+MOCHITEST_GPU = [
+    ('mochitest-gpu', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite',
+                       'mochitest-plain,mochitest-chrome,mochitest-browser-chrome',
+                       '--subsuite=gpu',
+                       '--disable-e10s'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
+MOCHITEST_GPU_E10S = [
+    ('mochitest-gpu-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite',
+                       'mochitest-plain,mochitest-chrome,mochitest-browser-chrome',
+                       '--subsuite=gpu'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
 ### Mochitest Combinations ###
 MOCHITEST = MOCHITEST_WO_BC + MOCHITEST_OTHER
 
@@ -930,6 +955,12 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST_CHUNKED + \
                                      REFTEST_FOUR_CHUNKS,
             'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1054,6 +1085,12 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST_CHUNKED + \
                                     REFTEST_FOUR_CHUNKS,
             'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1585,6 +1622,12 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
                                      REFTEST_ONE_CHUNK,
             'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1705,6 +1748,12 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
                                      REFTEST_ONE_CHUNK,
             'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1825,6 +1874,12 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
                                      REFTEST_ONE_CHUNK,
             'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1945,6 +2000,12 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
                                      REFTEST_ONE_CHUNK,
             'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -2076,6 +2137,12 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
                                      REFTEST_ONE_CHUNK,
             'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -2196,6 +2263,12 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
                                      REFTEST_ONE_CHUNK,
             'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -2322,6 +2395,12 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
                                      REFTEST_ONE_CHUNK,
             'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -2439,6 +2518,12 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_ONE_CHUNK,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + REFTEST_ONE_CHUNK,
             'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -2553,6 +2638,12 @@ PLATFORM_UNITTEST_VARS = {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_ONE_CHUNK,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + REFTEST_ONE_CHUNK,
             'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -3102,6 +3193,30 @@ for branch_name in ('try', 'mozilla-central'):
                 continue
             if slave_platform in branch['platforms'][platform]:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_SCREENSHOTS
+
+# Enable gpu jobs on try
+for branch_name in ('try',):
+    branch = BRANCHES[branch_name]
+    for platform in PLATFORMS.keys():
+        # We don't want these jobs for these platforms
+        if platform in ('linux64-asan', 'linux64-cc', 'linux64-tsan'):
+            continue
+
+        platform_info = PLATFORMS.get(platform)
+        for slave_platform in platform_info.get('slave_platforms'):
+            if slave_platform in branch['platforms'][platform]:
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
+                    MOCHITEST_GPU
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
+                    MOCHITEST_GPU_E10S
+
+                # Do not add Linux x64 debug since it is running on TaskCluster
+                if slave_platform == 'ubuntu64_vm':
+                    continue
+                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                    MOCHITEST_GPU
+                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                    MOCHITEST_GPU_E10S
 
 
 ### Test suites that only run on Cedar ###
