@@ -2696,7 +2696,6 @@ ANDROID_4_3_GPU_CHROME = [
         'extra_args': [
             '--cfg', 'android/androidarm.py',
             '--test-suite', 'mochitest-plain',
-            '--test-suite', 'mochitest-chrome',
             '--subsuite=gpu',
         ],
         'blob_upload': True,
