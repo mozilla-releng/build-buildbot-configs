@@ -2,7 +2,6 @@ SlavePasswords = {
     "linux": "pass",
     "linux64": "pass",
     "ubuntu32_vm": "pass",
-    "ubuntu32_vm-b2gdt": "pass",
     "ubuntu64_vm_mobile": "pass",
     "ubuntu64_vm_armv7_mobile": "pass",
     "ubuntu64_vm": "pass",
@@ -11,15 +10,7 @@ SlavePasswords = {
     "ubuntu64_vm_armv7_large": "pass",
     "ubuntu64-asan_vm": "pass",
     "ubuntu64-asan_vm_lnx_large": "pass",
-    "ubuntu64_vm-b2g": "pass",
-    "ubuntu64_vm-b2g-emulator": "pass",
-    "ubuntu64_vm-b2g-lg-emulator": "pass",
-    "ubuntu64_vm-b2g-emulator-jb": "pass",
-    "ubuntu64_vm-b2g-emulator-kk": "pass",
-    "ubuntu64_vm-b2g-emulator-l": "pass",
     "ubuntu64_hw": "pass",
-    "ubuntu64_hw-b2g": "pass",
-    "tiger": "pass",
     "snowleopard": "pass",
     "yosemite": "pass",
     "yosemite_r7": "pass",
@@ -35,7 +26,6 @@ SlavePasswords = {
     "win10_64": "pass",
     "w764": "pass",
     "win64_vm": "pass",
-    "vista": "pass",
 }
 
 blobber_username = 'user'

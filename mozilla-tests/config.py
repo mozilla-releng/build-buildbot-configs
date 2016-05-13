@@ -3015,10 +3015,8 @@ for platform in PLATFORMS.keys():
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += LUCIDDREAM
 
-# mochitest-jetpack everywhere except on versioned B2G branches
+# mochitest-jetpack everywhere
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
-    if name.startswith('mozilla-b2g'):
-        continue
     for pf in PLATFORMS:
         if pf not in branch['platforms']:
             continue
@@ -3206,8 +3204,6 @@ for branch in BRANCHES.keys():
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if slave_platform not in BRANCHES[branch]['platforms'][platform]:
-                continue
-            if branch.startswith('mozilla-b2g'):
                 continue
             bc_suite = MOCHITEST_BC_3[:]
             dt_opt_suite = MOCHITEST_DT_2[:]

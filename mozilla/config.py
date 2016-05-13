@@ -2284,13 +2284,6 @@ BRANCHES = {
             'win64-debug': {},
         },
     },
-    'mozilla-b2g44_v2_5': {
-        'merge_builds': False,
-        'branch_projects': [],
-        'lock_platforms': True,
-        'gecko_version': 44,
-        'platforms': {},
-    },
     'try': {
         'branch_projects': ['spidermonkey_try'],
         # The following platforms are not part of the default set,
@@ -2765,31 +2758,6 @@ BRANCHES['mozilla-esr45']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr45']['enable_hpkp_update'] = True
 BRANCHES['mozilla-esr45']['enable_valgrind'] = False
 BRANCHES['mozilla-esr45']['enabled_products'] = ['firefox']
-######## mozilla-b2g44_v2_5
-BRANCHES['mozilla-b2g44_v2_5']['repo_path'] = 'releases/mozilla-b2g44_v2_5'
-BRANCHES['mozilla-b2g44_v2_5']['update_channel'] = 'nightly-b2g44-2.5'
-BRANCHES['mozilla-b2g44_v2_5']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
-BRANCHES['mozilla-b2g44_v2_5']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-b2g44_v2_5']['start_hour'] = [3]
-BRANCHES['mozilla-b2g44_v2_5']['start_minute'] = [45]
-BRANCHES['mozilla-b2g44_v2_5']['pgo_platforms'] = []
-BRANCHES['mozilla-b2g44_v2_5']['enable_mac_a11y'] = True
-BRANCHES['mozilla-b2g44_v2_5']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['mozilla-b2g44_v2_5']['enable_l10n'] = False
-BRANCHES['mozilla-b2g44_v2_5']['l10nNightlyUpdate'] = False
-BRANCHES['mozilla-b2g44_v2_5']['l10n_platforms'] = ['linux', 'linux64',
-                                                    'win32', 'macosx64']
-BRANCHES['mozilla-b2g44_v2_5']['l10nDatedDirs'] = True
-BRANCHES['mozilla-b2g44_v2_5']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-b2g44_v2_5'
-BRANCHES['mozilla-b2g44_v2_5']['enable_nightly'] = False
-BRANCHES['mozilla-b2g44_v2_5']['create_partial'] = False
-BRANCHES['mozilla-b2g44_v2_5']['enable_blocklist_update'] = False
-BRANCHES['mozilla-b2g44_v2_5']['enable_hsts_update'] = True
-BRANCHES['mozilla-b2g44_v2_5']['enable_hpkp_update'] = True
-BRANCHES['mozilla-b2g44_v2_5']['enable_valgrind'] = False
-BRANCHES['mozilla-b2g44_v2_5']['enabled_products'] = ['firefox']
 
 
 ######## try
