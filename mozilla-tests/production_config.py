@@ -62,14 +62,6 @@ for i in range(1, 3):
     SLAVES['win64_vm']['tst-w64-ec2-%03i' % i] = {}
 
 SLAVES['ubuntu64-asan_vm'] = SLAVES['ubuntu64_vm']
-# Use "-b2g" suffix to make misc.py generate unique builder names
-SLAVES['ubuntu32_vm-b2gdt'] = SLAVES['ubuntu32_vm']
-SLAVES['ubuntu64_vm-b2g'] = SLAVES['ubuntu64_vm']
-SLAVES['ubuntu64_vm-b2g-emulator'] = SLAVES['ubuntu64_vm']
-SLAVES['ubuntu64_vm-b2g-lg-emulator'] = SLAVES['ubuntu64_vm_large']
-SLAVES['ubuntu64_vm-b2g-emulator-jb'] = SLAVES['ubuntu64_vm']
-SLAVES['ubuntu64_vm-b2g-emulator-kk'] = SLAVES['ubuntu64_vm']
-SLAVES['ubuntu64_hw-b2g'] = SLAVES['ubuntu64_hw']
 SLAVES['win8_64'] = SLAVES['win8']
 SLAVES['win10_64'] = SLAVES['win10']
 SLAVES['ubuntu64_vm_mobile'] = SLAVES['ubuntu64_vm']
@@ -151,4 +143,3 @@ PROJECTS = {
         'tinderbox_tree': 'Jetpack',
     },
 }
-B2G_PROJECTS = {}

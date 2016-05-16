@@ -212,7 +212,7 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
             local_links=[(environment_config, 'localconfig.py'),
                          ('thunderbird_' + environment_config,
                           'thunderbird_localconfig.py'),
-                         ('b2g_' + environment_config, 'b2g_localconfig.py')],
+                         ],
             extras=[('master_config.json',
                      json.dumps(m, indent=2, sort_keys=True))],
             log=log

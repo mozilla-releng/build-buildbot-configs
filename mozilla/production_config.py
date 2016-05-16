@@ -99,10 +99,6 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-Esr45',
         'mobile_tinderbox_tree': 'Mozilla-Esr45',
     },
-    'mozilla-b2g44_v2_5': {
-        'tinderbox_tree': 'Mozilla-B2g44-v2.5',
-        'mobile_tinderbox_tree': 'Mozilla-B2g44-v2.5',
-    },
     'mozilla-beta': {
         'tinderbox_tree': 'Mozilla-Beta',
         'mobile_tinderbox_tree': 'Mozilla-Beta',
