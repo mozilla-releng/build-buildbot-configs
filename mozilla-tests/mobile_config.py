@@ -2884,10 +2884,6 @@ BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['pgo_platforms'] = []
 BRANCHES['try']['enable_try'] = True
 
-######## cedar
-# Until we green out these Android x86 tests
-BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] = ANDROID_X86_NOT_GREEN_DICT[:]
-
 #split 2.3 tests to ones that can run on ix and AWS
 for suite in ANDROID_2_3_MOZHARNESS_DICT:
     if suite[0].startswith('plain-reftest'):

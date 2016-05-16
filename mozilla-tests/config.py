@@ -3322,45 +3322,6 @@ for branch_name in ('try',):
                     MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
 
 
-### Test suites that only run on Cedar ###
-# Turn off most suites on cedar (bug 1198400)
-for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['cedar']['platforms']:
-        continue
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform in BRANCHES['cedar']['platforms'][platform]:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] = []
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
-
-BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE
-
-# Enable mozbase unit tests (bug 971687)
-for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['cedar']['platforms']:
-        continue
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform in BRANCHES['cedar']['platforms'][platform]:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOZBASE
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOZBASE
-
-# Enable web-platform-tests on cedar
-for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['cedar']['platforms']:
-        continue
-
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
-            continue
-
-        if platform in ('linux64-asan',):
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS_E10S
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + WEB_PLATFORM_REFTESTS_E10S
-
-
 ### Test suites that only run on Try ###
 
 # Enable linux64-cc, linux64-tsan, and win10 on Try only

@@ -62,20 +62,7 @@ PROJECT_BRANCHES = {
         },
     },
     #'birch': {},  # Bug 1010674
-    'cedar': {
-        'enable_perproduct_builds': False,
-        'mozharness_tag': 'default',
-        'enable_talos': True,
-        'talos_suites': {
-            'xperf': 1,
-        },
-        'enable_opt_unittests': True,
-        'mobile_platforms': {
-            'android-x86': {
-                'enable_opt_unittests': True,
-            },
-        },
-    },
+    #'cedar': {},  # Bug 1272005
     'cypress': {
         'lock_platforms': True,
         'platforms': {
