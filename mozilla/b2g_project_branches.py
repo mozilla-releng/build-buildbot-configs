@@ -69,9 +69,8 @@ PROJECT_BRANCHES = {
     },
     # Not needed on Birch at the moment, bug 977420.
     #'birch': {},
-    'cedar': {
-        'mozharness_tag': 'default',
-    },
+    #Not needed on Cedar at the moment, bug 1272005
+    #'cedar': {},
     'cypress': {
         'lock_platforms': True,
         'platforms': {

@@ -749,12 +749,6 @@ for branch in BRANCHES.keys():
                         del BRANCHES[branch]['platforms'][platform]
 
 
-######## remove most B2G builds from cedar
-for platform in ('nexus-4', 'nexus-4_eng', 'nexus-5-l', 'nexus-5-l_eng',
-                 'flame-kk', 'flame-kk_eng', 'flame-kk_eng-debug'):
-    if platform in BRANCHES['cedar']['platforms']:
-        del BRANCHES['cedar']['platforms'][platform]
-
 # bug 1222209 - Remove nexus-4 builds from pine
 for platform in ('nexus-4', 'nexus-4_eng'):
     if platform in BRANCHES['pine']['platforms']:

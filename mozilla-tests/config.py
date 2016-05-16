@@ -100,8 +100,7 @@ PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp_ix'] = {'name': "Windows XP 32-bit",
                                'try_by_default': False}
 PLATFORMS['win32']['win7_ix'] = {'name': "Windows 7 32-bit"}
-PLATFORMS['win32']['win7_vm'] = {'name': "Windows 7 VM 32-bit",
-                                     'try_by_default': False}
+PLATFORMS['win32']['win7_vm'] = {'name': "Windows 7 VM 32-bit"}
 PLATFORMS['win32']['win7_vm_gfx'] = {'name': "Windows 7 VM-GFX 32-bit",
                                      'try_by_default': False}
 PLATFORMS['win32']['stage_product'] = 'firefox'
@@ -693,6 +692,31 @@ MOCHITEST_GPU_E10S = [
     }),
 ]
 
+MOCHITEST_CLIPBOARD = [
+    ('mochitest-clipboard', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite',
+                       'mochitest-plain,mochitest-chrome,mochitest-browser-chrome,jetpack-package',
+                       '--subsuite=clipboard',
+                       '--disable-e10s'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
+MOCHITEST_CLIPBOARD_E10S = [
+    ('mochitest-clipboard-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite',
+                       'mochitest-plain,mochitest-chrome,mochitest-browser-chrome,jetpack-package',
+                       '--subsuite=clipboard'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
 ### Mochitest Combinations ###
 MOCHITEST = MOCHITEST_WO_BC + MOCHITEST_OTHER
 
@@ -961,6 +985,12 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-gpu-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1089,6 +1119,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
                 'cppunit': {
@@ -1628,6 +1664,12 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-gpu-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1752,6 +1794,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'cppunit': {
@@ -1880,6 +1928,12 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-gpu-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -2004,6 +2058,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'cppunit': {
@@ -2143,6 +2203,12 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-gpu-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -2267,6 +2333,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'cppunit': {
@@ -2401,6 +2473,12 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-gpu-e10s': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -2524,6 +2602,12 @@ PLATFORM_UNITTEST_VARS = {
                 'mochitest-gpu-e10s': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -2642,6 +2726,12 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/mac_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
                 'cppunit': {
@@ -3094,6 +3184,18 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
                         CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_DT_8_E10S + \
                         MOCHITEST_E10S + MOCHITEST_WEBGL_E10S + REFTEST_E10S
 
+# Bug 1194533 - Enable remaining tests on OSX 10.10 for Gecko 48+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
+    for platform in PLATFORMS.keys():
+        if platform not in branch['platforms']:
+            continue
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform in branch['platforms'][platform] and slave_platform in ('yosemite_r7'):
+                if name not in TWIGS:
+                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                        CRASHTEST_E10S + JSREFTEST_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + \
+                        MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_E10S + REFTEST_E10S
+
 # Bug 1200437
 # Use 7 chunks for m-bc on branches > trunk, excluding twigs, 3 chunks elsewhere
 # Bug 1203227
@@ -3194,6 +3296,7 @@ for branch_name in ('try', 'mozilla-central'):
             if slave_platform in branch['platforms'][platform]:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_SCREENSHOTS
 
+# Enable clipboard jobs on try
 # Enable gpu jobs on try
 for branch_name in ('try',):
     branch = BRANCHES[branch_name]
@@ -3206,56 +3309,17 @@ for branch_name in ('try',):
         for slave_platform in platform_info.get('slave_platforms'):
             if slave_platform in branch['platforms'][platform]:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                    MOCHITEST_GPU
+                    MOCHITEST_GPU + MOCHITEST_CLIPBOARD
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                    MOCHITEST_GPU_E10S
+                    MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
 
                 # Do not add Linux x64 debug since it is running on TaskCluster
                 if slave_platform == 'ubuntu64_vm':
                     continue
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                    MOCHITEST_GPU
+                    MOCHITEST_GPU + MOCHITEST_CLIPBOARD
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                    MOCHITEST_GPU_E10S
-
-
-### Test suites that only run on Cedar ###
-# Turn off most suites on cedar (bug 1198400)
-for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['cedar']['platforms']:
-        continue
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform in BRANCHES['cedar']['platforms'][platform]:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] = []
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
-
-BRANCHES['cedar']['platforms']['linux64-asan']['ubuntu64-asan_vm']['opt_unittest_suites'] += MARIONETTE
-
-# Enable mozbase unit tests (bug 971687)
-for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['cedar']['platforms']:
-        continue
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform in BRANCHES['cedar']['platforms'][platform]:
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOZBASE
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOZBASE
-
-# Enable web-platform-tests on cedar
-for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['cedar']['platforms']:
-        continue
-
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['cedar']['platforms'][platform]:
-            continue
-
-        if platform in ('linux64-asan',):
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_REFTESTS_E10S
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S
-            BRANCHES['cedar']['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + WEB_PLATFORM_REFTESTS_E10S
+                    MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
 
 
 ### Test suites that only run on Try ###

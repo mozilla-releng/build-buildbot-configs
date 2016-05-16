@@ -2696,8 +2696,22 @@ ANDROID_4_3_GPU_CHROME = [
         'extra_args': [
             '--cfg', 'android/androidarm.py',
             '--test-suite', 'mochitest-plain',
-            '--test-suite', 'mochitest-chrome',
             '--subsuite=gpu',
+        ],
+        'blob_upload': True,
+        'timeout': 2400,
+        'script_maxtime': 14400,
+    }),
+]
+
+ANDROID_4_3_CLIPBOARD = [
+    ('mochitest-clipboard', {
+        'use_mozharness': True,
+        'script_path': 'scripts/android_emulator_unittest.py',
+        'extra_args': [
+            '--cfg', 'android/androidarm.py',
+            '--test-suite', 'mochitest-plain'
+            '--subsuite=clipboard',
         ],
         'blob_upload': True,
         'timeout': 2400,
@@ -2870,10 +2884,6 @@ BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['pgo_platforms'] = []
 BRANCHES['try']['enable_try'] = True
 
-######## cedar
-# Until we green out these Android x86 tests
-BRANCHES['cedar']['platforms']['android-x86']['ubuntu64_hw']['opt_unittest_suites'] = ANDROID_X86_NOT_GREEN_DICT[:]
-
 #split 2.3 tests to ones that can run on ix and AWS
 for suite in ANDROID_2_3_MOZHARNESS_DICT:
     if suite[0].startswith('plain-reftest'):
@@ -3033,6 +3043,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
             BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_large']['debug_unittest_suites'] += ANDROID_4_3_MOCHITEST_MEDIA
 
 # Add gl-chrome on try for Android 4.3 API 15+
+# Add clipboard on try for Android 4.3 API 15+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
     if name not in ('try' ):
        continue
@@ -3040,9 +3051,9 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
         if platform not in branch['platforms'] or platform not in ('android-api-15',):
             continue
         branch['platforms'][platform]['ubuntu64_vm_armv7_mobile']['opt_unittest_suites'] += \
-                ANDROID_4_3_GPU_CHROME
+                ANDROID_4_3_GPU_CHROME + ANDROID_4_3_CLIPBOARD
         branch['platforms'][platform]['ubuntu64_vm_armv7_mobile']['debug_unittest_suites'] += \
-                ANDROID_4_3_GPU_CHROME
+                ANDROID_4_3_GPU_CHROME + ANDROID_4_3_CLIPBOARD
 
 
 # Bug 1250999 - releng - releng work for dropping api 9-10
