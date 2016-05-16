@@ -2689,14 +2689,13 @@ ANDROID_2_3_MOCHITEST_MEDIA = [
     ),
 ]
 
-ANDROID_4_3_GPU_CHROME = [
+ANDROID_4_3_GPU = [
     ('mochitest-gpu', {
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
             '--cfg', 'android/androidarm.py',
-            '--test-suite', 'mochitest-plain',
-            '--subsuite=gpu',
+            '--test-suite', 'mochitest-plain-gpu'
         ],
         'blob_upload': True,
         'timeout': 2400,
@@ -2710,8 +2709,7 @@ ANDROID_4_3_CLIPBOARD = [
         'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
             '--cfg', 'android/androidarm.py',
-            '--test-suite', 'mochitest-plain'
-            '--subsuite=clipboard',
+            '--test-suite', 'mochitest-plain-clipboard'
         ],
         'blob_upload': True,
         'timeout': 2400,
@@ -3051,9 +3049,9 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
         if platform not in branch['platforms'] or platform not in ('android-api-15',):
             continue
         branch['platforms'][platform]['ubuntu64_vm_armv7_mobile']['opt_unittest_suites'] += \
-                ANDROID_4_3_GPU_CHROME + ANDROID_4_3_CLIPBOARD
+                ANDROID_4_3_GPU + ANDROID_4_3_CLIPBOARD
         branch['platforms'][platform]['ubuntu64_vm_armv7_mobile']['debug_unittest_suites'] += \
-                ANDROID_4_3_GPU_CHROME + ANDROID_4_3_CLIPBOARD
+                ANDROID_4_3_GPU + ANDROID_4_3_CLIPBOARD
 
 
 # Bug 1250999 - releng - releng work for dropping api 9-10
