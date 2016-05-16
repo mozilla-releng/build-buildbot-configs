@@ -1916,11 +1916,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win7_vm': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + MARIONETTE + \
-                                   REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
-                                   WEB_PLATFORM_TESTS_CHUNKED,
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_ONE_CHUNK,
+            'opt_unittest_suites': CPPUNIT + MOCHITEST + OTHER_REFTESTS + JITTEST + MARIONETTE + \
+                                   WEB_PLATFORM_REFTESTS + WEB_PLATFORM_TESTS_CHUNKED,
+            'debug_unittest_suites': CPPUNIT + MARIONETTE + MOCHITEST + OTHER_REFTESTS + JITTEST,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -2048,11 +2046,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win7_vm_gfx': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + MARIONETTE + \
-                                   REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
-                                   WEB_PLATFORM_TESTS_CHUNKED,
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_ONE_CHUNK,
+            'opt_unittest_suites': MOCHITEST + MOCHITEST_WEBGL + \
+                                   REFTEST_NOACCEL + REFTEST_ONE_CHUNK,
+            'debug_unittest_suites': MOCHITEST + MOCHITEST_WEBGL + REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -3164,7 +3160,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
         if platform not in branch['platforms']:
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7_ix', 'win10_64'):
+            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7_ix', 'win7_vm', 'win7_vm_gfx', 'win10_64'):
                 if name not in TWIGS:
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                         MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + REFTEST_E10S + CRASHTEST_E10S + \
@@ -3445,15 +3441,37 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 49):
 WORKING_WIN7_AWS_OPT_SUITES = WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS + GTEST + CPPUNIT + JITTEST + OTHER_REFTESTS
 WORKING_WIN7_AWS_DEBUG_SUITES = GTEST + CPPUNIT + JITTEST + WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS + OTHER_REFTESTS
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
+    # Skip branches where win32 isn't running
+    if not nested_haskey(branch, 'platforms', 'win32'):
+        continue
+    win32 = branch['platforms']['win32']
+
+    # Strip out suites that we don't want on the VM/GFX instances
+    if 'win7_vm' in win32:
+        for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
+            for t in win32['win7_vm'][test_type][:]:
+                suite_name, suite_config = t
+                if suite_name.startswith('reftest'):
+                    win32['win7_vm'][test_type].remove(t)
+                if suite_name.startswith('mochitest-gl'):
+                    win32['win7_vm'][test_type].remove(t)
+    if 'win7_vm_gfx' in win32:
+        for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
+            for t in win32['win7_vm_gfx'][test_type][:]:
+                suite_name, suite_config = t
+                if suite_name.startswith('crashtest'):
+                    win32['win7_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('jsreftest'):
+                    win32['win7_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('marionette'):
+                    win32['win7_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('web-platform-tests'):
+                    win32['win7_vm_gfx'][test_type].remove(t)
+
     # Leave all suites running on try
     if name == 'try':
         continue
 
-    # Skip branches where win32 isn't running
-    if not nested_haskey(branch, 'platforms', 'win32'):
-        continue
-
-    win32 = branch['platforms']['win32']
 
     if 'win7_vm' in win32:
         win32['win7_vm']['opt_unittest_suites'] = WORKING_WIN7_AWS_OPT_SUITES
