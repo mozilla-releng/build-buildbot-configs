@@ -2694,7 +2694,7 @@ ANDROID_4_3_GPU = [
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
-            '--cfg', 'android/androidarm.py',
+            '--cfg', 'android/androidarm_4_3.py',
             '--test-suite', 'mochitest-plain-gpu'
         ],
         'blob_upload': True,
@@ -2708,7 +2708,7 @@ ANDROID_4_3_CLIPBOARD = [
         'use_mozharness': True,
         'script_path': 'scripts/android_emulator_unittest.py',
         'extra_args': [
-            '--cfg', 'android/androidarm.py',
+            '--cfg', 'android/androidarm_4_3.py',
             '--test-suite', 'mochitest-plain-clipboard'
         ],
         'blob_upload': True,
