@@ -672,8 +672,7 @@ MOCHITEST_GPU = [
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite',
-                       'plain-gpu,chrome-gpu,browser-chrome-gpu',
-                       '--disable-e10s'],
+                       'plain-gpu,chrome-gpu,browser-chrome-gpu'],
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
@@ -684,7 +683,8 @@ MOCHITEST_GPU_E10S = [
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite',
-                       'plain-gpu,chrome-gpu,browser-chrome-gpu'],
+                       'plain-gpu,chrome-gpu,browser-chrome-gpu',
+                       '--e10s'],
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
@@ -695,8 +695,7 @@ MOCHITEST_CLIPBOARD = [
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite',
-                       'plain-clipboard,chrome-clipboard,browser-chrome-clipboard,jetpack-package-clipboard',
-                       '--disable-e10s'],
+                       'plain-clipboard,chrome-clipboard,browser-chrome-clipboard,jetpack-package-clipboard'],
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
@@ -707,7 +706,8 @@ MOCHITEST_CLIPBOARD_E10S = [
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite',
-                       'plain-clipboard,chrome-clipboard,browser-chrome-clipboard,jetpack-package-clipboard'],
+                       'plain-clipboard,chrome-clipboard,browser-chrome-clipboard,jetpack-package-clipboard',
+                       '--e10s'],
         'blob_upload': True,
         'script_maxtime': 7200,
     }),
@@ -3434,8 +3434,8 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 49):
         del BRANCHES[name]['platforms']['win32']['win7_vm_gfx']
 
 # Only enable suites in AWS that are working
-WORKING_WIN7_AWS_OPT_SUITES = WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS + GTEST + CPPUNIT + JITTEST + OTHER_REFTESTS
-WORKING_WIN7_AWS_DEBUG_SUITES = GTEST + CPPUNIT + JITTEST + WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS + OTHER_REFTESTS
+WORKING_WIN7_AWS_OPT_SUITES = WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS + GTEST + CPPUNIT + JITTEST + OTHER_REFTESTS + MARIONETTE + XPCSHELL
+WORKING_WIN7_AWS_DEBUG_SUITES = GTEST + CPPUNIT + JITTEST + WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS + OTHER_REFTESTS + MARIONETTE + XPCSHELL
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
     # Skip branches where win32 isn't running
     if not nested_haskey(branch, 'platforms', 'win32'):
@@ -3468,10 +3468,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
     if name == 'try':
         continue
 
-
     if 'win7_vm' in win32:
         win32['win7_vm']['opt_unittest_suites'] = WORKING_WIN7_AWS_OPT_SUITES
         win32['win7_vm']['debug_unittest_suites'] = WORKING_WIN7_AWS_DEBUG_SUITES
+    if 'win7_vm_gfx' in win32:
+        win32['win7_vm_gfx']['opt_unittest_suites'] = REFTEST_ONE_CHUNK + REFTEST_NOACCEL
+        win32['win7_vm_gfx']['debug_unittest_suites'] = REFTEST_ONE_CHUNK
 
     # Disable these suites from the IX machines
     if 'win7_ix' in win32:
@@ -3479,8 +3481,9 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
             for t in win32['win7_vm'][test_type]:
                 if t in win32['win7_ix'][test_type]:
                     win32['win7_ix'][test_type].remove(t)
-    if 'win7_vm_gfx' in win32:
-        del win32['win7_vm_gfx']
+            for t in win32['win7_vm_gfx'][test_type]:
+                if t in win32['win7_ix'][test_type]:
+                    win32['win7_ix'][test_type].remove(t)
 
 ###
 # Bug 1269543 - Stop running tests on OS X 10.6 on Firefox 49+
