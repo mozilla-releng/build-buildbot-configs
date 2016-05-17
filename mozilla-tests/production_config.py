@@ -23,7 +23,7 @@ for i in range(1, 123):  # XP slaves from 123 onwards moved to Win7 and Win8 poo
 for i in range(1, 282):   # Move some XP test machines to the Windows 7 pool from 234 to 253 // Bug 1226729 // Bug 1239785 // Bug 1252258
     SLAVES['win7_ix']['t-w732-ix-%03i' % i] = {}
 
-for i in range(1, 600):
+for i in range(1, 101) + range(102, 600):  # Omit 101 due to win7 golden issues // Bug 1223509
     SLAVES['win7_vm']['t-w732-spot-%03i' % i] = {}
 
 for i in range(1, 100):
