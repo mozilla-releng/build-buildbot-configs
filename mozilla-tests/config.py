@@ -62,7 +62,7 @@ BRANCHES = {
     },
 }
 
-TWIGS = [x for x in ACTIVE_PROJECT_BRANCHES if x not in ('mozilla-inbound', 'fx-team')]
+TWIGS = [x for x in ACTIVE_PROJECT_BRANCHES if x not in ('mozilla-inbound', 'fx-team', 'larch')]
 
 setMainFirefoxVersions(BRANCHES)
 
@@ -3298,16 +3298,21 @@ for branch_name in ('try',):
             if slave_platform in branch['platforms'][platform]:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                     MOCHITEST_GPU + MOCHITEST_CLIPBOARD
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                    MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
+
+                # we don't run e10s on winxp
+                if slave_platform != 'xp_ix':
+                    branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
+                        MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
 
                 # Do not add Linux x64 debug since it is running on TaskCluster
-                if slave_platform == 'ubuntu64_vm':
-                    continue
-                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                    MOCHITEST_GPU + MOCHITEST_CLIPBOARD
-                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                    MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
+                if slave_platform != 'ubuntu64_vm':
+                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                        MOCHITEST_GPU + MOCHITEST_CLIPBOARD
+
+                # currently we don't run e10s tests on winxp debug or win8 debug
+                if slave_platform not in ('xp_ix', 'win8_64', 'ubuntu64_vm'):
+                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                        MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
 
 
 ### Test suites that only run on Try ###
