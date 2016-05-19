@@ -319,9 +319,15 @@ PROJECT_BRANCHES = {
         'merge_builds': False,
     },
     'larch': {
-        'lock_platforms': True,
-        'platforms': {
+        'merge_builds': False,
+        'repo_path': 'projects/larch',
+        'enable_perproduct_builds': True,
+        'mozconfig_dir': 'mozilla-central',
+        'pgo_strategy': 'periodic',
+        'talos_suites': {
+            'xperf': 1,
         },
+        'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
     },
     # disabled in bug 1215527
     # 'maple': {},
