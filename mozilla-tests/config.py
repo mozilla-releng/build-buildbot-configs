@@ -115,7 +115,8 @@ PLATFORMS['win64']['slave_platforms'] = ['win8_64', 'win10_64']
 PLATFORMS['win64']['talos_slave_platforms'] = ['win8_64', 'win10_64']
 PLATFORMS['win64']['env_name'] = 'win64-perf'
 PLATFORMS['win64']['stage_product'] = 'firefox'
-PLATFORMS['win64']['win8_64'] = {'name': 'Windows 8 64-bit'}
+PLATFORMS['win64']['win8_64'] = {'name': 'Windows 8 64-bit',
+                                 'try_by_default': False}
 PLATFORMS['win64']['win10_64'] = {'name': 'Windows 10 64-bit',
                                   'try_by_default': False}
 PLATFORMS['win64']['mozharness_config'] = {
