@@ -20,8 +20,7 @@ TRY_SLAVES['win64-rev2'].extend(WIN64_RELOPS)
 
 # AWS EC2 (b|y)-2008 spot and on-demand staging instances.
 B2008 = ['b-2008-spot-%03d' % x for x in range(990, 1000)] + \
-        ['b-2008-ec2-%04d' % x for x in range(990, 1000)] + \
-        ['b-2008-ix-0175']
+        ['b-2008-ec2-%04d' % x for x in range(990, 1000)]
 Y2008 = ['y-2008-spot-%03d' % x for x in range(990, 1000)] + \
         ['y-2008-ec2-%04d' % x for x in range(990, 1000)]
 SLAVES['win64-rev2'].extend(B2008)
