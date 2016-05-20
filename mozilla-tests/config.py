@@ -115,7 +115,8 @@ PLATFORMS['win64']['slave_platforms'] = ['win8_64', 'win10_64']
 PLATFORMS['win64']['talos_slave_platforms'] = ['win8_64', 'win10_64']
 PLATFORMS['win64']['env_name'] = 'win64-perf'
 PLATFORMS['win64']['stage_product'] = 'firefox'
-PLATFORMS['win64']['win8_64'] = {'name': 'Windows 8 64-bit'}
+PLATFORMS['win64']['win8_64'] = {'name': 'Windows 8 64-bit',
+                                 'try_by_default': False}
 PLATFORMS['win64']['win10_64'] = {'name': 'Windows 10 64-bit',
                                   'try_by_default': False}
 PLATFORMS['win64']['mozharness_config'] = {
@@ -3290,7 +3291,7 @@ for branch_name in ('try',):
     branch = BRANCHES[branch_name]
     for platform in PLATFORMS.keys():
         # We don't want these jobs for these platforms
-        if platform in ('linux64-asan', 'linux64-cc', 'linux64-tsan'):
+        if platform in ('linux64-cc', 'linux64-tsan'):
             continue
 
         platform_info = PLATFORMS.get(platform)
