@@ -3290,7 +3290,7 @@ for branch_name in ('try',):
     branch = BRANCHES[branch_name]
     for platform in PLATFORMS.keys():
         # We don't want these jobs for these platforms
-        if platform in ('linux64-asan', 'linux64-cc', 'linux64-tsan'):
+        if platform in ('linux64-cc', 'linux64-tsan'):
             continue
 
         platform_info = PLATFORMS.get(platform)
