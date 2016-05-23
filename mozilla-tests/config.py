@@ -1261,6 +1261,18 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST_CHUNKED + \
                                      REFTEST_FOUR_CHUNKS,
             'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
+                    'config_files': ["unittests/linux_unittest.py"],
+                },
                 'cppunit': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
