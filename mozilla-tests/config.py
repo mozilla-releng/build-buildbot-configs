@@ -62,7 +62,7 @@ BRANCHES = {
     },
 }
 
-TWIGS = [x for x in ACTIVE_PROJECT_BRANCHES if x not in ('mozilla-inbound', 'fx-team', 'larch')]
+TWIGS = [x for x in ACTIVE_PROJECT_BRANCHES if x not in ('mozilla-inbound', 'fx-team', 'larch', 'autoland')]
 
 setMainFirefoxVersions(BRANCHES)
 

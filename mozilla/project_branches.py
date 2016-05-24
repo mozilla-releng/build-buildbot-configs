@@ -61,6 +61,17 @@ PROJECT_BRANCHES = {
             'win64-debug': {},
         },
     },
+    'autoland': {
+        'merge_builds': False,
+        'repo_path': 'integration/autoland',
+        'enable_perproduct_builds': True,
+        'mozconfig_dir': 'mozilla-central',
+        'pgo_strategy': 'periodic',
+        'talos_suites': {
+            'xperf': 1,
+        },
+        'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
+    },
     #'birch': {},  # Bug 1010674
     #'cedar': {},  # Bug 1272005
     'cypress': {
