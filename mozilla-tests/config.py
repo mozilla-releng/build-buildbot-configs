@@ -3297,35 +3297,32 @@ for branch_name in ('try', 'mozilla-central'):
             if slave_platform in branch['platforms'][platform]:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_SCREENSHOTS
 
-# Enable clipboard jobs on try
-# Enable gpu jobs on try
-for branch_name in ('try',):
-    branch = BRANCHES[branch_name]
-    for platform in PLATFORMS.keys():
-        # We don't want these jobs for these platforms
-        if platform in ('linux64-cc', 'linux64-tsan'):
-            continue
+# Enable gpu/clipboard jobs on all branches v.49+
+for platform in PLATFORMS.keys():
+    for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
+        if platform in BRANCHES[name]['platforms']:
+            if (platform in ['linux64-tsan', 'linux64-cc']):
+                continue
 
-        platform_info = PLATFORMS.get(platform)
-        for slave_platform in platform_info.get('slave_platforms'):
-            if slave_platform in branch['platforms'][platform]:
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                    MOCHITEST_GPU + MOCHITEST_CLIPBOARD
-
-                # we don't run e10s on winxp
-                if slave_platform != 'xp_ix':
-                    branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                        MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
-
-                # Do not add Linux x64 debug since it is running on TaskCluster
-                if slave_platform != 'ubuntu64_vm':
-                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+            for slave_platform in PLATFORMS[platform]['slave_platforms']:
+                if platform in BRANCHES[name]['platforms'] and slave_platform in BRANCHES[name]['platforms'][platform]:
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                         MOCHITEST_GPU + MOCHITEST_CLIPBOARD
 
-                # currently we don't run e10s tests on winxp debug or win8 debug
-                if slave_platform not in ('xp_ix', 'win8_64', 'ubuntu64_vm'):
-                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                        MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
+                    # we don't run e10s on winxp
+                    if slave_platform != 'xp_ix':
+                        BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
+                            MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
+
+                    # Do not add Linux x64 debug since it is running on TaskCluster
+                    if slave_platform != 'ubuntu64_vm':
+                        BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                            MOCHITEST_GPU + MOCHITEST_CLIPBOARD
+
+                    # currently we don't run e10s tests on winxp debug or win8 debug
+                    if slave_platform not in ('xp_ix', 'win8_64', 'ubuntu64_vm'):
+                        BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                            MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
 
 
 ### Test suites that only run on Try ###
@@ -3423,24 +3420,29 @@ for platform in PLATFORMS.keys():
         if slave_platform in BRANCHES['ash']['platforms'][platform] and platform in ['linux64-asan']:
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
-                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S
+        #TODO: Linux64 debug is taskcluster only now
         if slave_platform in BRANCHES['ash']['platforms'][platform] and platform in ('linux', 'linux64'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
-                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
-                WEB_PLATFORM_TESTS_CHUNKED_E10S
+                WEB_PLATFORM_TESTS_CHUNKED_E10S + MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S
         if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('xp_ix', 'yosemite_r7'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+                base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + \
+                MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
-                base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
+                base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S + \
+                MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S
         if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('win7_ix', 'win8_64'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+                base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + \
+                MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
-                base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
+                base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S + \
+                 MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S
 
 ###
 # Bug 1271355 - Run Windows tests in AWS
