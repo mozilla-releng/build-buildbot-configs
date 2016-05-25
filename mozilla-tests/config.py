@@ -3131,7 +3131,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
             if platform in ('linux', 'linux64'):
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += CRASHTEST_E10S + \
                     JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_E10S + MOCHITEST_WEBGL_E10S + \
-                    REFTEST_E10S
+                    REFTEST_E10S_TWO_CHUNKS
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += CRASHTEST_E10S + \
                     JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_E10S_8 + MOCHITEST_WEBGL_E10S + \
                     REFTEST_E10S_TWO_CHUNKS
@@ -3198,6 +3198,24 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                         CRASHTEST_E10S + JSREFTEST_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + \
                         MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_E10S + REFTEST_E10S
+
+# Bug 1255196 - Enable more Linux e10s test suites for Gecko 49+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
+    for platform in PLATFORMS.keys():
+        if platform not in branch['platforms']:
+            continue
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if platform in ['linux64-asan']:
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
+                    MARIONETTE + MARIONETTE_E10S + MOCHITEST_DT_8_E10S + \
+                    REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
+                    REFTEST_NOACCEL_TWO_CHUNKS
+            if platform in ('linux'):
+                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                    REFTEST_NOACCEL_E10S_TWO_CHUNKS + REFTEST_NOACCEL_TWO_CHUNKS
+            if platform in ('linux','linux64'):
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
+                    REFTEST_NOACCEL_E10S_TWO_CHUNKS
 
 # Bug 1200437
 # Use 7 chunks for m-bc on branches > trunk, excluding twigs, 3 chunks elsewhere
@@ -3410,8 +3428,9 @@ for platform in PLATFORMS.keys():
         continue
 
     base_tests = CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
-                 MOCHITEST_DT_8_E10S + MOCHITEST_E10S + MOCHITEST_MEDIA_E10S + \
-                 MOCHITEST_WEBGL_E10S + WEB_PLATFORM_REFTESTS_E10S
+                 MOCHITEST_CLIPBOARD_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + \
+                 MOCHITEST_GPU_E10S + MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_E10S + \
+                 WEB_PLATFORM_REFTESTS_E10S
 
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
         if slave_platform not in BRANCHES['ash']['platforms'][platform]:
@@ -3420,29 +3439,25 @@ for platform in PLATFORMS.keys():
         if slave_platform in BRANCHES['ash']['platforms'][platform] and platform in ['linux64-asan']:
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
-                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S
+                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
         #TODO: Linux64 debug is taskcluster only now
         if slave_platform in BRANCHES['ash']['platforms'][platform] and platform in ('linux', 'linux64'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
-                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S
+                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
-                WEB_PLATFORM_TESTS_CHUNKED_E10S + MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S
+                WEB_PLATFORM_TESTS_CHUNKED_E10S
         if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('xp_ix', 'yosemite_r7'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + \
-                MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S
+                base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
-                base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S + \
-                MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S
+                base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
         if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('win7_ix', 'win8_64'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + \
-                MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S
+                base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
-                base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S + \
-                 MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S
+                base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
 
 ###
 # Bug 1271355 - Run Windows tests in AWS
