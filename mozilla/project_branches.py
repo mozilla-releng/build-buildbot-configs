@@ -21,7 +21,7 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
-        'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
+        'branch_projects': ['spidermonkey_tier_1'],
     },
     #'services-central': {},  # Bug 1010674
     # 'alder': {},
