@@ -2174,8 +2174,8 @@ BRANCH_PROJECTS = {
     'spidermonkey_try': {
         'enable_try': True,
         'try_by_default': {
-            'plain': set('win32', 'win64']),
-            'plaindebug': set('win32-debug', 'win64-debug']),
+            'plain': set(['win32', 'win64']),
+            'plaindebug': set(['win32-debug', 'win64-debug']),
             'rootanalysis': True, # all platforms for which it is defined
             'compacting': set(['linux64-debug', 'win32-debug']),
             'arm-sim': True,
