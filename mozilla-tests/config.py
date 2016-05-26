@@ -3118,6 +3118,9 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
         if platform not in branch['platforms']:
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            # e10s isn't supported on 10.6, so don't schedule tests
+            if slave_platform == "snowleopard":
+                continue
             if platform in branch['platforms'] and slave_platform in branch['platforms'][platform] and \
                     not slave_platform == 'xp_ix':
                 if name in TWIGS or ('gecko_version' in branch and branch['gecko_version'] != trunk_gecko_version):
@@ -3147,9 +3150,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_BC_7_E10S
                     branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_DT_8_E10S
             # wpt-10s
-            if (platform in ('linux64', 'linux') or
-                (platform == "macosx64" and slave_platform != "snowleopard")):
-
+            if (platform in ('linux64', 'linux') or (platform == "macosx64")):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + WEB_PLATFORM_REFTESTS_E10S
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
 
@@ -3323,6 +3324,9 @@ for platform in PLATFORMS.keys():
                 continue
 
             for slave_platform in PLATFORMS[platform]['slave_platforms']:
+                # e10s isn't supported on 10.6, so don't schedule tests
+                if slave_platform == "snowleopard":
+                    continue
                 if platform in BRANCHES[name]['platforms'] and slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                         MOCHITEST_GPU + MOCHITEST_CLIPBOARD
