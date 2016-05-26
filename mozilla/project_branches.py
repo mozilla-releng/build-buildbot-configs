@@ -21,7 +21,7 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
-        'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
+        'branch_projects': ['spidermonkey_tier_1'],
     },
     #'services-central': {},  # Bug 1010674
     # 'alder': {},
@@ -70,7 +70,7 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
-        'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
+        'branch_projects': ['spidermonkey_tier_1'],
     },
     #'birch': {},  # Bug 1010674
     #'cedar': {},  # Bug 1272005
@@ -338,7 +338,7 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
-        'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
+        'branch_projects': ['spidermonkey_tier_1'],
     },
     # disabled in bug 1215527
     # 'maple': {},
