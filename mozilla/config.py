@@ -2149,7 +2149,7 @@ BRANCH_PROJECTS = {
     # feeding into mozilla-central.
     'spidermonkey_tier_1': {
         'variants': {
-            'linux64-debug':  [],
+            'linux64-debug':  ['rootanalysis', 'compacting', 'arm64-sim'],
             'linux-debug': ['arm-sim'],
             'macosx64-debug': [],
             'win32-debug': ['plaindebug', 'compacting'],
@@ -2174,8 +2174,6 @@ BRANCH_PROJECTS = {
     'spidermonkey_try': {
         'enable_try': True,
         'try_by_default': {
-            'plain': set('win32', 'win64']),
-            'plaindebug': set('win32-debug', 'win64-debug']),
             'rootanalysis': True, # all platforms for which it is defined
             'compacting': set(['linux64-debug', 'win32-debug']),
             'arm-sim': True,
@@ -2183,16 +2181,38 @@ BRANCH_PROJECTS = {
             'arm-sim-osx': set([]),
         },
         'variants': {
-            'linux': [],
-            'linux-debug': ['arm-sim'],
-            'linux64':  [],
+            'linux': ['warnaserr'],
+            'linux-debug': ['arm-sim', 'warnaserrdebug'],
+            'linux64':  ['warnaserr'],
             'linux64-debug':  ['rootanalysis', 'compacting', 'warnaserrdebug', 'arm64-sim'],
-            'macosx64': ['plain', 'compacting'],
-            'macosx64-debug': ['arm-sim-osx', 'plaindebug'],
+            'macosx64-debug': ['arm-sim-osx'],
             'win32': ['compacting', 'plain'],
             'win32-debug': ['compacting', 'plaindebug'],
             'win64': ['compacting', 'plain'],
             'win64-debug': ['compacting', 'plaindebug'],
+        },
+        'platforms': {
+            'linux': {},
+            'linux-debug': {},
+            'linux64': {},
+            'linux64-debug': {},
+            'win32': {},
+            'win32-debug': {},
+            'win64': {},
+            'win64-debug': {},
+            'macosx64': {},
+            'macosx64-debug': {},
+        },
+        'hgurl': 'https://hg.mozilla.org/',
+    },
+
+    # Non-tier-1 builds that provide useful information but are hidden on tbpl.
+    # These should be run on the (small) subset of trees looked at by the
+    # relevant developers.
+    'spidermonkey_info': {
+        'variants': {
+            'linux64':        ['warnaserr'],
+            'linux64-debug':  ['warnaserrdebug'],
         },
         'platforms': {
             'linux': {},
