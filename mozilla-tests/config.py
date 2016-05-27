@@ -3479,8 +3479,8 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 49):
         del BRANCHES[name]['platforms']['win32']['win7_vm_gfx']
 
 # Only enable suites in AWS that are working
-WORKING_WIN7_AWS_OPT_SUITES = WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS + GTEST + CPPUNIT + JITTEST + OTHER_REFTESTS + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA
-WORKING_WIN7_AWS_DEBUG_SUITES = GTEST + CPPUNIT + JITTEST + WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS + OTHER_REFTESTS + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA
+WORKING_WIN7_AWS_OPT_SUITES = WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS + GTEST + CPPUNIT + JITTEST + OTHER_REFTESTS + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA + WEB_PLATFORM_TESTS_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
+WORKING_WIN7_AWS_DEBUG_SUITES = GTEST + CPPUNIT + JITTEST + WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS + OTHER_REFTESTS + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA + WEB_PLATFORM_TESTS_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
     # Skip branches where win32 isn't running
     if not nested_haskey(branch, 'platforms', 'win32'):
@@ -3543,7 +3543,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
                     win32['win7_ix'][test_type].remove(t)
                 if suite_name.startswith('xpcshell'):
                     win32['win7_ix'][test_type].remove(t)
-                if suite_name == 'web-platform-tests':
+                if suite_name.startswith('web-platform-tests'):
                     win32['win7_ix'][test_type].remove(t)
 
     # Leave all the other suites running on try
