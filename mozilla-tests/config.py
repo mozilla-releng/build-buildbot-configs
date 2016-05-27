@@ -3510,7 +3510,15 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
                     win32['win7_vm_gfx'][test_type].remove(t)
                 if suite_name.startswith('mochitest-devtools'):
                     win32['win7_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('mochitest-e10s-devtools'):
+                    win32['win7_vm_gfx'][test_type].remove(t)
                 if suite_name.startswith('mochitest-jetpack'):
+                    win32['win7_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('cppunit'):
+                    win32['win7_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('gtest'):
+                    win32['win7_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('xpcshell'):
                     win32['win7_vm_gfx'][test_type].remove(t)
                 if suite_name == 'mochitest-media':
                     win32['win7_vm_gfx'][test_type].remove(t)
@@ -3521,11 +3529,19 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
                 suite_name, suite_config = t
                 if suite_name.startswith('mochitest-devtools'):
                     win32['win7_ix'][test_type].remove(t)
+                if suite_name.startswith('mochitest-e10s-devtools'):
+                    win32['win7_ix'][test_type].remove(t)
                 if suite_name.startswith('mochitest-jetpack'):
                     win32['win7_ix'][test_type].remove(t)
                 if suite_name.startswith('marionette'):
                     win32['win7_ix'][test_type].remove(t)
                 if suite_name == 'mochitest-media':
+                    win32['win7_ix'][test_type].remove(t)
+                if suite_name.startswith('cppunit'):
+                    win32['win7_ix'][test_type].remove(t)
+                if suite_name.startswith('gtest'):
+                    win32['win7_ix'][test_type].remove(t)
+                if suite_name.startswith('xpcshell'):
                     win32['win7_ix'][test_type].remove(t)
 
     # Leave all the other suites running on try
