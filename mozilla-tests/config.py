@@ -3543,6 +3543,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
                     win32['win7_ix'][test_type].remove(t)
                 if suite_name.startswith('xpcshell'):
                     win32['win7_ix'][test_type].remove(t)
+                if suite_name == 'web-platform-tests':
+                    win32['win7_ix'][test_type].remove(t)
 
     # Leave all the other suites running on try
     if name == 'try':
