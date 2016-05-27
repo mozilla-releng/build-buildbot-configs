@@ -139,8 +139,4 @@ BRANCH_PROJECTS = {
         'scripts_repo': 'https://hg.mozilla.org/users/stage-ffxbld/tools',
         'idle_slaves': 0,
     },
-    'spidermonkey_info': {
-        'scripts_repo': 'https://hg.mozilla.org/users/stage-ffxbld/tools',
-        'idle_slaves': 0,
-    },
 }

@@ -21,7 +21,7 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
-        'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
+        'branch_projects': ['spidermonkey_tier_1'],
     },
     #'services-central': {},  # Bug 1010674
     # 'alder': {},
@@ -70,7 +70,7 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
-        'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
+        'branch_projects': ['spidermonkey_tier_1'],
     },
     #'birch': {},  # Bug 1010674
     #'cedar': {},  # Bug 1272005
@@ -266,61 +266,40 @@ PROJECT_BRANCHES = {
         'pgo_strategy': 'per-checkin',
         'enable_release_promotion': True,
         'build_tools_repo_path': 'users/raliiev_mozilla.com/tools',
-        'partners_repo_path': 'build/partner-repacks',
-        'partner_repack_platforms': ('linux', 'linux64', 'win32', 'win64', 'macosx64'),
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "single_locale_branch_config": "dev-mozilla-release",
-        "release_channel_mappings": [
-            [r"^\d+\.0$", ["beta-dev", "release-dev"]],  # RC, 45.0
-            [r"^\d+\.\d+\.\d+$", ["release-dev"]],  # Other (dot releaseas), 45.0.4
-        ],
-        # TODO - define only one place that dictates which channels require mirrors.
-        # in other words - pass this to releasetasks mozharness updates.py call in task def and
-        # remove mozharness config's 'requires_mirrors' item.
-        "mirror_requiring_channels": ['release-dev'],
+        "release_channel_mappings": [["^.*$", ["esr"]]],
         # temp balrog
         'balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
         'funsize_balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': {
-            "firefox": "releases/bouncer_firefox_release.py",
-            # TODO - fennec
-            "fennec": "",
+            "firefox": "releases/bouncer_firefox_esr.py",
         },
         'bouncer_enabled': True,
         'updates_builder_enabled': True,
         'update_verify_enabled': True,
         'postrelease_version_bump_enabled': True,
         'postrelease_version_bump_config': {
-            "firefox": 'releases/dev_postrelease_firefox_release.py',
-            # TODO - fennec
-            "fennec": "",
+            "firefox": 'releases/dev_postrelease_firefox_esr45.py',
         },
         'uptake_monitoring_enabled': True,
         'uptake_monitoring_config': {
-            "firefox": 'releases/dev_bouncer_firefox_beta.py',
-            # TODO - fennec
-            "fennec": "",
+            "firefox": 'releases/dev_bouncer_firefox_esr.py',
         },
         'postrelease_bouncer_aliases_enabled': True,
         'postrelease_bouncer_aliases_config': {
-            "firefox": 'releases/dev_bouncer_firefox_beta.py',
-            # TODO - fennec
-            "fennec": "",
+            "firefox": 'releases/dev_bouncer_firefox_esr.py',
         },
         'push_to_candidates_enabled': True,
         'updates_config': {
-            "firefox": 'releases/dev_updates_firefox_release.py',
-            # TODO - fennec
-            "fennec": "",
+            "firefox": 'releases/dev_updates_firefox_esr45.py',
         },
         'update_verify_chunks': 6,
         'beetmover_credentials': '/builds/dev-beetmover-s3.credentials',
         'beetmover_buckets': {
             'firefox': 'net-mozaws-stage-delivery-firefox',
-            # TODO - add fennec support
-            # 'fennec': 'net-mozaws-stage-delivery-archive',
         },
         'stage_product': {
             'firefox': 'firefox',
@@ -338,7 +317,7 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
-        'branch_projects': ['spidermonkey_tier_1', 'spidermonkey_info'],
+        'branch_projects': ['spidermonkey_tier_1'],
     },
     # disabled in bug 1215527
     # 'maple': {},
