@@ -3189,6 +3189,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
                         MOCHITEST_E10S + MOCHITEST_WEBGL_E10S + REFTEST_E10S
 
 # Bug 1194533 - Enable remaining tests on OSX 10.10 for Gecko 48+
+# Bug 1255196 & 1275281 - Enable more Linux e10s test suites for Gecko 48+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
@@ -3199,13 +3200,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                         CRASHTEST_E10S + JSREFTEST_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + \
                         MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_E10S + REFTEST_E10S
-
-# Bug 1255196 - Enable more Linux e10s test suites for Gecko 49+
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
-    for platform in PLATFORMS.keys():
-        if platform not in branch['platforms']:
-            continue
-        for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if platform in ['linux64-asan']:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                     MARIONETTE + MARIONETTE_E10S + MOCHITEST_DT_8_E10S + \
