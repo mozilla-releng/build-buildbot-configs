@@ -2711,15 +2711,15 @@ BRANCHES['mozilla-esr38']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr38']['enable_hpkp_update'] = True
 BRANCHES['mozilla-esr38']['enable_valgrind'] = False
 BRANCHES['mozilla-esr38']['enabled_products'] = ['firefox']
+
 ######## mozilla-esr45
 BRANCHES['mozilla-esr45']['repo_path'] = 'releases/mozilla-esr45'
-BRANCHES['mozilla-esr45']['update_channel'] = 'nightly-esr45'
+BRANCHES['mozilla-esr45']['update_channel'] = 'esr'
 BRANCHES['mozilla-esr45']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
 BRANCHES['mozilla-esr45']['start_hour'] = [0]
 BRANCHES['mozilla-esr45']['start_minute'] = [15]
 BRANCHES['mozilla-esr45']['pgo_strategy'] = 'per-checkin'
 BRANCHES['mozilla-esr45']['enable_mac_a11y'] = True
-BRANCHES['mozilla-esr45']['unittest_build_space'] = 6
 BRANCHES['mozilla-esr45']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
 # L10n configuration
 BRANCHES['mozilla-esr45']['enable_l10n'] = False
@@ -2729,7 +2729,7 @@ BRANCHES['mozilla-esr45']['l10nDatedDirs'] = True
 BRANCHES['mozilla-esr45']['l10n_tree'] = 'fxesr45'
 BRANCHES['mozilla-esr45']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr45'
-BRANCHES['mozilla-esr45']['enable_nightly'] = True
+BRANCHES['mozilla-esr45']['enable_nightly'] = False
 BRANCHES['mozilla-esr45']['enable_nightly_everytime'] = False
 BRANCHES['mozilla-esr45']['updates_enabled'] = False
 BRANCHES['mozilla-esr45']['create_partial'] = False
@@ -2738,7 +2738,50 @@ BRANCHES['mozilla-esr45']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr45']['enable_hpkp_update'] = True
 BRANCHES['mozilla-esr45']['enable_valgrind'] = False
 BRANCHES['mozilla-esr45']['enabled_products'] = ['firefox']
-
+### Release Promotion
+BRANCHES['mozilla-esr45']['enable_release_promotion'] = True
+# used by process/release.py
+BRANCHES['mozilla-esr45']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
+BRANCHES['mozilla-esr45']['bouncer_submitter_config'] = {
+    "firefox": "releases/bouncer_firefox_esr.py",
+}
+BRANCHES['mozilla-esr45']['uptake_monitoring_config'] = {
+    "firefox": 'releases/bouncer_firefox_esr.py',
+}
+BRANCHES['mozilla-esr45']['postrelease_version_bump_config'] = {
+    "firefox": 'releases/postrelease_firefox_esr45.py',
+}
+BRANCHES['mozilla-esr45']['postrelease_bouncer_aliases_config'] = {
+    "firefox": 'releases/bouncer_firefox_esr.py',
+}
+BRANCHES['mozilla-esr45']['updates_config'] = {
+    "firefox": 'releases/updates_firefox_esr45.py',
+}
+BRANCHES['mozilla-esr45']['update_verify_chunks'] = 6
+BRANCHES['mozilla-esr45']['beetmover_credentials'] = "/builds/release-s3.credentials"
+BRANCHES['mozilla-esr45']['stage_product'] = {
+    'firefox': 'firefox',
+}
+BRANCHES['mozilla-esr45']['platforms']['linux']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-esr45']['platforms']['linux64']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-esr45']['platforms']['macosx64']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-esr45']['platforms']['win32']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-esr45']['platforms']['win64']['dep_signing_servers'] = 'release-signing'
+# used by releasetasks
+BRANCHES['mozilla-esr45']['bouncer_enabled'] = True
+BRANCHES['mozilla-esr45']['postrelease_version_bump_enabled'] = True
+BRANCHES['mozilla-esr45']['postrelease_bouncer_aliases_enabled'] = True
+BRANCHES['mozilla-esr45']['uptake_monitoring_enabled'] = True
+BRANCHES['mozilla-esr45']['push_to_candidates_enabled'] = True
+BRANCHES['mozilla-esr45']['push_to_releases_automatic'] = False
+BRANCHES['mozilla-esr45']['beetmover_buckets'] = {
+    "firefox": "net-mozaws-prod-delivery-firefox",
+}
+BRANCHES['mozilla-esr45']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-esr45']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-esr45']['updates_builder_enabled'] = True
+BRANCHES['mozilla-esr45']['update_verify_enabled'] = True
+BRANCHES['mozilla-esr45']['release_channel_mappings'] = [["^.*$", ["esr"]]]
 
 ######## try
 # Try-specific configs
@@ -2899,14 +2942,14 @@ for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
         if platform in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
 
-ma_gecko_version = BRANCHES['mozilla-aurora']['gecko_version']
-# enable mozharness desktop builds on 46.0 and higher
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
+# enable mozharness desktop builds on 45.0 and higher
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 45):
     # if true, any platform with mozharness_desktop_build in its config
     # will use mozharness instead of MozillaBuildFactory
     branch['desktop_mozharness_builds_enabled'] = True
 
 # enable mozharness mobile builds on m-a, m-c, and m-c related branches
+ma_gecko_version = BRANCHES['mozilla-aurora']['gecko_version']
 for name, branch in items_before(BRANCHES, 'gecko_version', ma_gecko_version):
     for platform in branch['platforms'].keys():
         if 'android' in platform:
