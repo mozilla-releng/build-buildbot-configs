@@ -2227,24 +2227,6 @@ BRANCHES = {
     'mozilla-aurora': {
         'merge_builds': False,
     },
-    'mozilla-esr38': {
-        'merge_builds': False,
-        'lock_platforms': True,
-        'gecko_version': 38,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'macosx64': {},
-            'win32': {},
-            'win64': {},
-            'linux64-av': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-            'win64-debug': {},
-        },
-    },
     'mozilla-esr45': {
         'merge_builds': False,
         'lock_platforms': True,
@@ -2685,33 +2667,6 @@ BRANCHES['mozilla-aurora']['platforms']['win64']['nightly_signing_servers'] = 'n
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args'] = ['--with-macbundlename-prefix=Firefox']
 BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
-######## mozilla-esr38
-BRANCHES['mozilla-esr38']['repo_path'] = 'releases/mozilla-esr38'
-BRANCHES['mozilla-esr38']['update_channel'] = 'nightly-esr38'
-BRANCHES['mozilla-esr38']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['mozilla-esr38']['start_hour'] = [0]
-BRANCHES['mozilla-esr38']['start_minute'] = [15]
-BRANCHES['mozilla-esr38']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-esr38']['enable_mac_a11y'] = True
-BRANCHES['mozilla-esr38']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['mozilla-esr38']['enable_l10n'] = False
-BRANCHES['mozilla-esr38']['l10nNightlyUpdate'] = False
-BRANCHES['mozilla-esr38']['l10n_platforms'] = ['linux', 'linux64', 'win32', 'macosx64']
-BRANCHES['mozilla-esr38']['l10nDatedDirs'] = True
-BRANCHES['mozilla-esr38']['l10n_tree'] = 'fxesr38'
-BRANCHES['mozilla-esr38']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr38'
-BRANCHES['mozilla-esr38']['enable_nightly'] = True
-BRANCHES['mozilla-esr38']['enable_nightly_everytime'] = False
-BRANCHES['mozilla-esr38']['updates_enabled'] = False
-BRANCHES['mozilla-esr38']['create_partial'] = False
-BRANCHES['mozilla-esr38']['enable_blocklist_update'] = True
-BRANCHES['mozilla-esr38']['enable_hsts_update'] = True
-BRANCHES['mozilla-esr38']['enable_hpkp_update'] = True
-BRANCHES['mozilla-esr38']['enable_valgrind'] = False
-BRANCHES['mozilla-esr38']['enabled_products'] = ['firefox']
-
 ######## mozilla-esr45
 BRANCHES['mozilla-esr45']['repo_path'] = 'releases/mozilla-esr45'
 BRANCHES['mozilla-esr45']['update_channel'] = 'esr'
@@ -2937,7 +2892,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
 
 # Only test pretty names on train branches, not m-c or project branches.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-esr38", "mozilla-esr45"):
+               "mozilla-esr45"):
     for platform in ("linux", "linux64", "macosx64", "win32", "win64"):
         if platform in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True

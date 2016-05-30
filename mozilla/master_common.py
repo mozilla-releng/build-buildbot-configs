@@ -24,9 +24,7 @@ c['change_source'] = []
 DEFAULT_BRANCH_PRIORITY = 4
 BRANCH_PRIORITIES = {
     'mozilla-release': 0,
-    'comm-esr38': 0,
     'comm-esr45': 0,
-    'mozilla-esr38': 1,
     'mozilla-esr45': 1,
     'mozilla-beta': 2,
     'comm-beta': 2,

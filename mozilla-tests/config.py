@@ -34,17 +34,6 @@ BRANCHES = {
     'mozilla-aurora':      {},
     'mozilla-release':     {},
     'mozilla-beta':        {},
-    'mozilla-esr38': {
-        'gecko_version': 38,
-        'platforms': {
-            'macosx64': {},
-            'win32': {},
-            'win64': {},
-            'linux': {},
-            'linux64': {},
-        },
-        'lock_platforms': True,
-    },
     'mozilla-esr45': {
         'gecko_version': 45,
         'platforms': {
@@ -2964,16 +2953,6 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-
-######### mozilla-esr38
-BRANCHES['mozilla-esr38']['repo_path'] = "releases/mozilla-esr38"
-BRANCHES['mozilla-esr38']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-esr38']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr38']['platforms']['macosx64']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr38']['platforms']['linux']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr38']['platforms']['linux64']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr38']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr38']['platforms']['win64']['talos_slave_platforms'] = []
 
 ######### mozilla-esr45
 BRANCHES['mozilla-esr45']['repo_path'] = "releases/mozilla-esr45"

@@ -30,7 +30,6 @@ else:
         'mozilla-beta',
         'mozilla-aurora',
         'mozilla-release',
-        'mozilla-esr38',
         'mozilla-esr45',
     ])
 if 'limit_tb_branches' in master_config:
@@ -41,7 +40,6 @@ else:
         'comm-central',
         'comm-beta',
         'comm-aurora',
-        'comm-esr38',
         'comm-esr45',
     ])
 if 'limit_projects' in master_config:
