@@ -622,9 +622,6 @@ BRANCHES = {
     },
     'comm-beta': {
     },
-    'comm-esr38': {
-        'gecko_version': 38,
-    },
     'comm-esr45': {
         'gecko_version': 45,
     },
@@ -752,36 +749,6 @@ BRANCHES['comm-central']['platforms']['linux']['nightly_signing_servers'] = 'nig
 BRANCHES['comm-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-central']['platforms']['macosx64']['nightly_signing_servers'] = 'nightly-signing'
-
-######## comm-esr38
-BRANCHES['comm-esr38']['repo_path'] = 'releases/comm-esr38'
-BRANCHES['comm-esr38']['moz_repo_path'] = 'releases/mozilla-esr38'
-BRANCHES['comm-esr38']['update_channel'] = 'nightly-esr38'
-BRANCHES['comm-esr38']['skip_blank_repos'] = True
-BRANCHES['comm-esr38']['call_client_py'] = True
-BRANCHES['comm-esr38']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['comm-esr38']['start_hour'] = [3]
-BRANCHES['comm-esr38']['start_minute'] = [2]
-# Enable unit tests
-BRANCHES['comm-esr38']['enable_mac_a11y'] = True
-BRANCHES['comm-esr38']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['comm-esr38']['enable_l10n'] = False
-BRANCHES['comm-esr38']['l10nNightlyUpdate'] = False
-BRANCHES['comm-esr38']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                            'macosx64']
-BRANCHES['comm-esr38']['l10nDatedDirs'] = True
-BRANCHES['comm-esr38']['l10n_tree'] = 'tbrel'
-BRANCHES['comm-esr38']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-esr38'
-BRANCHES['comm-esr38']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-esr38' % (GLOBAL_VARS['hgurl'])
-BRANCHES['comm-esr38']['enable_nightly'] = True
-BRANCHES['comm-esr38']['updates_enabled'] = True
-BRANCHES['comm-esr38']['create_partial'] = True
-BRANCHES['comm-esr38']['enable_blocklist_update'] = True
-BRANCHES['comm-esr38']['file_update_on_closed_tree'] = False
-BRANCHES['comm-esr38']['enable_valgrind'] = False
 
 ######## comm-esr45
 BRANCHES['comm-esr45']['repo_path'] = 'releases/comm-esr45'

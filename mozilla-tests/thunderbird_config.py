@@ -29,9 +29,6 @@ BRANCHES = {
     },
     'comm-aurora': {
     },
-    'comm-esr38': {
-        'gecko_version': 38
-    },
     'comm-esr45': {
         'gecko_version': 45
     },
@@ -382,11 +379,6 @@ BRANCHES['comm-beta']['moz_repo_path'] = "releases/mozilla-beta"
 BRANCHES['comm-aurora']['pgo_strategy'] = None
 BRANCHES['comm-aurora']['repo_path'] = "releases/comm-aurora"
 BRANCHES['comm-aurora']['moz_repo_path'] = "releases/mozilla-aurora"
-
-######## comm-esr38
-BRANCHES['comm-esr38']['pgo_strategy'] = None
-BRANCHES['comm-esr38']['repo_path'] = "releases/comm-esr38"
-BRANCHES['comm-esr38']['moz_repo_path'] = "releases/mozilla-esr38"
 
 ######## comm-esr45
 BRANCHES['comm-esr45']['pgo_strategy'] = None
