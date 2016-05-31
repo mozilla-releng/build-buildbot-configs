@@ -54,8 +54,8 @@ releaseConfig['sourceRepositories']  = {
         }
     },
     'mozilla': {
-        'name': 'mozilla-esr45',
-        'path': 'releases/mozilla-esr45',
+        'name': 'mozilla-beta',
+        'path': 'releases/mozilla-beta',
         'revision': '{{ mozillaRevision }}',
         'relbranch': {% if mozillaRelbranch %}'{{ mozillaRelbranch }}'{% else %}None{% endif %},
         'bumpFiles': {
