@@ -157,7 +157,6 @@ PROJECT_BRANCHES = {
             # TODO - fennec
             "fennec": "",
         },
-        'update_verify_chunks': 6,
         'beetmover_credentials': '/builds/dev-beetmover-s3.credentials',
         'beetmover_buckets': {
             'firefox': 'net-mozaws-stage-delivery-firefox',
@@ -296,7 +295,6 @@ PROJECT_BRANCHES = {
         'updates_config': {
             "firefox": 'releases/dev_updates_firefox_esr45.py',
         },
-        'update_verify_chunks': 6,
         'beetmover_credentials': '/builds/dev-beetmover-s3.credentials',
         'beetmover_buckets': {
             'firefox': 'net-mozaws-stage-delivery-firefox',
