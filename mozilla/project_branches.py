@@ -31,7 +31,7 @@ PROJECT_BRANCHES = {
         'enable_valgrind': False,
         'lock_platforms': True,
         'merge_builds': False,
-        'periodic_start_hours': range(9, 0, 12),
+        'periodic_start_hours': [9, 21],
         'pgo_strategy': 'periodic',
         'platforms': {
             'linux': {
