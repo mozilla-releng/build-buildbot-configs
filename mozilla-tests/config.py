@@ -3377,7 +3377,7 @@ for platform in PLATFORMS.keys():
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
 
             # Not stable on windows XP
-            if slave_platform in ['xp_ix', 'win10_64', 'yosemite', 'yosemite_r7']:
+            if slave_platform in ['xp_ix', 'win10_64', 'yosemite']:
                 continue
             # Don't run on win7_vm_gfx
             if slave_platform == 'win7_vm_gfx':
