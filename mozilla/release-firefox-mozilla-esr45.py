@@ -21,17 +21,17 @@ releaseConfig['productName']         = 'firefox'
 releaseConfig['stage_product']       = 'firefox'
 releaseConfig['appName']             = 'browser'
 #  Current version info
-releaseConfig['version']             = '45.1.1esr'
-releaseConfig['appVersion']          = '45.1.1'
+releaseConfig['version']             = '45.2.0esr'
+releaseConfig['appVersion']          = '45.2.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FIREFOX_45_1_1esr'
+releaseConfig['baseTag']             = 'FIREFOX_45_2_0esr'
 releaseConfig['partialUpdates']      = {
 
-    '45.1.0esr': {
-        'appVersion': '45.1.0',
+    '45.1.1esr': {
+        'appVersion': '45.1.1',
         'buildNumber': 1,
-        'baseTag': 'FIREFOX_45_1_0esr',
+        'baseTag': 'FIREFOX_45_1_1esr',
     },
 
 }
@@ -39,14 +39,14 @@ releaseConfig['partialUpdates']      = {
 releaseConfig['HACK_first_released_version'] = {'win64': "45.0"}
 
 #  Next (nightly) version info
-releaseConfig['nextAppVersion']      = '45.1.1esrpre'
+releaseConfig['nextAppVersion']      = '45.2.0esrpre'
 releaseConfig['nextMilestone']       = releaseConfig['nextAppVersion']
 #  Repository configuration, for tagging
 releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr45',
         'path': 'releases/mozilla-esr45',
-        'revision': '30f99058bf06',
+        'revision': 'dc190bd03d24',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
