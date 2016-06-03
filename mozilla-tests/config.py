@@ -3098,6 +3098,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
 # Bug 1194533 - Enable remaining tests on OSX 10.10 for Gecko 48+
 # Bug 1255196 & 1275281 - Enable more Linux e10s test suites for Gecko 48+
 # Bug 1276474 - Enable remaining tests on Windows 7 for Gecko 48+
+# Bug 1276237 - Enable Windows 8 e10s tests on the release branches and Try for Gecko 48+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms'] or name in TWIGS:
@@ -3107,18 +3108,31 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                     CRASHTEST_E10S + JSREFTEST_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + \
                     MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_E10S + REFTEST_E10S
-            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7_ix', 'win7_vm', 'win7_vm_gfx', 'win10_64'):
+            if slave_platform in branch['platforms'][platform] and \
+                    slave_platform in ('win7_ix', 'win7_vm', 'win7_vm_gfx', 'win10_64'):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                     MOCHITEST_BC_7_E10S + MOCHITEST_E10S + MOCHITEST_MEDIA_E10S + \
                     REFTEST_NOACCEL + REFTEST_NOACCEL_E10S
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                     REFTEST_NOACCEL_E10S
+            if slave_platform in branch['platforms'][platform] and slave_platform in ['win8_64']:
+                if name in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'try'):
+                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                        CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
+                        MOCHITEST_DT_8_E10S + MOCHITEST_E10S + MOCHITEST_MEDIA_E10S + \
+                        MOCHITEST_WEBGL_E10S + REFTEST_E10S + REFTEST_NOACCEL_E10S + \
+                        WEB_PLATFORM_REFTESTS_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
+                        CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_DT_8_E10S + \
+                        MOCHITEST_E10S + MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_E10S + \
+                        REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_REFTESTS_E10S + \
+                        WEB_PLATFORM_TESTS_CHUNKED_E10S
             if platform in ['linux64-asan']:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                     MARIONETTE + MARIONETTE_E10S + MOCHITEST_DT_8_E10S + \
                     REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
                     REFTEST_NOACCEL_TWO_CHUNKS
-            if platform in ('linux'):
+            if platform in ('linux',):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                     REFTEST_NOACCEL_E10S_TWO_CHUNKS + REFTEST_NOACCEL_TWO_CHUNKS
             if platform in ('linux','linux64'):
