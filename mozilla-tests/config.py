@@ -3153,14 +3153,14 @@ for platform in PLATFORMS.keys():
         if slave_platform not in BRANCHES['try']['platforms'][platform]:
             continue
 
-        if slave_platform in branch['platforms'][platform] and slave_platform in ('xp_ix',):
+        if slave_platform in BRANCHES['try']['platforms'][platform] and slave_platform in ('xp_ix',):
             BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                 base_tests + MOCHITEST_BC_7_E10S + MOCHITEST_CLIPBOARD_E10S + \
                 MOCHITEST_GPU_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                 base_tests + MOCHITEST_BC_7_E10S + MOCHITEST_CLIPBOARD_E10S + \
                 MOCHITEST_GPU_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
-        if slave_platform in branch['platforms'][platform] and slave_platform in ('win8_64', 'win10_64'):
+        if slave_platform in BRANCHES['try']['platforms'][platform] and slave_platform in ('win8_64', 'win10_64'):
             BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                 base_tests + MOCHITEST_BC_7_E10S + MOCHITEST_CLIPBOARD_E10S + \
                 MOCHITEST_GPU_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
