@@ -899,7 +899,7 @@ PLATFORM_UNITTEST_VARS = {
                                    MARIONETTE + REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS + \
                                    WEB_PLATFORM_REFTESTS + WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST_CHUNKED + \
-                                     REFTEST_FOUR_CHUNKS,
+                                     REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_FOUR_CHUNKS,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -1035,7 +1035,7 @@ PLATFORM_UNITTEST_VARS = {
                                    MARIONETTE + REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS + \
                                    WEB_PLATFORM_REFTESTS + WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST_CHUNKED + \
-                                    REFTEST_FOUR_CHUNKS,
+                                    REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_FOUR_CHUNKS,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -1182,7 +1182,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': False,
         'ubuntu64-asan_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST_CHUNKED + \
-                                   REFTEST_TWO_CHUNKS,
+                                   REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST_CHUNKED + \
                                      REFTEST_FOUR_CHUNKS,
             'suite_config': {
@@ -1722,7 +1722,7 @@ PLATFORM_UNITTEST_VARS = {
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_ONE_CHUNK,
+                                     REFTEST_NOACCEL + REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1984,7 +1984,8 @@ PLATFORM_UNITTEST_VARS = {
         'win7_vm_gfx': {
             'opt_unittest_suites': MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_WEBGL + \
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK,
-            'debug_unittest_suites': MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_WEBGL + REFTEST_ONE_CHUNK,
+            'debug_unittest_suites': MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_WEBGL + \
+                                     REFTEST_NOACCEL + REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -2127,7 +2128,7 @@ PLATFORM_UNITTEST_VARS = {
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_ONE_CHUNK,
+                                     REFTEST_NOACCEL + REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -2259,7 +2260,7 @@ PLATFORM_UNITTEST_VARS = {
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_ONE_CHUNK,
+                                     REFTEST_NOACCEL + REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -3077,7 +3078,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
         if platform not in branch['platforms']:
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7_ix', 'win7_vm', 'win7_vm_gfx', 'win10_64'):
+            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7_ix', 'win7_vm', 'win7_vm_gfx'):
                 if name not in TWIGS:
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                         MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + REFTEST_E10S + CRASHTEST_E10S + \
@@ -3109,14 +3110,14 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
                     CRASHTEST_E10S + JSREFTEST_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + \
                     MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_E10S + REFTEST_E10S
             if slave_platform in branch['platforms'][platform] and \
-                    slave_platform in ('win7_ix', 'win7_vm', 'win7_vm_gfx', 'win10_64'):
+                    slave_platform in ('win7_ix', 'win7_vm', 'win7_vm_gfx'):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                     MOCHITEST_BC_7_E10S + MOCHITEST_E10S + MOCHITEST_MEDIA_E10S + \
-                    REFTEST_NOACCEL + REFTEST_NOACCEL_E10S
+                    REFTEST_NOACCEL_E10S
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                     REFTEST_NOACCEL_E10S
             if slave_platform in branch['platforms'][platform] and slave_platform in ['win8_64']:
-                if name in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release', 'try'):
+                if name in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release'):
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                         CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
                         MOCHITEST_DT_8_E10S + MOCHITEST_E10S + MOCHITEST_MEDIA_E10S + \
@@ -3130,14 +3131,41 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
             if platform in ['linux64-asan']:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                     MARIONETTE + MARIONETTE_E10S + MOCHITEST_DT_8_E10S + \
-                    REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
-                    REFTEST_NOACCEL_TWO_CHUNKS
+                    REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS
             if platform in ('linux',):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                    REFTEST_NOACCEL_E10S_TWO_CHUNKS + REFTEST_NOACCEL_TWO_CHUNKS
+                    REFTEST_NOACCEL_E10S_TWO_CHUNKS
             if platform in ('linux','linux64'):
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                     REFTEST_NOACCEL_E10S_TWO_CHUNKS
+
+# Bug 1277885 - Enable e10s tests for all Windows platforms on Try
+# Win7 already runs by default on production. WinXP, Win8, and Win10 are all opt-in platforms.
+for platform in PLATFORMS.keys():
+    if platform not in BRANCHES['try']['platforms']:
+        continue
+
+    base_tests = CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_DT_8_E10S + \
+                 MOCHITEST_E10S + MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_E10S + REFTEST_E10S + \
+                 WEB_PLATFORM_REFTESTS_E10S
+
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in BRANCHES['try']['platforms'][platform]:
+            continue
+
+        if slave_platform in branch['platforms'][platform] and slave_platform in ('xp_ix',):
+            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                base_tests + MOCHITEST_BC_7_E10S + MOCHITEST_CLIPBOARD_E10S + \
+                MOCHITEST_GPU_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
+                base_tests + MOCHITEST_BC_7_E10S + MOCHITEST_CLIPBOARD_E10S + \
+                MOCHITEST_GPU_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
+        if slave_platform in branch['platforms'][platform] and slave_platform in ('win8_64', 'win10_64'):
+            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                base_tests + MOCHITEST_BC_7_E10S + MOCHITEST_CLIPBOARD_E10S + \
+                MOCHITEST_GPU_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
+                base_tests + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
 
 # Use 4 xpcshell chunks on linux debug/asan builds and 1 everywhere else
 for branch in BRANCHES.keys():
@@ -3235,7 +3263,7 @@ for platform in PLATFORMS.keys():
                             MOCHITEST_GPU + MOCHITEST_CLIPBOARD
 
                     # currently we don't run e10s tests on winxp debug or win8 debug
-                    if slave_platform not in ('xp_ix', 'win8_64', 'ubuntu64_vm'):
+                    if slave_platform not in ('xp_ix', 'win8_64', 'win10_64', 'ubuntu64_vm'):
                         BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                             MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
 
