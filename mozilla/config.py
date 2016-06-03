@@ -2456,7 +2456,6 @@ BRANCHES['mozilla-release']['updates_config'] = {
     # TODO - fennec
     "fennec": "",
 }
-BRANCHES['mozilla-release']['update_verify_chunks'] = 12
 BRANCHES['mozilla-release']['beetmover_credentials'] = "/builds/release-s3.credentials"
 BRANCHES['mozilla-release']['stage_product'] = {
     'firefox': 'firefox',
@@ -2571,7 +2570,6 @@ BRANCHES['mozilla-beta']['updates_config'] = {
     # TODO - fennec
     "fennec": "",
 }
-BRANCHES['mozilla-beta']['update_verify_chunks'] = 12
 BRANCHES['mozilla-beta']['beetmover_credentials'] = "/builds/release-s3.credentials"
 BRANCHES['mozilla-beta']['stage_product'] = {
     'firefox': 'firefox',
@@ -2712,7 +2710,6 @@ BRANCHES['mozilla-esr45']['postrelease_bouncer_aliases_config'] = {
 BRANCHES['mozilla-esr45']['updates_config'] = {
     "firefox": 'releases/updates_firefox_esr45.py',
 }
-BRANCHES['mozilla-esr45']['update_verify_chunks'] = 12
 BRANCHES['mozilla-esr45']['beetmover_credentials'] = "/builds/release-s3.credentials"
 BRANCHES['mozilla-esr45']['stage_product'] = {
     'firefox': 'firefox',
