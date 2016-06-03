@@ -20,11 +20,11 @@ releaseConfig['stage_product']       = 'mobile'
 releaseConfig['appName']             = 'mobile'
 releaseConfig['relbranchPrefix']     = 'MOBILE'
 #  Current version info
-releaseConfig['version']             = '46.0.1'
-releaseConfig['appVersion']          = '46.0.1'
+releaseConfig['version']             = '47.0'
+releaseConfig['appVersion']          = '47.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'FENNEC_46_0_1'
+releaseConfig['buildNumber']         = 2
+releaseConfig['baseTag']             = 'FENNEC_47_0'
 #  Next (nightly) version info
 releaseConfig['nextAppVersion']      = releaseConfig['version']
 releaseConfig['nextMilestone']       = releaseConfig['version']
@@ -33,7 +33,7 @@ releaseConfig['sourceRepositories']  = {
     'mobile': {
         'name': 'mozilla-release',
         'path': 'releases/mozilla-release',
-        'revision': '5dfda1b1f575',
+        'revision': '8815c6471061',
         'relbranch': None,
         'bumpFiles': {
             'browser/config/version.txt': {
