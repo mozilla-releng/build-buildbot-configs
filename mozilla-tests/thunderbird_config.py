@@ -431,6 +431,16 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 34):
   if 'macosx64' in BRANCHES[name]['platforms']:
     BRANCHES[name]['platforms']['macosx64']['mac_res_subdir'] = 'MacOS'
 
+# Bug 1278102 - Stop running tests on OS X 10.6 on 49+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
+    if name in ['try']:
+        continue
+    for platform in branch['platforms'].keys():
+        if platform not in ['macosx64']:
+            continue
+        for slave_platform in ['snowleopard']:
+            del BRANCHES[name]['platforms'][platform][slave_platform]
+
 # mozmill-on-mozharness should ride the trains
 # Replace old trains with non-mozharness code.
 # MERGE DAY (remove this code once Thunderbird no longer services Gecko 37 and lower)
