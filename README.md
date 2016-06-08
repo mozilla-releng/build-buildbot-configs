@@ -31,7 +31,7 @@ job to be triggered.
 Add this following section to the .git/config file in your local clone:
 ```
 [remote "mozilla"]
-	url = git@github.com:mozilla/build-buildbot-configs
+	url = git@github.com:mozilla-releng/build-buildbot-configs
 	fetch = +refs/heads/*:refs/remotes/mozilla/*
 	fetch = +refs/notes/*:refs/notes/*
 ```
@@ -76,7 +76,7 @@ This allows you to map a git commit SHA to an hg changeset SHA ("Upstream source
 ### Related repositories
 
 Please also see:
-* https://github.com/mozilla/build-buildbotcustom/
+* https://github.com/mozilla-releng/build-buildbotcustom/
 * https://hg.mozilla.org/build/buildbot/ (not mirrored to github)
 
 Happy contributing! =)
