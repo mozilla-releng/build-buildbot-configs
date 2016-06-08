@@ -64,14 +64,14 @@ releaseConfig['otherReposToTag']     = {
 }
 
 # Platform configuration
-releaseConfig['enUSPlatforms']        = ('android-api-9', 'android-api-15', 'android-x86')
+releaseConfig['enUSPlatforms']        = ('android-api-15', 'android-x86')
 releaseConfig['notifyPlatforms']      = releaseConfig['enUSPlatforms']
 releaseConfig['unittestPlatforms']    = ()
 releaseConfig['talosTestPlatforms']   = ()
 releaseConfig['enableUnittests']      = False
 
 # L10n configuration
-releaseConfig['l10nPlatforms']       = ('android-api-9', 'android-api-15')
+releaseConfig['l10nPlatforms']       = ('android-api-15',)
 releaseConfig['l10nNotifyPlatforms'] = releaseConfig['l10nPlatforms']
 releaseConfig['mergeLocales']        = True
 releaseConfig['enableMultiLocale']   = True
@@ -94,7 +94,6 @@ releaseConfig['partnerRepackPlatforms'] = ()
 
 # mozconfigs
 releaseConfig['mozconfigs']          = {
-    'android-api-9': 'mobile/android/config/mozconfigs/android-api-9-10-constrained/release',
     'android-api-15': 'mobile/android/config/mozconfigs/android-api-15/release',
     'android-x86': 'mobile/android/config/mozconfigs/android-x86/release',
 }
@@ -124,13 +123,6 @@ releaseConfig['enableUpdatePackaging']    = False
 releaseConfig['balrog_api_root']          = None
 
 releaseConfig['single_locale_options'] = {
-    'android-api-9': [
-        '--cfg',
-        'single_locale/release_mozilla-beta_android_api_9.py',
-        '--tag-override', '%s_RELEASE' % releaseConfig['baseTag'],
-        '--cfg', 'single_locale/production.py',
-        '--no-taskcluster-upload',
-    ],
     'android-api-15': [
         '--cfg',
         'single_locale/release_mozilla-beta_android_api_15.py',
@@ -142,8 +134,6 @@ releaseConfig['single_locale_options'] = {
 
 releaseConfig['multilocale_config'] = {
     'platforms': {
-        'android-api-9':
-            'multi_locale/release_mozilla-beta_android.json',
         'android-api-15':
             'multi_locale/release_mozilla-beta_android.json',
         'android-x86':
@@ -160,7 +150,7 @@ releaseConfig['multilocale_config'] = {
 releaseConfig['enableSigningAtBuildTime'] = True
 releaseConfig['enablePartialMarsAtBuildTime'] = False
 releaseConfig['use_mock'] = True
-releaseConfig['mock_platforms'] = ('android-api-9', 'android-api-15', 'android-x86', 'linux')
+releaseConfig['mock_platforms'] = ('android-api-15', 'android-x86', 'linux')
 releaseConfig['enableAutomaticPushToMirrors'] = True
 releaseConfig['partialUpdates']      = {}
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
