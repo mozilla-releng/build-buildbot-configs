@@ -1,6 +1,10 @@
 # buildbot-configs
-This repository is a downstream read-only copy of:
-http://hg.mozilla.org/build/buildbot-configs/
+If you are viewing a git version of this repository, it is a downstream
+read-only copy of: http://hg.mozilla.org/build/buildbot-configs/
+
+The notes below are a mixture of instructions that apply everywhere
+(e.g. testing information) and those that apply only to git versions of
+the repository.
 
 ### Submitting changes
 We do not support the github Pull Request workflow, since github is only a downstream
@@ -31,7 +35,7 @@ job to be triggered.
 Add this following section to the .git/config file in your local clone:
 ```
 [remote "mozilla"]
-	url = git@github.com:mozilla/build-buildbot-configs
+	url = git@github.com:mozilla-releng/build-buildbot-configs
 	fetch = +refs/heads/*:refs/remotes/mozilla/*
 	fetch = +refs/notes/*:refs/notes/*
 ```
@@ -76,7 +80,7 @@ This allows you to map a git commit SHA to an hg changeset SHA ("Upstream source
 ### Related repositories
 
 Please also see:
-* https://github.com/mozilla/build-buildbotcustom/
+* https://github.com/mozilla-releng/build-buildbotcustom/
 * https://hg.mozilla.org/build/buildbot/ (not mirrored to github)
 
 Happy contributing! =)
