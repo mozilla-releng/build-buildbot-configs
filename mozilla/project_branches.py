@@ -122,8 +122,8 @@ PROJECT_BRANCHES = {
         "single_locale_branch_config": "dev-mozilla-beta",
         "release_channel_mappings": [["^.*$", ["beta-dev"]]],
         # temp balrog
-        'balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
-        'funsize_balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
+        'balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
+        'funsize_balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': {
             "firefox": "releases/bouncer_firefox_beta.py",
@@ -270,8 +270,8 @@ PROJECT_BRANCHES = {
         "single_locale_branch_config": "dev-mozilla-release",
         "release_channel_mappings": [["^.*$", ["esr"]]],
         # temp balrog
-        'balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
-        'funsize_balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
+        'balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
+        'funsize_balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': {
             "firefox": "releases/bouncer_firefox_esr.py",
