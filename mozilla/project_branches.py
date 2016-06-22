@@ -195,8 +195,20 @@ PROJECT_BRANCHES = {
             'linux64': {
                 'dep_signing_servers': 'nightly-signing',
             },
+            'macosx64': {
+                'dep_signing_servers': 'nightly-signing',
+            },
+            'win32': {
+                'dep_signing_servers': 'nightly-signing',
+            },
+            'win64': {
+                'nightly_signing_servers': 'nightly-signing',
+            },
             'linux-debug': {},
             'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+            'win64-debug': {},
         },
     },
     # Disabled by Bug 1135702
