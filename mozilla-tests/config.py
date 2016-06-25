@@ -259,6 +259,16 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_dom'],
         'options': ({}, LINUX_ONLY),
     },
+    'g4': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'basic_compositor_video'],
+        'options': ({}, ALL_TALOS_PLATFORMS),
+    },
+    'g4-e10s': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'basic_compositor_video'],
+        'options': ({}, ALL_TALOS_PLATFORMS),
+    },
     'other': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
@@ -3266,6 +3276,12 @@ for platform in PLATFORMS.keys():
                     if slave_platform not in ('xp_ix', 'win8_64', 'win10_64', 'ubuntu64_vm'):
                         BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                             MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
+
+
+# Enable talos g4 on 50+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
+    branch['g4_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+    branch['g4-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 
 ### Test suites that only run on Try ###
