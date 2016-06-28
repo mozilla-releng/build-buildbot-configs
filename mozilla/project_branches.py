@@ -320,6 +320,7 @@ PROJECT_BRANCHES = {
     },
     'larch': {
         'lock_platforms': True,
+        'pgo_strategy': 'per-checkin',
         'platforms': {
             'linux': {},
             'linux-debug': {},
