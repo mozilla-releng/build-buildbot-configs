@@ -530,8 +530,6 @@ PLATFORM_VARS = {
             'enable_build_analysis': True,
             'test_pretty_names': False,
             'l10n_check_test': True,
-            'nightly_signing_servers': 'dep-signing',
-            'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
             'tooltool_script': ['/builds/tooltool.py'],
             'use_mock': True,
