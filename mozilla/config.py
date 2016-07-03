@@ -1067,13 +1067,6 @@ PLATFORM_VARS = {
             },
             'enable_opt_unittests': False,
             'test_pretty_names': False,
-            # These refer to items in passwords.secrets
-            # nightly_signing_servers defaults to dep-signing because we don't want
-            # random new branches to accidentally use nightly-signing, which signs
-            # with valid keys. Any branch that needs to be signed with these keys
-            # must be overridden explicitly.
-            'nightly_signing_servers': 'dep-signing',
-            'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
             'enable_ccache': True,
         },
@@ -1204,13 +1197,6 @@ PLATFORM_VARS = {
             },
             'test_pretty_names': False,
             'l10n_check_test': True,
-            # These refer to items in passwords.secrets
-            # nightly_signing_servers defaults to dep-signing because we don't want
-            # random new branches to accidentally use nightly-signing, which signs
-            # with valid keys. Any branch that needs to be signed with these keys
-            # must be overridden explicitly.
-            'nightly_signing_servers': 'dep-signing',
-            'dep_signing_servers': 'dep-signing',
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/win32/releng.manifest',
             'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
@@ -1343,13 +1329,6 @@ PLATFORM_VARS = {
             'enable_opt_unittests': False,
             'test_pretty_names': True,
             'l10n_check_test': True,
-            # These refer to items in passwords.secrets
-            # nightly_signing_servers defaults to dep-signing because we don't want
-            # random new branches to accidentally use nightly-signing, which signs
-            # with valid keys. Any branch that needs to be signed with these keys
-            # must be overridden explicitly.
-            'nightly_signing_servers': 'dep-signing',
-            'dep_signing_servers': 'dep-signing',
             # The status of this build doesn't affect the last good revision
             # algorithm for nightlies
             'consider_for_nightly': False,
