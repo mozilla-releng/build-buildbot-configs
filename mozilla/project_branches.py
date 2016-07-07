@@ -28,7 +28,6 @@ PROJECT_BRANCHES = {
     # Bug 1252292 - Schedule e10s tests on Ash for all desktop platforms
     'ash': {
         'enable_talos': False,
-        'enable_valgrind': False,
         'lock_platforms': True,
         'merge_builds': False,
         'periodic_start_hours': [9, 21],
@@ -111,7 +110,6 @@ PROJECT_BRANCHES = {
             'win32-debug': {},
             'win64-debug': {},
         },
-        'enable_valgrind': False,
         'pgo_strategy': 'per-checkin',
         'enable_release_promotion': True,
         'build_tools_repo_path': 'users/raliiev_mozilla.com/tools',
@@ -122,8 +120,8 @@ PROJECT_BRANCHES = {
         "single_locale_branch_config": "dev-mozilla-beta",
         "release_channel_mappings": [["^.*$", ["beta-dev"]]],
         # temp balrog
-        'balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
-        'funsize_balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
+        'balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
+        'funsize_balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': {
             "firefox": "releases/bouncer_firefox_beta.py",
@@ -185,7 +183,6 @@ PROJECT_BRANCHES = {
     'elm': {
         'branch_projects': [],
         'enable_talos': True,
-        'enable_valgrind': False,
         'lock_platforms': True,
         'platforms': {
             # dep signing with nightly key, see bug 1176152
@@ -273,7 +270,6 @@ PROJECT_BRANCHES = {
                 "slave_platforms": [],
             },
         },
-        'enable_valgrind': False,
         'pgo_strategy': 'per-checkin',
         'enable_release_promotion': True,
         'build_tools_repo_path': 'users/raliiev_mozilla.com/tools',
@@ -282,8 +278,8 @@ PROJECT_BRANCHES = {
         "single_locale_branch_config": "dev-mozilla-release",
         "release_channel_mappings": [["^.*$", ["esr"]]],
         # temp balrog
-        'balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
-        'funsize_balrog_api_root': 'http://ec2-54-241-39-23.us-west-1.compute.amazonaws.com:443/api',
+        'balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
+        'funsize_balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': {
             "firefox": "releases/bouncer_firefox_esr.py",

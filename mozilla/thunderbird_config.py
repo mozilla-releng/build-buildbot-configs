@@ -65,8 +65,6 @@ GLOBAL_VARS.update({
     'enable_nightly': True,
     'enable_perproduct_builds': True,
     'enabled_products': ['thunderbird'],
-    'enable_valgrind': False,
-    'valgrind_platforms': ('linux', 'linux64'),
 
     'hash_type': 'sha512',
     'updates_enabled': False,
@@ -152,7 +150,6 @@ PLATFORM_VARS = {
                         'xorg-x11-font*',  # fonts required for PGO
                         'imake',  # required for makedepend!?!
                         'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache',  # <-- from releng repo
-                        'valgrind',
                         'pulseaudio-libs-devel.i686',
                         'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
                         # Packages already installed in the mock environment, as x86_64
@@ -243,7 +240,6 @@ PLATFORM_VARS = {
                         'xorg-x11-font*', # fonts required for PGO
                         'imake', # required for makedepend!?!
                         'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
-                        'valgrind',
                         'pulseaudio-libs-devel',
                         'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         'freetype-2.3.11-6.el6_1.8.x86_64',
@@ -439,7 +435,6 @@ PLATFORM_VARS = {
                         'xorg-x11-font*',  # fonts required for PGO
                         'imake',  # required for makedepend!?!
                         'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache',  # <-- from releng repj
-                        'valgrind',
                         'pulseaudio-libs-devel.i686',
                         'gstreamer-devel.i686', 'gstreamer-plugins-base-devel.i686',
                         # Packages already installed in the mock environment,
@@ -778,7 +773,6 @@ BRANCHES['comm-esr45']['updates_enabled'] = True
 BRANCHES['comm-esr45']['create_partial'] = True
 BRANCHES['comm-esr45']['enable_blocklist_update'] = True
 BRANCHES['comm-esr45']['file_update_on_closed_tree'] = False
-BRANCHES['comm-esr45']['enable_valgrind'] = False
 
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'
@@ -813,7 +807,6 @@ BRANCHES['comm-beta']['enable_nightly'] = False
 # generated.
 BRANCHES['comm-beta']['enable_blocklist_update'] = True
 BRANCHES['comm-beta']['file_update_on_closed_tree'] = False
-BRANCHES['comm-beta']['enable_valgrind'] = False
 
 ######## comm-aurora
 BRANCHES['comm-aurora']['moz_repo_path'] = 'releases/mozilla-aurora'
@@ -851,7 +844,6 @@ BRANCHES['comm-aurora']['create_partial_l10n'] = True
 # use comm-aurora-test when disabling updates for merges
 BRANCHES['comm-aurora']['enable_blocklist_update'] = True
 BRANCHES['comm-aurora']['file_update_on_closed_tree'] = False
-BRANCHES['comm-aurora']['enable_valgrind'] = False
 BRANCHES['comm-aurora']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-aurora']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
@@ -937,7 +929,6 @@ for branch in ACTIVE_PROJECT_BRANCHES:
         # which may have already been set to the global default.
         BRANCHES[branch]['platforms'][platform]['nightly_signing_servers'] = branchConfig.get('platforms', {}).get(platform, {}).get('nightly_signing_servers',
                                                                              BRANCHES[branch]['platforms'][platform]['dep_signing_servers'])
-    BRANCHES[branch]['enable_valgrind'] = False
 
 
 # Bug 578880, remove the following block after gcc-4.5 switch
