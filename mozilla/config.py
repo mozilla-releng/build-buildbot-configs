@@ -3209,6 +3209,13 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
             continue
         del branch['platforms'][platform]
 
+# Bug 1282849 - disable fennec debug builds and tests in buildbot
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
+    for platform in branch['platforms'].keys():
+        if platform not in ['android-api-15-debug']:
+            continue
+        del branch['platforms'][platform]
+
 # mozilla-central's gecko version
 mb_gecko_version = BRANCHES['mozilla-beta']['gecko_version']
 # Bug 1135781 - generate builds per checkin on beta/release/esr that allow unsigned add-ons
