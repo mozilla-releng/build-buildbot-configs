@@ -65,8 +65,8 @@ def wfetch(url, retries=5):
 
 def get_seta_platforms(branch, platform_filter):
     # For offline work
-    if os.environ.get('DISABLE_SETA'):
-        return []
+    #if os.environ.get('DISABLE_SETA'):
+    return []
 
     url = "http://alertmanager.allizom.org/data/setadetails/?date=" + today + "&buildbot=1&branch=" + branch + "&inactive=1"
     data = wfetch(url)
