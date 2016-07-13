@@ -28,7 +28,7 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   }
 
 # platforms and tests to exclude from configs because they are deprecated or lacking data
-platform_exclusions = ["android-2-3-armv7-api9"]
+platform_exclusions = ["android-2-3-armv7-api9", "Windows 7 32-bit VM"]
 test_exclusions = re.compile('\[funsize\]|\[TC\]')
 
 # define seta branches and default values for skipcount and skiptimeout
@@ -65,8 +65,8 @@ def wfetch(url, retries=5):
 
 def get_seta_platforms(branch, platform_filter):
     # For offline work
-    #if os.environ.get('DISABLE_SETA'):
-    return []
+    if os.environ.get('DISABLE_SETA'):
+        return []
 
     url = "http://alertmanager.allizom.org/data/setadetails/?date=" + today + "&buildbot=1&branch=" + branch + "&inactive=1"
     data = wfetch(url)
