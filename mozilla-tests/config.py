@@ -783,6 +783,17 @@ REFTEST_NOACCEL_TWO_CHUNKS = [
     }),
 ]
 
+REFTEST_NOACCEL_SIX_CHUNKS = [
+    ('reftest-no-accel', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'reftest-no-accel'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+        'totalChunks': 6,
+    }),
+]
+
 REFTEST_NOACCEL_E10S_TWO_CHUNKS = [
     ('reftest-no-accel-e10s', {
         'use_mozharness': True,
@@ -3145,6 +3156,11 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
             if platform in ('linux',):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                     REFTEST_NOACCEL_E10S_TWO_CHUNKS
+                # we want reftest_noaccel to be 6 chunks for debug on gecko version 48+
+                for test, config in branch['platforms'][platform][slave_platform]['debug_unittest_suites']:
+                    if test == 'reftest-no-accel':
+                        branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove((test,config))
+                        branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += REFTEST_NOACCEL_SIX_CHUNKS
             if platform in ('linux','linux64'):
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                     REFTEST_NOACCEL_E10S_TWO_CHUNKS
