@@ -3097,6 +3097,16 @@ remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'mochitest-chrome', 'ubunt
 remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'mochitest-chrome', 'ubuntu64_vm_mobile', branches_to_keep=trunk_branches)
 remove_suite_from_slave_platform(BRANCHES, PLATFORMS, 'mochitest-chrome', 'ubuntu64_vm_large', branches_to_keep=trunk_branches)
 
+
+# Bug 1282849 - disable fennec debug builds and tests in buildbot
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
+    for platform in branch['platforms'].keys():
+        if platform not in ['android-api-15']:
+            continue
+        for slave_platform in ['ubuntu64_vm_armv7_mobile', 'ubuntu64_vm_armv7_large']:
+            BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
+
+
 loadSkipConfig(BRANCHES, "mobile")
 
 if __name__ == "__main__":
