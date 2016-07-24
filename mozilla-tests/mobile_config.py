@@ -49,52 +49,9 @@ setMainFirefoxVersions(BRANCHES)
 
 # Talos
 PLATFORMS = {
-    'android-api-9': {},
-    'android-api-11': {},
     'android-api-15': {},
     'android-x86': {},
 }
-
-
-
-# bug 1073772 - split 'android' into two based on api
-## this will replace 'android' as it rides trains
-PLATFORMS['android-api-9']['slave_platforms'] = \
-    ['ubuntu64_vm_mobile', 'ubuntu64_vm_large', ]
-PLATFORMS['android-api-9']['env_name'] = 'android-perf'
-PLATFORMS['android-api-9']['is_mobile'] = True
-PLATFORMS['android-api-9']['ubuntu64_vm_mobile'] = {
-    'name': "Android armv7 API 9",
-}
-PLATFORMS['android-api-9']['ubuntu64_vm_large'] = {
-    'name': "Android armv7 API 9",
-}
-PLATFORMS['android-api-9']['stage_product'] = 'mobile'
-PLATFORMS['android-api-9']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
-    'hg_bin': 'hg',
-    'reboot_command': None,
-    'talos_script_maxtime': 10800,
-}
-PLATFORMS['android-api-11']['slave_platforms'] = ['ubuntu64_vm_armv7_mobile', 'ubuntu64_vm_armv7_large']
-PLATFORMS['android-api-11']['env_name'] = 'android-perf'
-PLATFORMS['android-api-11']['is_mobile'] = True
-PLATFORMS['android-api-11']['ubuntu64_vm_armv7_mobile'] = {
-    'name': "Android 4.3 armv7 API 11+",
-    'mozharness_talos': True,
-}
-PLATFORMS['android-api-11']['ubuntu64_vm_armv7_large'] = {
-    'name': "Android 4.3 armv7 API 11+",
-    'mozharness_talos': True,
-}
-PLATFORMS['android-api-11']['stage_product'] = 'mobile'
-PLATFORMS['android-api-11']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
-    'hg_bin': 'hg',
-    'reboot_command': None,
-    'talos_script_maxtime': 10800,
-}
-
 PLATFORMS['android-api-15']['slave_platforms'] = ['ubuntu64_vm_armv7_mobile', 'ubuntu64_vm_armv7_large']
 PLATFORMS['android-api-15']['env_name'] = 'android-perf'
 PLATFORMS['android-api-15']['is_mobile'] = True
@@ -155,8 +112,6 @@ BRANCH_UNITTEST_VARS = {
     # turn on platforms as we get them running
     'platforms': {
         'android-debug': {},
-        'android-api-9': {},
-        'android-api-11': {},
         'android-api-15': {},
         'android-x86': {},
     },
@@ -2733,24 +2688,6 @@ for suite in ANDROID_2_3_MOZHARNESS_DICT:
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
 PLATFORM_UNITTEST_VARS = {
-    'android-api-9': {
-        'product_name': 'fennec',
-        'app_name': 'browser',
-        'brand_name': 'Minefield',
-        'is_remote': True,
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': True,
-        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-    },
-    'android-api-11': {
-        'product_name': 'fennec',
-        'app_name': 'browser',
-        'brand_name': 'Minefield',
-        'is_remote': True,
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': True,
-        'remote_extras': ANDROID_UNITTEST_REMOTE_EXTRAS,
-    },
     'android-api-15': {
         'product_name': 'fennec',
         'app_name': 'browser',
@@ -2925,51 +2862,6 @@ for suite in ANDROID_4_3_MOZHARNESS_DICT:
         if suite[0].startswith('cppunit'):
             ANDROID_4_3_AWS_TRUNK_DICT['debug_unittest_suites'].append(suite)
 
-# Bug 1219094 - releng work for dropping honeycomb support
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
-    # remove the soon to be replaced android builds
-    if 'android-api-11' in branch['platforms']:
-        del branch['platforms']['android-api-11']
-for name, branch in items_before(BRANCHES, 'gecko_version', 46):
-    if 'android-api-15' in branch['platforms']:
-        del branch['platforms']['android-api-15']
-
-# enable android 2.3 tests to ride the trains bug 1004791
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 32):
-    # Loop removes it from any branch that gets beyond here
-    for platform in branch['platforms']:
-        if not platform in PLATFORMS:
-            continue
-        if platform not in ('android-api-9'):
-            continue
-        BRANCHES[name]['platforms'][platform]['ubuntu64_vm_large'] = {
-            'opt_unittest_suites': deepcopy(ANDROID_2_3_C3_DICT['opt_unittest_suites']),
-            'debug_unittest_suites': []
-        }
-        BRANCHES[name]['platforms'][platform]['ubuntu64_vm_mobile'] = {
-            'opt_unittest_suites': deepcopy(ANDROID_2_3_AWS_DICT['opt_unittest_suites']),
-            'debug_unittest_suites': []
-        }
-
-# enable android 2.3 mochitest media to ride the trains (bug 1242682)
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
-    # Loop removes it from any branch that gets beyond here
-    for platform in branch['platforms']:
-        if not platform in PLATFORMS:
-            continue
-        if platform not in ('android-api-9'):
-            continue
-        BRANCHES[name]['platforms'][platform]['ubuntu64_vm_large'] = {
-            'opt_unittest_suites': deepcopy(ANDROID_2_3_C3_DICT['opt_unittest_suites']),
-            'debug_unittest_suites': []
-        }
-        BRANCHES[name]['platforms'][platform]['ubuntu64_vm_mobile'] = {
-            'opt_unittest_suites': deepcopy(ANDROID_2_3_AWS_DICT['opt_unittest_suites']),
-            'debug_unittest_suites': []
-        }
-        BRANCHES[name]['platforms'][platform]['ubuntu64_vm_mobile']['opt_unittest_suites'] += ANDROID_2_3_MOCHITEST_MEDIA
-
-
 # bug 1133833 enable Android 4.3 on trunk for opt only
 # while disabling corresponding 4.0 tests
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
@@ -2977,7 +2869,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 40):
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
-        if platform not in ('android-api-11', 'android-api-15'):
+        if platform not in ('android-api-15',):
             continue
         for slave_plat in PLATFORMS[platform]['slave_platforms']:
             BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_mobile'] = {
@@ -2993,7 +2885,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 41):
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
-        if platform not in ('android-api-11', 'android-api-15'):
+        if platform not in ('android-api-15',):
             continue
         for slave_plat in PLATFORMS[platform]['slave_platforms']:
             BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_large'] = {
@@ -3009,7 +2901,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
-        if platform not in ('android-api-11', 'android-api-15'):
+        if platform not in ('android-api-15',):
             continue
         for slave_plat in PLATFORMS[platform]['slave_platforms']:
             BRANCHES[name]['platforms'][platform]['ubuntu64_vm_armv7_large'] = {
@@ -3025,7 +2917,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
     for platform in branch['platforms']:
         if not platform in PLATFORMS:
             continue
-        if platform not in ('android-api-11', 'android-api-15'):
+        if platform not in ('android-api-15',):
             continue
         for slave_plat in PLATFORMS[platform]['slave_platforms']:
             if not slave_plat in branch['platforms'][platform]:
@@ -3053,12 +2945,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
         branch['platforms'][platform]['ubuntu64_vm_armv7_mobile']['debug_unittest_suites'] += \
                 ANDROID_4_3_GPU + ANDROID_4_3_CLIPBOARD
 
-
-# Bug 1250999 - releng - releng work for dropping api 9-10
-# disable api-9-10 mobile builds on >= 48 based branches
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
-    if 'android-api-9' in branch['platforms']:
-        del branch['platforms']['android-api-9']
 
 def remove_suite_from_slave_platform(BRANCHES, PLATFORMS, suite_to_remove, slave_platform, branches_to_keep=[]):
     """Remove suites named like |suite_to_remove| from all branches on slave platforms named like |slave_platform|.
