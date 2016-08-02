@@ -17,18 +17,20 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   "Windows 7 32-bit": ("win32", ["win7_ix"]),
                   "Windows 8 64-bit": ("win64", ["win8_64"]),
                   "Ubuntu VM 12.04": ("linux", ["ubuntu32_vm"]),
-                  "Ubuntu VM 12.04 x64": ("linux64", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
+                  "Ubuntu VM 12.04 x64": ("linux64", ["ubuntu64_vm"]),
+                  "Ubuntu VM large 12.04 x64": ("linux64", ["ubuntu64_vm_lnx_large"]),
                   "Ubuntu HW 12.04 x64": ("linux64", ["ubuntu64_hw"]),
-                  "Ubuntu ASAN VM 12.04 x64": ("linux64-asan", ["ubuntu64-asan_vm", "ubuntu64-asan_vm_lnx_large"]),
+                  "Ubuntu ASAN VM 12.04 x64": ("linux64-asan", ["ubuntu64-asan_vm"]),
+                  "Ubuntu ASAN VM large 12.04 x64": ("linux64-asan", ["ubuntu64-asan_vm_lnx_large"]),
                   "Ubuntu TSAN VM 12.04 x64": ("linux64-tsan", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
                   "Rev7 MacOSX Yosemite 10.10.5": ("macosx64", ["yosemite_r7"]),
                   "Ubuntu Code Coverage VM 12.04 x64": ("linux64-cc", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
                   "android-4-3-armv7-api11": ("android-api-15", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"]),
-                  "android-4-3-armv7-api15": ("android-api-15", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"])
+                  "android-4-3-armv7-api15": ("android-api-15", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"]),
                   }
 
 # platforms and tests to exclude from configs because they are deprecated or lacking data
-platform_exclusions = ["android-2-3-armv7-api9", "Windows 7 32-bit VM"]
+platform_exclusions = ["android-2-3-armv7-api9", "Windows 7 32-bit VM", "Android 4.2 x86 Emulator", "Windows 7 VM 32-bit", "Windows 7 VM-GFX 32-bit", "Android 4.3 armv7 API 15+"]
 test_exclusions = re.compile('\[funsize\]|\[TC\]')
 
 # define seta branches and default values for skipcount and skiptimeout
