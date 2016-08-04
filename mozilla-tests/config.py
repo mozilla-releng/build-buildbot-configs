@@ -3430,7 +3430,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 49):
 
 # Only enable suites in AWS that are working
 WORKING_WIN7_AWS_OPT_SUITES = WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS + GTEST + CPPUNIT + JITTEST + OTHER_REFTESTS + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA + WEB_PLATFORM_TESTS_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
-WORKING_WIN7_AWS_DEBUG_SUITES = GTEST + CPPUNIT + JITTEST + WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS + OTHER_REFTESTS + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA + WEB_PLATFORM_TESTS_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
+WORKING_WIN7_AWS_DEBUG_SUITES = GTEST + CPPUNIT + JITTEST + WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS + OTHER_REFTESTS + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + WEB_PLATFORM_REFTESTS_E10S + CRASHTEST_E10S + JSREFTEST_E10S
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
     # Skip branches where win32 isn't running
     if not nested_haskey(branch, 'platforms', 'win32'):
@@ -3445,6 +3445,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
                 if suite_name.startswith('reftest'):
                     win32['win7_vm'][test_type].remove(t)
                 if suite_name.startswith('mochitest-gl'):
+                    win32['win7_vm'][test_type].remove(t)
+                if suite_name.startswith('mochitest-gpu'):
                     win32['win7_vm'][test_type].remove(t)
     if 'win7_vm_gfx' in win32:
         for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
@@ -3495,6 +3497,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
                     win32['win7_ix'][test_type].remove(t)
                 if suite_name.startswith('web-platform-tests'):
                     win32['win7_ix'][test_type].remove(t)
+                if suite_name.startswith('mochitest-gpu'):
+                    win32['win7_ix'][test_type].remove(t)
+                if suite_name.startswith('crashtest-e10s'):
+                    win32['win7_ix'][test_type].remove(t)
+                if suite_name.startswith('jsreftest-e10s'):
+                    win32['win7_ix'][test_type].remove(t)
 
     # Leave all the other suites running on try
     if name == 'try':
@@ -3504,8 +3512,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
         win32['win7_vm']['opt_unittest_suites'] = WORKING_WIN7_AWS_OPT_SUITES
         win32['win7_vm']['debug_unittest_suites'] = WORKING_WIN7_AWS_DEBUG_SUITES
     if 'win7_vm_gfx' in win32:
-        win32['win7_vm_gfx']['opt_unittest_suites'] = REFTEST_ONE_CHUNK + REFTEST_NOACCEL
-        win32['win7_vm_gfx']['debug_unittest_suites'] = REFTEST_ONE_CHUNK
+        win32['win7_vm_gfx']['opt_unittest_suites'] = REFTEST_ONE_CHUNK + REFTEST_NOACCEL + MOCHITEST_GPU + MOCHITEST_GPU_E10S + REFTEST_E10S
+        win32['win7_vm_gfx']['debug_unittest_suites'] = REFTEST_ONE_CHUNK + MOCHITEST_GPU + MOCHITEST_GPU_E10S + REFTEST_NOACCEL + REFTEST_E10S
 
     # Disable these suites from the IX machines
     if 'win7_ix' in win32:
