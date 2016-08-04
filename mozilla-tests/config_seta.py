@@ -15,6 +15,8 @@ today = date.today().strftime("%Y-%m-%d")
 seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"]),
                   "Windows XP 32-bit": ("win32", ["xp_ix"]),
                   "Windows 7 32-bit": ("win32", ["win7_ix"]),
+                  "Windows 7 VM 32-bit": ("win32", ["win7_vm"]),
+                  "Windows 7 VM-GFX 32-bit": ("win32", ["win7_vm_gfx"]),
                   "Windows 8 64-bit": ("win64", ["win8_64"]),
                   "Ubuntu VM 12.04": ("linux", ["ubuntu32_vm"]),
                   "Ubuntu VM 12.04 x64": ("linux64", ["ubuntu64_vm"]),
@@ -30,7 +32,7 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   }
 
 # platforms and tests to exclude from configs because they are deprecated or lacking data
-platform_exclusions = ["android-2-3-armv7-api9", "Windows 7 32-bit VM", "Android 4.2 x86 Emulator", "Windows 7 VM 32-bit", "Windows 7 VM-GFX 32-bit", "Android 4.3 armv7 API 15+"]
+platform_exclusions = ["android-2-3-armv7-api9", "Android 4.2 x86 Emulator", "Windows 7 VM 32-bit", "Windows 7 VM-GFX 32-bit", "Android 4.3 armv7 API 15+"]
 test_exclusions = re.compile('\[funsize\]|\[TC\]')
 
 # define seta branches and default values for skipcount and skiptimeout
