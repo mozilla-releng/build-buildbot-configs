@@ -2865,18 +2865,18 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
         del branch['platforms'][platform]
 
 # mozilla-central's gecko version
-mb_gecko_version = BRANCHES['mozilla-beta']['gecko_version']
+mr_gecko_version = BRANCHES['mozilla-release']['gecko_version']
 # Bug 1135781 - generate builds per checkin on beta/release/esr that allow unsigned add-ons
 #   essentially:
-#      1) rm all no-add-on-sign builds from any branch less than m-b's gecko_version
-#      2) rm all no-add-on-sign builds from any branch at least m-b's gecko_version
-# Note: for now, we will lock this to m-b but eventually we will want to replace mb_gecko_version
+#      1) rm all no-add-on-sign builds from any branch less than m-r's gecko_version
+#      2) rm all no-add-on-sign builds from any branch at least m-r's gecko_version
+# Note: for now, we will lock this to m-b but eventually we will want to replace mr_gecko_version
 # with a static version so that this can ride the trains to esr
-for name, branch in items_before(BRANCHES, 'gecko_version', mb_gecko_version):
+for name, branch in items_before(BRANCHES, 'gecko_version', mr_gecko_version):
     for platform in ['linux64-add-on-devel', 'macosx64-add-on-devel', 'win32-add-on-devel', 'win64-add-on-devel']:
         if platform in branch['platforms']:
             del branch['platforms'][platform]
-for name, branch in items_at_least(BRANCHES, 'gecko_version', mb_gecko_version):
+for name, branch in items_at_least(BRANCHES, 'gecko_version', mr_gecko_version):
     if name in  ['mozilla-beta', 'mozilla-release', 'mozilla-esr45']:
         continue
     else:
