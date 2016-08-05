@@ -26,7 +26,7 @@ for i in range(1, 282):   # Move some XP test machines to the Windows 7 pool fro
 for i in range(1, 101) + range(102, 600):  # Omit 101 due to win7 golden issues // Bug 1223509
     SLAVES['win7_vm']['t-w732-spot-%03i' % i] = {}
 
-for i in range(1, 100):
+for i in range(1, 101):
     SLAVES['win7_vm_gfx']['g-w732-spot-%03i' % i] = {}
 
 for i in range(1, 102) + range(103, 205):  # Omit 102 for win10 // Bug 1191481 // Bug 1255812
