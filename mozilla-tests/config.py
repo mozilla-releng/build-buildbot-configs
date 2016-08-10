@@ -448,7 +448,7 @@ MOCHITEST_BC_SCREENSHOTS = [
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'browser-chrome-screenshots'],
         'blob_upload': True,
-        'script_maxtime': 1200,
+        'script_maxtime': 1800,
     }),
 ]
 
