@@ -3545,6 +3545,14 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
         for slave_platform in ['ubuntu64_vm', 'ubuntu64_vm_lnx_large']:
             BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
 
+#Bug 1282468 - disable buildbot asan builds on trunk
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
+    for platform in branch['platforms'].keys():
+        if platform not in ['linux64-asan']:
+            continue
+        if 'linux64-asan' in platform:
+            del branch['platforms'][platform]
+
 if __name__ == "__main__":
     import sys
     import pprint
