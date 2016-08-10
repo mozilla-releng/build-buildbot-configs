@@ -2863,6 +2863,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
         if platform not in ['android-api-15-debug']:
             continue
         del branch['platforms'][platform]
+        
+#Bug 1282468 - disable buildbot asan builds on trunk
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
+    for platform in branch['platforms'].keys():
+        if 'linux64-asan' in platform:
+            del branch['platforms'][platform]
 
 # mozilla-central's gecko version
 mr_gecko_version = BRANCHES['mozilla-release']['gecko_version']
