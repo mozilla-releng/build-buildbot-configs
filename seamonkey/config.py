@@ -97,7 +97,7 @@ GLOBAL_VARS = {
     'archive_server': 'archive.mozilla.org',
     'aus2_host': 'aus2-community.mozilla.org',
     'download_base_url': 'http://ftp.mozilla.org/pub/seamonkey',
-    'graph_server': 'graphs.mozilla.org',
+    'graph_server': None,
     'build_tools_repo_path': 'users/Callek_gmail.com/tools',
     # 'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://callek.net/always_clobber.php',
