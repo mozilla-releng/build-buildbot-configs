@@ -610,6 +610,29 @@ MOCHITEST_WEBGL_E10S = [
     }),
 ]
 
+### Bug 1290989 - Chunk m-gl on Desktop
+MOCHITEST_WEBGL_CHUNKED = [
+    ('mochitest-gl', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'mochitest-gl-chunked'],
+        'blob_upload': True,
+        'script_maxtime': 5400,
+        'totalChunks': 3,
+    }),
+]
+
+MOCHITEST_WEBGL_CHUNKED_E10S = [
+    ('mochitest-gl-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'mochitest-gl-chunked', '--e10s'],
+        'blob_upload': True,
+        'script_maxtime': 5400,
+        'totalChunks': 3,
+    }),
+]
+
 MOCHITEST_GPU = [
     ('mochitest-gpu', {
         'use_mozharness': True,
@@ -3560,6 +3583,23 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
             continue
         if 'linux64-asan' in platform:
             del branch['platforms'][platform]
+
+# Bug 1290989 - Chunk m-gl on Desktop
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
+    for platform in PLATFORMS.keys():
+        if platform not in branch['platforms']:
+            continue
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform not in branch['platforms'][platform]:
+                continue
+            for i in ['opt_unittest_suites', 'debug_unittest_suites']:
+                if  MOCHITEST_WEBGL[0] in branch['platforms'][platform][slave_platform][i]:
+                    branch['platforms'][platform][slave_platform][i] = [item for item in branch['platforms'][platform][slave_platform][i] if item not in MOCHITEST_WEBGL]
+                    branch['platforms'][platform][slave_platform][i] += MOCHITEST_WEBGL_CHUNKED
+                if MOCHITEST_WEBGL_E10S[0] in branch['platforms'][platform][slave_platform][i]:
+                    branch['platforms'][platform][slave_platform][i] = [item for item in branch['platforms'][platform][slave_platform][i] if item not in MOCHITEST_WEBGL_E10S]
+                    branch['platforms'][platform][slave_platform][i] += MOCHITEST_WEBGL_CHUNKED_E10S
+
 
 if __name__ == "__main__":
     import sys
