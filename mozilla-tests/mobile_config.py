@@ -18,9 +18,17 @@ reload(localconfig)
 from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS, GRAPH_CONFIG
 from config import MOZHARNESS_REBOOT_CMD
 
-import config_seta
-reload(config_seta)
-from config_seta import loadSkipConfig
+# we only need to load SETA config on test scheduler master
+# it doesn't impact other masters
+from buildbot.util import json
+master_config = json.load(open('master_config.json'))
+tests_scheduler = False
+if 'tests_scheduler' in master_config['name']:
+    tests_scheduler = True
+if tests_scheduler:
+    import config_seta
+    reload(config_seta)
+    from config_seta import loadSkipConfig
 
 TALOS_REMOTE_FENNEC_OPTS = {
     'productName': 'fennec',
@@ -2993,7 +3001,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
             BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
 
 
-loadSkipConfig(BRANCHES, "mobile")
+if tests_scheduler:
+    loadSkipConfig(BRANCHES, "mobile")
 
 if __name__ == "__main__":
     import sys
