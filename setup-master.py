@@ -274,7 +274,6 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
             c.local_links.append(
                 ('tests_localconfig.py', 'master_localconfig.py'))
             c.globs.append('tests_localconfig.py')
-            c.globs.append('config_seta.py')
             c.globs.append(mastercfg)
         elif m['role'] == 'scheduler':
             if 'build_scheduler' in m['name']:
@@ -285,12 +284,12 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
                 c.globs.append('release_templates')
             elif 'tests_scheduler' in m['name']:
                 c.config_dir = 'mozilla-tests'
+                c.globs.append('config_seta.py')
             c.globs.append(mastercfg)
             c.globs.append('scheduler_localconfig.py')
             c.local_links.append((mastercfg, 'master.cfg'))
             c.local_links.append(
                 ('scheduler_localconfig.py', 'master_localconfig.py'))
-            c.globs.append('config_seta.py')
 
         retval.append(c)
     return retval
