@@ -615,7 +615,7 @@ MOCHITEST_WEBGL_CHUNKED = [
     ('mochitest-gl', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'mochitest-gl-chunked'],
+        'extra_args': ['--mochitest-suite', 'mochitest-gl'],
         'blob_upload': True,
         'script_maxtime': 5400,
         'totalChunks': 3,
@@ -626,7 +626,7 @@ MOCHITEST_WEBGL_CHUNKED_E10S = [
     ('mochitest-gl-e10s', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'mochitest-gl-chunked', '--e10s'],
+        'extra_args': ['--mochitest-suite', 'mochitest-gl', '--e10s'],
         'blob_upload': True,
         'script_maxtime': 5400,
         'totalChunks': 3,
