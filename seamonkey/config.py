@@ -409,7 +409,7 @@ PLATFORM_VARS = {
                 'CCACHE_UMASK': '002',
                 'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
             },
-            'enable_unittests': True,
+            'enable_unittests': False,
             'enable_checktests': True,
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/linux32/releng.manifest',
             'tooltool_script': ['/builds/tooltool.py'],
@@ -453,7 +453,7 @@ PLATFORM_VARS = {
                 'LC_ALL': 'C',
                 'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
             },
-            'enable_unittests': True,
+            'enable_unittests': False,
             'enable_checktests': True,
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/macosx64/releng.manifest',
             'tooltool_script': ['/tools/tooltool.py'],
@@ -486,7 +486,7 @@ PLATFORM_VARS = {
                 'PATH': "${MOZILLABUILD}nsis-2.46u;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
                 'PYTHON': 'python2.7.exe',
             },
-            'enable_unittests': True,
+            'enable_unittests': False,
             'enable_checktests': True,
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/win32/releng.manifest',
             'tooltool_script': ['python2.7', 'd:/mozilla-build/tooltool.py'],
@@ -544,7 +544,7 @@ BRANCHES['comm-central-trunk']['blocklist_update_on_closed_tree'] = True
 BRANCHES['comm-central-trunk']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-central-trunk']['enable_l10n'] = True
-BRANCHES['comm-central-trunk']['enable_l10n_onchange'] = True
+BRANCHES['comm-central-trunk']['enable_l10n_onchange'] = False
 BRANCHES['comm-central-trunk']['l10nNightlyUpdate'] = True
 BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux', 'win32', 'macosx64']
 BRANCHES['comm-central-trunk']['l10nDatedDirs'] = True
@@ -588,7 +588,7 @@ BRANCHES['comm-aurora']['blocklist_update_on_closed_tree'] = True
 BRANCHES['comm-aurora']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-aurora']['enable_l10n'] = True
-BRANCHES['comm-aurora']['enable_l10n_onchange'] = True
+BRANCHES['comm-aurora']['enable_l10n_onchange'] = False
 BRANCHES['comm-aurora']['l10nNightlyUpdate'] = True
 BRANCHES['comm-aurora']['l10n_platforms'] = ['mock', 'win32', 'macosx64']
 BRANCHES['comm-aurora']['l10nDatedDirs'] = True
@@ -632,7 +632,7 @@ BRANCHES['comm-beta']['blocklist_update_on_closed_tree'] = True
 BRANCHES['comm-beta']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-beta']['enable_l10n'] = False
-BRANCHES['comm-beta']['enable_l10n_onchange'] = True
+BRANCHES['comm-beta']['enable_l10n_onchange'] = False
 BRANCHES['comm-beta']['l10nNightlyUpdate'] = True
 BRANCHES['comm-beta']['l10n_platforms'] = ['linux', 'win32', 'macosx64']
 BRANCHES['comm-beta']['l10nDatedDirs'] = True
@@ -676,7 +676,7 @@ BRANCHES['comm-release']['blocklist_update_on_closed_tree'] = True
 BRANCHES['comm-release']['enable_codecoverage'] = False
 # L10n configuration
 BRANCHES['comm-release']['enable_l10n'] = False
-BRANCHES['comm-release']['enable_l10n_onchange'] = True
+BRANCHES['comm-release']['enable_l10n_onchange'] = False
 BRANCHES['comm-release']['l10nNightlyUpdate'] = True
 BRANCHES['comm-release']['l10n_platforms'] = ['linux', 'win32', 'macosx64']
 BRANCHES['comm-release']['l10nDatedDirs'] = True
