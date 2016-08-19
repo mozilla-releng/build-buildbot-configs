@@ -2890,6 +2890,17 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', mr_gecko_version):
             if platform in branch['platforms']:
                 del branch['platforms'][platform]
 
+# Bug 1293730 - Fennec x86 builds as tier 1
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
+    for platform in branch['platforms'].keys():
+        if 'android-x86' in platform:
+            if branch['enable_nightly']:
+                # keep the nightly but remove the CI equivalent
+                branch['platforms'][platform]["enable_dep"] = False
+            else:
+                # remove all the android-x86 build jobs on this branch
+                del branch['platforms'][platform]
+
 
 if __name__ == "__main__":
     import sys

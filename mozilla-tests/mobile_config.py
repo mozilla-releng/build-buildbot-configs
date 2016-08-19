@@ -3000,6 +3000,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
         for slave_platform in ['ubuntu64_vm_armv7_mobile', 'ubuntu64_vm_armv7_large']:
             BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
 
+# Bug 1293730 - Fennec x86 builds as tier 1
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
+    for platform in branch['platforms'].keys():
+        if platform == 'android-x86':
+            del branch['platforms'][platform]
+
 
 if tests_scheduler:
     loadSkipConfig(BRANCHES, "mobile")
