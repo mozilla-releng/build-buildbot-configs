@@ -164,7 +164,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "it": {
-    "revision": "d8965766b946",
+    "revision": "447e31e3aa13",
     "platforms": ["android", "android-multilocale"]
   },
   "ja": {
@@ -256,7 +256,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "sk": {
-    "revision": "362a6bfb9d6c",
+    "revision": "44b670dcadbc",
     "platforms": ["android", "android-multilocale"]
   },
   "sl": {
