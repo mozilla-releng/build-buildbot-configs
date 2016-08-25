@@ -3567,26 +3567,22 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
         for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
             for t in win32['win7_vm_gfx'][test_type][:]:
                 suite_name, suite_config = t
-                if test_type == 'debug_unittest_suites' and suite_name == 'mochitest-e10s-browser-chrome':
-                    win32['win7_vm_gfx'][test_type].remove(t)
-                if suite_name in ('mochitest', 'mochitest-e10s'):
+                if suite_name in ('mochitest', 'mochitest-e10s', 'mochitest-browser-chrome', 'mochitest-e10s-browser-chrome'):
                     win32['win7_vm_gfx'][test_type].remove(t)
 
     if 'win7_ix' in win32:
         for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
             for t in win32['win7_ix'][test_type][:]:
                 suite_name, suite_config = t
-                if test_type == 'debug_unittest_suites' and suite_name == 'mochitest-e10s-browser-chrome':
-                    win32['win7_ix'][test_type].remove(t)
-                if suite_name in ('mochitest', 'mochitest-e10s'):
+                if suite_name in ('mochitest', 'mochitest-e10s', 'mochitest-browser-chrome', 'mochitest-e10s-browser-chrome'):
                     win32['win7_ix'][test_type].remove(t)
 
     if name == 'try':
         continue
 
     if 'win7_vm' in win32:
-        win32['win7_vm']['opt_unittest_suites'] = WORKING_WIN7_AWS_OPT_SUITES + MOCHITEST_WO_BC + MOCHITEST_E10S
-        win32['win7_vm']['debug_unittest_suites'] = WORKING_WIN7_AWS_DEBUG_SUITES + MOCHITEST_WO_BC + MOCHITEST_E10S + MOCHITEST_BC_7_E10S
+        win32['win7_vm']['opt_unittest_suites'] = WORKING_WIN7_AWS_OPT_SUITES + MOCHITEST_WO_BC + MOCHITEST_E10S + MOCHITEST_BC_7_E10S + MOCHITEST_BC_7
+        win32['win7_vm']['debug_unittest_suites'] = WORKING_WIN7_AWS_DEBUG_SUITES + MOCHITEST_WO_BC + MOCHITEST_E10S + MOCHITEST_BC_7_E10S + MOCHITEST_BC_7
 
 ###
 # Bug 1269543 - Stop running tests on OS X 10.6 on Firefox 49+
