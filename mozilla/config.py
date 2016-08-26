@@ -2400,6 +2400,11 @@ BRANCHES['mozilla-release']['postrelease_bouncer_aliases_config'] = {
     # TODO - fennec
     "fennec": "",
 }
+BRANCHES['mozilla-release']['postrelease_mark_as_shipped_config'] = {
+    "firefox": 'releases/postrelease_firefox_release.py',
+    # TODO - fennec
+    "fennec": "",
+}
 BRANCHES['mozilla-release']['updates_config'] = {
     "firefox": 'releases/updates_firefox_release.py',
     # TODO - fennec
@@ -2419,6 +2424,7 @@ BRANCHES['mozilla-release']['platforms']['win64']['dep_signing_servers'] = 'rele
 BRANCHES['mozilla-release']['bouncer_enabled'] = True
 BRANCHES['mozilla-release']['postrelease_version_bump_enabled'] = True
 BRANCHES['mozilla-release']['postrelease_bouncer_aliases_enabled'] = True
+BRANCHES['mozilla-release']['postrelease_mark_as_shipped_enabled'] = True
 BRANCHES['mozilla-release']['uptake_monitoring_enabled'] = True
 BRANCHES['mozilla-release']['push_to_candidates_enabled'] = True
 BRANCHES['mozilla-release']['push_to_releases_automatic'] = False
@@ -2511,6 +2517,11 @@ BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_config'] = {
     # TODO - fennec
     "fennec": "",
 }
+BRANCHES['mozilla-beta']['postrelease_mark_as_shipped_config'] = {
+    "firefox": 'releases/postrelease_firefox_beta.py',
+    # TODO - fennec
+    "fennec": "",
+}
 BRANCHES['mozilla-beta']['updates_config'] = {
     "firefox": 'releases/updates_firefox_beta.py',
     # TODO - fennec
@@ -2532,6 +2543,7 @@ BRANCHES['mozilla-beta']['updates_builder_enabled'] = True
 BRANCHES['mozilla-beta']['update_verify_enabled'] = True
 BRANCHES['mozilla-beta']['postrelease_version_bump_enabled'] = True
 BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_enabled'] = True
+BRANCHES['mozilla-beta']['postrelease_mark_as_shipped_enabled'] = True
 BRANCHES['mozilla-beta']['uptake_monitoring_enabled'] = True
 BRANCHES['mozilla-beta']['push_to_candidates_enabled'] = True
 BRANCHES['mozilla-beta']['push_to_releases_automatic'] = True
@@ -2650,6 +2662,9 @@ BRANCHES['mozilla-esr45']['postrelease_version_bump_config'] = {
 BRANCHES['mozilla-esr45']['postrelease_bouncer_aliases_config'] = {
     "firefox": 'releases/bouncer_firefox_esr.py',
 }
+BRANCHES['mozilla-esr45']['postrelease_mark_as_shipped_config'] = {
+    "firefox": 'releases/postrelease_firefox_esr45.py',
+}
 BRANCHES['mozilla-esr45']['updates_config'] = {
     "firefox": 'releases/updates_firefox_esr45.py',
 }
@@ -2666,6 +2681,7 @@ BRANCHES['mozilla-esr45']['platforms']['win64']['dep_signing_servers'] = 'releas
 BRANCHES['mozilla-esr45']['bouncer_enabled'] = True
 BRANCHES['mozilla-esr45']['postrelease_version_bump_enabled'] = True
 BRANCHES['mozilla-esr45']['postrelease_bouncer_aliases_enabled'] = True
+BRANCHES['mozilla-esr45']['postrelease_mark_as_shipped_enabled'] = True
 BRANCHES['mozilla-esr45']['uptake_monitoring_enabled'] = True
 BRANCHES['mozilla-esr45']['push_to_candidates_enabled'] = True
 BRANCHES['mozilla-esr45']['push_to_releases_automatic'] = False
@@ -2863,7 +2879,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
         if platform not in ['android-api-15-debug']:
             continue
         del branch['platforms'][platform]
-        
+
 #Bug 1282468 - disable buildbot asan builds on trunk
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
     for platform in branch['platforms'].keys():
