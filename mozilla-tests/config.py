@@ -3556,7 +3556,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
                 if t in win32['win7_ix'][test_type]:
                     win32['win7_ix'][test_type].remove(t)
 
-# Bug 1291015 - Migrate mochitest (plain) to AWS
+# Bug 1291015 - Migrate mochitest (plain, bc, gl) to AWS
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
     # Skip branches where win32 isn't running
     if not nested_haskey(branch, 'platforms', 'win32'):
@@ -3574,7 +3574,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
         for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
             for t in win32['win7_ix'][test_type][:]:
                 suite_name, suite_config = t
-                if suite_name in ('mochitest', 'mochitest-e10s', 'mochitest-browser-chrome', 'mochitest-e10s-browser-chrome'):
+                if suite_name in ('mochitest', 'mochitest-e10s', 'mochitest-browser-chrome', 'mochitest-e10s-browser-chrome', 'mochitest-gl', 'mochitest-gl-e10s'):
                     win32['win7_ix'][test_type].remove(t)
 
     if name == 'try':
@@ -3583,6 +3583,10 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
     if 'win7_vm' in win32:
         win32['win7_vm']['opt_unittest_suites'] = WORKING_WIN7_AWS_OPT_SUITES + MOCHITEST_WO_BC + MOCHITEST_E10S + MOCHITEST_BC_7_E10S + MOCHITEST_BC_7
         win32['win7_vm']['debug_unittest_suites'] = WORKING_WIN7_AWS_DEBUG_SUITES + MOCHITEST_WO_BC + MOCHITEST_E10S + MOCHITEST_BC_7_E10S + MOCHITEST_BC_7
+
+    if 'win7_vm_gfx' in win32:
+        win32['win7_vm_gfx']['opt_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S
+        win32['win7_vm_gfx']['debug_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S
 
 ###
 # Bug 1269543 - Stop running tests on OS X 10.6 on Firefox 49+
