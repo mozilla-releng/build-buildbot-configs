@@ -32,7 +32,7 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   }
 
 # platforms and tests to exclude from configs because they are deprecated or lacking data
-platform_exclusions = ["android-2-3-armv7-api9", "Android 4.2 x86 Emulator", "Android 4.3 armv7 API 15+"]
+platform_exclusions = ["android-2-3-armv7-api9", "Android 4.2 x86 Emulator", "Android 4.3 armv7 API 15+", "Windows XP 32-bit"]
 test_exclusions = re.compile('\[funsize\]|\[TC\]')
 
 # define seta branches and default values for skipcount and skiptimeout
