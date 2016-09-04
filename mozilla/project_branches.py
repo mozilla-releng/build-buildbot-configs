@@ -9,7 +9,7 @@ PROJECT_BRANCHES = {
         'mozconfig_dir': 'mozilla-central',
         'enable_nightly': False,
         'pgo_strategy': 'periodic',
-        'periodic_start_hours': range(2, 24, 3),
+        'periodic_start_hours': range(0, 24, 3),
     },
     'mozilla-inbound': {
         'merge_builds': False,
@@ -17,7 +17,7 @@ PROJECT_BRANCHES = {
         'enable_perproduct_builds': True,
         'mozconfig_dir': 'mozilla-central',
         'pgo_strategy': 'periodic',
-        'periodic_start_hours': range(1, 24, 3),
+        'periodic_start_hours': range(0, 24, 3),
         'talos_suites': {
             'xperf': 1,
         },
@@ -66,6 +66,7 @@ PROJECT_BRANCHES = {
         'enable_perproduct_builds': True,
         'mozconfig_dir': 'mozilla-central',
         'pgo_strategy': 'periodic',
+        'periodic_start_hours': range(0, 24, 3),
         'talos_suites': {
             'xperf': 1,
         },
