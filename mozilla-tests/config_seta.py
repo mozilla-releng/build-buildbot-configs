@@ -32,7 +32,7 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   }
 
 # platforms and tests to exclude from configs because they are deprecated or lacking data
-platform_exclusions = ["android-2-3-armv7-api9", "Android 4.2 x86 Emulator", "Android 4.3 armv7 API 15+", "Windows XP 32-bit"]
+platform_exclusions = ["android-2-3-armv7-api9", "Android 4.2 x86 Emulator", "Android 4.3 armv7 API 15+"]
 test_exclusions = re.compile('\[funsize\]|\[TC\]')
 
 # define seta branches and default values for skipcount and skiptimeout
@@ -40,9 +40,9 @@ skipconfig_defaults_platform = {}
 for sp in seta_platforms:
     for slave_sp in seta_platforms[sp][1]:
         if slave_sp in ["xp_ix"]:
-            skipconfig_defaults_platform[slave_sp] = (14, 7200)
+            skipconfig_defaults_platform[slave_sp] = (8, 7200)
         else:
-            skipconfig_defaults_platform[slave_sp] = (7, 3600)
+            skipconfig_defaults_platform[slave_sp] = (8, 3600)
 
 
 def wfetch(url, retries=5):
