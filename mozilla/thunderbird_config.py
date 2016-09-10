@@ -62,6 +62,7 @@ GLOBAL_VARS.update({
     'enable_hpkp_update': False,
     'file_update_on_closed_tree': False,
     'file_update_set_approval': True,
+    'use_ftp_for_xpcshell': True,
     'enable_nightly': True,
     'enable_perproduct_builds': True,
     'enabled_products': ['thunderbird'],
