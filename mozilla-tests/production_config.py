@@ -29,6 +29,10 @@ for i in range(1, 101) + range(102, 600):  # Omit 101 due to win7 golden issues 
 for i in range(1, 101):
     SLAVES['win7_vm_gfx']['g-w732-spot-%03i' % i] = {}
 
+# Bug 1302530 - Add ondemand g-w732 instances
+for i in range(1, 101):
+    SLAVES['win7_vm_gfx']['g-w732-ec2-%03i' % i] = {}
+
 for i in range(1, 102) + range(103, 236):  # Omit 102 for win10 // Bug 1191481 // Bug 1255812 // Bug 1299468
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
 
