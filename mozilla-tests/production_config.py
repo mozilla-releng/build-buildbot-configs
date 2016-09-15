@@ -26,7 +26,7 @@ for i in range(1, 151):   #  Move 111 machines from Windows 7 pool to Windows XP
 for i in range(1, 101) + range(102, 600):  # Omit 101 due to win7 golden issues // Bug 1223509
     SLAVES['win7_vm']['t-w732-spot-%03i' % i] = {}
 
-for i in range(1, 101):
+for i in range(1, 201):
     SLAVES['win7_vm_gfx']['g-w732-spot-%03i' % i] = {}
 
 # Bug 1302530 - Add ondemand g-w732 instances
