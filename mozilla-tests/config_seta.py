@@ -27,12 +27,11 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   "Ubuntu TSAN VM 12.04 x64": ("linux64-tsan", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
                   "Rev7 MacOSX Yosemite 10.10.5": ("macosx64", ["yosemite_r7"]),
                   "Ubuntu Code Coverage VM 12.04 x64": ("linux64-cc", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
-                  "android-4-3-armv7-api11": ("android-api-15", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"]),
-                  "android-4-3-armv7-api15": ("android-api-15", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"]),
+                  "Android 4.3 armv7 API 15+": ("android-api-15", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"]),
                   }
 
 # platforms and tests to exclude from configs because they are deprecated or lacking data
-platform_exclusions = ["android-2-3-armv7-api9", "Android 4.2 x86 Emulator", "Android 4.3 armv7 API 15+"]
+platform_exclusions = []
 test_exclusions = re.compile('\[funsize\]|\[TC\]')
 
 # define seta branches and default values for skipcount and skiptimeout
@@ -80,9 +79,9 @@ def get_seta_platforms(branch, platform_filter):
         platform = p.encode('utf-8').split(branch)[0].rstrip()
         if platform in platform_exclusions:
             continue
-        if platform_filter == "mobile" and "android" not in platform:
+        if platform_filter == "mobile" and "ndroid" not in platform:
             continue
-        if platform_filter == "desktop" and "android" in platform:
+        if platform_filter == "desktop" and "ndroid" in platform:
             continue
         if platform not in platforms:
             platforms.append(platform)
