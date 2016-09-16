@@ -219,6 +219,7 @@ PROJECT_BRANCHES = {
         },
         'push_to_releases_automatic': False,
         'merge_builds': False,
+        'snap_enabled': True,
     },
     'larch': {
         'lock_platforms': True,

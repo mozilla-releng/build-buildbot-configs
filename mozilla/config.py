@@ -2454,6 +2454,7 @@ BRANCHES['mozilla-release']['release_channel_mappings'] = [
     [r"^\d+\.0$", ["beta", "release"]],  # RC, 45.0
     [r"^\d+\.\d+\.\d+$", ["release"]],  # Other (dot releaseas), 45.0.4
 ]
+BRANCHES['mozilla-release']['snap_enabled'] = False
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -2567,7 +2568,7 @@ BRANCHES['mozilla-beta']['partner_repack_config'] = {
     # TODO - add fennec support
     # 'fennec': {}
 }
-###
+BRANCHES['mozilla-beta']['snap_enabled'] = True
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
@@ -2693,6 +2694,7 @@ BRANCHES['mozilla-esr45']['l10n_release_platforms'] = ("linux", "linux64", "win3
 BRANCHES['mozilla-esr45']['updates_builder_enabled'] = True
 BRANCHES['mozilla-esr45']['update_verify_enabled'] = True
 BRANCHES['mozilla-esr45']['release_channel_mappings'] = [["^.*$", ["esr"]]]
+BRANCHES['mozilla-esr45']['snap_enabled'] = False
 
 ######## try
 # Try-specific configs
