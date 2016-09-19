@@ -379,16 +379,6 @@ JITTEST_CHUNKED = [
     }),
 ]
 
-### Luciddream ###
-LUCIDDREAM = [
-    ('luciddream', {
-        'use_mozharness': True,
-        'script_path': 'scripts/luciddream_unittest.py',
-        'script_maxtime': 7200,
-        'blob_upload': True,
-    }),
-]
-
 ### Marionette ###
 MARIONETTE = [
     ('marionette', {
@@ -1106,9 +1096,6 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'jittest': {
                     'config_files': ["unittests/linux_unittest.py"],
-                },
-                'luciddream': {
-                    'config_files': ["luciddream/linux_config.py"],
                 },
                 'marionette': {
                     'config_files': ["marionette/prod_config.py"],
@@ -2979,16 +2966,6 @@ if tests_scheduler:
     loadSkipConfig(BRANCHES, "desktop")
 
 ### Tests Enabled In Gecko 39+ ###
-
-# Luciddream on Linux64 opt only
-for platform in PLATFORMS.keys():
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
-        for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform not in ['ubuntu64_vm']:
-                continue
-            if platform in BRANCHES[name]['platforms']:
-                if slave_platform in BRANCHES[name]['platforms'][platform]:
-                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += LUCIDDREAM
 
 # mochitest-jetpack everywhere
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
