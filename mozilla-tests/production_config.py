@@ -41,10 +41,10 @@ for i in range(1, 3) + range(11, 12):  # Bug 1252258
 for i in range(102, 103):  # Use win8's 102 for win10 // Bug 1191481
     SLAVES['win10']['t-w864-ix-%03i' % i] = {}
 
-for i in range(1, 601)  # added in Bug 1304065
+for i in range(1, 601): # added in Bug 1304065
     SLAVES['win10']['t-w10-spot-%03i' % i] = {} 
 
-for i in range(1, 201)  # added in Bug 1304065
+for i in range(1, 201): # added in Bug 1304065
     SLAVES['win10']['g-w10-spot-%03i' % i] = {}
 
 for i in range(76, 93) + range(95, 98):  # slaves 0034&0093&0094&0153 have been decommed // Bug 1279394 // Bug 1292656
