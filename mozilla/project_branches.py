@@ -81,14 +81,6 @@ PROJECT_BRANCHES = {
         },
     },
     'date': {
-        'enable_talos': False,
-        'lock_platforms': True,
-        'merge_builds': False,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'android-api-15': {},
-        },
     },
     'elm': {
         'branch_projects': [],
