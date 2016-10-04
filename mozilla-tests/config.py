@@ -84,7 +84,7 @@ PLATFORMS['macosx64']['yosemite'] = {'name': "Rev5 MacOSX Yosemite 10.10",
 PLATFORMS['macosx64']['yosemite_r7'] = {'name': "Rev7 MacOSX Yosemite 10.10.5"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 PLATFORMS['macosx64']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
+    'mozharness_python': ['/tools/buildbot/bin/python', '-u'],
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
     'config_file': 'talos/mac_config.py',
@@ -128,7 +128,7 @@ PLATFORMS['linux']['env_name'] = 'linux-perf'
 PLATFORMS['linux']['ubuntu32_vm'] = {'name': 'Ubuntu VM 12.04'}
 PLATFORMS['linux']['stage_product'] = 'firefox'
 PLATFORMS['linux']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
+    'mozharness_python': ['/tools/buildbot/bin/python', '-u'],
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
     'config_file': 'talos/linux_config.py',
