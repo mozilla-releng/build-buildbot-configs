@@ -653,21 +653,4 @@ if releaseConfig['majorUpdateRepoPath']:
 #    'factory': bouncer_submitter_factory
 #})
 
-status.append(TinderboxMailNotifier(
-    fromaddr="comm.buildbot@build.mozilla.org",
-    tree=branchConfig["tinderbox_tree"] + "-Release",
-    extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org",],
-    builders=[b['name'] for b in builders],
-    logCompression="bzip2")
-)
-
-status.append(TinderboxMailNotifier(
-    fromaddr="comm.buildbot@build.mozilla.org",
-    tree=branchConfig["tinderbox_tree"] + "-Release",
-    extraRecipients=["tinderbox-daemon@tinderbox.mozilla.org",],
-    builders=[b['name'] for b in test_builders],
-    logCompression="bzip2",
-    errorparser="unittest")
-)
-
 builders.extend(test_builders)
