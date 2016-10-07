@@ -47,7 +47,7 @@ for i in range(1, 601): # added in Bug 1304065
 for i in range(1, 201): # added in Bug 1304065
     SLAVES['win10']['g-w10-spot-%03i' % i] = {}
 
-for i in range(76, 93) + range(95, 98):  # slaves 0034&0093&0094&0153 have been decommed // Bug 1279394 // Bug 1292656
+for i in range(86, 93) + range(95, 98):  # slaves 0034&0093&0094&0153 have been decommed // Bug 1279394 // Bug 1292656
     SLAVES['snowleopard']['t-snow-r4-%04i' % i] = {}
 
 for i in range(1, 3) + range(7, 8):   #slaves decomm bug 1226180
