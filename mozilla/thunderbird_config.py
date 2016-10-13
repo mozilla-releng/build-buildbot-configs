@@ -737,8 +737,8 @@ BRANCHES['comm-central']['enable_multi_locale'] = True
 # generated.
 BRANCHES['comm-central']['updates_enabled'] = True
 BRANCHES['comm-central']['update_channel'] = 'nightly'
-BRANCHES['comm-central']['create_partial'] = True
-BRANCHES['comm-central']['create_partial_l10n'] = True
+BRANCHES['comm-central']['create_partial'] = False
+BRANCHES['comm-central']['create_partial_l10n'] = False
 BRANCHES['comm-central']['enable_blocklist_update'] = True
 BRANCHES['comm-central']['file_update_on_closed_tree'] = False
 BRANCHES['comm-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
@@ -771,7 +771,7 @@ BRANCHES['comm-esr45']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-esr45' % (GLOBAL_VARS['hgurl'])
 BRANCHES['comm-esr45']['enable_nightly'] = True
 BRANCHES['comm-esr45']['updates_enabled'] = True
-BRANCHES['comm-esr45']['create_partial'] = True
+BRANCHES['comm-esr45']['create_partial'] = False
 BRANCHES['comm-esr45']['enable_blocklist_update'] = True
 BRANCHES['comm-esr45']['file_update_on_closed_tree'] = False
 
@@ -840,8 +840,8 @@ BRANCHES['comm-aurora']['enable_multi_locale'] = True
 # generated.
 BRANCHES['comm-aurora']['updates_enabled'] = True
 BRANCHES['comm-aurora']['update_channel'] = 'aurora'
-BRANCHES['comm-aurora']['create_partial'] = True
-BRANCHES['comm-aurora']['create_partial_l10n'] = True
+BRANCHES['comm-aurora']['create_partial'] = False
+BRANCHES['comm-aurora']['create_partial_l10n'] = False
 # use comm-aurora-test when disabling updates for merges
 BRANCHES['comm-aurora']['enable_blocklist_update'] = True
 BRANCHES['comm-aurora']['file_update_on_closed_tree'] = False
