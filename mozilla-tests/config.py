@@ -108,7 +108,7 @@ PLATFORMS['win32']['mozharness_config'] = {
     'config_file': 'talos/windows_config.py',
 }
 
-PLATFORMS['win64']['slave_platforms'] = ['win8_64', 'win10_64']
+PLATFORMS['win64']['slave_platforms'] = ['win8_64', 'win10_64', 'win10_vm', 'win10_vm_gfx']
 PLATFORMS['win64']['talos_slave_platforms'] = ['win8_64', 'win10_64']
 PLATFORMS['win64']['env_name'] = 'win64-perf'
 PLATFORMS['win64']['stage_product'] = 'firefox'
@@ -116,6 +116,10 @@ PLATFORMS['win64']['win8_64'] = {'name': 'Windows 8 64-bit',
                                  'try_by_default': False}
 PLATFORMS['win64']['win10_64'] = {'name': 'Windows 10 64-bit',
                                   'try_by_default': False}
+PLATFORMS['win64']['win10_vm'] = {'name': 'Windows 10 VM 64-bit',
+                                  'try_by_default': False}
+PLATFORMS['win64']['win10_vm_gfx'] = {'name': 'Windows 10 VM-GFX 64-bit',
+                                  'try_by_default': False}                                                          
 PLATFORMS['win64']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
@@ -2426,6 +2430,269 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
+        'win10_vm': {
+            'opt_unittest_suites': CPPUNIT + JITTEST + MARIONETTE + MOCHITEST + MOCHITEST_BC_7 + \
+                                   MOCHITEST_DT_8 + OTHER_REFTESTS + WEB_PLATFORM_REFTESTS + \
+                                   WEB_PLATFORM_TESTS_CHUNKED,
+            'debug_unittest_suites': CPPUNIT + JITTEST + MARIONETTE + MOCHITEST + MOCHITEST_BC_7 + \
+                                     MOCHITEST_DT_8 + OTHER_REFTESTS,
+            'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'cppunit': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'gtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
+                'marionette-e10s': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
+                'media-tests': {
+                    'config_files': ["mediatests/buildbot_windows_config.py"],
+                },
+                'media-youtube-tests': {
+                    'config_files': ["mediatests/buildbot_windows_config.py"],
+                },
+                'mochitest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-a11y': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-e10s-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-browser-screenshots': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-devtools-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-e10s-devtools-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gl': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gl-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-media': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-media-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mozbase': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jsreftest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-no-accel-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-reftests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'webapprt-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+            },
+        },
+        'win10_vm_gfx': {
+            'opt_unittest_suites': MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_WEBGL + \
+                                   REFTEST_NOACCEL + REFTEST_ONE_CHUNK,
+            'debug_unittest_suites': MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_WEBGL + \
+                                     REFTEST_NOACCEL + REFTEST_ONE_CHUNK,
+            'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'cppunit': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'gtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
+                'marionette-e10s': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
+                'media-tests': {
+                    'config_files': ["mediatests/buildbot_windows_config.py"],
+                },
+                'media-youtube-tests': {
+                    'config_files': ["mediatests/buildbot_windows_config.py"],
+                },
+                'mochitest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-a11y': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-e10s-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-browser-screenshots': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-devtools-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-e10s-devtools-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gl': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gl-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-media': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-media-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mozbase': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jsreftest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-no-accel-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-reftests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'webapprt-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+            },
+        },
     },
     'macosx64': {
         'product_name': 'firefox',
@@ -3107,7 +3374,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
         if platform not in branch['platforms']:
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7_ix', 'win7_vm', 'win7_vm_gfx'):
+            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7_ix', 'win7_vm', 'win7_vm_gfx', 'win10_vm', 'win10_vm_gfx'):
                 if name not in TWIGS:
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                         MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + REFTEST_E10S + CRASHTEST_E10S + \
@@ -3139,7 +3406,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
                     CRASHTEST_E10S + JSREFTEST_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + \
                     MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_E10S + REFTEST_E10S
             if slave_platform in branch['platforms'][platform] and \
-                    slave_platform in ('win7_ix', 'win7_vm', 'win7_vm_gfx'):
+                    slave_platform in ('win7_ix', 'win7_vm', 'win7_vm_gfx', 'win10_vm', 'win10_vm_gfx'):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                     MOCHITEST_BC_7_E10S + MOCHITEST_E10S + MOCHITEST_MEDIA_E10S + \
                     REFTEST_NOACCEL_E10S
@@ -3209,8 +3476,8 @@ for branch in BRANCHES.keys():
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if slave_platform not in BRANCHES[branch]['platforms'][platform]:
                 continue
-            # Don't run xpcshell on win7_vm_gfx
-            if slave_platform == 'win7_vm_gfx':
+            # Don't run xpcshell on win7_vm_gfx or win10_vm_gfx
+            if slave_platform in ('win7_vm_gfx', 'win10_vm_gfx'):
                 continue
             xpc_opt_suite = XPCSHELL[:]
             xpc_debug_suite = XPCSHELL[:]
@@ -3358,8 +3625,8 @@ for platform in PLATFORMS.keys():
             # Not stable on windows XP
             if slave_platform in ['xp_ix', 'win10_64', 'yosemite']:
                 continue
-            # Don't run on win7_vm_gfx
-            if slave_platform == 'win7_vm_gfx':
+            # Don't run on win7_vm_gfx or win10_vm_gfx
+            if slave_platform in ['win7_vm_gfx', 'win10_vm_gfx']:
                 continue
 
             if platform in BRANCHES[name]['platforms']:
@@ -3435,15 +3702,23 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 49):
         del BRANCHES[name]['platforms']['win32']['win7_vm']
     if nested_haskey(BRANCHES[name]['platforms'], 'win32', 'win7_vm_gfx'):
         del BRANCHES[name]['platforms']['win32']['win7_vm_gfx']
+    if nested_haskey(BRANCHES[name]['platforms'], 'win64', 'win10_vm'):
+        del BRANCHES[name]['platforms']['win64']['win10_vm']
+    if nested_haskey(BRANCHES[name]['platforms'], 'win64', 'win10_vm_gfx'):
+        del BRANCHES[name]['platforms']['win64']['win10_vm_gfx']
 
 # Only enable suites in AWS that are working
 WORKING_WIN7_AWS_OPT_SUITES = WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS + GTEST + CPPUNIT + JITTEST + OTHER_REFTESTS + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA + WEB_PLATFORM_TESTS_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
 WORKING_WIN7_AWS_DEBUG_SUITES = GTEST + CPPUNIT + JITTEST + WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS + OTHER_REFTESTS + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + WEB_PLATFORM_REFTESTS_E10S + CRASHTEST_E10S + JSREFTEST_E10S
+
+WORKING_WIN10_AWS_OPT_SUITES = WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS + GTEST + CPPUNIT + JITTEST + OTHER_REFTESTS + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA + WEB_PLATFORM_TESTS_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
+WORKING_WIN10_AWS_DEBUG_SUITES = GTEST + CPPUNIT + JITTEST + WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS + OTHER_REFTESTS + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + WEB_PLATFORM_REFTESTS_E10S + CRASHTEST_E10S + JSREFTEST_E10S
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
     # Skip branches where win32 isn't running
     if not nested_haskey(branch, 'platforms', 'win32'):
         continue
     win32 = branch['platforms']['win32']
+    win64 = branch['platforms']['win64']
 
     # Strip out suites that we don't want on the VM/GFX instances
     if 'win7_vm' in win32:
@@ -3482,6 +3757,43 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
                     win32['win7_vm_gfx'][test_type].remove(t)
                 if suite_name == 'mochitest-media':
                     win32['win7_vm_gfx'][test_type].remove(t)
+    if 'win10_vm' in win64:
+        for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
+            for t in win64['win10_vm'][test_type][:]:
+                suite_name, suite_config = t
+                if suite_name.startswith('reftest'):
+                    win64['win10_vm'][test_type].remove(t)
+                if suite_name.startswith('mochitest-gl'):
+                    win64['win10_vm'][test_type].remove(t)
+                if suite_name.startswith('mochitest-gpu'):
+                    win64['win10_vm'][test_type].remove(t)
+    if 'win10_vm_gfx' in win64:
+        for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
+            for t in win64['win10_vm_gfx'][test_type][:]:
+                suite_name, suite_config = t
+                if suite_name.startswith('crashtest'):
+                    win64['win10_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('jsreftest'):
+                    win64['win10_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('marionette'):
+                    win64['win10_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('web-platform-tests'):
+                    win64['win10_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('mochitest-devtools'):
+                    win64['win10_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('mochitest-e10s-devtools'):
+                    win64['win10_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('mochitest-jetpack'):
+                    win64['win10_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('cppunit'):
+                    win64['win10_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('gtest'):
+                    win64['win10_vm_gfx'][test_type].remove(t)
+                if suite_name.startswith('xpcshell'):
+                    win64['win10_vm_gfx'][test_type].remove(t)
+                if suite_name == 'mochitest-media':
+                    win64['win10_vm_gfx'][test_type].remove(t)
+
     # Strip out suites that we don't want on the IX instances
     if 'win7_ix' in win32:
         for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
@@ -3523,6 +3835,13 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
         win32['win7_vm_gfx']['opt_unittest_suites'] = REFTEST_ONE_CHUNK + REFTEST_NOACCEL + MOCHITEST_GPU + MOCHITEST_GPU_E10S + REFTEST_E10S
         win32['win7_vm_gfx']['debug_unittest_suites'] = REFTEST_ONE_CHUNK + MOCHITEST_GPU + MOCHITEST_GPU_E10S + REFTEST_NOACCEL + REFTEST_E10S
 
+    if 'win10_vm' in win64:
+        win64['win10_vm']['opt_unittest_suites'] = WORKING_WIN10_AWS_OPT_SUITES
+        win64['win10_vm']['debug_unittest_suites'] = WORKING_WIN10_AWS_DEBUG_SUITES
+    if 'win10_vm_gfx' in win64:
+        win64['win10_vm_gfx']['opt_unittest_suites'] = REFTEST_ONE_CHUNK + REFTEST_NOACCEL + MOCHITEST_GPU + MOCHITEST_GPU_E10S + REFTEST_E10S
+        win64['win10_vm_gfx']['debug_unittest_suites'] = REFTEST_ONE_CHUNK + MOCHITEST_GPU + MOCHITEST_GPU_E10S + REFTEST_NOACCEL + REFTEST_E10S
+
     # Disable these suites from the IX machines
     if 'win7_ix' in win32:
         for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
@@ -3533,12 +3852,16 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
                 if t in win32['win7_ix'][test_type]:
                     win32['win7_ix'][test_type].remove(t)
 
+
 # Bug 1291015 - Migrate mochitest (plain, bc, gl) to AWS
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
-    # Skip branches where win32 isn't running
+    # Skip branches where win32 and win64 isn't running
     if not nested_haskey(branch, 'platforms', 'win32'):
         continue
     win32 = branch['platforms']['win32']
+    if not nested_haskey(branch, 'platforms', 'win64'):
+        continue
+    win64 = branch['platforms']['win64']
 
     if 'win7_vm_gfx' in win32:
         for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
@@ -3554,6 +3877,15 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
                 if suite_name in ('mochitest', 'mochitest-e10s', 'mochitest-browser-chrome', 'mochitest-e10s-browser-chrome', 'mochitest-gl', 'mochitest-gl-e10s', 'reftest-no-accel-e10s'):
                     win32['win7_ix'][test_type].remove(t)
 
+    if 'win10_vm_gfx' in win64:
+        for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
+            for t in win64['win10_vm_gfx'][test_type][:]:
+                suite_name, suite_config = t
+                if suite_name in ('mochitest', 'mochitest-e10s', 'mochitest-browser-chrome', 'mochitest-e10s-browser-chrome'):
+                    win64['win10_vm_gfx'][test_type].remove(t)
+
+
+
     if name == 'try':
         continue
 
@@ -3564,6 +3896,14 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
     if 'win7_vm_gfx' in win32:
         win32['win7_vm_gfx']['opt_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_NOACCEL_E10S
         win32['win7_vm_gfx']['debug_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_NOACCEL_E10S
+
+    if 'win10_vm' in win64:
+        win64['win10_vm']['opt_unittest_suites'] = WORKING_WIN10_AWS_OPT_SUITES + MOCHITEST_WO_BC + MOCHITEST_E10S + MOCHITEST_BC_7_E10S + MOCHITEST_BC_7
+        win64['win10_vm']['debug_unittest_suites'] = WORKING_WIN10_AWS_DEBUG_SUITES + MOCHITEST_WO_BC + MOCHITEST_E10S + MOCHITEST_BC_7_E10S + MOCHITEST_BC_7
+
+    if 'win10_vm_gfx' in win64:
+        win64['win10_vm_gfx']['opt_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_NOACCEL_E10S
+        win64['win10_vm_gfx']['debug_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_NOACCEL_E10S
 
 ###
 # Bug 1269543 - Stop running tests on OS X 10.6 on Firefox 49+
@@ -3608,6 +3948,18 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
                 if MOCHITEST_WEBGL_E10S[0] in branch['platforms'][platform][slave_platform][i]:
                     branch['platforms'][platform][slave_platform][i] = [item for item in branch['platforms'][platform][slave_platform][i] if item not in MOCHITEST_WEBGL_E10S]
                     branch['platforms'][platform][slave_platform][i] += MOCHITEST_WEBGL_CHUNKED_E10S
+
+# Bug 1304065 - Schedule win10vm test jobs on try
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
+    for platform in BRANCHES[name]['platforms']:
+        if platform not in ['win64']:
+            continue
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform in ['win10_vm', 'win10_vm_gfx']:
+                for test in ['debug_unittest_suites', 'opt_unittest_suites']:
+                    if name in "try":
+                        continue
+                    BRANCHES[name]['platforms'][platform][slave_platform][test] = []
 
 
 if __name__ == "__main__":

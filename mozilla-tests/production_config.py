@@ -3,6 +3,8 @@ SLAVES = {
     'win7_ix': {},
     'win7_vm': {},
     'win7_vm_gfx': {},
+    'win10_vm': {},
+    'win10_vm_gfx': {},
     'win8': {},
     'win10': {},
     'snowleopard': {},
@@ -42,10 +44,10 @@ for i in range(102, 103):  # Use win8's 102 for win10 // Bug 1191481
     SLAVES['win10']['t-w864-ix-%03i' % i] = {}
 
 for i in range(1, 601): # added in Bug 1304065
-    SLAVES['win10']['t-w10-spot-%03i' % i] = {} 
+    SLAVES['win10_vm']['t-w10-spot-%03i' % i] = {} 
 
 for i in range(1, 201): # added in Bug 1304065
-    SLAVES['win10']['g-w10-spot-%03i' % i] = {}
+    SLAVES['win10_vm_gfx']['g-w10-spot-%03i' % i] = {}
 
 for i in range(86, 93) + range(95, 98):  # slaves 0034&0093&0094&0153 have been decommed // Bug 1279394 // Bug 1292656
     SLAVES['snowleopard']['t-snow-r4-%04i' % i] = {}
