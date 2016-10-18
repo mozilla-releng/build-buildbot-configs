@@ -59,6 +59,10 @@
     "revision": "9a588345e6a3",
     "platforms": ["android", "android-multilocale"]
   },
+  "el": {
+    "revision": "0ea494a1082a",
+    "platforms": ["android"]
+  },
   "en-GB": {
     "revision": "a98a08450231",
     "platforms": ["android", "android-multilocale"]
