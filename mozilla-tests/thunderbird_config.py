@@ -387,6 +387,7 @@ BRANCHES['comm-esr45']['moz_repo_path'] = "releases/mozilla-esr45"
 
 ######## try
 BRANCHES['try-comm-central']['enable_try'] = True
+BRANCHES['try-comm-central']['watch_all_branches'] = True
 BRANCHES['try-comm-central']['moz_repo_path'] = "mozilla-central"
 
 # Disable Rev3 winxp and win7 machines for all branches

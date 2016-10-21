@@ -24,7 +24,7 @@ master_config = json.load(open('master_config.json'))
 tests_scheduler = False
 if 'tests_scheduler' in master_config['name']:
     tests_scheduler = True
-if tests_scheduler: 
+if tests_scheduler:
     import config_seta
     reload(config_seta)
     from config_seta import loadSkipConfig
@@ -2946,6 +2946,7 @@ BRANCHES['mozilla-esr45']['platforms']['win64']['talos_slave_platforms'] = []
 BRANCHES['try']['repo_path'] = "try"
 BRANCHES['try']['pgo_strategy'] = None
 BRANCHES['try']['enable_try'] = True
+BRANCHES['try']['watch_all_branches'] = True
 
 
 ######### elm

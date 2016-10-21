@@ -128,6 +128,7 @@ PROJECT_BRANCHES = {
     # 'holly': {},
     'jamun': {
         'gecko_version': 47,
+        'watch_all_branches': True,
         'desktop_mozharness_builds_enabled': True,
         'use_mozharness_repo_cache': False,
         'branch_projects': [],

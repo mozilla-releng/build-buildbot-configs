@@ -857,6 +857,7 @@ BRANCHES['try-comm-central']['stage_ssh_key'] = 'trybld_dsa'
 BRANCHES['try-comm-central']['stage_base_path'] = '/home/ftp/pub/thunderbird/try-builds'
 BRANCHES['try-comm-central']['enable_merging'] = False
 BRANCHES['try-comm-central']['enable_try'] = True
+BRANCHES['try-comm-central']['watch_all_branches'] = True
 BRANCHES['try-comm-central']['package_dir'] ='%(who)s-%(got_revision)s/'
 # This is a path, relative to HGURL, where the repository is located
 # HGURL  repo_path should be a valid repository
