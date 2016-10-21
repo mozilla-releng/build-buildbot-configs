@@ -2122,6 +2122,7 @@ BRANCH_PROJECTS = {
     # Try server builds only triggered on changes to the spidermonkey source
     'spidermonkey_try': {
         'enable_try': True,
+        'watch_all_branches': True,
         'try_by_default': {
             'plain': set(['win32', 'win64']),
             'plaindebug': set(['win32-debug', 'win64-debug']),
@@ -2704,6 +2705,7 @@ BRANCHES['try']['stage_base_path'] = '/home/ftp/pub/firefox/try-builds'
 BRANCHES['try']['stage_base_path_mobile'] = '/home/ftp/pub/firefox/try-builds'
 BRANCHES['try']['enable_merging'] = False
 BRANCHES['try']['enable_try'] = True
+BRANCHES['try']['watch_all_branches'] = True
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['package_dir'] = '%(who)s-%(got_revision)s/'
 # This is a path, relative to HGURL, where the repository is located

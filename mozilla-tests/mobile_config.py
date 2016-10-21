@@ -2826,6 +2826,7 @@ BRANCHES['try']['platforms']['android-api-15']['enable_debug_unittests'] = True
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['pgo_platforms'] = []
 BRANCHES['try']['enable_try'] = True
+BRANCHES['try']['watch_all_branches'] = True
 
 #split 2.3 tests to ones that can run on ix and AWS
 for suite in ANDROID_2_3_MOZHARNESS_DICT:
