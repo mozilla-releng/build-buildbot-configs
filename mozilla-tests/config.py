@@ -3610,15 +3610,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
                     branch['platforms'][platform][slave_platform][i] = [item for item in branch['platforms'][platform][slave_platform][i] if item not in MOCHITEST_WEBGL_E10S]
                     branch['platforms'][platform][slave_platform][i] += MOCHITEST_WEBGL_CHUNKED_E10S
 
-# Bug 1310836 - Disable XP testing in Firefox 53
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
-    for platform in branch['platforms'].keys():
-        if platform not in ['win32']:
-            continue
-        if 'win32' in platform:
-            if 'xp_ix' in branch['platforms'][platform]:
-                del branch['platforms'][platform]['xp_ix']
-
 
 if __name__ == "__main__":
     import sys
