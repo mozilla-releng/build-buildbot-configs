@@ -191,8 +191,8 @@ PROJECT_BRANCHES = {
         "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "single_locale_branch_config": "dev-mozilla-release",
         'release_channel_mappings': [
-            [r"^\d+\.0$", ["beta", "release"]],  # RC, 45.0
-            [r"^\d+\.\d+\.\d+$", ["release"]],  # Other (dot releaseas), 45.0.4
+            [r"^\d+\.0$", ["dev-beta", "dev-release"]],  # RC, 45.0
+            [r"^\d+\.\d+\.\d+$", ["dev-release"]],  # Other (dot releaseas), 45.0.4
         ],
         # temp balrog
         'balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
