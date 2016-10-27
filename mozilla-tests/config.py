@@ -3610,17 +3610,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
                     branch['platforms'][platform][slave_platform][i] = [item for item in branch['platforms'][platform][slave_platform][i] if item not in MOCHITEST_WEBGL_E10S]
                     branch['platforms'][platform][slave_platform][i] += MOCHITEST_WEBGL_CHUNKED_E10S
 
-# Bug 1308544 - Enable automation jobs on Cedar twig
-for branch in BRANCHES.keys():
-    if branch not in ['cedar']:
-        continue
-    for test in ['opt_unittest_suites', 'debug_unittest_suites']:
-        for platform in BRANCHES[branch]['platforms'].keys():
-                BRANCHES[branch]['platforms']['win64']['win8_64'][test] = [item for item in BRANCHES[branch]['platforms']['win64']['win8_64'][test] if (item[0].startswith('mochitest') or item in XPCSHELL)]
-                BRANCHES[branch]['platforms']['macosx64']['yosemite_r7'][test] = [item for item in BRANCHES[branch]['platforms']['macosx64']['yosemite_r7'][test] if (item[0].startswith('mochitest') or item in XPCSHELL)]
-                if test in ['opt_unittest_suites']:
-                    BRANCHES[branch]['platforms']['linux64']['ubuntu64_vm'][test] = [item for item in BRANCHES[branch]['platforms']['linux64']['ubuntu64_vm'][test] if (item[0].startswith('mochitest') or item in XPCSHELL)]
-
 
 if __name__ == "__main__":
     import sys
