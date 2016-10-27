@@ -2467,6 +2467,8 @@ BRANCHES['mozilla-release']['release_channel_mappings'] = [
     [r"^\d+\.\d+\.\d+$", ["release"]],  # Other (dot releaseas), 45.0.4
 ]
 BRANCHES['mozilla-release']['snap_enabled'] = False
+# Bug 1313434, CI builds on all named branches
+BRANCHES['mozilla-release']['watch_all_branches'] = True
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
