@@ -73,7 +73,27 @@ PROJECT_BRANCHES = {
         'branch_projects': ['spidermonkey_tier_1'],
     },
     #'birch': {},  # Bug 1010674
-    #'cedar': {},  # Bug 1272005
+# Bug 1308544 - Enable automation jobs on Cedar twig
+    'cedar': {
+        'enable_perproduct_builds': False,
+        'lock_platforms': True,
+        'mozharness_tag': 'default',
+        'enable_talos': True,
+        'talos_suites': {
+            'other': 1,
+            'svgr': 1,
+            'tp5o': 1,
+            'other-e10s': 1,
+            'svgr-e10s': 1,
+            'tp5o-e10s': 1,
+        },
+        'enable_opt_unittests': True,
+        'platforms': {
+            'linux64': {},
+            'macosx64': {},
+            'win64': {},
+        },
+    },
     'cypress': {
         'lock_platforms': True,
         'platforms': {
