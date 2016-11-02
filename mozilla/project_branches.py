@@ -2,15 +2,7 @@
 PROJECT_BRANCHES = {
     ### PLEASE ADD NEW BRANCHES ALPHABETICALLY (twigs at the bottom, also alphabetically)
     # 'build-system': {},  # Bug 1010674
-    'fx-team': {
-        'merge_builds': False,
-        'enable_perproduct_builds': True,
-        'repo_path': 'integration/fx-team',
-        'mozconfig_dir': 'mozilla-central',
-        'enable_nightly': False,
-        'pgo_strategy': 'periodic',
-        'periodic_start_hours': range(0, 24, 3),
-    },
+    #'fx-team': {},  #bug 1296396
     'mozilla-inbound': {
         'merge_builds': False,
         'repo_path': 'integration/mozilla-inbound',
