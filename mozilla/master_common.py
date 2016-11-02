@@ -35,7 +35,6 @@ BRANCH_PRIORITIES = {
     # Unlisted branches are prioritized at this level
     'autoland': 4,
     'mozilla-inbound': 4,
-    'fx-team': 4,
     'try': 5,
     'try-comm-central': 5,
     'alder': 5,
