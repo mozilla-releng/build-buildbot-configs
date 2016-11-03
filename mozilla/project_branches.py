@@ -297,6 +297,29 @@ PROJECT_BRANCHES = {
     },
     # Not needed whilst booked for bug 929203.
     #'pine': {}
+    'graphics': {
+        'enable_perproduct_builds': False,
+        'lock_platforms': True,
+        'mozharness_tag': 'default',
+        'enable_talos': True,
+        'talos_suites': {
+            'other': 1,
+            'svgr': 1,
+            'tp5o': 1,
+            'other-e10s': 1,
+            'svgr-e10s': 1,
+            'tp5o-e10s': 1,
+        },
+        'enable_opt_unittests': True,
+        'platforms': {
+            'linux64': {},
+            'linux64-debug': {},
+            'macosx64': {},
+            'macosx64-debug': {},
+            'win64': {},
+            'win64-debug': {},
+        },
+    },    
 }
 
 # All is the default
