@@ -3622,6 +3622,16 @@ for branch in BRANCHES.keys():
                 if test in ['opt_unittest_suites']:
                     BRANCHES[branch]['platforms']['linux64']['ubuntu64_vm'][test] = [item for item in BRANCHES[branch]['platforms']['linux64']['ubuntu64_vm'][test] if (item[0].startswith('mochitest') or item in XPCSHELL)]
 
+# Bug 1308097 - Enable Windows 7 VM opt e10s crashtests and jsreftests on Firefox 52+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 52):
+    # they are already enabled on try
+    if name in ['try']:
+        continue
+    if 'win32' not in branch['platforms']:
+        continue
+    if 'win7_vm' in branch['platforms']['win32']:
+        branch['platforms']['win32']['win7_vm']['opt_unittest_suites'] += CRASHTEST_E10S + JSREFTEST_E10S
+
 
 if __name__ == "__main__":
     import sys
