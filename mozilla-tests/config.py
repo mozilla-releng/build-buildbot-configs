@@ -773,6 +773,16 @@ REFTEST_FOUR_CHUNKS = [
     }),
 ]
 
+REFTEST_GPU_E10S = [
+    ('reftest-gpu-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'reftest-gpu', '--e10s'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
 REFTEST_NOACCEL = [
     ('reftest-no-accel', {
         'use_mozharness': True,
@@ -2123,6 +2133,9 @@ PLATFORM_UNITTEST_VARS = {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'reftest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-gpu-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
                 'reftest-no-accel': {
@@ -3566,6 +3579,20 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
     if 'win7_vm_gfx' in win32:
         win32['win7_vm_gfx']['opt_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_NOACCEL_E10S
         win32['win7_vm_gfx']['debug_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_NOACCEL_E10S
+
+# Bug 1313499 - Run reftest-gpu-e10s on AWS on Try only initially
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 52):
+    # Skip branches where win32 isn't running
+    if not nested_haskey(branch, 'platforms', 'win32'):
+        continue
+    win32 = branch['platforms']['win32']
+
+    if name != 'try':
+        continue
+
+    if 'win7_vm_gfx' in win32:
+        win32['win7_vm_gfx']['opt_unittest_suites'] += REFTEST_GPU_E10S
+        win32['win7_vm_gfx']['debug_unittest_suites'] += REFTEST_GPU_E10S
 
 ###
 # Bug 1269543 - Stop running tests on OS X 10.6 on Firefox 49+
