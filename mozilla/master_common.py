@@ -53,6 +53,7 @@ BRANCH_PRIORITIES = {
     'maple': 5,
     'oak': 5,
     'pine': 5,
+    'graphics': 5,
     'ux': 5,
     # Idle jobs like fuzzing
     'idle': 6,
