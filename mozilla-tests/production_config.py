@@ -33,7 +33,7 @@ for i in range(1, 201):
 for i in range(1, 101):
     SLAVES['win7_vm_gfx']['g-w732-ec2-%03i' % i] = {}
 
-for i in range(1, 102) + range(103, 236):  # Omit 102 for win10 // Bug 1191481 // Bug 1255812 // Bug 1299468
+for i in range(1, 102) + range(103, 207) + range(208, 236):  # Omit 102 for win10 // Bug 1191481 // Bug 1255812 // Bug 1299468
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
 
 for i in range(1, 3) + range(11, 12):  # Bug 1252258
