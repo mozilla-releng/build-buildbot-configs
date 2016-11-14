@@ -2927,7 +2927,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', mr_gecko_version):
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
     for platform in branch['platforms'].keys():
         if 'android-x86' in platform:
-            if branch['enable_nightly']:
+            if branch['enable_nightly'] or branch.get("enable_release_promotion"):
                 # keep the nightly but remove the CI equivalent
                 branch['platforms'][platform]["enable_dep"] = False
             else:
