@@ -92,7 +92,7 @@ PLATFORMS['macosx64']['mozharness_config'] = {
 PLATFORMS['macosx64']['talos_slave_platforms'] = ['yosemite', 'yosemite_r7']
 
 PLATFORMS['win32']['slave_platforms'] = ['xp_ix', 'win7_ix', 'win7_vm', 'win7_vm_gfx']
-PLATFORMS['win32']['talos_slave_platforms'] = ['xp_ix', 'win7_ix']
+PLATFORMS['win32']['talos_slave_platforms'] = ['win7_ix']
 PLATFORMS['win32']['env_name'] = 'win32-perf'
 PLATFORMS['win32']['xp_ix'] = {'name': "Windows XP 32-bit",
                                'try_by_default': False}
