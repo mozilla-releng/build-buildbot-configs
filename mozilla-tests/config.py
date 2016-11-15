@@ -580,27 +580,6 @@ MOCHITEST_MEDIA_E10S = [
     }),
 ]
 
-MOCHITEST_WEBGL = [
-    ('mochitest-gl', {
-        'use_mozharness': True,
-        'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'mochitest-gl'],
-        'blob_upload': True,
-        'script_maxtime': 5400,
-    }),
-]
-
-MOCHITEST_WEBGL_E10S = [
-    ('mochitest-gl-e10s', {
-        'use_mozharness': True,
-        'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'mochitest-gl', '--e10s'],
-        'blob_upload': True,
-        'script_maxtime': 5400,
-    }),
-]
-
-### Bug 1290989 - Chunk m-gl on Desktop
 MOCHITEST_WEBGL_CHUNKED = [
     ('mochitest-gl', {
         'use_mozharness': True,
@@ -930,9 +909,9 @@ XPCSHELL_FOUR_CHUNKS = [
 # sections below.
 UNITTEST_SUITES = {
     'opt_unittest_suites': CPPUNIT + MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_DT_8 + \
-                           MOCHITEST_WEBGL + OTHER_REFTESTS,
+                           MOCHITEST_WEBGL_CHUNKED + OTHER_REFTESTS,
     'debug_unittest_suites': CPPUNIT + MARIONETTE + MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_DT_8 + \
-                             MOCHITEST_WEBGL + OTHER_REFTESTS,
+                             MOCHITEST_WEBGL_CHUNKED + OTHER_REFTESTS,
 }
 
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
@@ -2031,9 +2010,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win7_vm_gfx': {
-            'opt_unittest_suites': MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_WEBGL + \
+            'opt_unittest_suites': MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_WEBGL_CHUNKED + \
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK,
-            'debug_unittest_suites': MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_WEBGL + \
+            'debug_unittest_suites': MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_WEBGL_CHUNKED + \
                                      REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS,
             'suite_config': {
                 'mochitest-gpu': {
@@ -3021,12 +3000,6 @@ for platform in PLATFORMS.keys():
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_MEDIA
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']+= MOCHITEST_MEDIA
-                    if platform not in ('win64') and slave_platform not in ('snowleopard', 'xp_ix'):
-                        BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_MEDIA_E10S
-
-            if platform in ('linux', 'linux64') and platform in BRANCHES[name]['platforms']:
-                BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_MEDIA_E10S
-
 
 ### Tests Enabled in Gecko 42+ ###
 
@@ -3066,155 +3039,60 @@ for platform in PLATFORMS.keys():
 
 ### Tests Enabled in Gecko 43+ ###
 
-# Starting in Firefox 46:
-#   Enable e10s Linux mochitests
-#   Enable e10s browser-chrome mochitests, opt builds only for all platforms (not ready for Xp).
-#   Enable e10s devtools tests for Linux opt
-#   Enable e10s reftests/crashtests for Linux opt
-#   Enable e10s marionette tests for Linux32 opt
-#   Enable e10s web-platform-tests
+# Enable e10s tests for Gecko 46+ on all eligible platforms
 trunk_gecko_version = BRANCHES['mozilla-central']['gecko_version']
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            # e10s isn't supported on 10.6, so don't schedule tests
-            if slave_platform == "snowleopard":
+            # e10s tests not supported on OSX 10.6 or WinXP
+            if slave_platform in ('snowleopard', 'xp_ix'):
                 continue
-            if platform in branch['platforms'] and slave_platform in branch['platforms'][platform] and \
-                    not slave_platform == 'xp_ix':
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MOCHITEST_BC_7_E10S
-            # asan is a special snowflake, so treat it as such
-            if platform in ['linux64-asan']:
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += CRASHTEST_E10S + \
-                    JSREFTEST_E10S + MOCHITEST_E10S + MOCHITEST_WEBGL_E10S
-            if platform in ('linux', 'linux64'):
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += CRASHTEST_E10S + \
-                    JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_E10S + MOCHITEST_WEBGL_E10S + \
-                    REFTEST_E10S_TWO_CHUNKS + MOCHITEST_DT_8_E10S
-                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += CRASHTEST_E10S + \
-                    JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_E10S_8 + MOCHITEST_WEBGL_E10S + \
-                    REFTEST_E10S_TWO_CHUNKS + MOCHITEST_BC_7_E10S
-                # we want mochitests to be 8 chunks for debug on gecko version 46+
-                for test, config in branch['platforms'][platform][slave_platform]['debug_unittest_suites']:
-                    if test == 'mochitest':
-                        branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove((test,config))
-                        branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_WO_BC_8
-            # wpt-10s
-            if (platform in ('linux64', 'linux') or (platform == "macosx64")):
-                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + WEB_PLATFORM_REFTESTS_E10S
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += WEB_PLATFORM_TESTS_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
+            base_tests = CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
+                         MOCHITEST_CLIPBOARD_E10S + MOCHITEST_E10S + MOCHITEST_GPU_E10S + \
+                         MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
 
-# Bug 1215233 - Enable more e10s tests on Windows 7 only
-#   Turn on mochitest-gl-e10s - bug 1221102
-#   Turn on mochitest-e10s-devtools-chrome - bug 1221499
-#   Turn on mochitest-e10s - bug 1232780
-#   Turn on reftest-e10s - bug 1239025
-#   Turn on crashtest-e10s - bug 1240825
-#   Turn on jsreftest-e10s - bug 1246627
-#   Turn on web platform tests for e10s - bug 1245559
-# Bug 1194533 - Enable tests on OSX 10.10
-#   Turn on e10s tests for opt builds - bug 1253710
-#   Turn on Mn-e10s and mochitest-e10s-browser-chrome - bug 1253714
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 47):
-    for platform in PLATFORMS.keys():
-        if platform not in branch['platforms']:
-            continue
-        for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform in branch['platforms'][platform] and slave_platform in ('win7_ix', 'win7_vm', 'win7_vm_gfx'):
-                if name not in TWIGS:
-                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                        MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + REFTEST_E10S_TWO_CHUNKS + CRASHTEST_E10S + \
-                        JSREFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + \
-                        WEB_PLATFORM_REFTESTS_E10S + MARIONETTE_E10S
-                    branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                        MOCHITEST_WEBGL_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + REFTEST_E10S + \
-                        CRASHTEST_E10S + JSREFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S + \
-                        WEB_PLATFORM_REFTESTS_E10S + MARIONETTE_E10S
-            if slave_platform in branch['platforms'][platform] and slave_platform in ('yosemite_r7'):
-                if name not in TWIGS:
-                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                        MARIONETTE_E10S + MOCHITEST_BC_7_E10S
-                    branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                        CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_DT_8_E10S + \
-                        MOCHITEST_E10S + MOCHITEST_WEBGL_E10S + REFTEST_E10S
+            if platform in branch['platforms'] and slave_platform in branch['platforms'][platform]:
+                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += base_tests + \
+                    WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += base_tests + \
+                    MOCHITEST_DT_8_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
 
-# Bug 1194533 - Enable remaining tests on OSX 10.10 for Gecko 48+
-# Bug 1255196 & 1275281 - Enable more Linux e10s test suites for Gecko 48+
-# Bug 1276474 - Enable remaining tests on Windows 7 for Gecko 48+
-# Bug 1276237 - Enable Windows 8 e10s tests on the release branches and Try for Gecko 48+
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
-    for platform in PLATFORMS.keys():
-        if platform not in branch['platforms'] or name in TWIGS:
-            continue
-        for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform in branch['platforms'][platform] and slave_platform in ('yosemite_r7'):
+            # Bug 1223198 - Linux buildbot reftests are broken and not being fixed due to
+            # being migrated to Taskcluster. Therefore, only schedule e10s reftests on OSX & Windows.
+            # Also, don't schedule reftest-no-accel on OSX since it's not supported on there.
+            # Debug devtools tests are also only scheduled on OSX & Windows since they're timeout-
+            # prone on the AWS VMs.
+            if platform not in ('linux', 'linux64'):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                    CRASHTEST_E10S + JSREFTEST_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + \
-                    MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_E10S + REFTEST_E10S_TWO_CHUNKS
-            if slave_platform in branch['platforms'][platform] and \
-                    slave_platform in ('win7_ix', 'win7_vm', 'win7_vm_gfx'):
-                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                    MOCHITEST_BC_7_E10S + MOCHITEST_E10S + MOCHITEST_MEDIA_E10S + \
-                    REFTEST_NOACCEL_E10S_TWO_CHUNKS
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                    REFTEST_NOACCEL_E10S
-            if slave_platform in branch['platforms'][platform] and slave_platform in ['win8_64']:
-                if name in ('mozilla-aurora', 'mozilla-beta', 'mozilla-release'):
-                    BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                        CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
-                        MOCHITEST_DT_8_E10S + MOCHITEST_E10S + MOCHITEST_MEDIA_E10S + \
-                        MOCHITEST_WEBGL_E10S + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
-                        WEB_PLATFORM_REFTESTS_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
-                    BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                        CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_DT_8_E10S + \
-                        MOCHITEST_E10S + MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_E10S + \
-                        REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_REFTESTS_E10S + \
-                        WEB_PLATFORM_TESTS_CHUNKED_E10S
-            if platform in ['linux64-asan']:
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                    MARIONETTE + MARIONETTE_E10S + MOCHITEST_DT_8_E10S + \
-                    REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS
-            if platform in ('linux',):
-                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                    REFTEST_NOACCEL_E10S_TWO_CHUNKS
-                # we want reftest_noaccel to be 6 chunks for debug on gecko version 48+
-                for test, config in branch['platforms'][platform][slave_platform]['debug_unittest_suites']:
-                    if test == 'reftest-no-accel':
-                        branch['platforms'][platform][slave_platform]['debug_unittest_suites'].remove((test,config))
-                        branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += REFTEST_NOACCEL_SIX_CHUNKS
-            if platform in ('linux','linux64'):
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                    REFTEST_NOACCEL_E10S_TWO_CHUNKS
+                    MOCHITEST_DT_8_E10S + REFTEST_E10S_TWO_CHUNKS
+                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += REFTEST_E10S
+                if slave_platform != 'yosemite_r7':
+                    branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                        REFTEST_NOACCEL_E10S_TWO_CHUNKS
+                    branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
+                        REFTEST_NOACCEL_E10S
 
 # Bug 1277885 - Enable e10s tests for all Windows platforms on Try
-# Win7 already runs by default on production. WinXP, Win8, and Win10 are all opt-in platforms.
+# Win7/Win8 already run by default on production. WinXP and Win10 are opt-in platforms.
 for platform in PLATFORMS.keys():
     if platform not in BRANCHES['try']['platforms']:
         continue
 
-    base_tests = CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_DT_8_E10S + \
-                 MOCHITEST_E10S + MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_E10S + REFTEST_E10S + \
-                 WEB_PLATFORM_REFTESTS_E10S
+    base_tests = CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_CLIPBOARD_E10S + \
+                 MOCHITEST_DT_8_E10S + MOCHITEST_E10S + MOCHITEST_GPU_E10S + MOCHITEST_MEDIA_E10S + \
+                 MOCHITEST_WEBGL_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
 
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
         if slave_platform not in BRANCHES['try']['platforms'][platform]:
             continue
 
-        if slave_platform in BRANCHES['try']['platforms'][platform] and slave_platform in ('xp_ix',):
+        if slave_platform in BRANCHES['try']['platforms'][platform] and slave_platform in ('xp_ix'):
             BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                base_tests + MOCHITEST_BC_7_E10S + MOCHITEST_CLIPBOARD_E10S + \
-                MOCHITEST_GPU_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+                base_tests + MOCHITEST_BC_7_E10S + REFTEST_E10S_TWO_CHUNKS + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                base_tests + MOCHITEST_BC_7_E10S + MOCHITEST_CLIPBOARD_E10S + \
-                MOCHITEST_GPU_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
-        if slave_platform in BRANCHES['try']['platforms'][platform] and slave_platform in ('win8_64', 'win10_64'):
-            BRANCHES['try']['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                base_tests + MOCHITEST_BC_7_E10S + MOCHITEST_CLIPBOARD_E10S + \
-                MOCHITEST_GPU_E10S + REFTEST_NOACCEL_E10S_TWO_CHUNKS + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
-            BRANCHES['try']['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                base_tests + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
+                base_tests + MOCHITEST_BC_7_E10S + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
 
 # Use 4 xpcshell chunks on linux debug/asan builds and 1 everywhere else
 for branch in BRANCHES.keys():
@@ -3301,21 +3179,10 @@ for platform in PLATFORMS.keys():
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                         MOCHITEST_GPU + MOCHITEST_CLIPBOARD
 
-                    # we don't run e10s on winxp
-                    if slave_platform != 'xp_ix':
-                        BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                            MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
-
                     # Do not add Linux x64 debug since it is running on TaskCluster
                     if slave_platform != 'ubuntu64_vm':
                         BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                             MOCHITEST_GPU + MOCHITEST_CLIPBOARD
-
-                    # currently we don't run e10s tests on winxp debug or win8 debug
-                    if slave_platform not in ('xp_ix', 'win8_64', 'win10_64', 'ubuntu64_vm'):
-                        BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                            MOCHITEST_GPU_E10S + MOCHITEST_CLIPBOARD_E10S
-
 
 # Enable talos g4 on 50+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
@@ -3412,7 +3279,7 @@ for platform in PLATFORMS.keys():
 
     base_tests = CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
                  MOCHITEST_CLIPBOARD_E10S + MOCHITEST_DT_8_E10S + MOCHITEST_E10S + \
-                 MOCHITEST_GPU_E10S + MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_E10S + \
+                 MOCHITEST_GPU_E10S + MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_CHUNKED_E10S + \
                  WEB_PLATFORM_REFTESTS_E10S
 
     for slave_platform in PLATFORMS[platform]['slave_platforms']:
@@ -3431,17 +3298,18 @@ for platform in PLATFORMS.keys():
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
                 WEB_PLATFORM_TESTS_CHUNKED_E10S
-        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('xp_ix', ):
+        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('xp_ix'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
-        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('yosemite_r7',):
+                base_tests + REFTEST_E10S_TWO_CHUNKS + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('yosemite_r7'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
                 base_tests + REFTEST_E10S_TWO_CHUNKS + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
         if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('win7_ix', 'win8_64'):
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+                base_tests + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
+                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
                 base_tests + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
 
@@ -3538,8 +3406,10 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
         win32['win7_vm']['opt_unittest_suites'] = WORKING_WIN7_AWS_OPT_SUITES
         win32['win7_vm']['debug_unittest_suites'] = WORKING_WIN7_AWS_DEBUG_SUITES
     if 'win7_vm_gfx' in win32:
-        win32['win7_vm_gfx']['opt_unittest_suites'] = REFTEST_ONE_CHUNK + REFTEST_NOACCEL + MOCHITEST_GPU + MOCHITEST_GPU_E10S + REFTEST_E10S
-        win32['win7_vm_gfx']['debug_unittest_suites'] = REFTEST_TWO_CHUNKS + MOCHITEST_GPU + MOCHITEST_GPU_E10S + REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_E10S_TWO_CHUNKS
+        win32['win7_vm_gfx']['opt_unittest_suites'] = REFTEST_ONE_CHUNK + REFTEST_NOACCEL + MOCHITEST_GPU + \
+                                                      MOCHITEST_GPU_E10S + REFTEST_E10S
+        win32['win7_vm_gfx']['debug_unittest_suites'] = REFTEST_TWO_CHUNKS + MOCHITEST_GPU + MOCHITEST_GPU_E10S + \
+                                                        REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_E10S_TWO_CHUNKS
 
     # Disable these suites from the IX machines
     if 'win7_ix' in win32:
@@ -3576,12 +3446,16 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
         continue
 
     if 'win7_vm' in win32:
-        win32['win7_vm']['opt_unittest_suites'] = WORKING_WIN7_AWS_OPT_SUITES + MOCHITEST_WO_BC + MOCHITEST_E10S + MOCHITEST_BC_7_E10S + MOCHITEST_BC_7
-        win32['win7_vm']['debug_unittest_suites'] = WORKING_WIN7_AWS_DEBUG_SUITES + MOCHITEST_WO_BC + MOCHITEST_E10S + MOCHITEST_BC_7_E10S + MOCHITEST_BC_7
+        win32['win7_vm']['opt_unittest_suites'] = WORKING_WIN7_AWS_OPT_SUITES + MOCHITEST_WO_BC + \
+                                                  MOCHITEST_E10S + MOCHITEST_BC_7_E10S + MOCHITEST_BC_7
+        win32['win7_vm']['debug_unittest_suites'] = WORKING_WIN7_AWS_DEBUG_SUITES + MOCHITEST_WO_BC + \
+                                                    MOCHITEST_E10S + MOCHITEST_BC_7_E10S + MOCHITEST_BC_7
 
     if 'win7_vm_gfx' in win32:
-        win32['win7_vm_gfx']['opt_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_NOACCEL_E10S
-        win32['win7_vm_gfx']['debug_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_NOACCEL_E10S_TWO_CHUNKS
+        win32['win7_vm_gfx']['opt_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S + \
+                                                       REFTEST_NOACCEL_E10S
+        win32['win7_vm_gfx']['debug_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S + \
+                                                         REFTEST_NOACCEL_E10S_TWO_CHUNKS
 
 # Bug 1313499 - Run reftest-gpu-e10s on AWS on Try only initially
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 52):
@@ -3618,28 +3492,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):
             BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
 
 #Bug 1282468 - disable buildbot asan builds on trunk
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
     for platform in branch['platforms'].keys():
         if platform not in ['linux64-asan']:
             continue
         if 'linux64-asan' in platform:
             del branch['platforms'][platform]
-
-# Bug 1290989 - Chunk m-gl on Desktop
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
-    for platform in PLATFORMS.keys():
-        if platform not in branch['platforms']:
-            continue
-        for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform not in branch['platforms'][platform]:
-                continue
-            for i in ['opt_unittest_suites', 'debug_unittest_suites']:
-                if  MOCHITEST_WEBGL[0] in branch['platforms'][platform][slave_platform][i]:
-                    branch['platforms'][platform][slave_platform][i] = [item for item in branch['platforms'][platform][slave_platform][i] if item not in MOCHITEST_WEBGL]
-                    branch['platforms'][platform][slave_platform][i] += MOCHITEST_WEBGL_CHUNKED
-                if MOCHITEST_WEBGL_E10S[0] in branch['platforms'][platform][slave_platform][i]:
-                    branch['platforms'][platform][slave_platform][i] = [item for item in branch['platforms'][platform][slave_platform][i] if item not in MOCHITEST_WEBGL_E10S]
-                    branch['platforms'][platform][slave_platform][i] += MOCHITEST_WEBGL_CHUNKED_E10S
 
 # Bug 1308544 - Enable automation jobs on Cedar twig
 for branch in BRANCHES.keys():
