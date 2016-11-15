@@ -485,14 +485,14 @@ MOCHITEST_E10S = [
     }),
 ]
 
-MOCHITEST_E10S_8 = [
+MOCHITEST_E10S_10 = [
     ('mochitest-e10s', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'plain-chunked', '--e10s'],
         'blob_upload': True,
         'script_maxtime': 7200,
-        'totalChunks': 8,
+        'totalChunks': 10,
     }),
 ]
 
@@ -507,14 +507,14 @@ MOCHITEST_WO_BC = [
     }),
 ]
 
-MOCHITEST_WO_BC_8 = [
+MOCHITEST_WO_BC_10 = [
     ('mochitest', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--mochitest-suite', 'plain-chunked'],
         'blob_upload': True,
         'script_maxtime': 7200,
-        'totalChunks': 8,
+        'totalChunks': 10,
     }),
 ]
 
@@ -649,7 +649,8 @@ MOCHITEST_CLIPBOARD_E10S = [
 ]
 
 ### Mochitest Combinations ###
-MOCHITEST = MOCHITEST_WO_BC + MOCHITEST_OTHER
+MOCHITEST_5 = MOCHITEST_WO_BC + MOCHITEST_OTHER
+MOCHITEST_10 = MOCHITEST_WO_BC_10 + MOCHITEST_OTHER
 
 ### Mozbase ###
 MOZBASE = [
@@ -793,14 +794,14 @@ REFTEST_NOACCEL_TWO_CHUNKS = [
     }),
 ]
 
-REFTEST_NOACCEL_SIX_CHUNKS = [
+REFTEST_NOACCEL_FOUR_CHUNKS = [
     ('reftest-no-accel', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--reftest-suite', 'reftest-no-accel'],
         'blob_upload': True,
         'script_maxtime': 7200,
-        'totalChunks': 6,
+        'totalChunks': 4,
     }),
 ]
 
@@ -908,9 +909,9 @@ XPCSHELL_FOUR_CHUNKS = [
 # will additionally require other various suites to be run, which are set in the
 # sections below.
 UNITTEST_SUITES = {
-    'opt_unittest_suites': CPPUNIT + MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_DT_8 + \
+    'opt_unittest_suites': CPPUNIT + MOCHITEST_5 + MOCHITEST_BC_7 + MOCHITEST_DT_8 + \
                            MOCHITEST_WEBGL_CHUNKED + OTHER_REFTESTS,
-    'debug_unittest_suites': CPPUNIT + MARIONETTE + MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_DT_8 + \
+    'debug_unittest_suites': CPPUNIT + MARIONETTE + MOCHITEST_BC_7 + MOCHITEST_DT_8 + \
                              MOCHITEST_WEBGL_CHUNKED + OTHER_REFTESTS,
 }
 
@@ -927,10 +928,9 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'ubuntu32_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST_CHUNKED + \
-                                   MARIONETTE + REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS + \
-                                   WEB_PLATFORM_REFTESTS + WEB_PLATFORM_TESTS_CHUNKED,
+                                   MARIONETTE + WEB_PLATFORM_REFTESTS + WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST_CHUNKED + \
-                                     REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_FOUR_CHUNKS,
+                                     MOCHITEST_10,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -1063,10 +1063,9 @@ PLATFORM_UNITTEST_VARS = {
         'ubuntu64_hw': {},
         'ubuntu64_vm': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST_CHUNKED + \
-                                   MARIONETTE + REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS + \
-                                   WEB_PLATFORM_REFTESTS + WEB_PLATFORM_TESTS_CHUNKED,
+                                   MARIONETTE + WEB_PLATFORM_REFTESTS + WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST_CHUNKED + \
-                                    REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_FOUR_CHUNKS,
+                                     MOCHITEST_10,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -1209,10 +1208,8 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu64-asan_vm': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST_CHUNKED + \
-                                   REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS,
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST_CHUNKED + \
-                                     REFTEST_FOUR_CHUNKS,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST_CHUNKED,
+            'debug_unittest_suites': [],
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/linux_unittest.py"],
@@ -1352,8 +1349,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu64_vm': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST_CHUNKED + \
-                                   REFTEST_TWO_CHUNKS,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST_CHUNKED,
             'debug_unittest_suites': [],
             'suite_config': {
                 'cppunit': {
@@ -1482,8 +1478,7 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': False,
         'ubuntu64_vm': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST_CHUNKED + \
-                                   REFTEST_TWO_CHUNKS,
+            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST_CHUNKED,
             'debug_unittest_suites': [],
             'suite_config': {
                 'cppunit': {
@@ -1618,7 +1613,7 @@ PLATFORM_UNITTEST_VARS = {
                                    MARIONETTE + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_ONE_CHUNK,
+                                     MOCHITEST_5 + REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1750,7 +1745,7 @@ PLATFORM_UNITTEST_VARS = {
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS,
+                                     MOCHITEST_5 + REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -1878,10 +1873,10 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win7_vm': {
-            'opt_unittest_suites': CPPUNIT + JITTEST + MARIONETTE + MOCHITEST + MOCHITEST_BC_7 + \
+            'opt_unittest_suites': CPPUNIT + JITTEST + MARIONETTE + MOCHITEST_5 + MOCHITEST_BC_7 + \
                                    MOCHITEST_DT_8 + OTHER_REFTESTS + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
-            'debug_unittest_suites': CPPUNIT + JITTEST + MARIONETTE + MOCHITEST + MOCHITEST_BC_7 + \
+            'debug_unittest_suites': CPPUNIT + JITTEST + MARIONETTE + MOCHITEST_5 + MOCHITEST_BC_7 + \
                                      MOCHITEST_DT_8 + OTHER_REFTESTS,
             'suite_config': {
                 'mochitest-gpu': {
@@ -2010,9 +2005,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win7_vm_gfx': {
-            'opt_unittest_suites': MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_WEBGL_CHUNKED + \
+            'opt_unittest_suites': MOCHITEST_5 + MOCHITEST_BC_7 + MOCHITEST_WEBGL_CHUNKED + \
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK,
-            'debug_unittest_suites': MOCHITEST + MOCHITEST_BC_7 + MOCHITEST_WEBGL_CHUNKED + \
+            'debug_unittest_suites': MOCHITEST_5 + MOCHITEST_BC_7 + MOCHITEST_WEBGL_CHUNKED + \
                                      REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS,
             'suite_config': {
                 'mochitest-gpu': {
@@ -2159,7 +2154,7 @@ PLATFORM_UNITTEST_VARS = {
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS,
+                                     MOCHITEST_5 + REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -2291,7 +2286,7 @@ PLATFORM_UNITTEST_VARS = {
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_NOACCEL + REFTEST_ONE_CHUNK,
+                                     MOCHITEST_5 + REFTEST_NOACCEL + REFTEST_ONE_CHUNK,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -2429,7 +2424,7 @@ PLATFORM_UNITTEST_VARS = {
         'snowleopard': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + REFTEST_ONE_CHUNK,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_TWO_CHUNKS,
+                                     MOCHITEST_5 + REFTEST_TWO_CHUNKS,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -2685,7 +2680,7 @@ PLATFORM_UNITTEST_VARS = {
         'yosemite_r7': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + REFTEST_ONE_CHUNK,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     REFTEST_TWO_CHUNKS,
+                                     MOCHITEST_5 + REFTEST_TWO_CHUNKS,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -2989,6 +2984,18 @@ for platform in PLATFORMS.keys():
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                         WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS
 
+### Tests that only run on ESR45 ###
+for branch in BRANCHES.keys():
+    if branch == 'mozilla-esr45':
+        for platform in PLATFORMS.keys():
+            if platform not in ['linux', 'linux64', 'linux64-asan']:
+                continue
+            for slave_platform in PLATFORMS[platform]['slave_platforms']:
+                if slave_platform in BRANCHES[branch]['platforms'][platform]:
+                    BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
+                        REFTEST_NOACCEL_FOUR_CHUNKS + REFTEST_FOUR_CHUNKS
+                    BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
+                        REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS
 
 ### Tests Enabled in Gecko 48+ ###
 
@@ -3049,15 +3056,22 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
             # e10s tests not supported on OSX 10.6 or WinXP
             if slave_platform in ('snowleopard', 'xp_ix'):
                 continue
+
+            # Base set of test suites that are run across all platforms and flavors.
             base_tests = CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
-                         MOCHITEST_CLIPBOARD_E10S + MOCHITEST_E10S + MOCHITEST_GPU_E10S + \
-                         MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
+                         MOCHITEST_CLIPBOARD_E10S + MOCHITEST_GPU_E10S + MOCHITEST_MEDIA_E10S + \
+                         MOCHITEST_WEBGL_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
 
             if platform in branch['platforms'] and slave_platform in branch['platforms'][platform]:
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += base_tests + \
                     WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += base_tests + \
-                    MOCHITEST_DT_8_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
+                    MOCHITEST_DT_8_E10S + MOCHITEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
+
+            # On Linux debug, split mochitest-plain into 10 chunks.
+            # Otherwise, use 5 (as set in the block below this one).
+            if platform in ('linux', 'linux64'):
+                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MOCHITEST_E10S_10
 
             # Bug 1223198 - Linux buildbot reftests are broken and not being fixed due to
             # being migrated to Taskcluster. Therefore, only schedule e10s reftests on OSX & Windows.
@@ -3066,7 +3080,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
             # prone on the AWS VMs.
             if platform not in ('linux', 'linux64'):
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                    MOCHITEST_DT_8_E10S + REFTEST_E10S_TWO_CHUNKS
+                    MOCHITEST_DT_8_E10S + MOCHITEST_E10S + REFTEST_E10S_TWO_CHUNKS
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += REFTEST_E10S
                 if slave_platform != 'yosemite_r7':
                     branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
