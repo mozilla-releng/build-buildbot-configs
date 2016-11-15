@@ -2852,7 +2852,7 @@ for name, branch in BRANCHES.items():
                 )]
 
 # mozilla-beta's gecko version
-mc_gecko_version = BRANCHES['mozilla-beta']['gecko_version']
+mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
 
 # Static analysis happens only on m-c and derived branches.
 for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
