@@ -68,8 +68,6 @@ PLATFORMS = {
     'linux': {},
     'linux64': {},
     'linux64-asan': {},
-    'linux64-cc': {},
-    'linux64-tsan': {},
     'macosx64': {},
     'win32': {},
     'win64': {},
@@ -158,45 +156,6 @@ PLATFORMS['linux64-asan']['mozharness_config'] = {
     'hg_bin': 'hg',
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
     'config_file': 'talos/linux_config.py',
-}
-
-PLATFORMS['linux64-tsan']['slave_platforms'] = ['ubuntu64_vm', 'ubuntu64_vm_lnx_large']
-PLATFORMS['linux64-tsan']['ubuntu64_vm'] = {
-    'name': 'Ubuntu TSAN VM 12.04 x64',
-    'build_dir_prefix': 'ubuntu64_vm_tsan',
-    'scheduler_slave_platform_identifier': 'ubuntu64_vm_tsan'
-}
-PLATFORMS['linux64-tsan']['ubuntu64_vm_lnx_large'] = {
-    'name': 'Ubuntu TSAN VM large 12.04 x64',
-    'build_dir_prefix': 'ubuntu64_vm_large_tsan',
-    'scheduler_slave_platform_identifier': 'ubuntu64_vm_large_tsan'
-}
-PLATFORMS['linux64-tsan']['stage_product'] = 'firefox'
-PLATFORMS['linux64-tsan']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
-    'hg_bin': 'hg',
-    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
-    'config_file': 'talos/linux_config.py',
-}
-
-PLATFORMS['linux64-cc']['slave_platforms'] = ['ubuntu64_vm', 'ubuntu64_vm_lnx_large']
-PLATFORMS['linux64-cc']['ubuntu64_vm'] = {
-    'name': 'Ubuntu Code Coverage VM 12.04 x64',
-    'build_dir_prefix': 'ubuntu64_vm_cc',
-    'scheduler_slave_platform_identifier': 'ubuntu64_vm_cc'
-}
-PLATFORMS['linux64-cc']['ubuntu64_vm_lnx_large'] = {
-    'name': 'Ubuntu Code Coverage VM large 12.04 x64',
-    'build_dir_prefix': 'ubuntu64_vm_large_cc',
-    'scheduler_slave_platform_identifier': 'ubuntu64_vm_large_cc'
-}
-PLATFORMS['linux64-cc']['stage_product'] = 'firefox'
-PLATFORMS['linux64-cc']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
-    'hg_bin': 'hg',
-    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
-    'system_bits': '64',
-    'extra_args': ['--code-coverage'],
 }
 
 # Lets be explicit instead of magical.
@@ -326,8 +285,6 @@ BRANCH_UNITTEST_VARS = {
         'linux': {},
         'linux64': {},
         'linux64-asan': {},
-        'linux64-cc': {},
-        'linux64-tsan': {},
         'macosx64': {},
         'win32': {},
         'win64': {},
@@ -1331,264 +1288,6 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'ubuntu64-asan_vm_lnx_large': {
-           'opt_unittest_suites': [],
-           'debug_unittest_suites': [],
-           'suite_config': {
-               'gtest': {
-                   'config_files': ["unittests/linux_unittest.py"],
-               },
-           },
-        },
-    },
-    'linux64-tsan': {
-        'product_name': 'firefox',
-        'app_name': 'browser',
-        'brand_name': 'Minefield',
-        'builds_before_reboot': 1,
-        'unittest-env': {'DISPLAY': ':0'},
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
-        'ubuntu64_vm': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST_CHUNKED,
-            'debug_unittest_suites': [],
-            'suite_config': {
-                'cppunit': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'jittest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'marionette': {
-                    'config_files': ["marionette/prod_config.py"],
-                },
-                'marionette-e10s': {
-                    'config_files': ["marionette/prod_config.py"],
-                },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
-                'mochitest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-a11y': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-browser-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s-browser-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-devtools-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s-devtools-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-gl': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-gl-e10s': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-jetpack': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-media': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-media-e10s': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-other': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mozbase': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'crashtest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'crashtest-e10s': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'jsreftest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'jsreftest-e10s': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest-e10s': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest-no-accel': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest-no-accel-e10s': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'web-platform-tests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'web-platform-tests-e10s': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'web-platform-tests-reftests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'web-platform-tests-reftests-e10s': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'webapprt-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'xpcshell': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-            },
-        },
-        'ubuntu64_vm_lnx_large': {
-           'opt_unittest_suites': [],
-           'debug_unittest_suites': [],
-           'suite_config': {
-               'gtest': {
-                   'config_files': ["unittests/linux_unittest.py"],
-               },
-           },
-        },
-    },
-    'linux64-cc': {
-        'product_name': 'firefox',
-        'app_name': 'browser',
-        'brand_name': 'Minefield',
-        'builds_before_reboot': 1,
-        'unittest-env': {'DISPLAY': ':0'},
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': False,
-        'ubuntu64_vm': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST_CHUNKED,
-            'debug_unittest_suites': [],
-            'suite_config': {
-                'cppunit': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'jittest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'marionette': {
-                    'config_files': ["marionette/prod_config.py"],
-                },
-                'marionette-e10s': {
-                    'config_files': ["marionette/prod_config.py"],
-                },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
-                'mochitest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-a11y': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-browser-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s-browser-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-devtools-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-e10s-devtools-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-gl': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-gl-e10s': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-jetpack': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-media': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-media-e10s': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mochitest-other': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'mozbase': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'crashtest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'crashtest-e10s': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'jsreftest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'jsreftest-e10s': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest-e10s': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest-no-accel': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'reftest-no-accel-e10s': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'web-platform-tests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'web-platform-tests-e10s': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'web-platform-tests-reftests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'web-platform-tests-reftests-e10s': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'webapprt-chrome': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-                'xpcshell': {
-                    'config_files': ["unittests/linux_unittest.py"],
-                },
-            },
-        },
-        'ubuntu64_vm_lnx_large': {
            'opt_unittest_suites': [],
            'debug_unittest_suites': [],
            'suite_config': {
@@ -3182,9 +2881,6 @@ for branch_name in ('try', 'mozilla-central'):
 for platform in PLATFORMS.keys():
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
         if platform in BRANCHES[name]['platforms']:
-            if (platform in ['linux64-tsan', 'linux64-cc']):
-                continue
-
             for slave_platform in PLATFORMS[platform]['slave_platforms']:
                 # e10s isn't supported on 10.6, so don't schedule tests
                 if slave_platform == "snowleopard":
@@ -3206,7 +2902,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
 
 ### Test suites that only run on Try ###
 
-# Enable linux64-cc, linux64-tsan, and win10 on Try only
+# Enable win10 on Try only
 delete_slave_platform(BRANCHES, PLATFORMS, {'win64': 'win10_64'}, branch_exclusions=["try"])
 
 
@@ -3244,8 +2940,7 @@ for branch in BRANCHES.keys():
 
 # Gtests run from the test package
 for platform in PLATFORMS.keys():
-    if platform not in ['linux', 'linux64', 'linux64-asan', 'linux64-tsan', 'linux64-cc',
-                        'macosx64', 'win32', 'win64']:
+    if platform not in ['linux', 'linux64', 'linux64-asan', 'macosx64', 'win32', 'win64']:
         continue
 
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
@@ -3259,19 +2954,15 @@ for platform in PLATFORMS.keys():
                 continue
 
             if platform in BRANCHES[name]['platforms']:
-                if (platform in ['linux64', 'linux64-tsan', 'linux64-cc'] and slave_platform in ['ubuntu64_vm']) or (platform in ['linux64-asan'] and slave_platform in ['ubuntu64-asan_vm']):
+                if (platform in ['linux64'] and slave_platform in ['ubuntu64_vm']) or (platform in ['linux64-asan'] and slave_platform in ['ubuntu64-asan_vm']):
                     continue
-                elif (platform in ['linux64', 'linux64-tsan', 'linux64-cc'] and slave_platform in ['ubuntu64_vm_lnx_large']) or (platform in ['linux64-asan'] and slave_platform in ['ubuntu64-asan_vm_lnx_large']):
+                elif (platform in ['linux64'] and slave_platform in ['ubuntu64_vm_lnx_large']) or (platform in ['linux64-asan'] and slave_platform in ['ubuntu64-asan_vm_lnx_large']):
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = GTEST
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] = GTEST
                 else:
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += GTEST
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += GTEST
 
-delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-cc': 'ubuntu64_vm'}, branch_exclusions=["try"])
-delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-cc': 'ubuntu64_vm_lnx_large'}, branch_exclusions=["try"])
-delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-tsan': 'ubuntu64_vm' }, branch_exclusions=["try"])
-delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-tsan': 'ubuntu64_vm_lnx_large'}, branch_exclusions=["try"])
 delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-asan': 'ubuntu64_vm'}, branch_exclusions=ride_trains_branches)
 delete_slave_platform(BRANCHES, PLATFORMS, {'linux64-asan': 'ubuntu64-asan_vm_lnx_large'}, branch_exclusions=ride_trains_branches)
 

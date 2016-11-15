@@ -24,9 +24,7 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   "Ubuntu HW 12.04 x64": ("linux64", ["ubuntu64_hw"]),
                   "Ubuntu ASAN VM 12.04 x64": ("linux64-asan", ["ubuntu64-asan_vm"]),
                   "Ubuntu ASAN VM large 12.04 x64": ("linux64-asan", ["ubuntu64-asan_vm_lnx_large"]),
-                  "Ubuntu TSAN VM 12.04 x64": ("linux64-tsan", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
                   "Rev7 MacOSX Yosemite 10.10.5": ("macosx64", ["yosemite_r7"]),
-                  "Ubuntu Code Coverage VM 12.04 x64": ("linux64-cc", ["ubuntu64_vm", "ubuntu64_vm_lnx_large"]),
                   "Android 4.3 armv7 API 15+": ("android-api-15", ["ubuntu64_vm_armv7_mobile", "ubuntu64_vm_armv7_large"]),
                   }
 
