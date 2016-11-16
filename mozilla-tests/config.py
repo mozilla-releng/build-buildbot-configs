@@ -73,12 +73,10 @@ PLATFORMS = {
     'win64': {},
 }
 
-PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'yosemite', 'yosemite_r7']
+PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'yosemite_r7']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
 PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev4 MacOSX Snow Leopard 10.6",
                                         'try_by_default': False}
-PLATFORMS['macosx64']['yosemite'] = {'name': "Rev5 MacOSX Yosemite 10.10",
-                                     'try_by_default': False}
 PLATFORMS['macosx64']['yosemite_r7'] = {'name': "Rev7 MacOSX Yosemite 10.10.5"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 PLATFORMS['macosx64']['mozharness_config'] = {
@@ -87,7 +85,7 @@ PLATFORMS['macosx64']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
     'config_file': 'talos/mac_config.py',
 }
-PLATFORMS['macosx64']['talos_slave_platforms'] = ['yosemite', 'yosemite_r7']
+PLATFORMS['macosx64']['talos_slave_platforms'] = ['yosemite_r7']
 
 PLATFORMS['win32']['slave_platforms'] = ['xp_ix', 'win7_ix', 'win7_vm', 'win7_vm_gfx']
 PLATFORMS['win32']['talos_slave_platforms'] = ['win7_ix']
@@ -2250,132 +2248,6 @@ PLATFORM_UNITTEST_VARS = {
                 },
             },
         },
-        'yosemite': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + REFTEST_ONE_CHUNK,
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + REFTEST_TWO_CHUNKS,
-            'suite_config': {
-                'mochitest-gpu': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-gpu-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-clipboard': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-clipboard-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'cppunit': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'gtest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'jittest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'marionette': {
-                    'config_files': ["marionette/prod_config.py"],
-                },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
-                'mochitest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-a11y': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-browser-chrome': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-e10s-browser-chrome': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-browser-screenshots': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-chrome': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-devtools-chrome': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-e10s-devtools-chrome': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-gl': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-gl-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-jetpack': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-media': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-media-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-other': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mozbase': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'crashtest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'crashtest-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'jsreftest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'jsreftest-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'reftest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'reftest-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'reftest-no-accel': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'reftest-no-accel-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'web-platform-tests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'web-platform-tests-e10s': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'web-platform-tests-reftests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'web-platform-tests-reftests-e10s': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'webapprt-chrome': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'xpcshell': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-            },
-        },
         'yosemite_r7': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + REFTEST_ONE_CHUNK,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
@@ -2832,7 +2704,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
             continue
-        for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7_ix', 'win8_64', 'yosemite'):
+        for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7_ix', 'win8_64', 'yosemite_r7'):
             if slave_platform in branch['platforms'][platform]:
                 branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIATESTS
                 branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIATESTS
@@ -2910,18 +2782,6 @@ ride_trains_branches = []
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
     ride_trains_branches.append(name)
 
-r7_active_branches = []
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 43):
-    r7_active_branches.append(name)
-
-r7_inactive_branches = []
-for name, branch in items_before(BRANCHES, 'gecko_version', 43):
-    r7_inactive_branches.append(name)
-
-# Bug 1203128 - enable r7 on trunk and disable r5 on trunk
-delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite_r7'}, branch_exclusions=r7_active_branches)
-delete_slave_platform(BRANCHES, PLATFORMS, {'macosx64': 'yosemite'}, branch_exclusions=r7_inactive_branches)
-
 # TALOS: If you set 'talos_slave_platforms' for a branch you will only get that subset of platforms
 for branch in BRANCHES.keys():
     for os in PLATFORMS.keys():  # 'macosx64', 'win32' and on
@@ -2947,7 +2807,7 @@ for platform in PLATFORMS.keys():
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
 
             # Not stable on windows XP
-            if slave_platform in ['xp_ix', 'win10_64', 'yosemite']:
+            if slave_platform in ['xp_ix', 'win10_64']:
                 continue
             # Don't run on win7_vm_gfx
             if slave_platform == 'win7_vm_gfx':

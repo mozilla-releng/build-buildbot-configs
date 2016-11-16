@@ -6,7 +6,6 @@ SLAVES = {
     'win8': {},
     'win10': {},
     'snowleopard': {},
-    'yosemite': {},
     'yosemite_r7': {},
     'ubuntu32_vm': {},
     'ubuntu64_vm': {},
@@ -42,16 +41,13 @@ for i in range(102, 103):  # Use win8's 102 for win10 // Bug 1191481
     SLAVES['win10']['t-w864-ix-%03i' % i] = {}
 
 for i in range(1, 601): # added in Bug 1304065
-    SLAVES['win10']['t-w10-spot-%03i' % i] = {} 
+    SLAVES['win10']['t-w10-spot-%03i' % i] = {}
 
 for i in range(1, 201): # added in Bug 1304065
     SLAVES['win10']['g-w10-spot-%03i' % i] = {}
 
 for i in range(86, 93) + range(95, 98):  # slaves 0034&0093&0094&0153 have been decommed // Bug 1279394 // Bug 1292656
     SLAVES['snowleopard']['t-snow-r4-%04i' % i] = {}
-
-for i in range(1, 3) + range(7, 8):   #slaves decomm bug 1226180
-    SLAVES['yosemite']['t-yosemite-r5-%04i' % i] = {}
 
 for i in range(1, 393):
     SLAVES['yosemite_r7']['t-yosemite-r7-%04i' % i] = {}
