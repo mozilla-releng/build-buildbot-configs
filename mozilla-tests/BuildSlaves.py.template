@@ -12,7 +12,6 @@ SlavePasswords = {
     "ubuntu64-asan_vm_lnx_large": "pass",
     "ubuntu64_hw": "pass",
     "snowleopard": "pass",
-    "yosemite": "pass",
     "yosemite_r7": "pass",
     "xp": "pass",
     "xp_ix": "pass",
