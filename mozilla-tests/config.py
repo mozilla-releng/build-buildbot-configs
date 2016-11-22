@@ -535,6 +535,16 @@ MOCHITEST_MEDIA_E10S = [
     }),
 ]
 
+MOCHITEST_WEBGL = [
+    ('mochitest-gl', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'mochitest-gl'],
+        'blob_upload': True,
+        'script_maxtime': 5400,
+    }),
+]
+
 MOCHITEST_WEBGL_CHUNKED = [
     ('mochitest-gl', {
         'use_mozharness': True,
@@ -2567,6 +2577,15 @@ for branch in BRANCHES.keys():
                         REFTEST_NOACCEL_FOUR_CHUNKS + REFTEST_FOUR_CHUNKS
                     BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                         REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS
+        for platform in PLATFORMS.keys():
+            for slave_platform in PLATFORMS[platform]['slave_platforms']:
+                if slave_platform in BRANCHES[branch]['platforms'][platform]:
+                    # Use the unchunked mochitest-gl on ESR45 due to leaks when chunked
+                    for test_type in ('debug_unittest_suites', 'opt_unittest_suites'):
+                        for item in BRANCHES[branch]['platforms'][platform][slave_platform][test_type]:
+                            if item[0] == 'mochitest-gl':
+                                BRANCHES[branch]['platforms'][platform][slave_platform][test_type].remove(item)
+                        BRANCHES[branch]['platforms'][platform][slave_platform][test_type]+= MOCHITEST_WEBGL
 
 ### Tests Enabled in Gecko 48+ ###
 
