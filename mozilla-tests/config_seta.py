@@ -7,7 +7,7 @@ import time
 import socket
 
 
-seta_branches = ['mozilla-inbound', 'autoland']
+seta_branches = ['mozilla-inbound', 'autoland', 'graphics']
 # todo: should get platform names from PLATFORMS in config.py
 
 today = date.today().strftime("%Y-%m-%d")
@@ -136,7 +136,8 @@ def define_configs(branch, platforms, BRANCHES):
             worker_platform = seta_platforms[p][1]
             test_dict = sort_android_tests(platform, worker_platform, tests_sorted)
 
-        print_configs(branch, platform, test_dict, BRANCHES)
+        if platform in BRANCHES[branch]['platforms']:
+            print_configs(branch, platform, test_dict, BRANCHES)
 
 
 c = {}
