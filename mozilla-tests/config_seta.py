@@ -7,7 +7,7 @@ import time
 import socket
 
 
-seta_branches = ['mozilla-inbound', 'autoland', 'graphics']
+seta_branches = ['mozilla-inbound', 'autoland']
 # todo: should get platform names from PLATFORMS in config.py
 
 today = date.today().strftime("%Y-%m-%d")
