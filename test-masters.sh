@@ -49,7 +49,7 @@ mkdir $WORK 2>/dev/null
 
 
 actioning="Checking"
-MASTERS_JSON_URL="${MASTERS_JSON_URL:-https://hg.mozilla.org/build/tools/raw-file/tip/buildfarm/maintenance/production-masters.json}"
+MASTERS_JSON_URL="${MASTERS_JSON_URL:-https://hg.mozilla.org/build/tools/raw-file/default/buildfarm/maintenance/production-masters.json}"
 
 atexit=()
 trap 'for cmd in "${atexit[@]}"; do eval $cmd; done' EXIT
