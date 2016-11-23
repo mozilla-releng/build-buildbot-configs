@@ -2400,6 +2400,8 @@ BRANCHES['mozilla-beta']['partner_repack_config'] = {
     # 'fennec': {}
 }
 BRANCHES['mozilla-beta']['snap_enabled'] = True
+BRANCHES['mozilla-beta']['update_verify_channel'] = 'beta-cdntest'
+BRANCHES['mozilla-beta']['update_verify_requires_cdn_push'] = True
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
