@@ -481,6 +481,17 @@ if 'mozharness_archiver_rev' in BRANCHES['cypress']:
     # Without this retriggers wouldn't use the repo rev for mozharness.
     del BRANCHES['cypress']['mozharness_archiver_rev']
 
+# Bug 1319942 - Disable XP testing in Thunderbird 53
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
+    for platform in branch['platforms'].keys():
+        if platform not in ['win32']:
+            continue
+        if name in ['try']:
+            continue
+        if 'win32' in platform:
+            if 'xp_ix' in branch['platforms'][platform]:
+                del branch['platforms'][platform]['xp_ix']
+
 if __name__ == "__main__":
     import sys
     import pprint
