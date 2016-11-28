@@ -69,9 +69,23 @@ def get_seta_platforms(branch, platform_filter):
     if os.environ.get('DISABLE_SETA'):
         return []
 
+    global today
+    today = date.today().strftime("%Y-%m-%d")
+
     url = "http://alertmanager.allizom.org/data/setadetails/?date=" + today + "&buildbot=1&branch=" + branch + "&inactive=1"
+    data = ""
     data = wfetch(url)
+    # load data from static copies if web site is unavailable
+    path = os.path.dirname(os.path.abspath(__file__))
+    if data == "":
+        print("Unable to load SETA data from server, loading from disk \
+              instead")
+        path = os.path.join(path, branch + "-seta.json")
+        with open(path, 'r') as f:
+            data = json.load(f)
     c['jobtypes'] = data.get('jobtypes', None)
+    # redefine the value of today to the value in the static file if required
+    today =  c['jobtypes'].keys()[0]
     platforms = []
     for p in c['jobtypes'][today]:
         platform = p.encode('utf-8').split(branch)[0].rstrip()
