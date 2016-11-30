@@ -324,7 +324,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "zh-CN": {
-    "revision": "f27c5fc05ffc",
+    "revision": "d260be15e967",
     "platforms": ["android", "android-multilocale"]
   },
   "zh-TW": {
