@@ -19,6 +19,10 @@
     "revision": "f12bc2c29510",
     "platforms": ["android", "android-multilocale"]
   },
+  "be": {
+    "revision": "3c6fd4559f7f",
+    "platforms": ["android", "android-multilocale"]
+  },
   "bn-IN": {
     "revision": "578eacdbac9d",
     "platforms": ["android", "android-multilocale"]
