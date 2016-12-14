@@ -13,7 +13,7 @@ releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 releaseConfig['version']                    = '2.46'
 releaseConfig['appVersion']                 = '2.46'
 releaseConfig['milestone']                  = '49.0'
-releaseConfig['buildNumber']                = 8
+releaseConfig['buildNumber']                = 9
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_46'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.40'
@@ -28,13 +28,13 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-release' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-release'
-releaseConfig['sourceRepoRevision']         = '1018ca679090'
+releaseConfig['sourceRepoRevision']         = '6fe0f5662a08'
 releaseConfig['relbranchOverride']          = 'SEA_COMM490_20160927_RELBRANCH'
 releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-release'
-releaseConfig['mozillaRepoRevision']        = '8b8d2820718f'
+releaseConfig['mozillaRepoRevision']        = 'c80b65bce213'
 releaseConfig['mozillaRelbranchOverride']   = 'SEA_COMM490_20160927_RELBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
