@@ -53,7 +53,7 @@ def use_mock(platform):
 ##### Change sources and Schedulers
 change_source.append(FtpPoller(
     branch="post_signing",
-    ftpURLs=["http://%s/pub/mozilla.org/%s/nightly/%s-candidates/build%s/" \
+    ftpURLs=["http://%s/pub/%s/candidates/%s-candidates/build%s/" \
              % (releaseConfig['stagingServer'], releaseConfig['productName'],
                 releaseConfig['version'], releaseConfig['buildNumber'])],
     pollInterval= 60*10,
