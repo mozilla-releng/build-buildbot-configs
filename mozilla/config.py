@@ -1511,68 +1511,6 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/win32/releng.manifest',
             'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
-        'win32-st-an-debug': {
-            'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
-            'reboot_command': [
-                'c:/mozilla-build/python27/python', '-u',
-                'scripts/external_tools/count_and_reboot.py',
-                '-f', '../reboot_count.txt','-n', '1', '-z'
-            ],
-            'mozharness_desktop_build': {
-                'script_name': 'scripts/fx_desktop_build.py',
-                'extra_args': [
-                    '--config', 'builds/releng_base_windows_32_builds.py',
-                    '--custom-build-variant-cfg', 'stat-and-debug',
-                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
-                ],
-                'script_timeout': 3 * 3600,
-                'script_maxtime': int(7.5 * 3600),
-            },
-
-            'enable_nightly': False,
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'base_name': 'WINNT 5.2 %(branch)s debug static analysis',
-            'mozconfig': 'in_tree',
-            'src_mozconfig': 'browser/config/mozconfigs/win32/debug-static-analysis',
-            'profiled_build': False,
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'download_symbols': False,
-            'enable_installer': False,
-            'packageTests': False,
-            'try_by_default': False,
-            'build_space': 9,
-            'slaves': SLAVES['win64-rev2'],
-            'platform_objdir': OBJDIR,
-            'stage_product': 'firefox',
-            'stage_platform': 'win32-st-an-debug',
-            'enable_shared_checkouts': True,
-            'env': {
-                'MOZ_OBJDIR': OBJDIR,
-                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
-                'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
-                'PATH': "${MOZILLABUILD}\\nsis-3.0b1;${MOZILLABUILD}\\nsis-2.46u;${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
-                'TOOLTOOL_CACHE': '/c/builds/tooltool_cache',
-                'TOOLTOOL_HOME': '/c/builds',
-            },
-            'enable_unittests': False,
-            'enable_checktests': False,
-            'enable_build_analysis': False,
-            'updates_enabled': False,
-            'create_partial': False,
-            'test_pretty_names': False,
-            'l10n_check_test': False,
-            'talos_masters': None,
-            'nightly_signing_servers': 'dep-signing',
-            'dep_signing_servers': 'dep-signing',
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/win32/clang.manifest',
-            'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
-            # The status of this build doesn't affect the last good revision
-            # algorithm for nightlies
-            'consider_for_nightly': False,
-        },
         'win64-debug': {
             'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
             'mozharness_desktop_build': {
@@ -2034,7 +1972,6 @@ BRANCHES = {
         # The following platforms are not part of the default set,
         # so only run on Try.
         'extra_platforms': {
-            'win32-st-an-debug': {},
         },
     },
 }
@@ -2571,7 +2508,6 @@ BRANCHES['try']['platforms']['linux64-asan']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-asan-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-st-an-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64-rev2']
-BRANCHES['try']['platforms']['win32-st-an-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['macosx64-st-an-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android-api-15']['slaves'] = TRY_SLAVES['mock']
