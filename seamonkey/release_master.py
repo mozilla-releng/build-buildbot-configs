@@ -439,6 +439,7 @@ for platform in releaseConfig['l10nPlatforms']:
         oldBuildNumber=releaseConfig['oldBuildNumber'],
         clobberURL=branchConfig['base_clobber_url'],
         platform=platform,
+        bucketName=releaseConfig['S3Bucket'],
     )
 
     verifySlavePlat = 'macosx64'
