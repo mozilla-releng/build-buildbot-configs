@@ -108,7 +108,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "fi": {
-    "revision": "e16712e0741c",
+    "revision": "94ad306d1492",
     "platforms": ["android", "android-multilocale"]
   },
   "fr": {
@@ -280,7 +280,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "sq": {
-    "revision": "da9dfa413010",
+    "revision": "8ff97a87cbeb",
     "platforms": ["android", "android-multilocale"]
   },
   "sr": {
