@@ -36,7 +36,6 @@ GLOBAL_VARS.update({
     'unittest_masters': [
         ('buildbot-master81.build.mozilla.org:9301', True, 5),
     ],
-    'base_bundle_urls': [],
 
     'tooltool_url_list': ['https://api.pub.build.mozilla.org/tooltool/'],
 })

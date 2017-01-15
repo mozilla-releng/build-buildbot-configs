@@ -109,25 +109,13 @@ PROJECT_BRANCHES = {
     },
     'elm': {
         'branch_projects': [],
-        'enable_talos': True,
         'lock_platforms': True,
         'platforms': {
-            # dep signing with nightly key, see bug 1176152
-            'linux': {
-                'dep_signing_servers': 'nightly-signing',
-            },
-            'linux64': {
-                'dep_signing_servers': 'nightly-signing',
-            },
-            'macosx64': {
-                'dep_signing_servers': 'nightly-signing',
-            },
-            'win32': {
-                'dep_signing_servers': 'nightly-signing',
-            },
-            'win64': {
-                'nightly_signing_servers': 'nightly-signing',
-            },
+            'linux': {},
+            'linux64': {},
+            'macosx64': {},
+            'win32': {},
+            'win64': {},
             'linux-debug': {},
             'linux64-debug': {},
             'macosx64-debug': {},

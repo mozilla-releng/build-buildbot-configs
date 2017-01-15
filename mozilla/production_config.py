@@ -65,7 +65,6 @@ GLOBAL_VARS = {
     'unittest_masters': [
         ('buildbot-master81.build.mozilla.org:9301', True, 5),
     ],
-    'base_bundle_urls': ['https://ftp-ssl.mozilla.org/pub/mozilla.org/firefox/bundles'],
     'tooltool_url_list': ['https://api.pub.build.mozilla.org/tooltool/'],
     'blob_upload': True,
     'mozharness_configs': {
