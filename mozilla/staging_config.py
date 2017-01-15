@@ -53,7 +53,6 @@ GLOBAL_VARS = {
     'tinderbox_tree': 'MozillaTest',
     'mobile_tinderbox_tree': 'MobileTest',
     'hg_username': 'stage-ffxbld',
-    'base_bundle_urls': ['http://dev-stage01.build.mozilla.org/pub/mozilla.org/firefox/bundles'],
     'tooltool_url_list': ['https://api.pub.build.mozilla.org/tooltool/'],
     'blob_upload': True,
     'mozharness_configs': {
