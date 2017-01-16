@@ -2687,6 +2687,13 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
                 # remove all the android-x86 build jobs on this branch
                 del branch['platforms'][platform]
 
+# Bug 1253312 - Disable Linux32 debug builds and tests on trunk
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
+    for platform in branch['platforms'].keys():
+        if platform not in ['linux-debug']:
+            continue
+        del branch['platforms'][platform]
+
 
 if __name__ == "__main__":
     import sys

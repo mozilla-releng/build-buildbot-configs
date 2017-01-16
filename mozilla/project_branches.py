@@ -28,9 +28,6 @@ PROJECT_BRANCHES = {
             'linux': {
                 'slave_platforms': ['ubuntu32_vm'],
             },
-            'linux-debug': {
-                'slave_platforms': ['ubuntu32_vm'],
-            },
             'linux64': {
                 'slave_platforms': ['ubuntu64_vm'],
             },
@@ -101,7 +98,6 @@ PROJECT_BRANCHES = {
         'merge_builds': False,
         'platforms': {
             'linux': {},
-            'linux-debug': {},
             'linux64': {},
             'linux64-debug': {},
             'android-api-15': {},
@@ -116,7 +112,6 @@ PROJECT_BRANCHES = {
             'macosx64': {},
             'win32': {},
             'win64': {},
-            'linux-debug': {},
             'linux64-debug': {},
             'macosx64-debug': {},
             'win32-debug': {},
@@ -163,9 +158,6 @@ PROJECT_BRANCHES = {
             },
             'macosx64': {
                 'dep_signing_servers': 'release-signing',
-                "slave_platforms": [],
-            },
-            'linux-debug': {
                 "slave_platforms": [],
             },
             'linux64-debug': {
@@ -244,7 +236,6 @@ PROJECT_BRANCHES = {
         'pgo_strategy': 'per-checkin',
         'platforms': {
             'linux': {},
-            'linux-debug': {},
             'linux64': {},
             'linux64-asan': {},
             'linux64-debug': {},

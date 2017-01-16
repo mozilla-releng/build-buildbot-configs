@@ -3109,6 +3109,15 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
             if 'xp_ix' in branch['platforms'][platform]:
                 del branch['platforms'][platform]['xp_ix']
 
+# Bug 1253312 - Disable Linux32 debug builds and tests on trunk
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
+    for platform in branch['platforms'].keys():
+        if platform not in ['linux']:
+            continue
+        if 'ubuntu32_vm' not in branch['platforms'][platform]:
+            continue
+        branch['platforms'][platform]['ubuntu32_vm']['debug_unittest_suites'] = []
+
 
 if __name__ == "__main__":
     import sys
