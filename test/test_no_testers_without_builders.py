@@ -24,7 +24,7 @@ def test_no_testers_without_builders():
         # Bug 1330680 - patches to disable bb nightlies on linux32/linux64/android
         # there are talos jobs that don't have associated build jobs as part
         # of tc migration
-        if 'talos' in builder 'Ubuntu HW' in builder:
+        if 'talos' in builder and 'Ubuntu HW' in builder:
             return
 
         if determine_upstream_builder(builder) is None:
