@@ -2980,6 +2980,15 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
             continue
         branch['platforms'][platform]['ubuntu32_vm']['debug_unittest_suites'] = []
 
+# Bug 1330680 - patches to disable bb nightlies on linux32/linux64/android on m-c + trunk
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
+    for platform in branch['platforms'].keys():
+        if platform not in ['linux', 'linux64']:
+            continue
+        if 'ubuntu32_vm' in branch['platforms'][platform]:
+            branch['platforms'][platform]['ubuntu32_vm']['opt_unittest_suites'] = []
+        if 'ubuntu64_vm' in branch['platforms'][platform]:
+            branch['platforms'][platform]['ubuntu64_vm']['opt_unittest_suites'] = []
 
 if __name__ == "__main__":
     import sys

@@ -3008,6 +3008,13 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
             del branch['platforms'][platform]
 
 
+# Bug 1330680 - patches to disable bb nightlies on linux32/linux64/android on m-c + trunk
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
+    for platform in branch['platforms'].keys():
+        if platform not in ['android-api-15']:
+            continue
+        del branch['platforms'][platform]
+
 if tests_scheduler:
     loadSkipConfig(BRANCHES, "mobile")
 
