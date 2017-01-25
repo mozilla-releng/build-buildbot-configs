@@ -279,17 +279,9 @@ PROJECT_BRANCHES = {
     'graphics': {
         'enable_perproduct_builds': False,
         'lock_platforms': True,
-        'mozharness_tag': 'default',
-        'enable_talos': True,
-        'talos_suites': {
-            'other': 1,
-            'svgr': 1,
-            'tp5o': 1,
-            'other-e10s': 1,
-            'svgr-e10s': 1,
-            'tp5o-e10s': 1,
-        },
+        'mozharness_tag': 'default',        
         'enable_opt_unittests': True,
+        'enable_talos': False,
         'platforms': {
             'linux64': {},
             'linux64-debug': {},
