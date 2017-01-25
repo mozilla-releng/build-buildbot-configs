@@ -279,7 +279,7 @@ PROJECT_BRANCHES = {
     'graphics': {
         'enable_perproduct_builds': False,
         'lock_platforms': True,
-        'mozharness_tag': 'default',        
+        'mozharness_tag': 'default',
         'enable_opt_unittests': True,
         'enable_talos': False,
         'platforms': {
@@ -290,7 +290,7 @@ PROJECT_BRANCHES = {
             'win64': {},
             'win64-debug': {},
         },
-    },    
+    },
 }
 
 # All is the default
