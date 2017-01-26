@@ -488,6 +488,7 @@ PLATFORM_VARS = {
                 'script_timeout': 1800,
                 'script_maxtime': 2 * 3600,
             },
+            'enable_nightly': False,
             'product_name': 'firefox',
             'unittest_platform': 'linux64-add-on-devel-opt',
             'app_name': 'browser',
@@ -2700,8 +2701,11 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
     for platform in branch['platforms'].keys():
         if platform not in ['linux', 'linux64', 'android-api-15', 'android-x86']:
             continue
-        del branch['platforms'][platform]
-
+        # Bug 1332930 Shutting off buildbot nighties shut off periodicupdates
+        if platform not in ['linux64']:
+            del branch['platforms'][platform]
+        else:
+            branch['platforms'][platform]['enable_dep'] = False
 
 
 if __name__ == "__main__":
