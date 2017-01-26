@@ -2700,16 +2700,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
     for platform in branch['platforms'].keys():
         if platform not in ['linux', 'linux64', 'android-api-15', 'android-x86']:
             continue
-        if platform not in ['linux64']:
-            del branch['platforms'][platform]
+        del branch['platforms'][platform]
 
-        else:
-        # Bug 1332930 Shutting off buildbot nighties shut off periodicupdates
-	    branch['L10nNightlyUpdate'] = False
-            if 'l10n_platforms' in branch:
-                if 'linux64' in branch['l10n_platforms']:
-                    branch['l10n_platforms'].remove('linux64')
-            branch['platforms'][platform]['enable_dep'] = False
 
 
 if __name__ == "__main__":
