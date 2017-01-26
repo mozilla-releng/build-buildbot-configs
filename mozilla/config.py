@@ -81,7 +81,7 @@ GLOBAL_VARS = {
         'android-api-15-debug': {},
     },
     'pgo_strategy': None,
-    'pgo_platforms': ('linux', 'linux64', 'win32', 'win64',),
+    'pgo_platforms': ('linux', 'win32', 'win64',),
     'periodic_start_hours': range(0, 24, 6),
     'enable_blocklist_update': False,
     'enable_hsts_update': False,
@@ -277,6 +277,7 @@ PLATFORM_VARS = {
                 'script_timeout': 1800,
                 'script_maxtime': 2 * 3600,
             },
+            'enable_nightly': False,
             'product_name': 'firefox',
             'unittest_platform': 'linux64-opt',
             'app_name': 'browser',
@@ -2699,8 +2700,16 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
     for platform in branch['platforms'].keys():
         if platform not in ['linux', 'linux64', 'android-api-15', 'android-x86']:
             continue
-        del branch['platforms'][platform]
+        if platform not in ['linux64']:
+            del branch['platforms'][platform]
 
+        else:
+        # Bug 1332930 Shutting off buildbot nighties shut off periodicupdates
+	    branch['L10nNightlyUpdate'] = False
+            if 'l10n_platforms' in branch:
+                if 'linux64' in branch['l10n_platforms']:
+                    branch['l10n_platforms'].remove('linux64')
+            branch['platforms'][platform]['enable_dep'] = False
 
 
 if __name__ == "__main__":
