@@ -2655,6 +2655,8 @@ for platform in PLATFORMS.keys():
 
 # Enable talos g4 on 50+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
+    if branch.get('enable_talos') is False:
+        continue
     branch['g4_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['g4-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
