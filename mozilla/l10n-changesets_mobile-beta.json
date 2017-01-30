@@ -120,7 +120,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "fy-NL": {
-    "revision": "70532b925858",
+    "revision": "551f14553b31",
     "platforms": ["android", "android-multilocale"]
   },
   "ga-IE": {
@@ -304,7 +304,7 @@
     "platforms": ["android", "android-multilocale"]
   },
   "te": {
-    "revision": "3711cd46a417",
+    "revision": "d4cabe943952",
     "platforms": ["android", "android-multilocale"]
   },
   "th": {
