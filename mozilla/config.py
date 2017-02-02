@@ -2204,6 +2204,8 @@ BRANCHES['mozilla-release']['beetmover_buckets'] = {
 BRANCHES['mozilla-release']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-release']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-release']['partner_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-release']['eme_free_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-release']['sha1_repacks_platforms'] = ("win32",)
 BRANCHES['mozilla-release']['partner_repack_config'] = {
     "firefox": {
         "script_name": "scripts/desktop_partner_repacks.py",
@@ -2327,6 +2329,8 @@ BRANCHES['mozilla-beta']['beetmover_buckets'] = {
 BRANCHES['mozilla-beta']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-beta']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-beta']['partner_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-beta']['eme_free_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-beta']['sha1_repacks_platforms'] = ("win32",)
 BRANCHES['mozilla-beta']['partner_repack_config'] = {
     "firefox": {
         "script_name": "scripts/desktop_partner_repacks.py",
