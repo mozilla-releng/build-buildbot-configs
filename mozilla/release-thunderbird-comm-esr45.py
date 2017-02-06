@@ -23,11 +23,11 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['relbranchPrefix']     = 'THUNDERBIRD'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '45.7.0'
-releaseConfig['appVersion']          = '45.7.0'
+releaseConfig['version']             = '45.7.1'
+releaseConfig['appVersion']          = '45.7.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_45_7_0'
+releaseConfig['baseTag']             = 'THUNDERBIRD_45_7_1'
 releaseConfig['partialUpdates']      = {
 
     '45.6.0': {
@@ -36,10 +36,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'THUNDERBIRD_45_6_0',
     },
 
-    '45.5.0': {
-        'appVersion': '45.5.0',
+    '45.7.0': {
+        'appVersion': '45.7.0',
         'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_45_5_0',
+        'baseTag': 'THUNDERBIRD_45_7_0',
     },
 
     '45.5.1': {
@@ -57,7 +57,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr45',
         'path': 'releases/comm-esr45',
-        'revision': 'b6052da36bb7',
+        'revision': '6811cb04c86f',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
