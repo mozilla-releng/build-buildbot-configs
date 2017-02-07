@@ -1,6 +1,6 @@
 # buildbot-configs
 If you are viewing a git version of this repository, it is a downstream
-read-only copy of: http://hg.mozilla.org/build/buildbot-configs/
+read-only copy of: https://hg.mozilla.org/build/buildbot-configs/
 
 The notes below are a mixture of instructions that apply everywhere
 (e.g. testing information) and those that apply only to git versions of
