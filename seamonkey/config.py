@@ -16,7 +16,7 @@ GLOBAL_VARS = {
     # require an URL while other things (BuildSteps) require only the host.
     # Since they're both right here it shouldn't be
     # a problem to keep them in sync.
-    'hgurl': 'http://hg.mozilla.org/',
+    'hgurl': 'https://hg.mozilla.org/',
     'hghost': 'hg.mozilla.org',
     'config_subdir': 'seamonkey',
     'irc_bot_name': 'sea-build-bot', #?
@@ -96,7 +96,7 @@ GLOBAL_VARS = {
     'stage_server': 'upload.seabld.productdelivery.prod.mozaws.net',
     'archive_server': 'archive.mozilla.org',
     'aus2_host': 'aus2-community.mozilla.org',
-    'download_base_url': 'http://ftp.mozilla.org/pub/seamonkey',
+    'download_base_url': 'https://archive.mozilla.org/pub/seamonkey',
     'graph_server': None,
     'build_tools_repo_path': 'users/Callek_gmail.com/tools',
     # 'build_tools_repo_path': 'build/tools',

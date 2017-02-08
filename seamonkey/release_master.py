@@ -53,7 +53,7 @@ def use_mock(platform):
 ##### Change sources and Schedulers
 change_source.append(FtpPoller(
     branch="post_signing",
-    ftpURLs=["http://%s/pub/%s/candidates/%s-candidates/build%s/" \
+    ftpURLs=["https://%s/pub/%s/candidates/%s-candidates/build%s/" \
              % (releaseConfig['stagingServer'], releaseConfig['productName'],
                 releaseConfig['version'], releaseConfig['buildNumber'])],
     pollInterval= 60*10,
@@ -353,7 +353,7 @@ for platform in releaseConfig['enUSPlatforms']:
     })
 
     if platform in releaseConfig['l10nPlatforms']:
-        EN_US_BINARY_URL = "http://ftp.mozilla.org/pub/mozilla.org/seamonkey/candidates/%(version)s-candidates/build%(buildNumber)d"
+        EN_US_BINARY_URL = "https://archive.mozilla.org/pub/seamonkey/candidates/%(version)s-candidates/build%(buildNumber)d"
         if 'win' in platform:
             enable_pymake = pf.get('enable_pymake', True)
             EN_US_BINARY_URL += "/unsigned"
