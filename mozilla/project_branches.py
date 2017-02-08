@@ -125,7 +125,7 @@ PROJECT_BRANCHES = {
     # disabled in bug 1215527
     # 'holly': {},
     'jamun': {
-        'gecko_version': 47,
+        'gecko_version': 53,
         'watch_all_branches': True,
         'desktop_mozharness_builds_enabled': True,
         'use_mozharness_repo_cache': False,
@@ -143,10 +143,12 @@ PROJECT_BRANCHES = {
             'linux': {
                 'dep_signing_servers': 'release-signing',
                 "slave_platforms": [],
+                "enable_dep": False,
             },
             'linux64': {
                 'dep_signing_servers': 'release-signing',
                 "slave_platforms": [],
+                "enable_dep": False,
             },
             'win32': {
                 'dep_signing_servers': 'release-signing',
@@ -178,6 +180,8 @@ PROJECT_BRANCHES = {
             'win64-debug': {
                 "slave_platforms": [],
             },
+            'android-api-15': {},
+            'android-x86': {},
         },
         'pgo_strategy': 'per-checkin',
         'enable_release_promotion': True,
