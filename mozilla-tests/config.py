@@ -3016,20 +3016,18 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
 
 # Bug 1336553 - Bump OS X J chunks from 1 to 2
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
-    for platform in PLATFORMS.keys():
-        if platform not in BRANCHES[branch]['platforms']:
+    for platform in BRANCHES[name]['platforms'].keys():
+        if platform not in ['macosx64']:
             continue
-        for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            if slave_platform not in BRANCHES[branch]['platforms'][platform]:
+        for slave_platform in BRANCHES[name]['platforms'][platform].keys():
+            if slave_platform  not in ['yosemite_r7']:
                 continue
-            if slave_platform == 'yosemite_r7':
-                for test in ['opt_unittest_suites', 'debug_unittest_suites']:
-                    for item in range(0, len(BRANCHES[branch]['platforms'][platform][slave_platform][test])):
-                        if BRANCHES[branch]['platforms'][platform][slave_platform][test][item] == JSREFTEST[0]:
-                            BRANCHES[branch]['platforms'][platform][slave_platform][test][item] = JSREFTEST_TWO_CHUNKS[0]
-                        if BRANCHES[branch]['platforms'][platform][slave_platform][test][item] == JSREFTEST_E10S[0]:
-                            BRANCHES[branch]['platforms'][platform][slave_platform][test][item] = JSREFTEST_E10S_TWO_CHUNKS[0]
-
+            for test in ['opt_unittest_suites', 'debug_unittest_suites']:
+                for item in range(0, len(BRANCHES[name]['platforms'][platform][slave_platform][test])):
+                    if BRANCHES[name]['platforms'][platform][slave_platform][test][item] == JSREFTEST[0]:
+                        BRANCHES[name]['platforms'][platform][slave_platform][test][item] = JSREFTEST_TWO_CHUNKS[0]
+                    if BRANCHES[name]['platforms'][platform][slave_platform][test][item] == JSREFTEST_E10S[0]:
+                        BRANCHES[name]['platforms'][platform][slave_platform][test][item] = JSREFTEST_E10S_TWO_CHUNKS[0]
 
 if __name__ == "__main__":
     import sys
