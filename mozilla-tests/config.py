@@ -636,6 +636,27 @@ CRASHTEST_E10S = [
     }),
 ]
 
+JSREFTEST = [
+    ('jsreftest', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'jsreftest'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
+JSREFTEST_TWO_CHUNKS = [
+    ('jsreftest', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'jsreftest'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+        'totalChunks': 2,
+    }),
+]
+
 JSREFTEST_E10S = [
     ('jsreftest-e10s', {
         'use_mozharness': True,
@@ -646,14 +667,18 @@ JSREFTEST_E10S = [
     }),
 ]
 
-OTHER_REFTESTS = [
-    ('jsreftest', {
+JSREFTEST_E10S_TWO_CHUNKS = [
+    ('jsreftest-e10s', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--reftest-suite', 'jsreftest'],
+        'extra_args': ['--reftest-suite', 'jsreftest', '--e10s'],
         'blob_upload': True,
         'script_maxtime': 7200,
+        'totalChunks': 2,
     }),
+]
+
+OTHER_REFTESTS = [
     ('crashtest', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
@@ -873,9 +898,9 @@ XPCSHELL_FOUR_CHUNKS = [
 # sections below.
 UNITTEST_SUITES = {
     'opt_unittest_suites': CPPUNIT + MOCHITEST_5 + MOCHITEST_BC_7 + MOCHITEST_DT_8 + \
-                           MOCHITEST_WEBGL_CHUNKED + OTHER_REFTESTS,
+                           MOCHITEST_WEBGL_CHUNKED + OTHER_REFTESTS + JSREFTEST,
     'debug_unittest_suites': CPPUNIT + MARIONETTE + MOCHITEST_BC_7 + \
-                             MOCHITEST_WEBGL_CHUNKED + OTHER_REFTESTS,
+                             MOCHITEST_WEBGL_CHUNKED + OTHER_REFTESTS + JSREFTEST,
 }
 
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
@@ -1580,10 +1605,10 @@ PLATFORM_UNITTEST_VARS = {
         },
         'win7_vm': {
             'opt_unittest_suites': CPPUNIT + JITTEST + MARIONETTE + MOCHITEST_5 + MOCHITEST_BC_7 + \
-                                   MOCHITEST_DT_8 + OTHER_REFTESTS + WEB_PLATFORM_REFTESTS + \
+                                   MOCHITEST_DT_8 + OTHER_REFTESTS + JSREFTEST + WEB_PLATFORM_REFTESTS + \
                                    WEB_PLATFORM_TESTS_CHUNKED,
             'debug_unittest_suites': CPPUNIT + JITTEST + MARIONETTE + MOCHITEST_5 + MOCHITEST_BC_7 + \
-                                     MOCHITEST_DT_8 + OTHER_REFTESTS,
+                                     MOCHITEST_DT_8 + OTHER_REFTESTS + JSREFTEST,
             'suite_config': {
                 'mochitest-gpu': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -2765,8 +2790,8 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 49):
         del BRANCHES[name]['platforms']['win32']['win7_vm_gfx']
 
 # Only enable suites in AWS that are working
-WORKING_WIN7_AWS_OPT_SUITES = WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS + GTEST + CPPUNIT + JITTEST + OTHER_REFTESTS + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA + WEB_PLATFORM_TESTS_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
-WORKING_WIN7_AWS_DEBUG_SUITES = GTEST + CPPUNIT + JITTEST + WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS + OTHER_REFTESTS + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + WEB_PLATFORM_REFTESTS_E10S + CRASHTEST_E10S + JSREFTEST_E10S
+WORKING_WIN7_AWS_OPT_SUITES = WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS + GTEST + CPPUNIT + JITTEST + OTHER_REFTESTS + JSREFTEST + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA + WEB_PLATFORM_TESTS_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
+WORKING_WIN7_AWS_DEBUG_SUITES = GTEST + CPPUNIT + JITTEST + WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS + OTHER_REFTESTS + JSREFTEST + MARIONETTE + XPCSHELL + MOCHITEST_DT_8 + MOCHITEST_DT_8_E10S + MOCHITEST_JP + MARIONETTE_E10S + MOCHITEST_MEDIA + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S + WEB_PLATFORM_REFTESTS_E10S + CRASHTEST_E10S + JSREFTEST_E10S
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
     # Skip branches where win32 isn't running
     if not nested_haskey(branch, 'platforms', 'win32'):
@@ -2988,6 +3013,21 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
             branch['platforms'][platform]['ubuntu32_vm']['opt_unittest_suites'] = []
         if 'ubuntu64_vm' in branch['platforms'][platform]:
             branch['platforms'][platform]['ubuntu64_vm']['opt_unittest_suites'] = []
+
+# Bug 1336553 - Bump OS X J chunks from 1 to 2
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
+    for platform in BRANCHES[name]['platforms'].keys():
+        if platform not in ['macosx64']:
+            continue
+        for slave_platform in BRANCHES[name]['platforms'][platform].keys():
+            if slave_platform  not in ['yosemite_r7']:
+                continue
+            for test in ['opt_unittest_suites', 'debug_unittest_suites']:
+                for item in range(0, len(BRANCHES[name]['platforms'][platform][slave_platform][test])):
+                    if BRANCHES[name]['platforms'][platform][slave_platform][test][item] == JSREFTEST[0]:
+                        BRANCHES[name]['platforms'][platform][slave_platform][test][item] = JSREFTEST_TWO_CHUNKS[0]
+                    if BRANCHES[name]['platforms'][platform][slave_platform][test][item] == JSREFTEST_E10S[0]:
+                        BRANCHES[name]['platforms'][platform][slave_platform][test][item] = JSREFTEST_E10S_TWO_CHUNKS[0]
 
 if __name__ == "__main__":
     import sys
