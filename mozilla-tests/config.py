@@ -2981,13 +2981,13 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
         if 'ubuntu64_vm' in branch['platforms'][platform]:
             branch['platforms'][platform]['ubuntu64_vm']['opt_unittest_suites'] = []
 
-# Bug 1336553 - Bump OS X J chunks from 1 to 2
+# Bug 1336553 - Bump OS X and Windows J chunks from 1 to 2
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
     for platform in BRANCHES[name]['platforms'].keys():
-        if platform not in ['macosx64']:
+        if platform not in ['macosx64', 'win64', 'win32']:
             continue
         for slave_platform in BRANCHES[name]['platforms'][platform].keys():
-            if slave_platform  not in ['yosemite_r7']:
+            if slave_platform  not in ['yosemite_r7', 'win8_64'] and slave_platform.startswith('win7_') is False:
                 continue
             for test in ['opt_unittest_suites', 'debug_unittest_suites']:
                 for item in range(0, len(BRANCHES[name]['platforms'][platform][slave_platform][test])):
