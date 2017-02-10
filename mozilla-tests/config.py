@@ -2747,39 +2747,6 @@ for name in BRANCHES.keys():
         continue
     del BRANCHES[name]['platforms']['linux64']['ubuntu64_vm_lnx_large']
 
-# Run only e10s tests on Ash
-for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['ash']['platforms']:
-        continue
-
-    base_tests = CRASHTEST_E10S + JSREFTEST_E10S + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
-                 MOCHITEST_CLIPBOARD_E10S + MOCHITEST_E10S + \
-                 MOCHITEST_GPU_E10S + MOCHITEST_MEDIA_E10S + MOCHITEST_WEBGL_CHUNKED_E10S + \
-                 WEB_PLATFORM_REFTESTS_E10S
-
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['ash']['platforms'][platform]:
-            continue
-
-        #TODO: Linux64 debug is taskcluster only now, treat linux32 as TC only as well
-        if slave_platform in BRANCHES['ash']['platforms'][platform] and platform in ('linux', 'linux64'):
-            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = []
-            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = []
-        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('xp_ix'):
-            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S_TWO_CHUNKS + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
-        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('yosemite_r7'):
-            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S_TWO_CHUNKS + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
-            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
-                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
-        if slave_platform in BRANCHES['ash']['platforms'][platform] and slave_platform in ('win7_ix', 'win8_64'):
-            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS + \
-                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
-            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
-                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S + REFTEST_NOACCEL_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
-
 ###
 # Bug 1271355 - Run Windows tests in AWS
 # Remove the new AWS platforms from older branches where they won't be running
@@ -3028,6 +2995,54 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
                         BRANCHES[name]['platforms'][platform][slave_platform][test][item] = JSREFTEST_TWO_CHUNKS[0]
                     if BRANCHES[name]['platforms'][platform][slave_platform][test][item] == JSREFTEST_E10S[0]:
                         BRANCHES[name]['platforms'][platform][slave_platform][test][item] = JSREFTEST_E10S_TWO_CHUNKS[0]
+
+# Ash-specific branch config. Please add any new buildbot test scheduling changes above this block.
+for platform in PLATFORMS.keys():
+    if platform not in BRANCHES['ash']['platforms']:
+        continue
+
+    base_tests = CRASHTEST_E10S + JSREFTEST_E10S_TWO_CHUNKS + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
+                 MOCHITEST_CLIPBOARD_E10S + MOCHITEST_E10S + MOCHITEST_GPU_E10S + MOCHITEST_MEDIA_E10S + \
+                 MOCHITEST_WEBGL_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
+
+    for slave_platform in PLATFORMS[platform]['slave_platforms']:
+        if slave_platform not in BRANCHES['ash']['platforms'][platform]:
+            continue
+
+        # Linux jobs are scheduled via in-tree Taskcluster configs, so no need for anything here.
+        if slave_platform == "yosemite_r7":
+            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
+                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S_TWO_CHUNKS + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
+                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
+        if slave_platform == "win8_64":
+            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
+                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS +\
+                    WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
+                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS +\
+                    WEB_PLATFORM_TESTS_CHUNKED_E10S
+        if slave_platform == "win7_ix":
+            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
+                MOCHITEST_CLIPBOARD_E10S + MOCHITEST_MEDIA_E10S
+            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
+                MOCHITEST_CLIPBOARD_E10S + MOCHITEST_MEDIA_E10S
+        if slave_platform == "win7_vm":
+            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
+                CRASHTEST_E10S + JSREFTEST_E10S_TWO_CHUNKS + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
+                MOCHITEST_DT_8_E10S + MOCHITEST_E10S + WEB_PLATFORM_REFTESTS_E10S + \
+                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
+            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
+                CRASHTEST_E10S + JSREFTEST_E10S_TWO_CHUNKS + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
+                MOCHITEST_DT_8_E10S + MOCHITEST_E10S + WEB_PLATFORM_REFTESTS_E10S + \
+                WEB_PLATFORM_TESTS_CHUNKED_E10S
+        if slave_platform == "win7_vm_gfx":
+            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
+                MOCHITEST_GPU_E10S + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_E10S_TWO_CHUNKS + \
+                    REFTEST_NOACCEL_E10S_TWO_CHUNKS
+            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
+                MOCHITEST_GPU_E10S + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_E10S_TWO_CHUNKS + \
+                    REFTEST_NOACCEL_E10S_TWO_CHUNKS
 
 if __name__ == "__main__":
     import sys
