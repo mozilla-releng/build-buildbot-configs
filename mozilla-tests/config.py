@@ -472,26 +472,6 @@ MOCHITEST_WO_BC_10 = [
 ]
 
 ### Mochitest (Other Miscellaneous Suites) ###
-MOCHITEST_JP = [
-    ('mochitest-jetpack', {
-        'use_mozharness': True,
-        'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'jetpack-package', '--mochitest-suite', 'jetpack-addon'],
-        'blob_upload': True,
-        'script_maxtime': 12000,
-    }),
-]
-
-MOCHITEST_OTHER = [
-    ('mochitest-other', {
-        'use_mozharness': True,
-        'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'chrome,a11y'],
-        'blob_upload': True,
-        'script_maxtime': 7200,
-    }),
-]
-
 MOCHITEST_A11Y   = [
     ('mochitest-a11y', {
         'use_mozharness': True,
@@ -510,6 +490,16 @@ MOCHITEST_CHROME = [
         'blob_upload': True,
         'script_maxtime': 7200,
         'totalChunks': 3,
+    }),
+]
+
+MOCHITEST_JP = [
+    ('mochitest-jetpack', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mochitest-suite', 'jetpack-package', '--mochitest-suite', 'jetpack-addon'],
+        'blob_upload': True,
+        'script_maxtime': 12000,
     }),
 ]
 
@@ -612,8 +602,8 @@ MOCHITEST_CLIPBOARD_E10S = [
 ]
 
 ### Mochitest Combinations ###
-MOCHITEST_5 = MOCHITEST_WO_BC + MOCHITEST_OTHER
-MOCHITEST_10 = MOCHITEST_WO_BC_10 + MOCHITEST_OTHER
+MOCHITEST_5 = MOCHITEST_WO_BC + MOCHITEST_A11Y + MOCHITEST_CHROME
+MOCHITEST_10 = MOCHITEST_WO_BC_10 + MOCHITEST_A11Y + MOCHITEST_CHROME
 
 ### Mozbase ###
 MOZBASE = [
@@ -2508,24 +2498,6 @@ for platform in PLATFORMS.keys():
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                         WEB_PLATFORM_TESTS_CHUNKED_MORE + WEB_PLATFORM_REFTESTS
-
-### Tests Enabled in Gecko 44+ ###
-# mochitest a11y/chrome instead of other
-for platform in PLATFORMS.keys():
-    if platform not in ['linux']:
-        continue
-
-    for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
-        for test_platform in PLATFORMS[platform]['slave_platforms']:
-
-            platforms = BRANCHES[name]['platforms']
-            if platform in platforms:
-                if test_platform in platforms[platform]:
-                    platforms[platform][test_platform]['debug_unittest_suites'] += MOCHITEST_A11Y
-                    platforms[platform][test_platform]['debug_unittest_suites'] += MOCHITEST_CHROME
-                    for item in platforms[platform][test_platform]['debug_unittest_suites']:
-                        if item[0] == 'mochitest-other':
-                            platforms[platform][test_platform]['debug_unittest_suites'].remove(item)
 
 ### Tests Enabled in Gecko 43+ ###
 
