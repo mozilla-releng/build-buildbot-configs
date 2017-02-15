@@ -310,7 +310,7 @@ PLATFORM_VARS = {
             'download_symbols': True,
             'packageTests': True,
             'slaves': SLAVES['macosx64'],
-            'platform_objdir': "%s/i386" % OBJDIR,
+            'platform_objdir': OBJDIR,
             'stage_platform': 'macosx64',
             'update_platform': 'Darwin_x86_64-gcc3',
             'enable_ccache': True,
