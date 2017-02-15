@@ -234,6 +234,31 @@ PROJECT_BRANCHES = {
         'push_to_releases_automatic': False,
         'merge_builds': False,
         'snap_enabled': True,
+        'tc_indexes': {
+            "firefox": {
+                "linux": {
+                    "signed": "gecko.v2.jamun.revision.{rev}.firefox.linux-opt-signed",
+                    "unsigned": "gecko.v2.jamun.revision.{rev}.firefox.linux-opt",
+                },
+                "linux64": {
+                    "signed": "gecko.v2.jamun.revision.{rev}.firefox.linux64-opt-signed",
+                    "unsigned": "gecko.v2.jamun.revision.{rev}.firefox.linux64-opt",
+                },
+                "macosx64": {
+                    "signed": "gecko.v2.jamun.revision.{rev}.firefox.macosx64-opt",
+                    "unsigned": "gecko.v2.jamun.revision.{rev}.firefox.macosx64-opt",
+                },
+                "win32": {
+                    "signed": "gecko.v2.jamun.revision.{rev}.firefox.win32-opt",
+                    "unsigned": "gecko.v2.jamun.revision.{rev}.firefox.win32-opt",
+                },
+                "win64": {
+                    "signed": "gecko.v2.jamun.revision.{rev}.firefox.win64-opt",
+                    "unsigned": "gecko.v2.jamun.revision.{rev}.firefox.win64-opt",
+                },
+            },
+            # TODO: fennec
+        },
     },
     'larch': {
         'lock_platforms': True,
