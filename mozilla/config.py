@@ -2227,6 +2227,32 @@ BRANCHES['mozilla-release']['release_channel_mappings'] = [
 BRANCHES['mozilla-release']['snap_enabled'] = False
 # Bug 1313434, CI builds on all named branches
 BRANCHES['mozilla-release']['watch_all_branches'] = True
+# platform to TC index mapping to help finding prmotable CI builds
+BRANCHES['mozilla-release']['tc_indexes'] = {
+    "firefox": {
+        "linux": {
+            "signed": "gecko.v2.mozilla-release.revision.{rev}.firefox.linux-opt",
+            "unsigned": "gecko.v2.mozilla-release.revision.{rev}.firefox.linux-opt",
+        },
+        "linux64": {
+            "signed": "gecko.v2.mozilla-release.revision.{rev}.firefox.linux64-opt",
+            "unsigned": "gecko.v2.mozilla-release.revision.{rev}.firefox.linux64-opt",
+        },
+        "macosx64": {
+            "signed": "gecko.v2.mozilla-release.revision.{rev}.firefox.macosx64-opt",
+            "unsigned": "gecko.v2.mozilla-release.revision.{rev}.firefox.macosx64-opt",
+        },
+        "win32": {
+            "signed": "gecko.v2.mozilla-release.revision.{rev}.firefox.win32-opt",
+            "unsigned": "gecko.v2.mozilla-release.revision.{rev}.firefox.win32-opt",
+        },
+        "win64": {
+            "signed": "gecko.v2.mozilla-release.revision.{rev}.firefox.win64-opt",
+            "unsigned": "gecko.v2.mozilla-release.revision.{rev}.firefox.win64-opt",
+        },
+    },
+    # TODO: fennec
+}
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -2345,6 +2371,32 @@ BRANCHES['mozilla-beta']['partner_repack_config'] = {
 BRANCHES['mozilla-beta']['snap_enabled'] = True
 BRANCHES['mozilla-beta']['update_verify_channel'] = 'beta-cdntest'
 BRANCHES['mozilla-beta']['update_verify_requires_cdn_push'] = True
+# platform to TC index mapping to help finding prmotable CI builds
+BRANCHES['mozilla-beta']['tc_indexes'] = {
+    "firefox": {
+        "linux": {
+            "signed": "gecko.v2.mozilla-beta.revision.{rev}.firefox.linux-opt",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.linux-opt",
+        },
+        "linux64": {
+            "signed": "gecko.v2.mozilla-beta.revision.{rev}.firefox.linux64-opt",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.linux64-opt",
+        },
+        "macosx64": {
+            "signed": "gecko.v2.mozilla-beta.revision.{rev}.firefox.macosx64-opt",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.macosx64-opt",
+        },
+        "win32": {
+            "signed": "gecko.v2.mozilla-beta.revision.{rev}.firefox.win32-opt",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.win32-opt",
+        },
+        "win64": {
+            "signed": "gecko.v2.mozilla-beta.revision.{rev}.firefox.win64-opt",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.win64-opt",
+        },
+    },
+    # TODO: fennec
+}
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
@@ -2471,6 +2523,32 @@ BRANCHES['mozilla-esr45']['updates_builder_enabled'] = True
 BRANCHES['mozilla-esr45']['update_verify_enabled'] = True
 BRANCHES['mozilla-esr45']['release_channel_mappings'] = [["^.*$", ["esr"]]]
 BRANCHES['mozilla-esr45']['snap_enabled'] = False
+# platform to TC index mapping to help finding prmotable CI builds
+BRANCHES['mozilla-esr45']['tc_indexes'] = {
+    "firefox": {
+        "linux": {
+            "signed": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.linux-opt",
+            "unsigned": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.linux-opt",
+        },
+        "linux64": {
+            "signed": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.linux64-opt",
+            "unsigned": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.linux64-opt",
+        },
+        "macosx64": {
+            "signed": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.macosx64-opt",
+            "unsigned": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.macosx64-opt",
+        },
+        "win32": {
+            "signed": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.win32-opt",
+            "unsigned": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.win32-opt",
+        },
+        "win64": {
+            "signed": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.win64-opt",
+            "unsigned": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.win64-opt",
+        },
+    },
+    # TODO: fennec
+}
 
 ######## try
 # Try-specific configs
@@ -2725,4 +2803,4 @@ if __name__ == "__main__":
     for k, v in sorted(items.iteritems()):
         out = pprint.pformat(v)
         for l in out.splitlines():
-            print '%s: %s' % (k, l)
+            print('%s: %s' % (k, l))
