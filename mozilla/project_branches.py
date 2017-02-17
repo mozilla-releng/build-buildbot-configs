@@ -188,40 +188,37 @@ PROJECT_BRANCHES = {
         'build_tools_repo_path': 'users/raliiev_mozilla.com/tools',
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
-        "single_locale_branch_config": "dev-mozilla-release",
-        'release_channel_mappings': [
-            [r"^\d+\.0$", ["beta-dev", "release-dev"]],  # RC, 45.0
-            [r"^\d+\.\d+\.\d+$", ["release-dev"]],  # Other (dot releaseas), 45.0.4
-        ],
+        "single_locale_branch_config": "dev-mozilla-beta",
+        'release_channel_mappings': [["^.*$", ["beta-dev"]]],
         # temp balrog
         'balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
         'funsize_balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': {
-            "firefox": "releases/bouncer_firefox_release.py",
+            "firefox": "releases/bouncer_firefox_beta.py",
         },
         'bouncer_enabled': True,
         'updates_builder_enabled': True,
         'update_verify_enabled': True,
         'postrelease_version_bump_enabled': True,
         'postrelease_version_bump_config': {
-            "firefox": 'releases/dev_postrelease_firefox_release.py',
+            "firefox": 'releases/dev_postrelease_firefox_beta.py',
         },
         'uptake_monitoring_enabled': True,
         'uptake_monitoring_config': {
-            "firefox": 'releases/bouncer_firefox_release.py',
+            "firefox": 'releases/bouncer_firefox_beta.py',
         },
         'postrelease_bouncer_aliases_enabled': True,
         'postrelease_bouncer_aliases_config': {
-            "firefox": 'releases/bouncer_firefox_release.py',
+            "firefox": 'releases/bouncer_firefox_beta.py',
         },
         'postrelease_mark_as_shipped_enabled': True,
         'postrelease_mark_as_shipped_config': {
-            "firefox": 'releases/dev_postrelease_firefox_release.py',
+            "firefox": 'releases/dev_postrelease_firefox_beta.py',
         },
         'push_to_candidates_enabled': True,
         'updates_config': {
-            "firefox": 'releases/dev_updates_firefox_release.py',
+            "firefox": 'releases/dev_updates_firefox_beta.py',
         },
         'beetmover_credentials': '/builds/dev-beetmover-s3.credentials',
         'beetmover_buckets': {
