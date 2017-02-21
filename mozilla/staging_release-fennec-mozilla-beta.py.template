@@ -92,7 +92,6 @@ releaseConfig['ausServerUrl']        = 'https://aus4-dev.allizom.org'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']       = False
-releaseConfig['partnersRepoPath']       = 'users/stage-ffxbld/partner-repacks'
 releaseConfig['partnerRepackPlatforms'] = ()
 
 # mozconfigs

@@ -629,6 +629,9 @@ BRANCHES = {
     'comm-esr45': {
         'gecko_version': 45,
     },
+    'comm-esr52': {
+        'gecko_version': 52,
+    },
     'try-comm-central': {
     },
 }
@@ -783,6 +786,35 @@ BRANCHES['comm-esr45']['updates_enabled'] = True
 BRANCHES['comm-esr45']['create_partial'] = False
 BRANCHES['comm-esr45']['enable_blocklist_update'] = True
 BRANCHES['comm-esr45']['file_update_on_closed_tree'] = False
+
+######## comm-esr52
+BRANCHES['comm-esr52']['repo_path'] = 'releases/comm-esr52'
+BRANCHES['comm-esr52']['moz_repo_path'] = 'releases/mozilla-esr52'
+BRANCHES['comm-esr52']['update_channel'] = 'nightly-esr52'
+BRANCHES['comm-esr52']['skip_blank_repos'] = True
+BRANCHES['comm-esr52']['call_client_py'] = True
+BRANCHES['comm-esr52']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['comm-esr52']['start_hour'] = [3]
+BRANCHES['comm-esr52']['start_minute'] = [2]
+# Enable unit tests
+BRANCHES['comm-esr52']['enable_mac_a11y'] = True
+BRANCHES['comm-esr52']['unittest_build_space'] = 6
+# L10n configuration
+BRANCHES['comm-esr52']['enable_l10n'] = False
+BRANCHES['comm-esr52']['l10nNightlyUpdate'] = False
+BRANCHES['comm-esr52']['l10n_platforms'] = ['linux', 'linux64', 'win32',
+                                            'macosx64']
+BRANCHES['comm-esr52']['l10nDatedDirs'] = True
+BRANCHES['comm-esr52']['l10n_tree'] = 'tbrel'
+BRANCHES['comm-esr52']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-esr52'
+BRANCHES['comm-esr52']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-esr52' % (GLOBAL_VARS['hgurl'])
+BRANCHES['comm-esr52']['enable_nightly'] = True
+BRANCHES['comm-esr52']['updates_enabled'] = True
+BRANCHES['comm-esr52']['create_partial'] = False
+BRANCHES['comm-esr52']['enable_blocklist_update'] = True
+BRANCHES['comm-esr52']['file_update_on_closed_tree'] = False
 
 ######## comm-beta
 BRANCHES['comm-beta']['moz_repo_path'] = 'releases/mozilla-beta'

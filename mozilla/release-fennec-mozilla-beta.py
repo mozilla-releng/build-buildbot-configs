@@ -89,7 +89,6 @@ releaseConfig['ausServerUrl']        = 'https://aus4.mozilla.org'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']       = False
-releaseConfig['partnersRepoPath']       = 'build/partner-repacks'
 releaseConfig['partnerRepackPlatforms'] = ()
 
 # mozconfigs

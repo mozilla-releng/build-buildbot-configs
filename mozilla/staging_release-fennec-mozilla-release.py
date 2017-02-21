@@ -92,7 +92,6 @@ releaseConfig['ausServerUrl']        = 'https://aus4-dev.allizom.org'
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']       = True
-releaseConfig['partnersRepoPath']       = 'users/stage-ffxbld/partner-repacks'
 releaseConfig['partnerRepackPlatforms'] = ()
 releaseConfig['partnerRepackConfig'] = {
     'use_mozharness': True,
