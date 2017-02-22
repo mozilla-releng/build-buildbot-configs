@@ -2968,6 +2968,19 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
                     if BRANCHES[name]['platforms'][platform][slave_platform][test][item] == JSREFTEST_E10S[0]:
                         BRANCHES[name]['platforms'][platform][slave_platform][test][item] = JSREFTEST_E10S_TWO_CHUNKS[0]
 
+# Bug 1339185 - Disable non-e10s tests for OSX debug only
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
+    for platform in BRANCHES[name]['platforms'].keys():
+        if platform not in ['macosx64']:
+            continue
+        for slave_platform in BRANCHES[name]['platforms'][platform].keys():
+            if slave_platform not in ['yosemite_r7']:
+                continue
+            for test in ['debug_unittest_suites']:
+                BRANCHES[name]['platforms'][platform][slave_platform][test] = \
+                    [item for item in BRANCHES[name]['platforms'][platform][slave_platform][test]
+                     if ('e10s' in item[0] or 'xpcshell' in item[0])]
+
 # Ash-specific branch config. Please add any new buildbot test scheduling changes above this block.
 for platform in PLATFORMS.keys():
     if platform not in BRANCHES['ash']['platforms']:
