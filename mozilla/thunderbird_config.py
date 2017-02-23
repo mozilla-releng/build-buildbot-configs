@@ -15,7 +15,7 @@ from localconfig import SLAVES, TRY_SLAVES
 
 import master_common
 reload(master_common)
-from master_common import setMainCommVersions, items_at_least
+from master_common import setMainCommVersions, items_at_least, items_before
 
 GLOBAL_VARS = deepcopy(GLOBAL_VARS)
 PLATFORM_VARS = deepcopy(PLATFORM_VARS)
@@ -1032,6 +1032,12 @@ BRANCHES['cypress']['pgo_strategy'] = None
 BRANCHES['cypress']['enable_mac_a11y'] = True
 BRANCHES['cypress']['unittest_build_space'] = 6
 BRANCHES['cypress']['mozilla_srcdir'] = None
+
+# Bug 1322402 - mac universal builds dropped at 53, keep using the universal mozconfig and objdir before then
+for name, branch in items_before(BRANCHES, 'gecko_version', 53):
+    if 'macosx64' in branch['platforms']:
+        branch['platforms']['macosx64']['src_mozconfig'] = 'mail/config/mozconfigs/macosx-universal/nightly'
+        branch['platforms']['macosx64']['platform_objdir'] = '%s/i386' % OBJDIR
 
 
 if __name__ == "__main__":
