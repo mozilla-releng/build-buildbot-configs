@@ -142,14 +142,10 @@ releaseConfig['updateChannels'] = {
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
-releaseConfig['partnersRepoPath']    = 'build/partner-repacks'
 
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_thunderbird.py'
-releaseConfig['bouncer_aliases'] = {
-    'Thunderbird-%(version)s': 'thunderbird-latest',
-}
 
 # Misc configuration
 releaseConfig['use_mock'] = True

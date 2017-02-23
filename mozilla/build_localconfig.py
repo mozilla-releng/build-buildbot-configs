@@ -31,6 +31,7 @@ else:
         'mozilla-aurora',
         'mozilla-release',
         'mozilla-esr45',
+        'mozilla-esr52',
     ])
 if 'limit_tb_branches' in master_config:
     ACTIVE_THUNDERBIRD_BRANCHES = [x.encode("utf-8") for x in master_config['limit_tb_branches']]
@@ -41,6 +42,7 @@ else:
         'comm-beta',
         'comm-aurora',
         'comm-esr45',
+        'comm-esr52',
     ])
 if 'limit_projects' in master_config:
     ACTIVE_PROJECTS = [x.encode("utf-8") for x in master_config['limit_projects']]

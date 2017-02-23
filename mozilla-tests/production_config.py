@@ -15,7 +15,7 @@ SLAVES = {
     'win64_vm': {},
 }
 
-for i in range(1, 41):  # Bug 1297173 // Bug 1299468 // Bug 1317723 //Bug 1337394 
+for i in range(1, 41):  # Bug 1297173 // Bug 1299468 // Bug 1317723 //Bug 1337394
     SLAVES['xp_ix']['t-xp32-ix-%03i' % i] = {}
 
 for i in range(1, 151):   #  Move 111 machines from Windows 7 pool to Windows XP and Windows 8 // Bug 1297173 // Bug 1299468
@@ -49,7 +49,7 @@ for i in range(1, 200) + range(301, 500) + range(601, 800) + range(901, 1100) + 
 for i in range(1, 2601):  # Bug 1252248
     SLAVES['ubuntu64_vm']['tst-linux64-spot-%03i' % i] = {}
 
-for i in range(1, 90):       #Bug 1337394 
+for i in range(1, 90):       #Bug 1337394
     SLAVES['ubuntu64_hw']['talos-linux64-ix-%03i' % i] = {}
 
 for i in range(1, 3):
@@ -92,6 +92,10 @@ BRANCHES = {
     'mozilla-esr45': {
         'tinderbox_tree': 'Mozilla-Esr45',
         'mobile_tinderbox_tree': 'Mozilla-Esr45',
+    },
+    'mozilla-esr52': {
+        'tinderbox_tree': 'Mozilla-Esr52',
+        'mobile_tinderbox_tree': 'Mozilla-Esr52',
     },
     'mozilla-beta': {
         'tinderbox_tree': 'Mozilla-Beta',

@@ -25,7 +25,9 @@ DEFAULT_BRANCH_PRIORITY = 4
 BRANCH_PRIORITIES = {
     'mozilla-release': 0,
     'comm-esr45': 0,
+    'comm-esr52': 0,
     'mozilla-esr45': 1,
+    'mozilla-esr52': 1,
     'mozilla-beta': 2,
     'comm-beta': 2,
     'mozilla-central': 3,

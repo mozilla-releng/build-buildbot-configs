@@ -145,7 +145,6 @@ releaseConfig['updateChannels'] = {
 
 # Partner repack configuration
 releaseConfig['doPartnerRepacks']    = False
-releaseConfig['partnersRepoPath']    = 'users/stage-ffxbld/partner-repacks'
 
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://admin-bouncer.stage.mozaws.net/api'

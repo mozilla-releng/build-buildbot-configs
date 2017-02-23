@@ -239,17 +239,13 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
                 c.globs.append('staging_release-*-*.py')
                 # release-*.py -> staging_release-*.py symlinks
                 c.local_links.extend(
-                    [('staging_release-firefox-mozilla-%s.py' % v,
-                      'release-firefox-mozilla-%s.py' % v)
-                     for v in ['beta', 'release', 'esr45']
-                     ] +
                     [('staging_release-fennec-mozilla-%s.py' % v,
                       'release-fennec-mozilla-%s.py' % v)
                      for v in ['beta', 'release']
                      ] +
                     [('staging_release-thunderbird-comm-%s.py' % v,
                       'release-thunderbird-comm-%s.py' % v)
-                        for v in ['beta', 'esr45']
+                        for v in ['beta', 'esr45', 'esr52']
                      ]
                 )
             else:

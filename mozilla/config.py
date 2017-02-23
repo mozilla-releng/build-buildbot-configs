@@ -1969,6 +1969,25 @@ BRANCHES = {
             'win64-debug': {},
         },
     },
+    'mozilla-esr52': {
+        'merge_builds': False,
+        'lock_platforms': True,
+        'gecko_version': 52,
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'macosx64': {},
+            'win32': {},
+            'win64': {},
+            'linux64-asan': {},
+            'linux64-av': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+            'win64-debug': {},
+        },
+    },
     'try': {
         'branch_projects': ['spidermonkey_try'],
         # The following platforms are not part of the default set,
@@ -2205,7 +2224,6 @@ BRANCHES['mozilla-release']['release_platforms'] = ("linux", "linux64", "win32",
 BRANCHES['mozilla-release']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-release']['partner_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-release']['eme_free_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
-BRANCHES['mozilla-release']['sha1_repacks_platforms'] = ("win32",)
 BRANCHES['mozilla-release']['partner_repack_config'] = {
     "firefox": {
         "script_name": "scripts/desktop_partner_repacks.py",
@@ -2356,7 +2374,6 @@ BRANCHES['mozilla-beta']['release_platforms'] = ("linux", "linux64", "win32", "w
 BRANCHES['mozilla-beta']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-beta']['partner_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-beta']['eme_free_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
-BRANCHES['mozilla-beta']['sha1_repacks_platforms'] = ("win32",)
 BRANCHES['mozilla-beta']['partner_repack_config'] = {
     "firefox": {
         "script_name": "scripts/desktop_partner_repacks.py",
@@ -2509,7 +2526,7 @@ BRANCHES['mozilla-esr45']['platforms']['win64']['dep_signing_servers'] = 'releas
 # used by releasetasks
 BRANCHES['mozilla-esr45']['bouncer_enabled'] = True
 BRANCHES['mozilla-esr45']['postrelease_version_bump_enabled'] = True
-BRANCHES['mozilla-esr45']['postrelease_bouncer_aliases_enabled'] = True
+BRANCHES['mozilla-esr45']['postrelease_bouncer_aliases_enabled'] = False
 BRANCHES['mozilla-esr45']['postrelease_mark_as_shipped_enabled'] = True
 BRANCHES['mozilla-esr45']['uptake_monitoring_enabled'] = True
 BRANCHES['mozilla-esr45']['push_to_candidates_enabled'] = True
@@ -2548,6 +2565,90 @@ BRANCHES['mozilla-esr45']['tc_indexes'] = {
         },
     },
     # TODO: fennec
+}
+
+######## mozilla-esr52
+BRANCHES['mozilla-esr52']['repo_path'] = 'releases/mozilla-esr52'
+BRANCHES['mozilla-esr52']['update_channel'] = 'esr'
+BRANCHES['mozilla-esr52']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
+BRANCHES['mozilla-esr52']['start_hour'] = [0]
+BRANCHES['mozilla-esr52']['start_minute'] = [15]
+BRANCHES['mozilla-esr52']['pgo_strategy'] = 'per-checkin'
+BRANCHES['mozilla-esr52']['enable_mac_a11y'] = True
+BRANCHES['mozilla-esr52']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
+# L10n configuration
+BRANCHES['mozilla-esr52']['enable_l10n'] = False
+BRANCHES['mozilla-esr52']['l10nNightlyUpdate'] = False
+BRANCHES['mozilla-esr52']['l10n_platforms'] = ['linux', 'linux64', 'win32', 'macosx64', 'win64']
+BRANCHES['mozilla-esr52']['l10nDatedDirs'] = True
+BRANCHES['mozilla-esr52']['l10n_tree'] = 'fxesr52'
+BRANCHES['mozilla-esr52']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr52'
+BRANCHES['mozilla-esr52']['enable_nightly'] = False
+BRANCHES['mozilla-esr52']['enable_nightly_everytime'] = False
+BRANCHES['mozilla-esr52']['updates_enabled'] = False
+BRANCHES['mozilla-esr52']['create_partial'] = False
+BRANCHES['mozilla-esr52']['enable_blocklist_update'] = True
+BRANCHES['mozilla-esr52']['enable_hsts_update'] = True
+BRANCHES['mozilla-esr52']['enable_hpkp_update'] = True
+BRANCHES['mozilla-esr52']['enabled_products'] = ['firefox']
+### Release Promotion
+BRANCHES['mozilla-esr52']['enable_release_promotion'] = True
+# used by process/release.py
+BRANCHES['mozilla-esr52']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
+BRANCHES['mozilla-esr52']['bouncer_submitter_config'] = {
+    "firefox": "releases/bouncer_firefox_esr.py",
+}
+BRANCHES['mozilla-esr52']['uptake_monitoring_config'] = {
+    "firefox": 'releases/bouncer_firefox_esr.py',
+}
+BRANCHES['mozilla-esr52']['postrelease_version_bump_config'] = {
+    "firefox": 'releases/postrelease_firefox_esr52.py',
+}
+BRANCHES['mozilla-esr52']['postrelease_bouncer_aliases_config'] = {
+    "firefox": 'releases/bouncer_firefox_esr.py',
+}
+BRANCHES['mozilla-esr52']['postrelease_mark_as_shipped_config'] = {
+    "firefox": 'releases/postrelease_firefox_esr52.py',
+}
+BRANCHES['mozilla-esr52']['updates_config'] = {
+    "firefox": 'releases/updates_firefox_esr52.py',
+}
+BRANCHES['mozilla-esr52']['beetmover_credentials'] = "/builds/release-s3.credentials"
+BRANCHES['mozilla-esr52']['stage_product'] = {
+    'firefox': 'firefox',
+}
+BRANCHES['mozilla-esr52']['platforms']['linux']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-esr52']['platforms']['linux64']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-esr52']['platforms']['macosx64']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-esr52']['platforms']['win32']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-esr52']['platforms']['win64']['dep_signing_servers'] = 'release-signing'
+# used by releasetasks
+BRANCHES['mozilla-esr52']['bouncer_enabled'] = True
+BRANCHES['mozilla-esr52']['postrelease_version_bump_enabled'] = True
+BRANCHES['mozilla-esr52']['postrelease_bouncer_aliases_enabled'] = True
+BRANCHES['mozilla-esr52']['postrelease_mark_as_shipped_enabled'] = True
+BRANCHES['mozilla-esr52']['uptake_monitoring_enabled'] = True
+BRANCHES['mozilla-esr52']['push_to_candidates_enabled'] = True
+BRANCHES['mozilla-esr52']['push_to_releases_automatic'] = False
+BRANCHES['mozilla-esr52']['beetmover_buckets'] = {
+    "firefox": "net-mozaws-prod-delivery-firefox",
+}
+BRANCHES['mozilla-esr52']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-esr52']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-esr52']['updates_builder_enabled'] = True
+BRANCHES['mozilla-esr52']['update_verify_enabled'] = True
+BRANCHES['mozilla-esr52']['release_channel_mappings'] = [["^.*$", ["esr"]]]
+BRANCHES['mozilla-esr52']['snap_enabled'] = False
+BRANCHES['mozilla-esr52']['sha1_repacks_platforms'] = ("win32",)
+BRANCHES['mozilla-esr52']['partner_repack_config'] = {
+    "firefox": {
+        "script_name": "scripts/desktop_partner_repacks.py",
+        "extra_args": [
+            "--cfg", "partner_repacks/release_mozilla-esr52_desktop.py",
+            "--s3cfg", "/builds/partners-s3cfg",
+        ],
+    },
 }
 
 ######## try
@@ -2700,7 +2801,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
 
 # Only test pretty names on train branches, not m-c or project branches.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-esr45"):
+               "mozilla-esr52"):
     for platform in ("linux", "linux64", "macosx64", "win32", "win64"):
         if platform in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
@@ -2753,7 +2854,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', mr_gecko_version):
         if platform in branch['platforms']:
             del branch['platforms'][platform]
 for name, branch in items_at_least(BRANCHES, 'gecko_version', mr_gecko_version):
-    if name in  ['mozilla-beta', 'mozilla-release', 'mozilla-esr45']:
+    if name in  ['mozilla-beta', 'mozilla-release', 'mozilla-esr45', 'mozilla-esr52']:
         continue
     else:
         for platform in ['linux64-add-on-devel', 'macosx64-add-on-devel', 'win32-add-on-devel', 'win64-add-on-devel']:
