@@ -2640,6 +2640,8 @@ BRANCHES['mozilla-esr52']['updates_builder_enabled'] = True
 BRANCHES['mozilla-esr52']['update_verify_enabled'] = True
 BRANCHES['mozilla-esr52']['release_channel_mappings'] = [["^.*$", ["esr"]]]
 BRANCHES['mozilla-esr52']['snap_enabled'] = False
+# Bug 1342117, CI builds on all named branches
+BRANCHES['mozilla-esr52']['watch_all_branches'] = True
 BRANCHES['mozilla-esr52']['sha1_repacks_platforms'] = ("win32",)
 BRANCHES['mozilla-esr52']['partner_repack_config'] = {
     "firefox": {
