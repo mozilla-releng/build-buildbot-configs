@@ -301,7 +301,19 @@ PROJECT_BRANCHES = {
         },
     },
     # Not needed whilst booked for bug 929203.
-    #'pine': {}
+    'pine': {
+        'enable_perproduct_builds': False,
+        'lock_platforms': True,
+        'mozharness_tag': 'default',
+        'enable_opt_unittests': True,
+        'enable_talos': False,
+        'platforms': {
+            'macosx64': {},
+            'macosx64-debug': {},
+            'win64': {},
+            'win64-debug': {},
+        },
+    },
     'graphics': {
         'enable_perproduct_builds': False,
         'lock_platforms': True,
