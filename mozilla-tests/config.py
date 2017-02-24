@@ -2992,18 +2992,27 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
                         BRANCHES[name]['platforms'][platform][slave_platform][test][item] = JSREFTEST_E10S_TWO_CHUNKS[0]
 
 # Bug 1339185 - Disable non-e10s tests for OSX debug only
-# 'mochitest-chrome', 'mochitest-a11y', 'xpcshell' are still needed, so don't drop them
-tests = ['mochitest-chrome', 'mochitest-a11y', 'xpcshell']
+# non_e10s will store the tests that don't have an e-10s version
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
+    non_e10s = []
     for platform in BRANCHES[name]['platforms'].keys():
         if platform not in ['macosx64']:
             continue
         for slave_platform in BRANCHES[name]['platforms'][platform].keys():
             if slave_platform not in ['yosemite_r7']:
                 continue
+            for test in BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']:
+                if '-e10s' not in test[0] and test[0] not in non_e10s:
+                    non_e10s.append(test[0])
+                else:
+                    s = test[0].replace('-e10s', '')
+                    if s in non_e10s:
+                        non_e10s.remove(s)
+                    else:
+                        non_e10s.append(s)
             BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
                 [item for item in BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']
-                  if ('e10s' in item[0] or item[0] in tests)]
+                  if ('e10s' in item[0] or item[0] in non_e10s)]
 
 # Ash-specific branch config. Please add any new buildbot test scheduling changes above this block.
 for platform in PLATFORMS.keys():
