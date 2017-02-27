@@ -234,12 +234,12 @@ PROJECT_BRANCHES = {
         'tc_indexes': {
             "firefox": {
                 "linux": {
-                    "signed": "index.gecko.v2.jamun.signed-nightly.revision.{rev}.firefox-l10n.linux-opt.en-US",
-                    "unsigned": "index.gecko.v2.jamun.revision.{rev}.firefox-l10n.linux-opt.en-US",
+                    "signed": "gecko.v2.jamun.signed-nightly.revision.{rev}.firefox-l10n.linux-opt.en-US",
+                    "unsigned": "gecko.v2.jamun.revision.{rev}.firefox-l10n.linux-opt.en-US",
                 },
                 "linux64": {
-                    "signed": "index.gecko.v2.jamun.signed-nightly.revision.{rev}.firefox-l10n.linux64-opt.en-US",
-                    "unsigned": "index.gecko.v2.jamun.revision.{rev}.firefox-l10n.linux64-opt.en-US",
+                    "signed": "gecko.v2.jamun.signed-nightly.revision.{rev}.firefox-l10n.linux64-opt.en-US",
+                    "unsigned": "gecko.v2.jamun.revision.{rev}.firefox-l10n.linux64-opt.en-US",
                 },
                 "macosx64": {
                     "signed": "gecko.v2.jamun.revision.{rev}.firefox.macosx64-opt",
