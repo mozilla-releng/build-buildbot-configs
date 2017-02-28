@@ -1,4 +1,6 @@
 from copy import deepcopy
+from master_common import items_before, setMainCommVersions
+
 
 SLAVES = {
     'linux': ['sea-vm-linux32-%i' % x for x in range(1,7)],
@@ -302,7 +304,7 @@ PLATFORM_VARS = {
             'brand_name': 'SeaMonkey',
             'base_name': 'OS X 10.6 %(branch)s',
             'mozconfig': 'macosx64/%(branch)s/nightly',
-            'src_mozconfig': 'suite/config/mozconfigs/macosx-universal/nightly',
+            'src_mozconfig': 'suite/config/mozconfigs/macosx64/nightly',
             'profiled_build': False,
             'builds_before_reboot': BUILDS_BEFORE_REBOOT,
             'build_space': 8,
@@ -512,6 +514,8 @@ BRANCHES = {
     'comm-release': {},
 }
 
+setMainCommVersions(BRANCHES)
+
 # Copy global vars in first, then platform vars
 for branch in BRANCHES.keys():
     for key, value in GLOBAL_VARS.items():
@@ -702,3 +706,9 @@ BRANCHES['comm-release']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/Se
 # staging/production-dependent settings - all is production for us
 BRANCHES['comm-release']['tinderbox_tree'] = 'SeaMonkey-Release'
 BRANCHES['comm-release']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey-Release'
+
+# Bug 1322402 - mac universal builds dropped at 53, keep using the universal mozconfig and objdir before then
+for name, branch in items_before(BRANCHES, 'gecko_version', 53):
+    if 'macosx64' in branch['platforms']:
+        branch['platforms']['macosx64']['src_mozconfig'] = 'suite/config/mozconfigs/macosx-universal/nightly'
+        branch['platforms']['macosx64']['platform_objdir'] = '%s/i386' % OBJDIR
