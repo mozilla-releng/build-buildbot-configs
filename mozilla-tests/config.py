@@ -3014,6 +3014,24 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
                 [item for item in BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']
                   if ('e10s' in item[0] or item[0] in non_e10s)]
 
+# Bug 1342202 - Move Win7 mochitest-a11y to AWS
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
+    for platform in branch['platforms'].keys():
+        if platform not in ['win32']:
+            continue
+
+        win32 = branch['platforms'][platform]
+
+        if 'win7_vm' in win32:
+            win32['win7_vm']['opt_unittest_suites'] += MOCHITEST_A11Y
+            win32['win7_vm']['debug_unittest_suites'] += MOCHITEST_A11Y
+        if 'win7_ix' in win32:
+            for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
+                for t in win32['win7_ix'][test_type][:]:
+                    suite_name, suite_config = t
+                    if suite_name.startswith('mochitest-a11y'):
+                        win32['win7_ix'][test_type].remove(t)
+
 # Ash-specific branch config. Please add any new buildbot test scheduling changes above this block.
 for platform in PLATFORMS.keys():
     if platform not in BRANCHES['ash']['platforms']:
