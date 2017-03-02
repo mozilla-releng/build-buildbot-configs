@@ -306,8 +306,10 @@ PROJECT_BRANCHES = {
         'lock_platforms': True,
         'mozharness_tag': 'default',
         'enable_opt_unittests': True,
-        'enable_talos': False,
+        'enable_talos': True,
         'platforms': {
+            'linux64': {},
+            'linux64-debug': {},
             'macosx64': {},
             'macosx64-debug': {},
             'win64': {},
