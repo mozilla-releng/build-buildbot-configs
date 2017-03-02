@@ -2392,12 +2392,12 @@ BRANCHES['mozilla-beta']['update_verify_requires_cdn_push'] = True
 BRANCHES['mozilla-beta']['tc_indexes'] = {
     "firefox": {
         "linux": {
-            "signed": "gecko.v2.mozilla-beta.revision.{rev}.firefox.linux-opt",
-            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.linux-opt",
+            "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.firefox-l10n.linux-opt.en-US",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.linux-opt.en-US",
         },
         "linux64": {
-            "signed": "gecko.v2.mozilla-beta.revision.{rev}.firefox.linux64-opt",
-            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.linux64-opt",
+            "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.firefox-l10n.linux64-opt.en-US",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.linux64-opt.en-US",
         },
         "macosx64": {
             "signed": "gecko.v2.mozilla-beta.revision.{rev}.firefox.macosx64-opt",
@@ -2650,6 +2650,30 @@ BRANCHES['mozilla-esr52']['partner_repack_config'] = {
             "--cfg", "partner_repacks/release_mozilla-esr52_desktop.py",
             "--s3cfg", "/builds/partners-s3cfg",
         ],
+    },
+}
+BRANCHES['mozilla-esr52']['tc_indexes'] = {
+    "firefox": {
+        "linux": {
+            "signed": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.linux-opt",
+            "unsigned": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.linux-opt",
+        },
+        "linux64": {
+            "signed": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.linux64-opt",
+            "unsigned": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.linux64-opt",
+        },
+        "macosx64": {
+            "signed": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.macosx64-opt",
+            "unsigned": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.macosx64-opt",
+        },
+        "win32": {
+            "signed": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.win32-opt",
+            "unsigned": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.win32-opt",
+        },
+        "win64": {
+            "signed": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.win64-opt",
+            "unsigned": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.win64-opt",
+        },
     },
 }
 
