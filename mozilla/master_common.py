@@ -49,7 +49,7 @@ BRANCH_PRIORITIES = {
     'fig': 5,
     'gum': 5,
     'holly': 5,
-    'jamun': 3,  # Bug 1343628: relpro work
+    'jamun': 5,
     'larch': 5,
     'maple': 5,
     'oak': 5,
