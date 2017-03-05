@@ -164,12 +164,23 @@ MOZMILL = [
         'script_maxtime': 7200,
     }),
 ]
+MOZMILL_TWO_CHUNKS = [
+    ('mozmill', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--mozmill-suite', 'mozmill',
+                       '--cfg', 'unittests/thunderbird_extra.py'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+        'totalChunks': 2,
+    }),
+]
 
 # Default set of unit tests
 UNITTEST_SUITES = {
     'opt_unittest_suites': MOZMILL + XPCSHELL,
     'debug_unittest_suites': MOZMILL + XPCSHELL,
-    'debug_unittest_suites_two_chunks': MOZMILL + XPCSHELL_TWO_CHUNKS,
+    'debug_unittest_suites_two_chunks': MOZMILL_TWO_CHUNKS + XPCSHELL_TWO_CHUNKS,
 }
 # You must define opt_unittest_suites when enable_opt_unittests is True for a
 # platform. Likewise debug_unittest_suites for enable_debug_unittests
