@@ -23,11 +23,11 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['relbranchPrefix']     = 'THUNDERBIRD'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '45.7.1'
-releaseConfig['appVersion']          = '45.7.1'
+releaseConfig['version']             = '45.8.0'
+releaseConfig['appVersion']          = '45.8.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_45_7_1'
+releaseConfig['baseTag']             = 'THUNDERBIRD_45_8_0'
 releaseConfig['partialUpdates']      = {
 
     '45.6.0': {
@@ -42,10 +42,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'THUNDERBIRD_45_7_0',
     },
 
-    '45.5.1': {
-        'appVersion': '45.5.1',
-        'buildNumber': 2,
-        'baseTag': 'THUNDERBIRD_45_5_1',
+    '45.7.1': {
+        'appVersion': '45.7.1',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_45_7_1',
     },
 
 }
@@ -57,7 +57,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr45',
         'path': 'releases/comm-esr45',
-        'revision': '6811cb04c86f',
+        'revision': '43463c355e1c',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -69,7 +69,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr45',
         'path': 'releases/mozilla-esr45',
-        'revision': 'eb6f18dbfe8d',
+        'revision': 'e9e229c7a377',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
@@ -158,9 +158,6 @@ releaseConfig['doPartnerRepacks']    = False
 # Tuxedo/Bouncer configuration
 releaseConfig['tuxedoServerUrl']     = 'https://bounceradmin.mozilla.com/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_thunderbird.py'
-releaseConfig['bouncer_aliases'] = {
-    'Thunderbird-%(version)s': 'thunderbird-latest',
-}
 
 # Misc configuration
 releaseConfig['use_mock'] = True
