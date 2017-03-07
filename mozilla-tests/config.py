@@ -3067,6 +3067,25 @@ for branch in BRANCHES.keys():
     BRANCHES[branch]['platforms']['linux64-stylo']['talos_slave_platforms'] = []
 
 
+# Bug 1342202 - Move Win7 mochitest-a11y to AWS
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
+    for platform in branch['platforms'].keys():
+        if platform not in ['win32']:
+            continue
+
+        win32 = branch['platforms'][platform]
+
+        if 'win7_vm' in win32 and name not in ['try']:
+            win32['win7_vm']['opt_unittest_suites'] += MOCHITEST_A11Y
+            win32['win7_vm']['debug_unittest_suites'] += MOCHITEST_A11Y
+
+        if 'win7_ix' in branch['platforms'][platform]:
+            for test_type in ('opt_unittest_suites', 'debug_unittest_suites'):
+                for t in branch['platforms'][platform]['win7_ix'][test_type][:]:
+                    suite_name, suite_config = t
+                    if suite_name.startswith('mochitest-a11y'):
+                        win32['win7_ix'][test_type].remove(t)
+
 # Ash-specific branch config. Please add any new buildbot test scheduling changes above this block.
 for platform in PLATFORMS.keys():
     if platform not in BRANCHES['ash']['platforms']:
