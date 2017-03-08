@@ -3040,14 +3040,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
     for platform in branch['platforms'].keys():
 	# mochitest-a11y is already enabled on try
-	if name in ['try']:
-            continue
         if platform not in ['win32']:
             continue
 
         win32 = branch['platforms'][platform]
 
-        if 'win7_vm' in win32:
+        if 'win7_vm' in win32 and 'try' not in name:
             win32['win7_vm']['opt_unittest_suites'] += MOCHITEST_A11Y
             win32['win7_vm']['debug_unittest_suites'] += MOCHITEST_A11Y
         if 'win7_ix' in win32:
