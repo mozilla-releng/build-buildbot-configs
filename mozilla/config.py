@@ -2174,8 +2174,7 @@ BRANCHES['mozilla-release']['bouncer_submitter_config'] = {
 }
 BRANCHES['mozilla-release']['uptake_monitoring_config'] = {
     "firefox": 'releases/bouncer_firefox_release.py',
-    # TODO - fennec
-    "fennec": "",
+    "fennec": 'releases/bouncer_fennec.py',
 }
 BRANCHES['mozilla-release']['postrelease_version_bump_config'] = {
     "firefox": 'releases/postrelease_firefox_release.py',
@@ -2219,6 +2218,10 @@ BRANCHES['mozilla-release']['beetmover_buckets'] = {
     "firefox": "net-mozaws-prod-delivery-firefox",
     # TODO - add fennec support
     # 'fennec': 'net-mozaws-prod-delivery-archive',
+}
+BRANCHES['mozilla-release']['uptake_monitoring_platforms'] = {
+    "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
+    "fennec": ("android-api-15", "android-x86"),
 }
 BRANCHES['mozilla-release']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-release']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
@@ -2320,8 +2323,7 @@ BRANCHES['mozilla-beta']['bouncer_submitter_config'] = {
 }
 BRANCHES['mozilla-beta']['uptake_monitoring_config'] = {
     "firefox": 'releases/bouncer_firefox_beta.py',
-    # TODO - fennec
-    "fennec": "",
+    "fennec": 'releases/bouncer_fennec.py',
 }
 BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = {
     "firefox": 'releases/postrelease_firefox_beta.py',
@@ -2368,6 +2370,10 @@ BRANCHES['mozilla-beta']['beetmover_buckets'] = {
     "firefox": "net-mozaws-prod-delivery-firefox",
     # TODO - add fennec support
     # 'fennec': 'net-mozaws-prod-delivery-archive',
+}
+BRANCHES['mozilla-beta']['uptake_monitoring_platforms'] = {
+    "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
+    "fennec": ("android-api-15", "android-x86"),
 }
 BRANCHES['mozilla-beta']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-beta']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
@@ -2533,6 +2539,9 @@ BRANCHES['mozilla-esr45']['push_to_releases_automatic'] = False
 BRANCHES['mozilla-esr45']['beetmover_buckets'] = {
     "firefox": "net-mozaws-prod-delivery-firefox",
 }
+BRANCHES['mozilla-esr45']['uptake_monitoring_platforms'] = {
+    "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
+}
 BRANCHES['mozilla-esr45']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-esr45']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-esr45']['updates_builder_enabled'] = True
@@ -2632,6 +2641,9 @@ BRANCHES['mozilla-esr52']['push_to_candidates_enabled'] = True
 BRANCHES['mozilla-esr52']['push_to_releases_automatic'] = False
 BRANCHES['mozilla-esr52']['beetmover_buckets'] = {
     "firefox": "net-mozaws-prod-delivery-firefox",
+}
+BRANCHES['mozilla-esr52']['uptake_monitoring_platforms'] = {
+    "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
 }
 BRANCHES['mozilla-esr52']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-esr52']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
