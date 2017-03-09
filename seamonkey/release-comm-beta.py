@@ -26,13 +26,13 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-beta' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-beta'
-releaseConfig['sourceRepoRevision']         = '7696fb72bd36'
+releaseConfig['sourceRepoRevision']         = '7696FB72BD36'
 releaseConfig['relbranchOverride']          = 'SEA248b1_2017021701_RELBRANCH'
 #releaseConfig['productVersionFile']        = 'suite/config/version-20.txt'
 releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-beta'
-releaseConfig['mozillaRepoRevision']        = 'b43853475c23'
+releaseConfig['mozillaRepoRevision']        = '001253005de3'
 releaseConfig['mozillaRelbranchOverride']   = 'SEA248b1_2017021701_RELBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
