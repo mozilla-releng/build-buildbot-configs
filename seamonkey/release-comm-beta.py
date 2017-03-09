@@ -97,7 +97,7 @@ releaseConfig['mozconfigs']                 = {
 
 # Source step requires a properly configured source tree in order
 # to upload the tarball.  re: bug 1118778
-releaseConfig['source_mozconfig'] = releaseConfig['mozconfigs']['linux64']
+releaseConfig['source_mozconfig'] = 'suite/config/mozconfigs/linux64/source'
 
 # Major update configuration
 releaseConfig['majorUpdateRepoPath']        = None
