@@ -68,11 +68,9 @@ GLOBAL_VARS = {
         'linux64-debug': {},
         'linux64-asan': {},
         'linux64-asan-debug': {},
-        'linux64-st-an-debug': {},
         'linux64-av': {},
         'linux64-add-on-devel': {},
         'macosx64-debug': {},
-        'macosx64-st-an-debug': {},
         'macosx64-add-on-devel': {},
         'win32-debug': {},
         'win64-debug': {},
@@ -639,102 +637,6 @@ PLATFORM_VARS = {
                         'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         'freetype-2.3.11-6.el6_1.8.x86_64',
                         'freetype-devel-2.3.11-6.el6_1.8.x86_64',
-                        ],
-            'mock_copyin_files': [
-                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
-                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
-                ('/home/cltbld/.boto', '/builds/.boto'),
-                ('/builds/gapi.data', '/builds/gapi.data'),
-                ('/tools/tooltool.py', '/builds/tooltool.py'),
-                ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
-                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
-                ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
-                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
-                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
-            ],
-            # The status of this build doesn't affect the last good revision
-            # algorithm for nightlies
-            'consider_for_nightly': False,
-        },
-        'linux64-st-an-debug': {
-            'mozharness_python': '/tools/buildbot/bin/python',
-            'reboot_command': [
-                '/tools/checkouts/mozharness/external_tools/count_and_reboot.py',
-                '-f', '../reboot_count.txt', '-n', '1', '-z'
-            ],
-            'mozharness_repo_cache': '/tools/checkouts/mozharness',
-            'tools_repo_cache': '/tools/checkouts/build-tools',
-            'mozharness_desktop_build': {
-                'script_name': 'scripts/fx_desktop_build.py',
-                'extra_args': [
-                    '--config', 'builds/releng_base_linux_64_builds.py',
-                    '--custom-build-variant-cfg', 'stat-and-debug',
-                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
-                ],
-                'script_timeout': 3 * 3600,
-                'script_maxtime': int(5.5 * 3600),
-            },
-
-            'enable_nightly': False,
-            'product_name': 'firefox',
-            'unittest_platform': 'linux64-st-an-debug',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'base_name': 'Linux x86-64 %(branch)s debug static analysis',
-            'mozconfig': 'in_tree',
-            'src_mozconfig': 'browser/config/mozconfigs/linux64/debug-static-analysis-clang',
-            'profiled_build': False,
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 12,
-            'upload_symbols': False,
-            'download_symbols': False,
-            'packageTests': False,
-            'slaves': SLAVES['mock'],
-            'platform_objdir': OBJDIR,
-            'stage_product': 'firefox',
-            'stage_platform': 'linux64-st-an-debug',
-            'update_platform': 'Linux_x86_64-gcc3',
-            'enable_ccache': True,
-            'enable_shared_checkouts': True,
-            'env': {
-                'DISPLAY': ':2',
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
-                'TOOLTOOL_HOME': '/builds',
-                'MOZ_OBJDIR': OBJDIR,
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-                'LC_ALL': 'C',
-                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
-            },
-            'enable_opt_unittests': False,
-            'enable_checktests': False,
-            'enable_build_analysis': False,
-            'updates_enabled': False,
-            'create_partial': False,
-            'test_pretty_names': False,
-            'l10n_check_test': False,
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/clang.manifest',
-            'tooltool_script': ['/builds/tooltool.py'],
-            'use_mock': True,
-            'mock_target': 'mozilla-centos6-x86_64',
-            'mock_packages': \
-                       ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
-                        'gtk2-devel', 'libnotify-devel', 'yasm',
-                        'alsa-lib-devel', 'libcurl-devel',
-                        'wireless-tools-devel', 'libX11-devel',
-                        'libXt-devel', 'mesa-libGL-devel',
-                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
-                        'mpfr', # required for system compiler
-                        'xorg-x11-font*', # fonts required for PGO
-                        'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
-                        'pulseaudio-libs-devel',
-                        'freetype-2.3.11-6.el6_1.8.x86_64',
-                        'freetype-devel-2.3.11-6.el6_1.8.x86_64',
-                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -1406,57 +1308,6 @@ PLATFORM_VARS = {
             # must be overridden explicitly.
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
-            'enable_ccache': True,
-        },
-        'macosx64-st-an-debug': {
-            'mozharness_python': '/tools/buildbot/bin/python',
-            'reboot_command': ['scripts/external_tools/count_and_reboot.py',
-                               '-f', '../reboot_count.txt', '-n', '1', '-z'],
-            'tools_repo_cache': '/tools/checkouts/build-tools',
-            'mozharness_desktop_build': {
-                'script_name': 'scripts/fx_desktop_build.py',
-                'extra_args': [
-                    '--config', 'builds/releng_base_mac_64_builds.py',
-                    '--custom-build-variant-cfg', 'stat-and-debug',
-                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
-                ],
-                'script_timeout': 3 * 3600,
-                'script_maxtime': int(5.5 * 3600),
-            },
-
-            'enable_nightly': False,
-            'product_name': 'firefox',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'base_name': 'OS X 10.7 64-bit %(branch)s debug static analysis',
-            'mozconfig': 'in_tree',
-            'src_mozconfig': 'browser/config/mozconfigs/macosx64/debug-static-analysis',
-            'packageTests': False,
-            'profiled_build': False,
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'download_symbols': False,
-            'build_space': 10,
-            'slaves': SLAVES['macosx64-lion'],
-            'platform_objdir': OBJDIR,
-            'stage_product': 'firefox',
-            'stage_platform': 'macosx64-st-an-debug',
-            'enable_shared_checkouts': True,
-            'env': {
-                'MOZ_OBJDIR': OBJDIR,
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
-                'TOOLTOOL_HOME': '/builds',
-                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
-                'LC_ALL': 'C',
-                'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-            },
-            'enable_unittests': False,
-            'enable_checktests': False,
-            'talos_masters': None,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
             'enable_ccache': True,
         },
@@ -2728,10 +2579,8 @@ BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-asan']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-asan-debug']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux64-st-an-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
-BRANCHES['try']['platforms']['macosx64-st-an-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['android-api-15']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-api-15-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['android-x86']['slaves'] = TRY_SLAVES['mock']
@@ -2825,16 +2674,6 @@ for name, branch in BRANCHES.items():
                 [x for x in pc['mock_packages'] if x not in (
                     'ant', 'ant-apache-regexp',
                 )]
-
-# mozilla-beta's gecko version
-mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
-
-# Static analysis happens only on m-c and derived branches.
-for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
-    if 'linux64-st-an-debug' in branch['platforms']:
-        del branch['platforms']['linux64-st-an-debug']
-    if 'macosx64-st-an-debug' in branch['platforms']:
-        del branch['platforms']['macosx64-st-an-debug']
 
 # Only test pretty names on train branches, not m-c or project branches.
 for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
