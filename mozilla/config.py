@@ -2029,8 +2029,8 @@ BRANCHES['mozilla-release']['uptake_monitoring_config'] = {
 }
 BRANCHES['mozilla-release']['postrelease_version_bump_config'] = {
     "firefox": 'releases/postrelease_firefox_release.py',
-    # TODO - fennec
-    "fennec": "",
+    # configs are generic so can be reused
+    "fennec": 'releases/postrelease_firefox_release.py',
 }
 BRANCHES['mozilla-release']['postrelease_bouncer_aliases_config'] = {
     "firefox": 'releases/bouncer_firefox_release.py',
@@ -2038,8 +2038,8 @@ BRANCHES['mozilla-release']['postrelease_bouncer_aliases_config'] = {
 }
 BRANCHES['mozilla-release']['postrelease_mark_as_shipped_config'] = {
     "firefox": 'releases/postrelease_firefox_release.py',
-    # TODO - fennec
-    "fennec": "",
+    # configs are generic so can be reused
+    "fennec": 'releases/postrelease_firefox_release.py',
 }
 BRANCHES['mozilla-release']['updates_config'] = {
     "firefox": 'releases/updates_firefox_release.py',
@@ -2177,8 +2177,8 @@ BRANCHES['mozilla-beta']['uptake_monitoring_config'] = {
 }
 BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = {
     "firefox": 'releases/postrelease_firefox_beta.py',
-    # TODO - fennec
-    "fennec": "",
+    # configs are generic so can be reused
+    "fennec": 'releases/postrelease_firefox_beta.py',
 }
 BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_config'] = {
     "firefox": 'releases/bouncer_firefox_beta.py',
@@ -2186,8 +2186,8 @@ BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_config'] = {
 }
 BRANCHES['mozilla-beta']['postrelease_mark_as_shipped_config'] = {
     "firefox": 'releases/postrelease_firefox_beta.py',
-    # TODO - fennec
-    "fennec": "",
+    # configs are generic so can be reused
+    "fennec": 'releases/postrelease_firefox_beta.py',
 }
 BRANCHES['mozilla-beta']['updates_config'] = {
     "firefox": 'releases/updates_firefox_beta.py',
