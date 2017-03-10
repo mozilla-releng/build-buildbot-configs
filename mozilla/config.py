@@ -2034,8 +2034,7 @@ BRANCHES['mozilla-release']['postrelease_version_bump_config'] = {
 }
 BRANCHES['mozilla-release']['postrelease_bouncer_aliases_config'] = {
     "firefox": 'releases/bouncer_firefox_release.py',
-    # TODO - fennec
-    "fennec": "",
+    "fennec": 'releases/bouncer_fennec.py',
 }
 BRANCHES['mozilla-release']['postrelease_mark_as_shipped_config'] = {
     "firefox": 'releases/postrelease_firefox_release.py',
@@ -2174,7 +2173,7 @@ BRANCHES['mozilla-beta']['bouncer_submitter_config'] = {
 }
 BRANCHES['mozilla-beta']['uptake_monitoring_config'] = {
     "firefox": 'releases/bouncer_firefox_beta.py',
-    "fennec": 'releases/bouncer_fennec.py',
+    "fennec": 'releases/bouncer_fennec_beta.py',
 }
 BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = {
     "firefox": 'releases/postrelease_firefox_beta.py',
@@ -2183,8 +2182,7 @@ BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = {
 }
 BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_config'] = {
     "firefox": 'releases/bouncer_firefox_beta.py',
-    # TODO - fennec
-    "fennec": "",
+    "fennec": 'releases/bouncer_fennec_beta.py',
 }
 BRANCHES['mozilla-beta']['postrelease_mark_as_shipped_config'] = {
     "firefox": 'releases/postrelease_firefox_beta.py',
