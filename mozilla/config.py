@@ -2020,8 +2020,7 @@ BRANCHES['mozilla-release']['enable_release_promotion'] = True
 BRANCHES['mozilla-release']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
 BRANCHES['mozilla-release']['bouncer_submitter_config'] = {
     "firefox": "releases/bouncer_firefox_release.py",
-    # TODO - fennec
-    "fennec": "",
+    "fennec": 'releases/bouncer_fennec.py',
 }
 BRANCHES['mozilla-release']['uptake_monitoring_config'] = {
     "firefox": 'releases/bouncer_firefox_release.py',
@@ -2168,8 +2167,7 @@ BRANCHES['mozilla-beta']['enable_release_promotion'] = True
 BRANCHES['mozilla-beta']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
 BRANCHES['mozilla-beta']['bouncer_submitter_config'] = {
     "firefox": "releases/bouncer_firefox_beta.py",
-    # TODO - fennec
-    "fennec": "",
+    "fennec": 'releases/bouncer_fennec_beta.py',
 }
 BRANCHES['mozilla-beta']['uptake_monitoring_config'] = {
     "firefox": 'releases/bouncer_firefox_beta.py',
