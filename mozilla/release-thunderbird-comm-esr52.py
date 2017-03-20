@@ -165,3 +165,4 @@ releaseConfig['bouncer_aliases'] = {
 # Misc configuration
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
+releaseConfig['extra_signing_env'] = {'TOOLTOOL_DIR': '%(basedir)s/comm-esr52'}
