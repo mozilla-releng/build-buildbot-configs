@@ -121,7 +121,7 @@ releaseConfig['updateVerifyChunks']  = 6
 releaseConfig['mozconfigs']          = {
     'linux': 'mail/config/mozconfigs/linux32/release',
     'linux64': 'mail/config/mozconfigs/linux64/release',
-    'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
+    'macosx64': 'mail/config/mozconfigs/macosx64/release',
     'win32': 'mail/config/mozconfigs/win32/release',
 }
 releaseConfig['source_mozconfig']      = 'mail/config/mozconfigs/linux64/source'
