@@ -1419,6 +1419,7 @@ PLATFORM_VARS = {
         },
         'android-api-15': {
             'mozharness_python': '/tools/buildbot/bin/python',
+            'tools_repo_cache': '/tools/checkouts/build-tools',
             'mozharness_desktop_build': {
                 'script_name': 'scripts/fx_desktop_build.py',
                 'extra_args': [
@@ -1503,6 +1504,7 @@ PLATFORM_VARS = {
         },
         'android-x86': {
             'mozharness_python': '/tools/buildbot/bin/python',
+            'tools_repo_cache': '/tools/checkouts/build-tools',
             'mozharness_desktop_build': {
                 'script_name': 'scripts/fx_desktop_build.py',
                 'extra_args': [
@@ -2016,6 +2018,7 @@ BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-release']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
 ### Release Promotion
 BRANCHES['mozilla-release']['enable_release_promotion'] = True
+BRANCHES['mozilla-release']['enable_fennec_relpro'] = True
 # used by process/release.py
 BRANCHES['mozilla-release']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
 BRANCHES['mozilla-release']['bouncer_submitter_config'] = {
@@ -2065,8 +2068,7 @@ BRANCHES['mozilla-release']['push_to_candidates_enabled'] = True
 BRANCHES['mozilla-release']['push_to_releases_automatic'] = False
 BRANCHES['mozilla-release']['beetmover_buckets'] = {
     "firefox": "net-mozaws-prod-delivery-firefox",
-    # TODO - add fennec support
-    # 'fennec': 'net-mozaws-prod-delivery-archive',
+    "fennec": "net-mozaws-prod-delivery-archive",
 }
 BRANCHES['mozilla-release']['uptake_monitoring_platforms'] = {
     "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
@@ -2163,6 +2165,7 @@ BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
 BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 ### Release Promotion
 BRANCHES['mozilla-beta']['enable_release_promotion'] = True
+BRANCHES['mozilla-beta']['enable_fennec_relpro'] = True
 # used by process/release.py
 BRANCHES['mozilla-beta']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
 BRANCHES['mozilla-beta']['bouncer_submitter_config'] = {
@@ -2215,8 +2218,7 @@ BRANCHES['mozilla-beta']['push_to_releases_automatic'] = True
 BRANCHES['mozilla-beta']['release_channel_mappings'] = [["^.*$", ["beta"]]]
 BRANCHES['mozilla-beta']['beetmover_buckets'] = {
     "firefox": "net-mozaws-prod-delivery-firefox",
-    # TODO - add fennec support
-    # 'fennec': 'net-mozaws-prod-delivery-archive',
+    "fennec": "net-mozaws-prod-delivery-archive",
 }
 BRANCHES['mozilla-beta']['uptake_monitoring_platforms'] = {
     "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
@@ -2346,6 +2348,7 @@ BRANCHES['mozilla-esr45']['enable_hpkp_update'] = True
 BRANCHES['mozilla-esr45']['enabled_products'] = ['firefox']
 ### Release Promotion
 BRANCHES['mozilla-esr45']['enable_release_promotion'] = True
+BRANCHES['mozilla-esr45']['enable_fennec_relpro'] = False
 # used by process/release.py
 BRANCHES['mozilla-esr45']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
 BRANCHES['mozilla-esr45']['bouncer_submitter_config'] = {
@@ -2449,6 +2452,7 @@ BRANCHES['mozilla-esr52']['enable_hpkp_update'] = True
 BRANCHES['mozilla-esr52']['enabled_products'] = ['firefox']
 ### Release Promotion
 BRANCHES['mozilla-esr52']['enable_release_promotion'] = True
+BRANCHES['mozilla-esr52']['enable_fennec_relpro'] = False
 # used by process/release.py
 BRANCHES['mozilla-esr52']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
 BRANCHES['mozilla-esr52']['bouncer_submitter_config'] = {
