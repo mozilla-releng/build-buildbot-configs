@@ -113,7 +113,7 @@ releaseConfig['mozconfigs']          = {
     'macosx64': 'mail/config/mozconfigs/macosx-universal/release',
     'win32': 'mail/config/mozconfigs/win32/release',
 }
-releaseConfig['source_mozconfig']      = 'mail/config/mozconfigs/linux64/release'
+releaseConfig['source_mozconfig']      = 'mail/config/mozconfigs/linux64/source'
 releaseConfig['releaseChannel']        = 'release'
 releaseConfig['updateChannels'] = {
     # ruleId needs to be updated with the ID from AUS
