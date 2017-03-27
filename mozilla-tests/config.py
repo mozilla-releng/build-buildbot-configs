@@ -159,7 +159,8 @@ PLATFORMS['linux64']['mozharness_config'] = {
 PLATFORMS['linux64-stylo']['slave_platforms'] = []
 PLATFORMS['linux64-stylo']['talos_slave_platforms'] = ['ubuntu64_hw_stylo']
 PLATFORMS['linux64-stylo']['env_name'] = 'linux-perf'
-PLATFORMS['linux64-stylo']['ubuntu64_hw_stylo'] = {'name': 'Ubuntu HW 12.04 Stylo x64'}
+PLATFORMS['linux64-stylo']['ubuntu64_hw_stylo'] = {'name': 'Ubuntu HW 12.04 x64
+                                                   stylo'}
 PLATFORMS['linux64-stylo']['stage_product'] = 'firefox'
 PLATFORMS['linux64-stylo']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
@@ -3036,7 +3037,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
                 [item for item in BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites']
                   if ('e10s' in item[0] or item[0] in non_e10s)]
 
-# Bug 1342202 - Move Win7 mochitest-a11y to AWS 
+# Bug 1342202 - Move Win7 mochitest-a11y to AWS
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
     for platform in branch['platforms'].keys():
 	# mochitest-a11y is already enabled on try
@@ -3056,7 +3057,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
                         win32['win7_ix'][test_type].remove(t)
 
 
-# bug 1343316 - add buildernames for linux64-stylo talos tests for mozilla-central and try branches 
+# bug 1343316 - add buildernames for linux64-stylo talos tests for mozilla-central and try branches
 for branch in BRANCHES.keys():
     if branch in ['mozilla-central', 'try']:
         continue
