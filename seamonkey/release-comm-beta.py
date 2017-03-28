@@ -11,7 +11,7 @@ releaseConfig['appName']                    = 'suite'
 releaseConfig['version']                    = '2.48b1'
 releaseConfig['appVersion']                 = '2.48'
 releaseConfig['milestone']                  = '51.0'
-releaseConfig['buildNumber']                = 4 
+releaseConfig['buildNumber']                = 5
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_48b1'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.39b1'
