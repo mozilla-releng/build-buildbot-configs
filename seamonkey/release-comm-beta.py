@@ -11,7 +11,7 @@ releaseConfig['appName']                    = 'suite'
 releaseConfig['version']                    = '2.48b1'
 releaseConfig['appVersion']                 = '2.48'
 releaseConfig['milestone']                  = '51.0'
-releaseConfig['buildNumber']                = 6
+releaseConfig['buildNumber']                = 7
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_48b1'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.39b1'
@@ -26,7 +26,7 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-beta' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-beta'
-releaseConfig['sourceRepoRevision']         = 'c87de3b24c53'
+releaseConfig['sourceRepoRevision']         = '630c22cbc776'
 releaseConfig['relbranchOverride']          = 'SEA248b1_2017021701_RELBRANCH'
 #releaseConfig['productVersionFile']        = 'suite/config/version-20.txt'
 releaseConfig['productVersionFile']         = ''
