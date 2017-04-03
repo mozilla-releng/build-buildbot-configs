@@ -3089,7 +3089,7 @@ for platform in PLATFORMS.keys():
                 base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS +\
                     WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
-                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS +\
+                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S + REFTEST_NOACCEL_E10S +\
                     WEB_PLATFORM_TESTS_CHUNKED_E10S
         if slave_platform == "win7_ix":
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
@@ -3108,10 +3108,11 @@ for platform in PLATFORMS.keys():
         if slave_platform == "win7_vm_gfx":
             BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
                 MOCHITEST_GPU_E10S + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_E10S_TWO_CHUNKS + \
-                    REFTEST_NOACCEL_E10S_TWO_CHUNKS
+                    REFTEST_GPU_E10S + REFTEST_NOACCEL_E10S_TWO_CHUNKS
             BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
-                MOCHITEST_GPU_E10S + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_E10S_TWO_CHUNKS + \
-                    REFTEST_NOACCEL_E10S_TWO_CHUNKS
+                MOCHITEST_GPU_E10S + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_E10S + \
+                    REFTEST_FOUR_CHUNKS + REFTEST_GPU_E10S + REFTEST_NOACCEL_E10S + \
+                    REFTEST_NOACCEL_FOUR_CHUNKS
 
 if __name__ == "__main__":
     import sys
