@@ -74,9 +74,6 @@ GLOBAL_VARS = {
     'build_tools_repo_path': 'build/tools',
     'mozharness_repo': 'https://hg.mozilla.org/build/mozharness',
     'mozharness_tag': 'production',
-    'stage_server': 'upload.ffxbld.productdelivery.prod.mozaws.net',
-    'stage_username': 'ffxbld',
-    'stage_ssh_key': 'ffxbld_rsa',
     'blob_upload': True,
 }
 
@@ -124,8 +121,6 @@ BRANCHES = {
         'slave_key': 'try_slaves',
         'package_url': 'https://archive.mozilla.org/pub/firefox/try-builds',
         'package_dir': '%(who)s-%(got_revision)s/',
-        'stage_username': 'trybld',
-        'stage_ssh_key': 'trybld_dsa',
     },
 }
 

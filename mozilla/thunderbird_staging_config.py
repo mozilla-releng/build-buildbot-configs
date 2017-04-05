@@ -24,7 +24,6 @@ GLOBAL_VARS = {
 }
 
 BUILDS_BEFORE_REBOOT = 5
-SYMBOL_SERVER_HOST = 'dev-stage01.srv.releng.scl3.mozilla.com'
 
 # Local branch overrides
 BRANCHES = {

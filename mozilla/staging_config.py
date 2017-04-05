@@ -63,7 +63,6 @@ GLOBAL_VARS = {
 }
 
 BUILDS_BEFORE_REBOOT = 5
-SYMBOL_SERVER_HOST = 'dev-stage01.srv.releng.scl3.mozilla.com'
 
 # Local branch overrides
 BRANCHES = {
@@ -104,8 +103,6 @@ BRANCHES = {
         'file_update_on_closed_tree': False,
     },
     'try': {
-        'download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/firefox',
-        'mobile_download_base_url': 'http://dev-stage01.srv.releng.scl3.mozilla.com/pub/mozilla.org/mobile',
         'enable_mail_notifier': False, # Set to True when testing
         'email_override': [], # Set to your address when testing
         'package_url': 'http://ftp.stage.mozaws.net/pub/firefox/try-builds',
