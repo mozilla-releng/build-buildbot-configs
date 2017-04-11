@@ -2022,11 +2022,11 @@ BRANCHES['mozilla-release']['enable_fennec_relpro'] = True
 BRANCHES['mozilla-release']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
 BRANCHES['mozilla-release']['bouncer_submitter_config'] = {
     "firefox": "releases/bouncer_firefox_release.py",
-    "fennec": 'releases/bouncer_fennec_release.py',
+    "fennec": 'releases/bouncer_fennec.py',
 }
 BRANCHES['mozilla-release']['uptake_monitoring_config'] = {
     "firefox": 'releases/bouncer_firefox_release.py',
-    "fennec": 'releases/bouncer_fennec_release.py',
+    "fennec": 'releases/bouncer_fennec.py',
 }
 BRANCHES['mozilla-release']['postrelease_version_bump_config'] = {
     "firefox": 'releases/postrelease_firefox_release.py',
@@ -2035,7 +2035,7 @@ BRANCHES['mozilla-release']['postrelease_version_bump_config'] = {
 }
 BRANCHES['mozilla-release']['postrelease_bouncer_aliases_config'] = {
     "firefox": 'releases/bouncer_firefox_release.py',
-    "fennec": 'releases/bouncer_fennec_release.py',
+    "fennec": 'releases/bouncer_fennec.py',
 }
 BRANCHES['mozilla-release']['postrelease_mark_as_shipped_config'] = {
     "firefox": 'releases/postrelease_firefox_release.py',
