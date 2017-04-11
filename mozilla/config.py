@@ -2015,7 +2015,6 @@ BRANCHES['mozilla-release']['upload_mobile_symbols'] = True
 BRANCHES['mozilla-release']['enable_nightly'] = False
 BRANCHES['mozilla-release']['enable_blocklist_update'] = True
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
-BRANCHES['mozilla-release']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
 ### Release Promotion
 BRANCHES['mozilla-release']['enable_release_promotion'] = True
 BRANCHES['mozilla-release']['enable_fennec_relpro'] = True
@@ -2023,11 +2022,11 @@ BRANCHES['mozilla-release']['enable_fennec_relpro'] = True
 BRANCHES['mozilla-release']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
 BRANCHES['mozilla-release']['bouncer_submitter_config'] = {
     "firefox": "releases/bouncer_firefox_release.py",
-    "fennec": 'releases/bouncer_fennec.py',
+    "fennec": 'releases/bouncer_fennec_release.py',
 }
 BRANCHES['mozilla-release']['uptake_monitoring_config'] = {
     "firefox": 'releases/bouncer_firefox_release.py',
-    "fennec": 'releases/bouncer_fennec.py',
+    "fennec": 'releases/bouncer_fennec_release.py',
 }
 BRANCHES['mozilla-release']['postrelease_version_bump_config'] = {
     "firefox": 'releases/postrelease_firefox_release.py',
@@ -2036,7 +2035,7 @@ BRANCHES['mozilla-release']['postrelease_version_bump_config'] = {
 }
 BRANCHES['mozilla-release']['postrelease_bouncer_aliases_config'] = {
     "firefox": 'releases/bouncer_firefox_release.py',
-    "fennec": 'releases/bouncer_fennec.py',
+    "fennec": 'releases/bouncer_fennec_release.py',
 }
 BRANCHES['mozilla-release']['postrelease_mark_as_shipped_config'] = {
     "firefox": 'releases/postrelease_firefox_release.py',
@@ -2103,12 +2102,12 @@ BRANCHES['mozilla-release']['watch_all_branches'] = True
 BRANCHES['mozilla-release']['tc_indexes'] = {
     "firefox": {
         "linux": {
-            "signed": "gecko.v2.mozilla-release.revision.{rev}.firefox.linux-opt",
-            "unsigned": "gecko.v2.mozilla-release.revision.{rev}.firefox.linux-opt",
+            "signed": "gecko.v2.mozilla-release.signed-nightly.revision.{rev}.firefox-l10n.linux-opt.en-US",
+            "unsigned": "gecko.v2.mozilla-release.revision.{rev}.firefox-l10n.linux-opt.en-US",
         },
         "linux64": {
-            "signed": "gecko.v2.mozilla-release.revision.{rev}.firefox.linux64-opt",
-            "unsigned": "gecko.v2.mozilla-release.revision.{rev}.firefox.linux64-opt",
+            "signed": "gecko.v2.mozilla-release.signed-nightly.revision.{rev}.firefox-l10n.linux64-opt.en-US",
+            "unsigned": "gecko.v2.mozilla-release.revision.{rev}.firefox-l10n.linux64-opt.en-US",
         },
         "macosx64": {
             "signed": "gecko.v2.mozilla-release.revision.{rev}.firefox.macosx64-opt",
