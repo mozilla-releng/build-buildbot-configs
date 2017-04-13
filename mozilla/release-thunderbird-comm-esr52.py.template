@@ -52,6 +52,10 @@ releaseConfig['sourceRepositories']  = {
                 'version': releaseConfig['appVersion'],
                 'nextVersion': releaseConfig['nextAppVersion']
             },
+            'mail/config/version_display.txt': {
+                'version': releaseConfig['appVersion'],
+                'nextVersion': releaseConfig['nextAppVersion']
+            },
         }
     },
     'mozilla': {
