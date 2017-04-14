@@ -26,7 +26,7 @@ releaseConfig['mozilla_srcdir']      = 'mozilla'
 releaseConfig['version']             = '52.0.1'
 releaseConfig['appVersion']          = '52.0.1'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 2
+releaseConfig['buildNumber']         = 3
 releaseConfig['baseTag']             = 'THUNDERBIRD_52_0_1'
 releaseConfig['partialUpdates']      = {
 
@@ -34,12 +34,6 @@ releaseConfig['partialUpdates']      = {
         'appVersion': '45.8.0',
         'buildNumber': 1,
         'baseTag': 'THUNDERBIRD_45_8_0',
-    },
-
-    '45.7.1': {
-        'appVersion': '45.7.1',
-        'buildNumber': 1,
-        'baseTag': 'THUNDERBIRD_45_7_1',
     },
 
     '52.0': {
