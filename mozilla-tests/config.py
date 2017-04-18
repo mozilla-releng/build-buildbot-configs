@@ -297,6 +297,16 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
+    'perf-reftest': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'bloom_basic:bloom_basic_ref', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, ALL_TALOS_PLATFORMS),
+    },
+    'perf-reftest-e10s': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'bloom_basic:bloom_basic_ref', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, ALL_TALOS_PLATFORMS),
+    },
 }
 
 BRANCH_UNITTEST_VARS = {
@@ -2702,6 +2712,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
     branch['g4_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['g4-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
+# Enable talos perf-reftest on 55+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
+    if branch.get('enable_talos') is False:
+        continue
+    branch['perf-reftest_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+    branch['perf-reftest-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 ### Test suites that only run on Try ###
 
