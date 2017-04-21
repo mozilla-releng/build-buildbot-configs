@@ -122,8 +122,24 @@ PROJECT_BRANCHES = {
     # 'fig': {},
     # Disabled by Bug 1206269
     # 'gum': {},
-    # disabled in bug 1215527
-    # 'holly': {},
+    'holly': {
+        'enable_perproduct_builds': False,
+        'lock_platforms': True,
+        'enable_opt_unittests': True,
+        'enable_talos': False,
+        'platforms': {
+            'macosx64': {},
+            'macosx64-debug': {},
+            'win64': {},
+            'win64-debug': {},
+        },
+        "enable_onchange_scheduler": False,
+        "enable_nightly_scheduler": False,
+        "enable_periodic_scheduler": False,
+        "enable_weekly_scheduler": False,
+        "enable_triggered_nightly_scheduler": False,
+    },
+
     'jamun': {
         'gecko_version': 53,
         'watch_all_branches': True,
