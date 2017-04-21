@@ -509,7 +509,6 @@ for platform in PLATFORM_VARS.values():
 # platforms (if different from the default set).
 BRANCHES = {
     'comm-central-trunk': {},
-    'comm-aurora': {},
     'comm-beta': {},
     'comm-release': {},
 }
@@ -574,50 +573,6 @@ BRANCHES['comm-central-trunk']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incomin
 # staging/production-dependent settings - all is production for us
 BRANCHES['comm-central-trunk']['tinderbox_tree'] = 'SeaMonkey'
 BRANCHES['comm-central-trunk']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey'
-
-######## comm-aurora
-# This is a path, relative to HGURL, where the repository is located
-# HGURL + repo_path should be a valid repository
-BRANCHES['comm-aurora']['repo_path'] = 'releases/comm-aurora'
-BRANCHES['comm-aurora']['mozilla_repo_path'] = 'releases/mozilla-aurora'
-BRANCHES['comm-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
-BRANCHES['comm-aurora']['enable_nightly'] = True
-BRANCHES['comm-aurora']['start_hour'] = [1]
-BRANCHES['comm-aurora']['start_minute'] = [30]
-BRANCHES['comm-aurora']['enable_mac_a11y'] = True
-BRANCHES['comm-aurora']['unittest_build_space'] = 6
-BRANCHES['comm-aurora']['enable_blocklist_update'] = True
-BRANCHES['comm-aurora']['blocklist_update_on_closed_tree'] = True
-# And code coverage
-BRANCHES['comm-aurora']['enable_codecoverage'] = False
-# L10n configuration
-BRANCHES['comm-aurora']['enable_l10n'] = True
-BRANCHES['comm-aurora']['enable_l10n_onchange'] = True
-BRANCHES['comm-aurora']['l10nNightlyUpdate'] = True
-BRANCHES['comm-aurora']['l10n_platforms'] = ['mock', 'win32', 'macosx64']
-BRANCHES['comm-aurora']['l10nDatedDirs'] = True
-BRANCHES['comm-aurora']['l10n_tree'] = 'sea_aurora'
-BRANCHES['comm-aurora']['mozilla_srcdir'] = 'mozilla'
-#make sure it has an ending slash
-BRANCHES['comm-aurora']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/seamonkey/nightly/latest-comm-aurora-l10n/'
-BRANCHES['comm-aurora']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-aurora'
-BRANCHES['comm-aurora']['allLocalesFile'] = 'suite/locales/all-locales'
-BRANCHES['comm-aurora']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-aurora' % (GLOBAL_VARS['hgurl'])
-# If True, a complete update snippet for this branch will be generated and
-# uploaded to. Any platforms with 'debug' in them will not have snippets
-# generated.
-BRANCHES['comm-aurora']['create_snippet'] = True
-BRANCHES['comm-aurora']['update_channel'] = 'aurora'
-BRANCHES['comm-aurora']['create_partial'] = True
-BRANCHES['comm-aurora']['create_partial_l10n'] = True
-BRANCHES['comm-aurora']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-aurora'
-BRANCHES['comm-aurora']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMonkey/comm-aurora'
-# staging/production-dependent settings - all is production for us
-BRANCHES['comm-aurora']['tinderbox_tree'] = 'SeaMonkey-Aurora'
-BRANCHES['comm-aurora']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey-Aurora'
 
 ######## comm-beta
 # This is a path, relative to HGURL, where the repository is located

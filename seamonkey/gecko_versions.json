@@ -1,9 +1,8 @@
 {
-    "mozilla-release": 52,
-    "mozilla-beta": 53,
-    "mozilla-aurora":  54,
+    "mozilla-release": 53,
+    "mozilla-beta": 54,
     "mozilla-central": 55,
-    "comm-release": 52,
-    "comm-beta": 53,
+    "comm-release": 53,
+    "comm-beta": 54,
     "comm-aurora": 54
 }
