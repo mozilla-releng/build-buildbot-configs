@@ -80,6 +80,7 @@ releaseConfig['S3Credentials']              = '/builds/release-s3.credentials'
 releaseConfig['S3Bucket']                   = 'net-mozaws-prod-delivery-archive'
 releaseConfig['bouncerServer']              = 'download.mozilla.org'
 releaseConfig['ausServerUrl']               = 'https://aus2-community.mozilla.org'
+releaseConfig['candidatesPathName']         = 'candidates'
 releaseConfig['testOlderPartials']          = False
 releaseConfig['releaseNotesUrl']            = None
 releaseConfig['releaseChannel']             = 'beta'

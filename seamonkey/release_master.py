@@ -496,6 +496,7 @@ updates_factory = ReleaseUpdatesFactory(
     releaseNotesUrl=releaseConfig['releaseNotesUrl'],
     binaryName=releaseConfig['binaryName'],
     oldBinaryName=releaseConfig['oldBinaryName'],
+    candidatesPathName=releaseConfig.get("candidatesPathName", "nightly"),
     testOlderPartials=releaseConfig['testOlderPartials'],
     schema=releaseConfig.get("snippetSchema", 1), # Bug 682805
     useBetaChannelForRelease=releaseConfig.get('useBetaChannelForRelease', False),
