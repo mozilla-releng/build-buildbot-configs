@@ -130,14 +130,7 @@ PROJECT_BRANCHES = {
         'platforms': {
             'macosx64': {},
             'macosx64-debug': {},
-            'win64': {},
-            'win64-debug': {},
         },
-        "enable_onchange_scheduler": False,
-        "enable_nightly_scheduler": False,
-        "enable_periodic_scheduler": False,
-        "enable_weekly_scheduler": False,
-        "enable_triggered_nightly_scheduler": False,
     },
 
     'jamun': {
