@@ -60,10 +60,13 @@ GLOBAL_VARS = {
         'linux': {},
         'linux64': {},
         'win32': {},
+        'win32-devedition': {},
         'win32-add-on-devel': {},
         'win64': {},
+        'win64-devedition': {},
         'win64-add-on-devel': {},
         'macosx64': {},
+        'macosx64-devedition': {},
         'linux-debug': {},
         'linux64-debug': {},
         'linux64-asan': {},
@@ -723,6 +726,76 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
             'enable_ccache': True,
         },
+        'macosx64-devedition': {
+            'mozharness_python': '/tools/buildbot/bin/python',
+            'reboot_command': ['scripts/external_tools/count_and_reboot.py',
+                               '-f', '../reboot_count.txt', '-n', '1', '-z'],
+            'tools_repo_cache': '/tools/checkouts/build-tools',
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_mac_64_builds.py',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
+                    '--custom-build-variant-cfg', 'devedition',
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(5.5 * 3600),
+            },
+            'mozharness_desktop_l10n': {
+                'capable': True,
+                'scriptName': 'scripts/desktop_l10n.py',
+                'l10n_chunks': 8,
+                'use_credentials_file': True,
+                'script_timeout': 1800,
+                'script_maxtime': 3 * 3600,
+            },
+
+            'product_name': 'firefox',
+            'unittest_platform': 'macosx64-devedition',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'OS X 10.7 %(branch)s devedition',
+            'mozconfig': 'macosx64/%(branch)s/nightly',
+            'src_mozconfig': 'browser/config/mozconfigs/macosx-universal/devedition',
+            'packageTests': True,
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 12,
+            'upload_symbols': True,
+            'download_symbols': True,
+            'slaves': SLAVES['macosx64-lion'],
+            'platform_objdir': OBJDIR,
+            'stage_product': 'devedition',
+            'stage_platform': 'macosx64',
+            'update_platform': 'Darwin_x86_64-gcc3',
+            'enable_shared_checkouts': True,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
+                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
+                'TOOLTOOL_HOME': '/builds',
+                'CHOWN_ROOT': '~/bin/chown_root',
+                'CHOWN_REVERT': '~/bin/chown_revert',
+                'LC_ALL': 'C',
+                'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
+                'CCACHE_DIR': '/builds/ccache',
+                'CCACHE_COMPRESS': '1',
+                'CCACHE_UMASK': '002',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'test_pretty_names': False,
+            # These refer to items in passwords.secrets
+            # nightly_signing_servers defaults to dep-signing because we don't want
+            # random new branches to accidentally use nightly-signing, which signs
+            # with valid keys. Any branch that needs to be signed with these keys
+            # must be overridden explicitly.
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
+            'enable_ccache': True,
+        },
         'macosx64-add-on-devel': {
             'mozharness_python': '/tools/buildbot/bin/python',
             'reboot_command': ['scripts/external_tools/count_and_reboot.py',
@@ -855,6 +928,78 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/win32/releng.manifest',
             'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
+        'win32-devedition': {
+            'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+            'reboot_command': [
+                'c:/mozilla-build/python27/python', '-u',
+                'scripts/external_tools/count_and_reboot.py',
+                '-f', '../reboot_count.txt','-n', '1', '-z'
+            ],
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_windows_32_builds.py',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
+                    '--custom-build-variant-cfg', 'devedition',
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(7.5 * 3600),
+            },
+            'mozharness_desktop_l10n': {
+                'capable': True,
+                'scriptName': 'scripts/desktop_l10n.py',
+                'l10n_chunks': 6,
+                'use_credentials_file': True,
+                'script_timeout': 2 * 3600,
+                'script_maxtime': 3 * 3600,
+            },
+
+            'product_name': 'firefox',
+            'unittest_platform': 'win32-devedition',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'WINNT 5.2 %(branch)s devedition',
+            'mozconfig': 'win32/%(branch)s/nightly',
+            'src_mozconfig': 'browser/config/mozconfigs/win32/devedition',
+            'profiled_build': False,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 12,
+            'upload_symbols': True,
+            'download_symbols': True,
+            'enable_installer': True,
+            'packageTests': True,
+            'slaves': SLAVES['win64-rev2'],
+            'l10n_slaves': SLAVES['win64-rev2'],
+            'platform_objdir': OBJDIR,
+            'stage_product': 'devedition',
+            'stage_platform': 'win32',
+            'mochitest_leak_threshold': 484,
+            'crashtest_leak_threshold': 484,
+            'update_platform': 'WINNT_x86-msvc',
+            'enable_shared_checkouts': True,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
+                'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
+                'BINSCOPE': 'C:\Program Files (x86)\Microsoft\SDL BinScope\BinScope.exe',
+                'PATH': "${MOZILLABUILD}\\nsis-3.0b1;${MOZILLABUILD}\\nsis-2.46u;${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
+                'TOOLTOOL_CACHE': '/c/builds/tooltool_cache',
+                'TOOLTOOL_HOME': '/c/builds',
+            },
+            'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'test_pretty_names': False,
+            'l10n_check_test': True,
+            # These refer to items in passwords.secrets
+            # nightly_signing_servers defaults to dep-signing because we don't want
+            # random new branches to accidentally use nightly-signing, which signs
+            # with valid keys. Any branch that needs to be signed with these keys
+            # must be overridden explicitly.
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/win32/releng.manifest',
+            'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
+        },
         'win32-add-on-devel': {
             'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
             'reboot_command': [
@@ -919,7 +1064,6 @@ PLATFORM_VARS = {
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/win32/releng.manifest',
             'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
         },
-
         'win64': {
             'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
             'mozharness_desktop_build': {
@@ -961,6 +1105,79 @@ PLATFORM_VARS = {
             'slaves': SLAVES['win64-rev2'],
             'platform_objdir': OBJDIR,
             'stage_product': 'firefox',
+            'stage_platform': 'win64',
+            'mochitest_leak_threshold': 484,
+            'crashtest_leak_threshold': 484,
+            'update_platform': 'WINNT_x86_64-msvc',
+            'enable_shared_checkouts': True,
+            'env': {
+                'MOZ_OBJDIR': OBJDIR,
+                'PDBSTR_PATH': '/c/Program Files (x86)/Windows Kits/8.0/Debuggers/x64/srcsrv/pdbstr.exe',
+                'HG_SHARE_BASE_DIR': 'c:/builds/hg-shared',
+                'PATH': "${MOZILLABUILD}\\nsis-3.0b1;${MOZILLABUILD}\\nsis-2.46u;${MOZILLABUILD}\\python27;${MOZILLABUILD}\\buildbotve\\scripts;${PATH}",
+                'TOOLTOOL_CACHE': '/c/builds/tooltool_cache',
+                'TOOLTOOL_HOME': '/c/builds',
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'test_pretty_names': True,
+            'l10n_check_test': True,
+            # These refer to items in passwords.secrets
+            # nightly_signing_servers defaults to dep-signing because we don't want
+            # random new branches to accidentally use nightly-signing, which signs
+            # with valid keys. Any branch that needs to be signed with these keys
+            # must be overridden explicitly.
+            'nightly_signing_servers': 'dep-signing',
+            'dep_signing_servers': 'dep-signing',
+            # The status of this build doesn't affect the last good revision
+            # algorithm for nightlies
+            'consider_for_nightly': False,
+            'tooltool_manifest_src': 'browser/config/tooltool-manifests/win64/releng.manifest',
+            'tooltool_script': ['python', '/c/mozilla-build/tooltool.py'],
+        },
+        'win64-devedition': {
+            'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+            'mozharness_desktop_build': {
+                'script_name': 'scripts/fx_desktop_build.py',
+                'extra_args': [
+                    '--config', 'builds/releng_base_windows_64_builds.py',
+                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
+                    '--custom-build-variant-cfg', 'devedition',
+                ],
+                'script_timeout': 3 * 3600,
+                'script_maxtime': int(7.5 * 3600),
+            },
+            'mozharness_desktop_l10n': {
+                'capable': True,
+                'scriptName': 'scripts/desktop_l10n.py',
+                'l10n_chunks': 6,
+                'use_credentials_file': True,
+                'script_timeout': 2 * 3600,
+                'script_maxtime': 3 * 3600,
+            },
+            'reboot_command': [
+                'c:/mozilla-build/python27/python', '-u',
+                'scripts/external_tools/count_and_reboot.py',
+                '-f', '../reboot_count.txt','-n', '1', '-z'
+            ],
+
+            'product_name': 'firefox',
+            'unittest_platform': 'win64-devedition',
+            'app_name': 'browser',
+            'brand_name': 'Minefield',
+            'base_name': 'WINNT 6.1 x86-64 %(branch)s devedition',
+            'src_mozconfig': 'browser/config/mozconfigs/win64/devedition',
+            'mozconfig': 'win64/%(branch)s/nightly',
+            'profiled_build': True,
+            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
+            'build_space': 14,
+            'upload_symbols': True,
+            'enable_installer': True,
+            'packageTests': True,
+            'slaves': SLAVES['win64-rev2'],
+            'platform_objdir': OBJDIR,
+            'stage_product': 'devedition',
             'stage_platform': 'win64',
             'mochitest_leak_threshold': 484,
             'crashtest_leak_threshold': 484,
@@ -2160,7 +2377,7 @@ BRANCHES['mozilla-beta']['enable_nightly'] = False
 BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-15']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-15-debug']['enable_dep'] = True
-BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile']
+BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile', 'devedition']
 BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 ### Release Promotion
 BRANCHES['mozilla-beta']['enable_release_promotion'] = True
@@ -2204,6 +2421,9 @@ BRANCHES['mozilla-beta']['platforms']['linux64']['dep_signing_servers'] = 'relea
 BRANCHES['mozilla-beta']['platforms']['macosx64']['dep_signing_servers'] = 'release-signing'
 BRANCHES['mozilla-beta']['platforms']['win32']['dep_signing_servers'] = 'release-signing'
 BRANCHES['mozilla-beta']['platforms']['win64']['dep_signing_servers'] = 'release-signing'
+BRANCHES['mozilla-beta']['platforms']['macosx64-devedition']['dep_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-beta']['platforms']['win32-devedition']['dep_signing_servers'] = 'nightly-signing'
+BRANCHES['mozilla-beta']['platforms']['win64-devedition']['dep_signing_servers'] = 'nightly-signing'
 # used by releasetasks
 BRANCHES['mozilla-beta']['bouncer_enabled'] = True
 BRANCHES['mozilla-beta']['updates_builder_enabled'] = True
