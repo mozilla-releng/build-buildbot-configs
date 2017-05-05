@@ -171,6 +171,18 @@ PROJECT_BRANCHES = {
                 'dep_signing_servers': 'release-signing',
                 "slave_platforms": [],
             },
+            'win32-devedition': {
+                'dep_signing_servers': 'nightly-signing',
+                "slave_platforms": [],
+            },
+            'win64-devedition': {
+                'dep_signing_servers': 'nightly-signing',
+                "slave_platforms": [],
+            },
+            'macosx64-devedition': {
+                'dep_signing_servers': 'nightly-signing',
+                "slave_platforms": [],
+            },
             'linux64-debug': {
                 "slave_platforms": [],
             },
@@ -236,7 +248,9 @@ PROJECT_BRANCHES = {
         'stage_product': {
             'firefox': 'firefox',
             'fennec': 'mobile',
+            'devedition': 'devedition',
         },
+        'enabled_products': ['firefox', 'mobile', 'devedition'],
         'push_to_releases_automatic': False,
         'merge_builds': False,
         'snap_enabled': True,
