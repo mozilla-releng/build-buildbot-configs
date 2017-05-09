@@ -86,12 +86,8 @@ PROJECT_BRANCHES = {
             'win64-debug': {},
         },
     },
-    'cypress': {
-        'lock_platforms': True,
-        'platforms': {
-            # Limit Firefox to none for Bug 787208
-        },
-    },
+    # Disabled by bug 1363047
+    # 'cypress': {},
     'date': {
         'enable_talos': False,
         'lock_platforms': True,
@@ -103,35 +99,14 @@ PROJECT_BRANCHES = {
             'android-api-15': {},
         },
     },
-    'elm': {
-        'branch_projects': [],
-        'lock_platforms': True,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'macosx64': {},
-            'win32': {},
-            'win64': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-            'win64-debug': {},
-        },
-    },
+    # Disabled by bug 1363047
+    # 'elm': {},
     # Disabled by Bug 1135702
     # 'fig': {},
     # Disabled by Bug 1206269
     # 'gum': {},
-    'holly': {
-        'enable_perproduct_builds': False,
-        'lock_platforms': True,
-        'enable_opt_unittests': True,
-        'enable_talos': False,
-        'platforms': {
-            'macosx64': {},
-            'macosx64-debug': {},
-        },
-    },
+    # Disabled by bug 1363047
+    # 'holly': {},
 
     'jamun': {
         'gecko_version': 53,
