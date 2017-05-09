@@ -2455,14 +2455,6 @@ BRANCHES['try']['pgo_strategy'] = None
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['watch_all_branches'] = True
 
-
-######### elm
-BRANCHES['elm']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['elm']['platforms']['macosx64']['talos_slave_platforms'] = []
-BRANCHES['elm']['platforms']['linux']['talos_slave_platforms'] = []
-BRANCHES['elm']['platforms']['linux64']['talos_slave_platforms'] = []
-BRANCHES['elm']['platforms']['win64']['talos_slave_platforms'] = []
-
 ######### jamun
 BRANCHES['jamun']['platforms']['win32']['talos_slave_platforms'] = []
 BRANCHES['jamun']['platforms']['macosx64']['talos_slave_platforms'] = []
