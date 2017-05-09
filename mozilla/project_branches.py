@@ -148,15 +148,12 @@ PROJECT_BRANCHES = {
             },
             'win32-devedition': {
                 'dep_signing_servers': 'nightly-signing',
-                "slave_platforms": [],
             },
             'win64-devedition': {
                 'dep_signing_servers': 'nightly-signing',
-                "slave_platforms": [],
             },
             'macosx64-devedition': {
                 'dep_signing_servers': 'nightly-signing',
-                "slave_platforms": [],
             },
             'linux64-debug': {
                 "slave_platforms": [],
