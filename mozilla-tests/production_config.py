@@ -1,11 +1,17 @@
 SLAVES = {
     'xp_ix': {},
+    'xp_ix_devedition':{},
     'win7_ix': {},
+    'win7_ix_devedition': {},
     'win7_vm': {},
+    'win7_vm_devedition': {},
     'win7_vm_gfx': {},
+    'win7_vm_gfx_devedition': {},
     'win8': {},
+    'win8_64_devedition': {},
     'snowleopard': {},
     'yosemite_r7': {},
+    'yosemite_r7_devedition': {},
     'ubuntu32_vm': {},
     'ubuntu64_vm': {},
     'ubuntu64_vm_large': {},
@@ -64,6 +70,13 @@ SLAVES['ubuntu64_vm_armv7_large'] = SLAVES['ubuntu64_vm_large']
 SLAVES['ubuntu64_vm_lnx_large'] = SLAVES['ubuntu64_vm_large']
 SLAVES['ubuntu64-asan_vm_lnx_large'] = SLAVES['ubuntu64_vm_large']
 SLAVES['ubuntu64_hw_stylo'] = SLAVES['ubuntu64_hw']
+SLAVES['yosemite_r7_devedition'] = SLAVES['yosemite_r7']
+SLAVES['xp_ix_devedition'] = SLAVES['xp_ix']
+SLAVES['win7_ix_devedition'] = SLAVES['win7_ix']
+SLAVES['win7_vm_devedtion'] = SLAVES['win7_vm']
+SLAVES['win7_vm_gfx_devedition'] = SLAVES['win7_vm_gfx']
+SLAVES['win8_64_devedition'] = SLAVES['win8']
+
 
 TRY_SLAVES = {}
 
