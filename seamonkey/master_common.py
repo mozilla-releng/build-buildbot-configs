@@ -34,4 +34,3 @@ def setMainCommVersions(BRANCHES):
     # MERGE DAY
     BRANCHES['comm-release']['gecko_version'] = get_gecko_version("comm-release")
     BRANCHES['comm-beta']['gecko_version'] = get_gecko_version("comm-beta")
-    BRANCHES['comm-aurora']['gecko_version'] = get_gecko_version("comm-aurora")
