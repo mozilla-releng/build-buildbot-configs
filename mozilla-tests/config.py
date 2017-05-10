@@ -3300,6 +3300,8 @@ BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
 ######### mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
 BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
+# bug 1358976 - Stop automatic triggers of nightly builds on mozilla-aurora
+BRANCHES['mozilla-aurora']['platforms'] = {}
 
 ######### mozilla-esr45
 BRANCHES['mozilla-esr45']['repo_path'] = "releases/mozilla-esr45"

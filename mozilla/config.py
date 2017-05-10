@@ -2490,6 +2490,8 @@ BRANCHES['mozilla-beta']['tc_indexes'] = {
 
 ######## mozilla-aurora
 BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
+# bug 1358976 - Stop automatic triggers of nightly builds on mozilla-aurora
+BRANCHES['mozilla-aurora']['enable_nightly'] = False
 BRANCHES['mozilla-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
 BRANCHES['mozilla-aurora']['enable_perproduct_builds'] = True
 BRANCHES['mozilla-aurora']['start_hour'] = [0]
