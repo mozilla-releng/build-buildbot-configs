@@ -2290,6 +2290,18 @@ BRANCHES['mozilla-release']['uptake_monitoring_platforms'] = {
     "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
     "fennec": ("android-api-15", "android-x86"),
 }
+BRANCHES['mozilla-release']['signing_class'] = {
+    "firefox": "release-signing",
+    "fennec": "release-signing",
+}
+BRANCHES['mozilla-release']['signing_cert'] = {
+    "firefox": "release",
+    "fennec": "release",
+}
+BRANCHES['mozilla-release']['root_home_dir'] = {
+    "firefox": "desktop",
+    "fennec": "mobile",
+}
 BRANCHES['mozilla-release']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-release']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-release']['partner_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
@@ -2414,7 +2426,8 @@ BRANCHES['mozilla-beta']['updates_config'] = {
 BRANCHES['mozilla-beta']['beetmover_credentials'] = "/builds/release-s3.credentials"
 BRANCHES['mozilla-beta']['stage_product'] = {
     'firefox': 'firefox',
-    'fennec': 'mobile'
+    'fennec': 'mobile',
+    'devedition': 'devedition'
 }
 BRANCHES['mozilla-beta']['platforms']['linux']['dep_signing_servers'] = 'release-signing'
 BRANCHES['mozilla-beta']['platforms']['linux64']['dep_signing_servers'] = 'release-signing'
@@ -2442,6 +2455,26 @@ BRANCHES['mozilla-beta']['beetmover_buckets'] = {
 BRANCHES['mozilla-beta']['uptake_monitoring_platforms'] = {
     "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
     "fennec": ("android-api-15", "android-x86"),
+}
+BRANCHES['mozilla-beta']['signing_class'] = {
+    "firefox": "release-signing",
+    "fennec": "release-signing",
+    "devedition": "nightly-signing",
+}
+BRANCHES['mozilla-beta']['signing_cert'] = {
+    "firefox": "release",
+    "fennec": "release",
+    "devedition": "nightly",
+}
+BRANCHES['mozilla-beta']['accepted_mar_channel_id'] = {
+    "firefox": "firefox-mozilla-beta",
+    "devedition": "firefox-mozilla-aurora",
+    # TODO: fennec
+}
+BRANCHES['mozilla-beta']['root_home_dir'] = {
+    "firefox": "desktop",
+    "devedition": "desktop",
+    "fennec": "mobile",
 }
 BRANCHES['mozilla-beta']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-beta']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
@@ -2613,6 +2646,15 @@ BRANCHES['mozilla-esr45']['beetmover_buckets'] = {
 BRANCHES['mozilla-esr45']['uptake_monitoring_platforms'] = {
     "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
 }
+BRANCHES['mozilla-esr45']['signing_class'] = {
+    "firefox": "release-signing",
+}
+BRANCHES['mozilla-esr45']['signing_cert'] = {
+    "firefox": "release",
+}
+BRANCHES['mozilla-esr45']['root_home_dir'] = {
+    "firefox": "desktop",
+}
 BRANCHES['mozilla-esr45']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-esr45']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-esr45']['updates_builder_enabled'] = True
@@ -2716,6 +2758,15 @@ BRANCHES['mozilla-esr52']['beetmover_buckets'] = {
 }
 BRANCHES['mozilla-esr52']['uptake_monitoring_platforms'] = {
     "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
+}
+BRANCHES['mozilla-esr52']['signing_class'] = {
+    "firefox": "release-signing",
+}
+BRANCHES['mozilla-esr52']['signing_cert'] = {
+    "firefox": "release",
+}
+BRANCHES['mozilla-esr52']['root_home_dir'] = {
+    "firefox": "desktop",
 }
 BRANCHES['mozilla-esr52']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-esr52']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")

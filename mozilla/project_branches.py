@@ -222,6 +222,22 @@ PROJECT_BRANCHES = {
             'fennec': 'mobile',
             'devedition': 'devedition',
         },
+        'signing_class': {
+            "firefox": "release-signing",
+            "devedition": "nightly-signing",
+        },
+        'signing_cert': {
+            "firefox": "release",
+            "devedition": "nightly",
+        },
+        'accepted_mar_channel_id': {
+            "firefox": "firefox-mozilla-beta",
+            "devedition": "firefox-mozilla-aurora",
+        },
+        'root_home_dir': {
+            "firefox": "desktop",
+            "devedition": "desktop",
+        },
         'enabled_products': ['firefox', 'mobile', 'devedition'],
         'push_to_releases_automatic': False,
         'merge_builds': False,
