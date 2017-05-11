@@ -71,7 +71,7 @@ SLAVES['ubuntu64-asan_vm_lnx_large'] = SLAVES['ubuntu64_vm_large']
 SLAVES['ubuntu64_hw_stylo'] = SLAVES['ubuntu64_hw']
 SLAVES['yosemite_r7_devedition'] = SLAVES['yosemite_r7']
 SLAVES['win7_ix_devedition'] = SLAVES['win7_ix']
-SLAVES['win7_vm_devedtion'] = SLAVES['win7_vm']
+SLAVES['win7_vm_devedition'] = SLAVES['win7_vm']
 SLAVES['win7_vm_gfx_devedition'] = SLAVES['win7_vm_gfx']
 SLAVES['win8_64_devedition'] = SLAVES['win8']
 
