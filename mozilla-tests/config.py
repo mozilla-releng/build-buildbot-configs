@@ -771,11 +771,32 @@ REFTEST_E10S = [
     }),
 ]
 
+REFTEST_QR_E10S = [
+    ('reftest-qr-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'reftest-qr', '--e10s'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+    }),
+]
+
 REFTEST_E10S_TWO_CHUNKS = [
     ('reftest-e10s', {
         'use_mozharness': True,
         'script_path': 'scripts/desktop_unittest.py',
         'extra_args': ['--reftest-suite', 'reftest', '--e10s'],
+        'blob_upload': True,
+        'script_maxtime': 7200,
+        'totalChunks': 2,
+    }),
+]
+
+REFTEST_QR_E10S_TWO_CHUNKS = [
+    ('reftest-qr-e10s', {
+        'use_mozharness': True,
+        'script_path': 'scripts/desktop_unittest.py',
+        'extra_args': ['--reftest-suite', 'reftest-qr', '--e10s'],
         'blob_upload': True,
         'script_maxtime': 7200,
         'totalChunks': 2,
@@ -3822,6 +3843,15 @@ for branch in BRANCHES.keys():
     for platform in BRANCHES[branch]['platforms'].keys():
         if platform in ['macosx64-devedition', 'win32-devedition', 'win64-devedition']:
             del BRANCHES[branch]['platforms'][platform]
+
+#Bug 1362397 - Add a new win8 R-e10s-qr job on the graphics tree
+for branch in BRANCHES.keys():
+    if branch not in ['graphics']:
+        continue
+    if 'win64' not in BRANCHES[branch]['platforms'].keys():
+        continue
+    BRANCHES[branch]['platforms']['win64']['win8_64']['opt_unittest_suites'] += REFTEST_QR_E10S
+    BRANCHES[branch]['platforms']['win64']['win8_64']['debug_unittest_suites'] += REFTEST_QR_E10S_TWO_CHUNKS
 
 # Ash-specific branch config. Please add any new buildbot test scheduling changes above this block.
 for platform in PLATFORMS.keys():
