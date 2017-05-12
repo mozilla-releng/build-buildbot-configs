@@ -119,7 +119,7 @@ PROJECT_BRANCHES = {
         # platforms[platform]["slave_platforms"] item override below
         'enable_opt_unittests': False,
         'enable_debug_unittests': False,
-        'enable_talos': False,
+        'enable_talos': True,
         ##
         'lock_platforms': True,
         'platforms': {
