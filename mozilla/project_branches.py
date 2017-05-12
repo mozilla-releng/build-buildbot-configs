@@ -265,6 +265,28 @@ PROJECT_BRANCHES = {
                     "unsigned": "gecko.v2.jamun.revision.{rev}.firefox.win64-opt",
                 },
             },
+            "devedition": {
+                "linux": {
+                    "signed": "gecko.v2.jamun.signed-nightly.revision.{rev}.devedition-l10n.linux-opt.en-US",
+                    "unsigned": "gecko.v2.jamun.revision.{rev}.devedition-l10n.linux-opt.en-US",
+                },
+                "linux64": {
+                    "signed": "gecko.v2.jamun.signed-nightly.revision.{rev}.devedition-l10n.linux64-opt.en-US",
+                    "unsigned": "gecko.v2.jamun.revision.{rev}.devedition-l10n.linux64-opt.en-US",
+                },
+                "macosx64": {
+                    "signed": "gecko.v2.jamun.revision.{rev}.devedition.macosx64-opt",
+                    "unsigned": "gecko.v2.jamun.revision.{rev}.devedition.macosx64-opt",
+                },
+                "win32": {
+                    "signed": "gecko.v2.jamun.revision.{rev}.devedition.win32-opt",
+                    "unsigned": "gecko.v2.jamun.revision.{rev}.devedition.win32-opt",
+                },
+                "win64": {
+                    "signed": "gecko.v2.jamun.revision.{rev}.devedition.win64-opt",
+                    "unsigned": "gecko.v2.jamun.revision.{rev}.devedition.win64-opt",
+                },
+            },
             # TODO: fennec
         },
     },
