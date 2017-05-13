@@ -81,7 +81,6 @@ PLATFORMS = {
     'linux64': {},
     'linux64-asan': {},
     'linux64-stylo': {},
-    'linux64-styloseq': {},
     'macosx64': {},
     'macosx64-devedition':{},
     'win32': {},
@@ -213,18 +212,6 @@ PLATFORMS['linux64-stylo']['mozharness_config'] = {
     'config_file': 'talos/linux_config.py',
 }
 
-PLATFORMS['linux64-styloseq']['slave_platforms'] = []
-PLATFORMS['linux64-styloseq']['talos_slave_platforms'] = ['ubuntu64_hw_styloseq']
-PLATFORMS['linux64-styloseq']['env_name'] = 'linux-perf'
-PLATFORMS['linux64-styloseq']['ubuntu64_hw_styloseq'] = {'name': 'Ubuntu HW 12.04 x64 stylo sequential'}
-PLATFORMS['linux64-styloseq']['stage_product'] = 'firefox'
-PLATFORMS['linux64-styloseq']['mozharness_config'] = {
-    'mozharness_python': '/tools/buildbot/bin/python',
-    'hg_bin': 'hg',
-    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
-    'config_file': 'talos/linux_config.py',
-}
-
 PLATFORMS['linux64-asan']['slave_platforms'] = ['ubuntu64-asan_vm', 'ubuntu64-asan_vm_lnx_large']
 PLATFORMS['linux64-asan']['ubuntu64-asan_vm'] = {'name': 'Ubuntu ASAN VM 12.04 x64'}
 PLATFORMS['linux64-asan']['ubuntu64-asan_vm_lnx_large'] = {'name': 'Ubuntu ASAN VM large 12.04 x64'}
@@ -247,8 +234,8 @@ for platform, platform_config in PLATFORMS.iteritems():
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
-ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'win32-devedition', 'macosx64', 'macosx64-devedition', 'win64', 'win64-devedition', 'linux64-stylo', 'linux64-styloseq' ))
-LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'linux64-stylo', 'linux64-styloseq'))
+ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'win32-devedition', 'macosx64', 'macosx64-devedition', 'win64', 'win64-devedition', 'linux64-stylo' ))
+LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'linux64-stylo'))
 WIN7_ONLY = ['win7_ix', 'win7_ix_devedition']
 
 SUITES = {
@@ -373,7 +360,6 @@ BRANCH_UNITTEST_VARS = {
         'linux': {},
         'linux64': {},
         'linux64-stylo': {},
-        'linux64-styloseq': {},
         'linux64-asan': {},
         'macosx64': {},
         'macosx64-devedition':{},
@@ -1303,14 +1289,6 @@ PLATFORM_UNITTEST_VARS = {
         'unittest-env': {'DISPLAY': ':0'},
         'ubuntu64_hw_stylo': {},
     },
-     'linux64-styloseq': {
-        'product_name': 'firefox',
-        'app_name': 'browser',
-        'brand_name': 'Minefield',
-        'builds_before_reboot': 1,
-        'unittest-env': {'DISPLAY': ':0'},
-        'ubuntu64_hw_styloseq': {},
-    },                      
     'linux64-asan': {
         'product_name': 'firefox',
         'app_name': 'browser',
@@ -3854,10 +3832,9 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
 for branch in BRANCHES.keys():
     if branch in ['mozilla-central', 'try']:
         continue
-    if 'linux64-stylo' not in BRANCHES[branch]['platforms'] and 'linux64-styloseq' not in BRANCHES[branch]['platforms']  :
+    if 'linux64-stylo' not in BRANCHES[branch]['platforms']:
         continue
     BRANCHES[branch]['platforms']['linux64-stylo']['talos_slave_platforms'] = []
-    BRANCHES[branch]['platforms']['linux64-styloseq']['talos_slave_platforms'] = []
 
 # Bug 1359595 - enable CI tests for DevEdition on mozilla-beta and jamun
 for branch in BRANCHES.keys():
