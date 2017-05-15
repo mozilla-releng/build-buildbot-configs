@@ -2521,6 +2521,9 @@ PLATFORM_UNITTEST_VARS = {
                 'reftest-e10s': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
+                'reftest-qr-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
                 'reftest-no-accel': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
