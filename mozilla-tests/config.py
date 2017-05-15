@@ -3500,6 +3500,23 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
     branch['perf-reftest_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['perf-reftest-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
+# Bug 1364157 - Disable non-e10s talos tests on 55+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
+    if branch.get('enable_talos') is False:
+        continue
+
+    branch['g1_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+    branch['g2_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+    branch['g3_tests'] = (0, False, {}, LINUX_ONLY)
+    branch['g4_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+    branch['chromez_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+    branch['dromaeojs_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+    branch['other_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+    branch['svgr_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+    branch['tp5o_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+    branch['xperf_tests'] = (0, False, {}, WIN7_ONLY)
+    branch['perf-reftest_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+
 ### Test suites that only run on Try ###
 
 ride_trains_branches = []
