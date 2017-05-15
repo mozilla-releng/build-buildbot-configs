@@ -216,8 +216,7 @@ PLATFORMS['linux64-stylo']['mozharness_config'] = {
 PLATFORMS['linux64-styloseq']['slave_platforms'] = []
 PLATFORMS['linux64-styloseq']['talos_slave_platforms'] = ['ubuntu64_hw_styloseq']
 PLATFORMS['linux64-styloseq']['env_name'] = 'linux-perf'
-PLATFORMS['linux64-styloseq']['ubuntu64_hw_styloseq'] = {'name': 'Ubuntu HW
-                                                         12.04 x64 stylo-sequential'}
+PLATFORMS['linux64-styloseq']['ubuntu64_hw_styloseq'] = {'name': 'Ubuntu HW 12.04 x64 stylo-sequential'}
 PLATFORMS['linux64-styloseq']['stage_product'] = 'firefox'
 PLATFORMS['linux64-styloseq']['mozharness_config'] = {
     'mozharness_python': '/tools/buildbot/bin/python',
