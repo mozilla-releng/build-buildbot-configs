@@ -2233,8 +2233,10 @@ BRANCHES['mozilla-release']['enable_nightly'] = False
 BRANCHES['mozilla-release']['enable_blocklist_update'] = True
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
 ### Release Promotion
-BRANCHES['mozilla-release']['enable_release_promotion'] = True
-BRANCHES['mozilla-release']['enable_fennec_relpro'] = True
+BRANCHES['mozilla-release']['enable_release_promotion'] = {
+    "firefox": True,
+    "fennec": True,
+}
 # used by process/release.py
 BRANCHES['mozilla-release']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
 BRANCHES['mozilla-release']['bouncer_submitter_config'] = {
@@ -2276,7 +2278,10 @@ BRANCHES['mozilla-release']['platforms']['win32']['dep_signing_servers'] = 'rele
 BRANCHES['mozilla-release']['platforms']['win64']['dep_signing_servers'] = 'release-signing'
 # used by releasetasks
 BRANCHES['mozilla-release']['bouncer_enabled'] = True
-BRANCHES['mozilla-release']['postrelease_version_bump_enabled'] = True
+BRANCHES['mozilla-release']['postrelease_version_bump_enabled'] = {
+    "firefox": True,
+    "fennec": True,
+}
 BRANCHES['mozilla-release']['postrelease_bouncer_aliases_enabled'] = True
 BRANCHES['mozilla-release']['postrelease_mark_as_shipped_enabled'] = True
 BRANCHES['mozilla-release']['uptake_monitoring_enabled'] = True
@@ -2304,8 +2309,12 @@ BRANCHES['mozilla-release']['root_home_dir'] = {
 }
 BRANCHES['mozilla-release']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-release']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
-BRANCHES['mozilla-release']['partner_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
-BRANCHES['mozilla-release']['eme_free_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-release']['partner_repacks_platforms'] = {
+    "firefox": ("linux", "linux64", "win32", "win64", "macosx64")
+}
+BRANCHES['mozilla-release']['eme_free_repacks_platforms'] = {
+    "firefox": ("linux", "linux64", "win32", "win64", "macosx64")
+}
 BRANCHES['mozilla-release']['partner_repack_config'] = {
     "firefox": {
         "script_name": "scripts/desktop_partner_repacks.py",
@@ -2320,11 +2329,12 @@ BRANCHES['mozilla-release']['partner_repack_config'] = {
 BRANCHES['mozilla-release']['updates_builder_enabled'] = True
 BRANCHES['mozilla-release']['update_verify_enabled'] = True
 BRANCHES['mozilla-release']['mirror_requiring_channels'] = ['release']
-BRANCHES['mozilla-release']['release_channel_mappings'] = [
-    [r"^\d+\.0$", ["beta", "release"]],  # RC, 45.0
-    [r"^\d+\.\d+\.\d+$", ["release"]],  # Other (dot releaseas), 45.0.4
-]
-BRANCHES['mozilla-release']['snap_enabled'] = False
+BRANCHES['mozilla-release']['release_channel_mappings'] = {
+  "firefox": [
+        [r"^\d+\.0$", ["beta", "release"]],  # RC, 45.0
+        [r"^\d+\.\d+\.\d+$", ["release"]],  # Other (dot releaseas), 45.0.4
+    ]
+}
 # Bug 1313434, CI builds on all named branches
 BRANCHES['mozilla-release']['watch_all_branches'] = True
 # platform to TC index mapping to help finding prmotable CI builds
@@ -2392,34 +2402,44 @@ BRANCHES['mozilla-beta']['platforms']['android-api-15-debug']['enable_dep'] = Tr
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile', 'devedition']
 BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
 ### Release Promotion
-BRANCHES['mozilla-beta']['enable_release_promotion'] = True
-BRANCHES['mozilla-beta']['enable_fennec_relpro'] = True
+# enables/disables BB builders
+BRANCHES['mozilla-beta']['enable_release_promotion'] = {
+    "firefox": True,
+    "fennec": True,
+    "devedition": True,
+}
 # used by process/release.py
 BRANCHES['mozilla-beta']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
 BRANCHES['mozilla-beta']['bouncer_submitter_config'] = {
     "firefox": "releases/bouncer_firefox_beta.py",
+    "devedition": "releases/bouncer_firefox_devedition.py",
     "fennec": 'releases/bouncer_fennec_beta.py',
 }
 BRANCHES['mozilla-beta']['uptake_monitoring_config'] = {
     "firefox": 'releases/bouncer_firefox_beta.py',
+    "devedition": "releases/bouncer_firefox_devedition.py",
     "fennec": 'releases/bouncer_fennec_beta.py',
 }
 BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = {
     "firefox": 'releases/postrelease_firefox_beta.py',
     # configs are generic so can be reused
     "fennec": 'releases/postrelease_firefox_beta.py',
+    "devedition": "disabled",
 }
 BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_config'] = {
     "firefox": 'releases/bouncer_firefox_beta.py',
+    "devedition": "releases/bouncer_firefox_devedition.py",
     "fennec": 'releases/bouncer_fennec_beta.py',
 }
 BRANCHES['mozilla-beta']['postrelease_mark_as_shipped_config'] = {
     "firefox": 'releases/postrelease_firefox_beta.py',
     # configs are generic so can be reused
     "fennec": 'releases/postrelease_firefox_beta.py',
+    "devedition": "releases/postrelease_firefox_beta.py",
 }
 BRANCHES['mozilla-beta']['updates_config'] = {
     "firefox": 'releases/updates_firefox_beta.py',
+    "devedition": 'releases/updates_firefox_devedition.py',
     # TODO - fennec
     "fennec": "",
 }
@@ -2441,20 +2461,29 @@ BRANCHES['mozilla-beta']['platforms']['win64-devedition']['dep_signing_servers']
 BRANCHES['mozilla-beta']['bouncer_enabled'] = True
 BRANCHES['mozilla-beta']['updates_builder_enabled'] = True
 BRANCHES['mozilla-beta']['update_verify_enabled'] = True
-BRANCHES['mozilla-beta']['postrelease_version_bump_enabled'] = True
+BRANCHES['mozilla-beta']['postrelease_version_bump_enabled'] = {
+    "firefox": True,
+    "devedition": False,
+    "fennec": True,
+}
 BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_enabled'] = True
 BRANCHES['mozilla-beta']['postrelease_mark_as_shipped_enabled'] = True
 BRANCHES['mozilla-beta']['uptake_monitoring_enabled'] = True
 BRANCHES['mozilla-beta']['push_to_candidates_enabled'] = True
 BRANCHES['mozilla-beta']['push_to_releases_automatic'] = True
-BRANCHES['mozilla-beta']['release_channel_mappings'] = [["^.*$", ["beta"]]]
+BRANCHES['mozilla-beta']['release_channel_mappings'] = {
+    "firefox": [["^.*$", ["beta"]]],
+    "devedition": [["^.*$", ["aurora"]]],
+}
 BRANCHES['mozilla-beta']['beetmover_buckets'] = {
     "firefox": "net-mozaws-prod-delivery-firefox",
     "fennec": "net-mozaws-prod-delivery-archive",
+    "devedition": "net-mozaws-prod-delivery-firefox",
 }
 BRANCHES['mozilla-beta']['uptake_monitoring_platforms'] = {
     "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
     "fennec": ("android-api-15", "android-x86"),
+    "devedition": ("linux", "linux64", "win32", "win64", "macosx64"),
 }
 BRANCHES['mozilla-beta']['signing_class'] = {
     "firefox": "release-signing",
@@ -2478,8 +2507,12 @@ BRANCHES['mozilla-beta']['root_home_dir'] = {
 }
 BRANCHES['mozilla-beta']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-beta']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
-BRANCHES['mozilla-beta']['partner_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
-BRANCHES['mozilla-beta']['eme_free_repacks_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
+BRANCHES['mozilla-beta']['partner_repacks_platforms'] = {
+    "firefox": ("linux", "linux64", "win32", "win64", "macosx64")
+}
+BRANCHES['mozilla-beta']['eme_free_repacks_platforms'] = {
+    "firefox": ("linux", "linux64", "win32", "win64", "macosx64")
+}
 BRANCHES['mozilla-beta']['partner_repack_config'] = {
     "firefox": {
         "script_name": "scripts/desktop_partner_repacks.py",
@@ -2491,8 +2524,11 @@ BRANCHES['mozilla-beta']['partner_repack_config'] = {
     # TODO - add fennec support
     # 'fennec': {}
 }
-BRANCHES['mozilla-beta']['snap_enabled'] = True
-BRANCHES['mozilla-beta']['update_verify_channel'] = 'beta-cdntest'
+BRANCHES['mozilla-beta']['snap_enabled'] = {"firefox": True}
+BRANCHES['mozilla-beta']['update_verify_channel'] = {
+    "firefox": 'beta-cdntest',
+    "devedition": 'aurora-cdntest',
+}
 BRANCHES['mozilla-beta']['update_verify_requires_cdn_push'] = True
 # platform to TC index mapping to help finding prmotable CI builds
 BRANCHES['mozilla-beta']['tc_indexes'] = {
@@ -2516,6 +2552,28 @@ BRANCHES['mozilla-beta']['tc_indexes'] = {
         "win64": {
             "signed": "gecko.v2.mozilla-beta.revision.{rev}.firefox.win64-opt",
             "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.win64-opt",
+        },
+    },
+    "devedition": {
+        "linux": {
+            "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.devedition-l10n.linux-opt.en-US",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.devedition-l10n.linux-opt.en-US",
+        },
+        "linux64": {
+            "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.devedition-l10n.linux64-opt.en-US",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.devedition-l10n.linux64-opt.en-US",
+        },
+        "macosx64": {
+            "signed": "gecko.v2.mozilla-beta.revision.{rev}.devedition.macosx64-opt",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.devedition.macosx64-opt",
+        },
+        "win32": {
+            "signed": "gecko.v2.mozilla-beta.revision.{rev}.devedition.win32-opt",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.devedition.win32-opt",
+        },
+        "win64": {
+            "signed": "gecko.v2.mozilla-beta.revision.{rev}.devedition.win64-opt",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.devedition.win64-opt",
         },
     },
     # TODO: fennec
@@ -2601,8 +2659,9 @@ BRANCHES['mozilla-esr45']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr45']['enable_hpkp_update'] = True
 BRANCHES['mozilla-esr45']['enabled_products'] = ['firefox']
 ### Release Promotion
-BRANCHES['mozilla-esr45']['enable_release_promotion'] = True
-BRANCHES['mozilla-esr45']['enable_fennec_relpro'] = False
+BRANCHES['mozilla-esr45']['enable_release_promotion'] = {
+    "firefox": True,
+}
 # used by process/release.py
 BRANCHES['mozilla-esr45']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
 BRANCHES['mozilla-esr45']['bouncer_submitter_config'] = {
@@ -2634,7 +2693,7 @@ BRANCHES['mozilla-esr45']['platforms']['win32']['dep_signing_servers'] = 'releas
 BRANCHES['mozilla-esr45']['platforms']['win64']['dep_signing_servers'] = 'release-signing'
 # used by releasetasks
 BRANCHES['mozilla-esr45']['bouncer_enabled'] = True
-BRANCHES['mozilla-esr45']['postrelease_version_bump_enabled'] = True
+BRANCHES['mozilla-esr45']['postrelease_version_bump_enabled'] = {"firefox": True}
 BRANCHES['mozilla-esr45']['postrelease_bouncer_aliases_enabled'] = False
 BRANCHES['mozilla-esr45']['postrelease_mark_as_shipped_enabled'] = True
 BRANCHES['mozilla-esr45']['uptake_monitoring_enabled'] = True
@@ -2659,8 +2718,7 @@ BRANCHES['mozilla-esr45']['release_platforms'] = ("linux", "linux64", "win32", "
 BRANCHES['mozilla-esr45']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-esr45']['updates_builder_enabled'] = True
 BRANCHES['mozilla-esr45']['update_verify_enabled'] = True
-BRANCHES['mozilla-esr45']['release_channel_mappings'] = [["^.*$", ["esr"]]]
-BRANCHES['mozilla-esr45']['snap_enabled'] = False
+BRANCHES['mozilla-esr45']['release_channel_mappings'] = {"firefox": [["^.*$", ["esr"]]]}
 # platform to TC index mapping to help finding prmotable CI builds
 BRANCHES['mozilla-esr45']['tc_indexes'] = {
     "firefox": {
@@ -2714,8 +2772,9 @@ BRANCHES['mozilla-esr52']['enable_hsts_update'] = True
 BRANCHES['mozilla-esr52']['enable_hpkp_update'] = True
 BRANCHES['mozilla-esr52']['enabled_products'] = ['firefox']
 ### Release Promotion
-BRANCHES['mozilla-esr52']['enable_release_promotion'] = True
-BRANCHES['mozilla-esr52']['enable_fennec_relpro'] = False
+BRANCHES['mozilla-esr52']['enable_release_promotion'] = {
+    "firefox": True,
+}
 # used by process/release.py
 BRANCHES['mozilla-esr52']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
 BRANCHES['mozilla-esr52']['bouncer_submitter_config'] = {
@@ -2747,7 +2806,7 @@ BRANCHES['mozilla-esr52']['platforms']['win32']['dep_signing_servers'] = 'releas
 BRANCHES['mozilla-esr52']['platforms']['win64']['dep_signing_servers'] = 'release-signing'
 # used by releasetasks
 BRANCHES['mozilla-esr52']['bouncer_enabled'] = True
-BRANCHES['mozilla-esr52']['postrelease_version_bump_enabled'] = True
+BRANCHES['mozilla-esr52']['postrelease_version_bump_enabled'] = {"firefox": True}
 BRANCHES['mozilla-esr52']['postrelease_bouncer_aliases_enabled'] = True
 BRANCHES['mozilla-esr52']['postrelease_mark_as_shipped_enabled'] = True
 BRANCHES['mozilla-esr52']['uptake_monitoring_enabled'] = True
@@ -2772,8 +2831,7 @@ BRANCHES['mozilla-esr52']['release_platforms'] = ("linux", "linux64", "win32", "
 BRANCHES['mozilla-esr52']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
 BRANCHES['mozilla-esr52']['updates_builder_enabled'] = True
 BRANCHES['mozilla-esr52']['update_verify_enabled'] = True
-BRANCHES['mozilla-esr52']['release_channel_mappings'] = [["^.*$", ["esr"]]]
-BRANCHES['mozilla-esr52']['snap_enabled'] = False
+BRANCHES['mozilla-esr52']['release_channel_mappings'] = {"firefox": [["^.*$", ["esr"]]]}
 # Bug 1342117, CI builds on all named branches
 BRANCHES['mozilla-esr52']['watch_all_branches'] = True
 BRANCHES['mozilla-esr52']['sha1_repacks_platforms'] = ("win32",)

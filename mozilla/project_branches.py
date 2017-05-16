@@ -177,45 +177,67 @@ PROJECT_BRANCHES = {
             'android-x86': {},
         },
         'pgo_strategy': 'per-checkin',
-        'enable_release_promotion': True,
+        'enable_release_promotion': {
+            "firefox": True,
+            "devedition": True,
+        },
         'build_tools_repo_path': 'users/raliiev_mozilla.com/tools',
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "single_locale_branch_config": "dev-mozilla-beta",
-        'release_channel_mappings': [["^.*$", ["beta-dev"]]],
+        'release_channel_mappings': {
+            "firefox": [["^.*$", ["beta-dev"]]],
+            "devedition": [["^.*$", ["aurora-dev"]]],
+        },
+        'uptake_monitoring_platforms': {
+            "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
+            "fennec": ("android-api-15", "android-x86"),
+            "devedition": ("linux", "linux64", "win32", "win64", "macosx64"),
+        },
         # temp balrog
         'balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
         'funsize_balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': {
             "firefox": "releases/bouncer_firefox_beta.py",
+            "devedition": "releases/bouncer_firefox_devedition.py",
         },
         'bouncer_enabled': True,
         'updates_builder_enabled': True,
         'update_verify_enabled': True,
-        'postrelease_version_bump_enabled': True,
+        'postrelease_version_bump_enabled': {
+            "firefox": True,
+            "devedition": False,
+            "fennec": True,
+        },
         'postrelease_version_bump_config': {
             "firefox": 'releases/dev_postrelease_firefox_beta.py',
+            "devedition": 'disabled',
         },
         'uptake_monitoring_enabled': True,
         'uptake_monitoring_config': {
             "firefox": 'releases/bouncer_firefox_beta.py',
+            "devedition": 'releases/bouncer_firefox_devedition.py',
         },
         'postrelease_bouncer_aliases_enabled': True,
         'postrelease_bouncer_aliases_config': {
             "firefox": 'releases/bouncer_firefox_beta.py',
+            "devedition": 'releases/bouncer_firefox_devedition.py',
         },
         'postrelease_mark_as_shipped_enabled': True,
         'postrelease_mark_as_shipped_config': {
             "firefox": 'releases/dev_postrelease_firefox_beta.py',
+            "devedition": 'releases/dev_postrelease_firefox_beta.py',
         },
         'push_to_candidates_enabled': True,
         'updates_config': {
             "firefox": 'releases/dev_updates_firefox_beta.py',
+            "devedition": 'releases/dev_updates_firefox_devedition.py',
         },
         'beetmover_credentials': '/builds/dev-beetmover-s3.credentials',
         'beetmover_buckets': {
             'firefox': 'net-mozaws-stage-delivery-firefox',
+            'devedition': 'net-mozaws-stage-delivery-firefox',
         },
         'stage_product': {
             'firefox': 'firefox',
@@ -241,7 +263,11 @@ PROJECT_BRANCHES = {
         'enabled_products': ['firefox', 'mobile', 'devedition'],
         'push_to_releases_automatic': False,
         'merge_builds': False,
-        'snap_enabled': True,
+        'snap_enabled': {"firefox": True, "devedition": False},
+        'update_verify_channel': {
+            'firefox': 'beta-dev-cdntest',
+            'devedition': 'aurora-dev-cdntest',
+        },
         'tc_indexes': {
             "firefox": {
                 "linux": {
