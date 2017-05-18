@@ -184,7 +184,10 @@ PROJECT_BRANCHES = {
         'build_tools_repo_path': 'users/raliiev_mozilla.com/tools',
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
-        "single_locale_branch_config": "dev-mozilla-beta",
+        "single_locale_branch_config": {
+            "firefox": "dev-mozilla-beta",
+            "devedition": "dev-mozilla-beta_devedition",
+        },
         'release_channel_mappings': {
             "firefox": [["^.*$", ["beta-dev"]]],
             "devedition": [["^.*$", ["aurora-dev"]]],
