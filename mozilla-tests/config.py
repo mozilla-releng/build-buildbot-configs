@@ -3880,10 +3880,10 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
 for branch in BRANCHES.keys():
     if branch in ['mozilla-central', 'try']:
         continue
-    if 'linux64-stylo' not in BRANCHES[branch]['platforms'] and 'linux64-stylo-seq' not in BRANCHES[branch]['platforms']  :
+    if 'linux64-stylo' not in BRANCHES[branch]['platforms'] and 'linux64-styloseq' not in BRANCHES[branch]['platforms']  :
         continue
     BRANCHES[branch]['platforms']['linux64-stylo']['talos_slave_platforms'] = []
-    BRANCHES[branch]['platforms']['linux64-stylo-seq']['talos_slave_platforms'] = []
+    BRANCHES[branch]['platforms']['linux64-styloseq']['talos_slave_platforms'] = []
 
 # Bug 1359595 - enable CI tests for DevEdition on mozilla-beta and jamun
 for branch in BRANCHES.keys():
