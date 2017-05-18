@@ -2239,6 +2239,9 @@ BRANCHES['mozilla-release']['enable_release_promotion'] = {
 }
 # used by process/release.py
 BRANCHES['mozilla-release']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
+BRANCHES['mozilla-release']['single_locale_branch_config'] = {
+    "firefox": "mozilla-release",
+}
 BRANCHES['mozilla-release']['bouncer_submitter_config'] = {
     "firefox": "releases/bouncer_firefox_release.py",
     "fennec": 'releases/bouncer_fennec.py',
@@ -2410,6 +2413,10 @@ BRANCHES['mozilla-beta']['enable_release_promotion'] = {
 }
 # used by process/release.py
 BRANCHES['mozilla-beta']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
+BRANCHES['mozilla-beta']['single_locale_branch_config'] = {
+    "firefox": "mozilla-beta",
+    "devedition": "mozilla-beta_devedition",
+}
 BRANCHES['mozilla-beta']['bouncer_submitter_config'] = {
     "firefox": "releases/bouncer_firefox_beta.py",
     "devedition": "releases/bouncer_firefox_devedition.py",
@@ -2664,6 +2671,9 @@ BRANCHES['mozilla-esr45']['enable_release_promotion'] = {
 }
 # used by process/release.py
 BRANCHES['mozilla-esr45']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
+BRANCHES['mozilla-esr45']['single_locale_branch_config'] = {
+    "firefox": "mozilla-esr45",
+}
 BRANCHES['mozilla-esr45']['bouncer_submitter_config'] = {
     "firefox": "releases/bouncer_firefox_esr.py",
 }
@@ -2777,6 +2787,9 @@ BRANCHES['mozilla-esr52']['enable_release_promotion'] = {
 }
 # used by process/release.py
 BRANCHES['mozilla-esr52']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
+BRANCHES['mozilla-esr52']['single_locale_branch_config'] = {
+    "firefox": "mozilla-esr52",
+}
 BRANCHES['mozilla-esr52']['bouncer_submitter_config'] = {
     "firefox": "releases/bouncer_firefox_esr.py",
 }
