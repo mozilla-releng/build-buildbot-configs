@@ -240,7 +240,7 @@ PROJECT_BRANCHES = {
         'beetmover_credentials': '/builds/dev-beetmover-s3.credentials',
         'beetmover_buckets': {
             'firefox': 'net-mozaws-stage-delivery-firefox',
-            'devedition': 'net-mozaws-stage-delivery-firefox',
+            'devedition': 'net-mozaws-stage-delivery-archive',
         },
         'stage_product': {
             'firefox': 'firefox',
