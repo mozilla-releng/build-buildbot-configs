@@ -2485,7 +2485,7 @@ BRANCHES['mozilla-beta']['release_channel_mappings'] = {
 BRANCHES['mozilla-beta']['beetmover_buckets'] = {
     "firefox": "net-mozaws-prod-delivery-firefox",
     "fennec": "net-mozaws-prod-delivery-archive",
-    "devedition": "net-mozaws-prod-delivery-firefox",
+    "devedition": "net-mozaws-prod-delivery-archive",
 }
 BRANCHES['mozilla-beta']['uptake_monitoring_platforms'] = {
     "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
