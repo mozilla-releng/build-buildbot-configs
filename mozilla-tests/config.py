@@ -3266,11 +3266,10 @@ for branch in BRANCHES.keys():
             for slave_platform in PLATFORMS[platform]['slave_platforms']:
                 if slave_platform not in BRANCHES['mozilla-beta']['platforms'][platform].keys():
                     continue
-                # re-initializing the values of the opt tests since they seem to be set for a list above 
-                BRANCHES[branch]['platforms'][str(platform + '-devedition')][str(slave_platform + '_devedition')]['opt_unittest_suites'] = []
-                # same since we don't need debug tests for devedition
+                # copy from beta
+                BRANCHES[branch]['platforms'][str(platform + '-devedition')][str(slave_platform + '_devedition')] = deepcopy(BRANCHES['mozilla-beta']['platforms'][platform][slave_platform])
+                #  we don't need debug tests for devedition
                 BRANCHES[branch]['platforms'][str(platform + '-devedition')][str(slave_platform + '_devedition')]['debug_unittest_suites'] = []
-                BRANCHES[branch]['platforms'][str(platform + '-devedition')][str(slave_platform + '_devedition')]['opt_unittest_suites'] = deepcopy(BRANCHES['mozilla-beta']['platforms'][platform][slave_platform]['opt_unittest_suites'])
     else:
        for p in BRANCHES[branch]['platforms'].keys():
            if p in ['macosx64-devedition', 'win32-devedition', 'win64-devedition']:
