@@ -781,7 +781,7 @@ BRANCHES['comm-esr45']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-esr45'
 BRANCHES['comm-esr45']['localesURL'] = \
     '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-esr45' % (GLOBAL_VARS['hgurl'])
-BRANCHES['comm-esr45']['enable_nightly'] = True
+BRANCHES['comm-esr45']['enable_nightly'] = False
 BRANCHES['comm-esr45']['updates_enabled'] = True
 BRANCHES['comm-esr45']['create_partial'] = False
 BRANCHES['comm-esr45']['enable_blocklist_update'] = True
