@@ -3276,6 +3276,22 @@ for branch in BRANCHES.keys():
                del BRANCHES[branch]['platforms'][p]
 
 
+# Bug 1365008 - Stop running reftests on Win7 hardware on Try
+for branch in BRANCHES.keys():
+    if branch not in ['try']:
+        continue
+    for platform in BRANCHES[branch]['platforms'].keys():
+        if platform not in ['win32']:
+            continue
+        for slave_platform in BRANCHES[branch]['platforms'][platform].keys():
+            if slave_platform  == 'win7_ix':
+                for test_type in ['opt_unittest_suites', 'debug_unittest_suites']:
+                    for test in BRANCHES[branch]['platforms'][platform][slave_platform][test_type][:]:
+                        if 'extra_args' not in test[1].keys():
+                            continue
+                        if '--reftest-suite' in test[1]['extra_args']:
+                            BRANCHES[branch]['platforms'][platform][slave_platform][test_type].remove(test)
+
 # Ash-specific branch config. Please add any new buildbot test scheduling changes above this block.
 for platform in PLATFORMS.keys():
     if platform not in BRANCHES['ash']['platforms']:
