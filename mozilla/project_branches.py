@@ -198,7 +198,7 @@ PROJECT_BRANCHES = {
             "devedition": ("linux", "linux64", "win32", "win64", "macosx64"),
         },
         # temp balrog
-        'balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
+        'balrog_api_root': 'http://ec2-54-196-167-74.compute-1.amazonaws.com:7070/api',
         'funsize_balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': {
