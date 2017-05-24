@@ -3257,7 +3257,7 @@ for branch in BRANCHES.keys():
 
 
 # Bug 1359595 - enable CI tests for DevEdition on mozilla-beta and jamun
-devedition_branches = ['jamun']
+devedition_branches = ['jamun', 'mozilla-beta']
 for branch in BRANCHES.keys():
     if branch in devedition_branches:
         for platform in BRANCHES['mozilla-beta']['platforms'].keys():
@@ -3271,9 +3271,9 @@ for branch in BRANCHES.keys():
                 #  we don't need debug tests for devedition
                 BRANCHES[branch]['platforms'][str(platform + '-devedition')][str(slave_platform + '_devedition')]['debug_unittest_suites'] = []
     else:
-       for p in BRANCHES[branch]['platforms'].keys():
-           if p in ['macosx64-devedition', 'win32-devedition', 'win64-devedition']:
-               del BRANCHES[branch]['platforms'][p]
+  	for p in BRANCHES[branch]['platforms'].keys():
+            if p in ['macosx64-devedition', 'win32-devedition', 'win64-devedition']:
+                del BRANCHES[branch]['platforms'][p]
 
 
 # Bug 1365008 - Stop running reftests on Win7 hardware on Try
