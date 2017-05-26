@@ -24,9 +24,6 @@ c['change_source'] = []
 DEFAULT_BRANCH_PRIORITY = 4
 BRANCH_PRIORITIES = {
     'mozilla-release': 0,
-    'comm-esr45': 0,
-    'comm-esr52': 0,
-    'mozilla-esr45': 1,
     'mozilla-esr52': 1,
     'mozilla-beta': 2,
     'comm-beta': 2,
@@ -34,9 +31,12 @@ BRANCH_PRIORITIES = {
     'comm-central': 3,
     'mozilla-aurora': 3,
     'comm-aurora': 3,
+    'comm-esr52': 3,
     # Unlisted branches are prioritized at this level
     'autoland': 4,
     'mozilla-inbound': 4,
+    'comm-esr45': 5,
+    'mozilla-esr45': 5,
     'try': 5,
     'try-comm-central': 5,
     'alder': 5,
