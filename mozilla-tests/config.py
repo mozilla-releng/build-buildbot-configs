@@ -372,6 +372,11 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'bloom_basic:bloom_basic_ref', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
+    'quantum-pageload-e10s': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, WIN7_ONLY),
+    },
 }
 
 BRANCH_UNITTEST_VARS = {
@@ -2859,13 +2864,14 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
     branch['g4_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['g4-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
-# Enable talos perf-reftest, g5 on 55+
+# Enable talos perf-reftest, g5, quantum-pageload-e10s on 55+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
     if branch.get('enable_talos') is False:
         continue
     branch['perf-reftest_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['perf-reftest-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['g5-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+    branch['quantum-pageload-e10s_tests'] = (1, False, {}, WIN7_ONLY)
 
 # Bug 1364157 - Disable non-e10s talos tests on 55+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
