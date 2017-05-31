@@ -83,7 +83,6 @@ SLAVES['win7_vm_gfx_devedition'] = SLAVES['win7_vm_gfx']
 SLAVES['win8_64_devedition'] = SLAVES['win8']
 SLAVES['win10_64_devedition'] = SLAVES['win10']
 
-
 TRY_SLAVES = {}
 
 GRAPH_CONFIG = ['--resultsServer', 'graphs.mozilla.org',
