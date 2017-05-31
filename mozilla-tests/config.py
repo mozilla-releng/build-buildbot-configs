@@ -153,11 +153,13 @@ PLATFORMS['win32-devedition']['mozharness_config'] = {
 }
 
 PLATFORMS['win64']['slave_platforms'] = ['win8_64']
-PLATFORMS['win64']['talos_slave_platforms'] = ['win8_64']
+PLATFORMS['win64']['talos_slave_platforms'] = ['win10_64']
 PLATFORMS['win64']['env_name'] = 'win64-perf'
 PLATFORMS['win64']['stage_product'] = 'firefox'
 PLATFORMS['win64']['win8_64'] = {'name': 'Windows 8 64-bit',
                                  'try_by_default': False}
+PLATFORMS['win64']['win10_64'] = {'name': 'Windows 10 64-bit',
+                                  'try_by_default': True}
 PLATFORMS['win64']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
@@ -166,10 +168,12 @@ PLATFORMS['win64']['mozharness_config'] = {
 }
 
 PLATFORMS['win64-devedition']['slave_platforms'] = ['win8_64_devedition']
-PLATFORMS['win64-devedition']['talos_slave_platforms'] = ['win8_64_devedition']
+PLATFORMS['win64-devedition']['talos_slave_platforms'] = ['win10_64_devedition']
 PLATFORMS['win64-devedition']['env_name'] = 'win64-perf'
 PLATFORMS['win64-devedition']['stage_product'] = 'firefox'
 PLATFORMS['win64-devedition']['win8_64_devedition'] = {'name': 'Windows 8 64-bit DevEdition',
+                                                       'try_by_default': False}
+PLATFORMS['win64-devedition']['win10_64_devedition'] = {'name': 'Windows 10 64-bit DevEdition',
                                                        'try_by_default': False}
 PLATFORMS['win64-devedition']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
@@ -371,6 +375,11 @@ SUITES = {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'bloom_basic:bloom_basic_ref', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
+    },
+    'quantum-pageload-e10s': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, WIN7_ONLY),
     },
 }
 
@@ -2035,6 +2044,10 @@ PLATFORM_UNITTEST_VARS = {
         'env_name': 'win64-perf-unittest',
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
+        'win10_64': {
+            'opt_unittest_suites': [],
+            'debug_unittest_suites': []
+        },
         'win8_64': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + MARIONETTE + \
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK + WEB_PLATFORM_REFTESTS + \
@@ -2183,6 +2196,10 @@ PLATFORM_UNITTEST_VARS = {
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
         'win8_64_devedition': {
+            'opt_unittest_suites': [],
+            'debug_unittest_suites': [],
+        },
+        'win10_64_devedition': {
             'opt_unittest_suites': [],
             'debug_unittest_suites': [],
         },
@@ -2746,7 +2763,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
                         REFTEST_NOACCEL_E10S
 
 # Bug 1277885 - Enable e10s tests for all Windows platforms on Try
-# Win7/Win8 already run by default on production. WinXP and Win10 are opt-in platforms.
+# Win7/Win8 already run by default on production. WinXP is opt-in platforms.
 for platform in PLATFORMS.keys():
     if platform not in BRANCHES['try']['platforms']:
         continue
@@ -2859,13 +2876,14 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
     branch['g4_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['g4-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
-# Enable talos perf-reftest, g5 on 55+
+# Enable talos perf-reftest, g5, quantum-pageload-e10s on 55+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
     if branch.get('enable_talos') is False:
         continue
     branch['perf-reftest_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['perf-reftest-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['g5-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+    branch['quantum-pageload-e10s_tests'] = (1, False, {}, WIN7_ONLY)
 
 # Bug 1364157 - Disable non-e10s talos tests on 55+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
@@ -3185,7 +3203,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
         if platform not in ['macosx64', 'win64', 'win32']:
             continue
         for slave_platform in BRANCHES[name]['platforms'][platform].keys():
-            if slave_platform  not in ['yosemite_r7', 'win8_64'] and slave_platform.startswith('win7_') is False:
+            if slave_platform  not in ['yosemite_r7', 'win8_64', 'win10_64'] and slave_platform.startswith('win7_') is False:
                 continue
             for test in ['opt_unittest_suites', 'debug_unittest_suites']:
                 for item in range(0, len(BRANCHES[name]['platforms'][platform][slave_platform][test])):
