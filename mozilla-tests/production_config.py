@@ -8,6 +8,8 @@ SLAVES = {
     'win7_vm_gfx_devedition': {},
     'win8': {},
     'win8_64_devedition': {},
+    'win10': {},
+    'win10_64_devedition': {},
     'snowleopard': {},
     'yosemite_r7': {},
     'yosemite_r7_devedition': {},
@@ -40,6 +42,9 @@ for i in range(1, 101):
 for i in range(1, 102) + range(103, 207) + range(208, 398):  # Omit 102 for win10 // Bug 1191481 // Bug 1255812 // Bug 1299468 // Bug 1317723
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
 
+for i in range(1, 75):
+    SLAVES['win10']['t-w1064-ix-%03i' % i] = {}
+
 for i in range(86, 93) + range(95, 98):  # slaves 0034&0093&0094&0153 have been decommed // Bug 1279394 // Bug 1292656
     SLAVES['snowleopard']['t-snow-r4-%04i' % i] = {}
 
@@ -63,6 +68,7 @@ for i in range(1, 3):
 
 SLAVES['ubuntu64-asan_vm'] = SLAVES['ubuntu64_vm']
 SLAVES['win8_64'] = SLAVES['win8']
+SLAVES['win10_64'] = SLAVES['win10']
 SLAVES['ubuntu64_vm_mobile'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_vm_armv7_mobile'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_vm_armv7_large'] = SLAVES['ubuntu64_vm_large']
@@ -75,6 +81,7 @@ SLAVES['win7_ix_devedition'] = SLAVES['win7_ix']
 SLAVES['win7_vm_devedition'] = SLAVES['win7_vm']
 SLAVES['win7_vm_gfx_devedition'] = SLAVES['win7_vm_gfx']
 SLAVES['win8_64_devedition'] = SLAVES['win8']
+SLAVES['win10_64_devedition'] = SLAVES['win10']
 
 
 TRY_SLAVES = {}
