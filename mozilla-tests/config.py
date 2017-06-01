@@ -379,7 +379,7 @@ SUITES = {
     'quantum-pageload-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, WIN7_ONLY),
+        'options': ({}, ALL_TALOS_PLATFORMS),
     },
 }
 
@@ -2883,7 +2883,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
     branch['perf-reftest_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['perf-reftest-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['g5-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-    branch['quantum-pageload-e10s_tests'] = (1, False, {}, WIN7_ONLY)
+    branch['quantum-pageload-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 # Bug 1364157 - Disable non-e10s talos tests on 55+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):

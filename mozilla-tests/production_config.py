@@ -42,7 +42,7 @@ for i in range(1, 101):
 for i in range(1, 102) + range(103, 207) + range(208, 398):  # Omit 102 for win10 // Bug 1191481 // Bug 1255812 // Bug 1299468 // Bug 1317723
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
 
-for i in range(1, 75):
+for i in range(1, 76):
     SLAVES['win10']['t-w1064-ix-%03i' % i] = {}
 
 for i in range(86, 93) + range(95, 98):  # slaves 0034&0093&0094&0153 have been decommed // Bug 1279394 // Bug 1292656
