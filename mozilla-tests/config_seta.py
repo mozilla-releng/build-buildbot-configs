@@ -18,6 +18,7 @@ seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"])
                   "Windows 7 VM 32-bit": ("win32", ["win7_vm"]),
                   "Windows 7 VM-GFX 32-bit": ("win32", ["win7_vm_gfx"]),
                   "Windows 8 64-bit": ("win64", ["win8_64"]),
+                  "Windows 10 64-bit": ("win64", ["win10_64"]),
                   "Ubuntu VM 12.04": ("linux", ["ubuntu32_vm"]),
                   "Ubuntu VM 12.04 x64": ("linux64", ["ubuntu64_vm"]),
                   "Ubuntu VM large 12.04 x64": ("linux64", ["ubuntu64_vm_lnx_large"]),
