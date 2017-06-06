@@ -82,8 +82,6 @@ PROJECT_BRANCHES = {
             'linux64-debug': {},
             'macosx64': {},
             'macosx64-debug': {},
-            'win32': {},
-            'win32-debug': {},
             'win64': {},
             'win64-debug': {},
         },
