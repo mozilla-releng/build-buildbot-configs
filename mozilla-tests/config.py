@@ -3146,17 +3146,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
         if 'linux64-asan' in platform:
             del branch['platforms'][platform]
 
-# Bug 1308544 - Enable automation jobs on Cedar twig
-for branch in BRANCHES.keys():
-    if branch not in ['cedar']:
-        continue
-    for test in ['opt_unittest_suites', 'debug_unittest_suites']:
-        for platform in BRANCHES[branch]['platforms'].keys():
-                BRANCHES[branch]['platforms']['win64']['win8_64'][test] = [item for item in BRANCHES[branch]['platforms']['win64']['win8_64'][test] if (item[0].startswith('mochitest') or item in XPCSHELL)]
-                BRANCHES[branch]['platforms']['macosx64']['yosemite_r7'][test] = [item for item in BRANCHES[branch]['platforms']['macosx64']['yosemite_r7'][test] if (item[0].startswith('mochitest') or item in XPCSHELL)]
-                if test in ['opt_unittest_suites']:
-                    BRANCHES[branch]['platforms']['linux64']['ubuntu64_vm'][test] = [item for item in BRANCHES[branch]['platforms']['linux64']['ubuntu64_vm'][test] if (item[0].startswith('mochitest') or item in XPCSHELL)]
-
 # Bug 1308097 - Enable Windows 7 VM opt e10s crashtests and jsreftests on Firefox 52+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 52):
     # they are already enabled on try
@@ -3309,6 +3298,21 @@ for branch in BRANCHES.keys():
                             continue
                         if '--reftest-suite' in test[1]['extra_args']:
                             BRANCHES[branch]['platforms'][platform][slave_platform][test_type].remove(test)
+
+# Bug 1308544 - Enable automation jobs on Cedar twig
+# Bug 1369065 - Please enable Win32 tests for cedar twig.
+for branch in BRANCHES.keys():
+    if branch not in ['cedar']:
+        continue
+    for platform in BRANCHES[branch]['platforms'].keys():
+        if platform not in ['win32', 'win64', 'macosx64']:
+            continue
+        for slave_platform in BRANCHES[name]['platforms'][platform].keys():
+            if slave_platform not in ['yosemite_r7', 'win8_64'] and slave_platform.startswith('win7_') is False:
+                continue
+            for test in ['opt_unittest_suites', 'debug_unittest_suites']:
+                BRANCHES[branch]['platforms'][platform][slave_platform][test] = \
+                    [item for item in BRANCHES[branch]['platforms'][platform][slave_platform][test] if (item[0].startswith('mochitest') or item in XPCSHELL)]
 
 # Ash-specific branch config. Please add any new buildbot test scheduling changes above this block.
 for platform in PLATFORMS.keys():
