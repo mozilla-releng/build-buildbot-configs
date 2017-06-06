@@ -159,7 +159,7 @@ PLATFORMS['win64']['stage_product'] = 'firefox'
 PLATFORMS['win64']['win8_64'] = {'name': 'Windows 8 64-bit',
                                  'try_by_default': False}
 PLATFORMS['win64']['win10_64'] = {'name': 'Windows 10 64-bit',
-                                  'try_by_default': False}
+                                  'try_by_default': True}
 PLATFORMS['win64']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
