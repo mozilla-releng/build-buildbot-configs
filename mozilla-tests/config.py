@@ -3310,6 +3310,20 @@ for branch in BRANCHES.keys():
                         if '--reftest-suite' in test[1]['extra_args']:
                             BRANCHES[branch]['platforms'][platform][slave_platform][test_type].remove(test)
 
+# Bug 1369065 - Please enable Win32 tests for cedar twig.
+for branch in BRANCHES.keys():
+    if branch not in ['cedar']:
+        continue
+    for platform in BRANCHES[branch]['platforms'].keys():
+        if platform not in ['win32']:
+            continue
+        for slave_platform in BRANCHES[name]['platforms'][platform].keys():
+            if slave_platform not in ['win7_ix', 'win7_vm', 'win7_vm_gfx']:
+                continue
+            for test in ['opt_unittest_suites', 'debug_unittest_suites']:
+                BRANCHES[branch]['platforms'][platform][slave_platform][test] = \
+                    [item for item in BRANCHES[branch]['platforms'][platform][slave_platform][test] if (item[0].startswith('mochitest') or item in XPCSHELL)]
+
 # Ash-specific branch config. Please add any new buildbot test scheduling changes above this block.
 for platform in PLATFORMS.keys():
     if platform not in BRANCHES['ash']['platforms']:
