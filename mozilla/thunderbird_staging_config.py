@@ -5,7 +5,7 @@ GLOBAL_VARS = {
     'config_repo_path': 'build/buildbot-configs',
     'buildbotcustom_repo_path': 'build/buildbotcustom',
     'stage_server': 'upload.tbirdbld.productdelivery.stage.mozaws.net',
-    'balrog_username': 'stage-tbirdbld',
+    'balrog_username': 'balrog-stage-tbirdbld',
     'download_base_url': 'http://ftp.stage.mozaws.net/pub/thunderbird',
     'graph_server': None,
     'build_tools_repo_path': 'build/tools',

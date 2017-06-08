@@ -26,7 +26,7 @@ TRY_SLAVES = {
 # Local overrides for default values
 GLOBAL_VARS.update({
     'stage_server': 'upload.tbirdbld.productdelivery.prod.mozaws.net',
-    'balrog_username': 'tbirdbld',
+    'balrog_username': 'balrog-tbirdbld',
     'download_base_url': 'http://archive.mozilla.org/pub/thunderbird',
     'talos_masters': [],
 

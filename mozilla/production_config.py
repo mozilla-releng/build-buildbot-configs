@@ -48,7 +48,7 @@ GLOBAL_VARS = {
     'balrog_api_root': 'https://aus4-admin.mozilla.org/api',
     # Used by special docker workers with balrogVpnProxy feature enabled
     'funsize_balrog_api_root': 'http://balrog/api',
-    'balrog_username': 'ffxbld',
+    'balrog_username': 'balrog-ffxbld',
     'balrog_submitter_extra_args': ['--url-replacement',
                                     'ftp.mozilla.org,download.cdn.mozilla.net'],
     'build_tools_repo_path': 'build/tools',
