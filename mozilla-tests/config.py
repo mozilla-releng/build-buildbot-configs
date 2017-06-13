@@ -42,18 +42,6 @@ BRANCHES = {
     'mozilla-aurora':      {},
     'mozilla-release':     {},
     'mozilla-beta':        {},
-    'mozilla-esr45': {
-        'gecko_version': 45,
-        'platforms': {
-            'macosx64': {},
-            'win32': {},
-            'win64': {},
-            'linux': {},
-            'linux64': {},
-            'linux64-asan': {},
-        },
-        'lock_platforms': True,
-    },
     'mozilla-esr52': {
         'gecko_version': 52,
         'platforms': {
@@ -2598,16 +2586,6 @@ BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 # bug 1358976 - Stop automatic triggers of nightly builds on mozilla-aurora
 BRANCHES['mozilla-aurora']['platforms'] = {}
 
-######### mozilla-esr45
-BRANCHES['mozilla-esr45']['repo_path'] = "releases/mozilla-esr45"
-BRANCHES['mozilla-esr45']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-esr45']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr45']['platforms']['macosx64']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr45']['platforms']['linux']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr45']['platforms']['linux64']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr45']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr45']['platforms']['win64']['talos_slave_platforms'] = []
-
 ######### mozilla-esr52
 BRANCHES['mozilla-esr52']['repo_path'] = "releases/mozilla-esr52"
 BRANCHES['mozilla-esr52']['pgo_strategy'] = 'per-checkin'
@@ -2664,30 +2642,6 @@ for platform in PLATFORMS.keys():
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                         WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS
-
-### Tests that only run on ESR45 ###
-for branch in BRANCHES.keys():
-    if branch == 'mozilla-esr45':
-        for platform in PLATFORMS.keys():
-            if platform not in ['linux', 'linux64', 'linux64-asan']:
-                continue
-            for slave_platform in PLATFORMS[platform]['slave_platforms']:
-                if slave_platform in BRANCHES[branch]['platforms'][platform]:
-                    BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                        REFTEST_NOACCEL_FOUR_CHUNKS + REFTEST_FOUR_CHUNKS
-                    BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                        REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS
-        for platform in PLATFORMS.keys():
-            for slave_platform in PLATFORMS[platform]['slave_platforms']:
-		if platform not in BRANCHES[branch]['platforms'].keys():
-		    continue
-                if slave_platform in BRANCHES[branch]['platforms'][platform]:
-                    # Use the unchunked mochitest-gl on ESR45 due to leaks when chunked
-                    for test_type in ('debug_unittest_suites', 'opt_unittest_suites'):
-                        for item in BRANCHES[branch]['platforms'][platform][slave_platform][test_type]:
-                            if item[0] == 'mochitest-gl':
-                                BRANCHES[branch]['platforms'][platform][slave_platform][test_type].remove(item)
-                        BRANCHES[branch]['platforms'][platform][slave_platform][test_type]+= MOCHITEST_WEBGL
 
 ### Tests Enabled in Gecko 48+ ###
 
