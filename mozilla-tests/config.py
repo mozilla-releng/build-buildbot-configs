@@ -3271,7 +3271,7 @@ for branch in BRANCHES.keys():
     for platform in BRANCHES[branch]['platforms'].keys():
         if platform not in ['win32']:
             continue
-        for slave_platform in BRANCHES[name]['platforms'][platform].keys():
+        for slave_platform in BRANCHES[branch]['platforms'][platform].keys():
             if slave_platform not in ['win7_ix', 'win7_vm', 'win7_vm_gfx']:
                 continue
             for test in ['opt_unittest_suites', 'debug_unittest_suites']:
