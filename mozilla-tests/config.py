@@ -242,6 +242,7 @@ for platform, platform_config in PLATFORMS.iteritems():
 
 ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'win32-devedition', 'macosx64', 'macosx64-devedition', 'win64', 'win64-devedition', 'linux64-stylo', 'linux64-stylosequential' ))
 LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'linux64-stylo', 'linux64-stylosequential'))
+WIN_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('win32', 'win32-devedition', 'win64', 'win64-devedition'))
 WIN7_ONLY = ['win7_ix', 'win7_ix_devedition']
 
 SUITES = {
@@ -365,7 +366,7 @@ SUITES = {
     'quantum-pageload-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
+        'options': ({}, WIN_ONLY),
     },
 }
 
