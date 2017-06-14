@@ -452,22 +452,6 @@ MARIONETTE_E10S = [
     }),
 ]
 
-MEDIATESTS = [
-    ('media-tests', {
-        'use_mozharness': True,
-        'script_path': 'scripts/firefox_media_tests_buildbot.py',
-        'blob_upload': True,
-    }),
-]
-
-MEDIA_YOUTUBE_TESTS = [
-    ('media-youtube-tests', {
-        'use_mozharness': True,
-        'script_path': 'scripts/firefox_media_tests_buildbot.py',
-        'extra_args': ['--suite', 'media-youtube-tests'],
-        'blob_upload': True,
-    }),
-]
 
 ### Mochitests (Browser-Chrome) ###
 MOCHITEST_BC_7 = [
@@ -1170,12 +1154,6 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-e10s': {
                     'config_files': ["marionette/prod_config.py"],
                 },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1330,12 +1308,6 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-e10s': {
                     'config_files': ["marionette/prod_config.py"],
                 },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1479,12 +1451,6 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-e10s': {
                     'config_files': ["marionette/windows_config.py"],
                 },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1612,12 +1578,6 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-e10s': {
                     'config_files': ["marionette/windows_config.py"],
                 },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1744,12 +1704,6 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-e10s': {
                     'config_files': ["marionette/windows_config.py"],
                 },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1874,12 +1828,6 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette-e10s': {
                     'config_files': ["marionette/windows_config.py"],
-                },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
                 },
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -2049,12 +1997,6 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-e10s': {
                     'config_files': ["marionette/windows_config.py"],
                 },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -2209,12 +2151,6 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-e10s': {
                     'config_files': ["marionette/prod_config.py"],
                 },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
                 'mochitest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -2338,12 +2274,6 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette-e10s': {
                     'config_files': ["marionette/prod_config.py"],
-                },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
                 },
                 'mochitest': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -2732,41 +2662,6 @@ for branch in BRANCHES.keys():
                 xpc_opt_suite = XPCSHELL_FOUR_CHUNKS[:]
             BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += xpc_opt_suite
             BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += xpc_debug_suite
-
-# Enable mediatests on gecko >= 44 (bug 1209258)
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
-    for platform in PLATFORMS.keys():
-        if platform not in branch['platforms']:
-            continue
-        for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7_ix', 'win8_64', 'yosemite_r7'):
-            if slave_platform in branch['platforms'][platform]:
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIATESTS
-                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIATESTS
-
-# Enable mediatest-youtube-tests on gecko >= 46 (bug 1221963)
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
-    for platform in PLATFORMS.keys():
-        if platform not in branch['platforms']:
-            continue
-        for slave_platform in ('win7_ix', 'yosemite_r7'):
-            if slave_platform in branch['platforms'][platform]:
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIA_YOUTUBE_TESTS
-                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIA_YOUTUBE_TESTS
-
-
-# Bug 1223072 - disable media-tests on linux asan, debug (on development and release-stabilization branches)
-
-for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm'):
-    for platform in ('linux64', 'linux64-asan'):
-        for branch in BRANCHES.keys():
-            if platform not in BRANCHES[branch]['platforms']:
-                continue
-            if slave_platform in BRANCHES[branch]['platforms'][platform]:
-                if platform == 'linux64':
-                    BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] = [item for item in BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] if item not in MEDIATESTS]
-                elif platform == 'linux64-asan':
-                    BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] = [item for item in BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] if item not in MEDIATESTS]
-                    BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] = [item for item in BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] if item not in MEDIATESTS]
 
 
 # Enable browser chrome screenshots on try and m-c
