@@ -2020,25 +2020,6 @@ BRANCHES = {
     'mozilla-aurora': {
         'merge_builds': False,
     },
-    'mozilla-esr45': {
-        'merge_builds': False,
-        'lock_platforms': True,
-        'gecko_version': 45,
-        'platforms': {
-            'linux': {},
-            'linux64': {},
-            'macosx64': {},
-            'win32': {},
-            'win64': {},
-            'linux64-asan': {},
-            'linux64-av': {},
-            'linux-debug': {},
-            'linux64-debug': {},
-            'macosx64-debug': {},
-            'win32-debug': {},
-            'win64-debug': {},
-        },
-    },
     'mozilla-esr52': {
         'merge_builds': False,
         'lock_platforms': True,
@@ -2640,121 +2621,6 @@ BRANCHES['mozilla-aurora']['platforms']['win64']['nightly_signing_servers'] = 'n
 BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-aurora']['l10n_extra_configure_args'] = ['--with-macbundlename-prefix=Firefox']
 BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
-######## mozilla-esr45
-BRANCHES['mozilla-esr45']['repo_path'] = 'releases/mozilla-esr45'
-BRANCHES['mozilla-esr45']['update_channel'] = 'esr'
-BRANCHES['mozilla-esr45']['l10n_repo_path'] = 'releases/l10n/mozilla-release'
-BRANCHES['mozilla-esr45']['start_hour'] = [0]
-BRANCHES['mozilla-esr45']['start_minute'] = [15]
-BRANCHES['mozilla-esr45']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-esr45']['enable_mac_a11y'] = True
-BRANCHES['mozilla-esr45']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
-# L10n configuration
-BRANCHES['mozilla-esr45']['enable_l10n'] = False
-BRANCHES['mozilla-esr45']['l10nNightlyUpdate'] = False
-BRANCHES['mozilla-esr45']['l10n_platforms'] = ['linux', 'linux64', 'win32', 'macosx64', 'win64']
-BRANCHES['mozilla-esr45']['l10nDatedDirs'] = True
-BRANCHES['mozilla-esr45']['l10n_tree'] = 'fxesr45'
-BRANCHES['mozilla-esr45']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-esr45'
-BRANCHES['mozilla-esr45']['enable_nightly'] = False
-BRANCHES['mozilla-esr45']['enable_nightly_everytime'] = False
-BRANCHES['mozilla-esr45']['updates_enabled'] = False
-BRANCHES['mozilla-esr45']['create_partial'] = False
-BRANCHES['mozilla-esr45']['enable_blocklist_update'] = True
-BRANCHES['mozilla-esr45']['enable_hsts_update'] = True
-BRANCHES['mozilla-esr45']['enable_hpkp_update'] = True
-BRANCHES['mozilla-esr45']['enabled_products'] = ['firefox']
-### Release Promotion
-BRANCHES['mozilla-esr45']['enable_release_promotion'] = {
-    "firefox": True,
-}
-# used by process/release.py
-BRANCHES['mozilla-esr45']['tuxedoServerUrl'] = "https://bounceradmin.mozilla.com/api"
-BRANCHES['mozilla-esr45']['single_locale_branch_config'] = {
-    "firefox": "mozilla-esr45",
-}
-BRANCHES['mozilla-esr45']['bouncer_submitter_config'] = {
-    "firefox": "releases/bouncer_firefox_esr.py",
-}
-BRANCHES['mozilla-esr45']['uptake_monitoring_config'] = {
-    "firefox": 'releases/bouncer_firefox_esr.py',
-}
-BRANCHES['mozilla-esr45']['postrelease_version_bump_config'] = {
-    "firefox": 'releases/postrelease_firefox_esr45.py',
-}
-BRANCHES['mozilla-esr45']['postrelease_bouncer_aliases_config'] = {
-    "firefox": 'releases/bouncer_firefox_esr.py',
-}
-BRANCHES['mozilla-esr45']['postrelease_mark_as_shipped_config'] = {
-    "firefox": 'releases/postrelease_firefox_esr45.py',
-}
-BRANCHES['mozilla-esr45']['updates_config'] = {
-    "firefox": 'releases/updates_firefox_esr45.py',
-}
-BRANCHES['mozilla-esr45']['beetmover_credentials'] = "/builds/release-s3.credentials"
-BRANCHES['mozilla-esr45']['stage_product'] = {
-    'firefox': 'firefox',
-}
-BRANCHES['mozilla-esr45']['platforms']['linux']['dep_signing_servers'] = 'release-signing'
-BRANCHES['mozilla-esr45']['platforms']['linux64']['dep_signing_servers'] = 'release-signing'
-BRANCHES['mozilla-esr45']['platforms']['macosx64']['dep_signing_servers'] = 'release-signing'
-BRANCHES['mozilla-esr45']['platforms']['win32']['dep_signing_servers'] = 'release-signing'
-BRANCHES['mozilla-esr45']['platforms']['win64']['dep_signing_servers'] = 'release-signing'
-# used by releasetasks
-BRANCHES['mozilla-esr45']['bouncer_enabled'] = True
-BRANCHES['mozilla-esr45']['postrelease_version_bump_enabled'] = {"firefox": True}
-BRANCHES['mozilla-esr45']['postrelease_bouncer_aliases_enabled'] = False
-BRANCHES['mozilla-esr45']['postrelease_mark_as_shipped_enabled'] = True
-BRANCHES['mozilla-esr45']['uptake_monitoring_enabled'] = True
-BRANCHES['mozilla-esr45']['push_to_candidates_enabled'] = True
-BRANCHES['mozilla-esr45']['push_to_releases_automatic'] = False
-BRANCHES['mozilla-esr45']['beetmover_buckets'] = {
-    "firefox": "net-mozaws-prod-delivery-firefox",
-}
-BRANCHES['mozilla-esr45']['uptake_monitoring_platforms'] = {
-    "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
-}
-BRANCHES['mozilla-esr45']['signing_class'] = {
-    "firefox": "release-signing",
-}
-BRANCHES['mozilla-esr45']['signing_cert'] = {
-    "firefox": "release",
-}
-BRANCHES['mozilla-esr45']['root_home_dir'] = {
-    "firefox": "desktop",
-}
-BRANCHES['mozilla-esr45']['release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
-BRANCHES['mozilla-esr45']['l10n_release_platforms'] = ("linux", "linux64", "win32", "win64", "macosx64")
-BRANCHES['mozilla-esr45']['updates_builder_enabled'] = True
-BRANCHES['mozilla-esr45']['update_verify_enabled'] = True
-BRANCHES['mozilla-esr45']['release_channel_mappings'] = {"firefox": [["^.*$", ["esr"]]]}
-# platform to TC index mapping to help finding prmotable CI builds
-BRANCHES['mozilla-esr45']['tc_indexes'] = {
-    "firefox": {
-        "linux": {
-            "signed": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.linux-opt",
-            "unsigned": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.linux-opt",
-        },
-        "linux64": {
-            "signed": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.linux64-opt",
-            "unsigned": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.linux64-opt",
-        },
-        "macosx64": {
-            "signed": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.macosx64-opt",
-            "unsigned": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.macosx64-opt",
-        },
-        "win32": {
-            "signed": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.win32-opt",
-            "unsigned": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.win32-opt",
-        },
-        "win64": {
-            "signed": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.win64-opt",
-            "unsigned": "gecko.v2.mozilla-esr45.revision.{rev}.firefox.win64-opt",
-        },
-    },
-    # TODO: fennec
-}
 
 ######## mozilla-esr52
 BRANCHES['mozilla-esr52']['repo_path'] = 'releases/mozilla-esr52'
@@ -3073,7 +2939,7 @@ for name, branch in items_before(BRANCHES, 'gecko_version', mr_gecko_version):
         if platform in branch['platforms']:
             del branch['platforms'][platform]
 for name, branch in items_at_least(BRANCHES, 'gecko_version', mr_gecko_version):
-    if name in  ['mozilla-beta', 'mozilla-release', 'mozilla-esr45', 'mozilla-esr52']:
+    if name in  ['mozilla-beta', 'mozilla-release', 'mozilla-esr52']:
         continue
     else:
         for platform in ['linux64-add-on-devel', 'macosx64-add-on-devel', 'win32-add-on-devel', 'win64-add-on-devel']:

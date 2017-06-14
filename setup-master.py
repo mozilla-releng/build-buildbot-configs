@@ -245,7 +245,7 @@ def load_masters_json(masters_json, role=None, universal=False, log=None,
                      ] +
                     [('staging_release-thunderbird-comm-%s.py' % v,
                       'release-thunderbird-comm-%s.py' % v)
-                        for v in ['beta', 'esr45', 'esr52']
+                        for v in ['beta', 'esr52']
                      ]
                 )
             else:

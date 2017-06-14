@@ -42,18 +42,6 @@ BRANCHES = {
     'mozilla-aurora':      {},
     'mozilla-release':     {},
     'mozilla-beta':        {},
-    'mozilla-esr45': {
-        'gecko_version': 45,
-        'platforms': {
-            'macosx64': {},
-            'win32': {},
-            'win64': {},
-            'linux': {},
-            'linux64': {},
-            'linux64-asan': {},
-        },
-        'lock_platforms': True,
-    },
     'mozilla-esr52': {
         'gecko_version': 52,
         'platforms': {
@@ -70,8 +58,6 @@ BRANCHES = {
         'coallesce_jobs': False,
     },
 }
-
-TWIGS = [x for x in ACTIVE_PROJECT_BRANCHES if x not in ('mozilla-inbound', 'larch', 'autoland')]
 
 setMainFirefoxVersions(BRANCHES)
 
@@ -256,6 +242,7 @@ for platform, platform_config in PLATFORMS.iteritems():
 
 ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'win32-devedition', 'macosx64', 'macosx64-devedition', 'win64', 'win64-devedition', 'linux64-stylo', 'linux64-stylosequential' ))
 LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'linux64-stylo', 'linux64-stylosequential'))
+WIN_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('win32', 'win32-devedition', 'win64', 'win64-devedition'))
 WIN7_ONLY = ['win7_ix', 'win7_ix_devedition']
 
 SUITES = {
@@ -379,7 +366,7 @@ SUITES = {
     'quantum-pageload-e10s': {
         'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
+        'options': ({}, WIN_ONLY),
     },
 }
 
@@ -466,22 +453,6 @@ MARIONETTE_E10S = [
     }),
 ]
 
-MEDIATESTS = [
-    ('media-tests', {
-        'use_mozharness': True,
-        'script_path': 'scripts/firefox_media_tests_buildbot.py',
-        'blob_upload': True,
-    }),
-]
-
-MEDIA_YOUTUBE_TESTS = [
-    ('media-youtube-tests', {
-        'use_mozharness': True,
-        'script_path': 'scripts/firefox_media_tests_buildbot.py',
-        'extra_args': ['--suite', 'media-youtube-tests'],
-        'blob_upload': True,
-    }),
-]
 
 ### Mochitests (Browser-Chrome) ###
 MOCHITEST_BC_7 = [
@@ -637,16 +608,6 @@ MOCHITEST_MEDIA_E10S = [
     }),
 ]
 
-MOCHITEST_WEBGL = [
-    ('mochitest-gl', {
-        'use_mozharness': True,
-        'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'mochitest-gl'],
-        'blob_upload': True,
-        'script_maxtime': 5400,
-    }),
-]
-
 MOCHITEST_WEBGL_CHUNKED = [
     ('mochitest-gl', {
         'use_mozharness': True,
@@ -718,16 +679,6 @@ MOCHITEST_CLIPBOARD_E10S = [
 ### Mochitest Combinations ###
 MOCHITEST_5 = MOCHITEST_WO_BC + MOCHITEST_A11Y + MOCHITEST_CHROME
 MOCHITEST_10 = MOCHITEST_WO_BC_10 + MOCHITEST_A11Y + MOCHITEST_CHROME
-
-### Mozbase ###
-MOZBASE = [
-    ('mozbase', {
-        'use_mozharness': True,
-        'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mozbase-suite', 'mozbase'],
-        'script_maxtime': 7200,
-    }),
-]
 
 ### Reftests ###
 CRASHTEST_E10S = [
@@ -1204,12 +1155,6 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-e10s': {
                     'config_files': ["marionette/prod_config.py"],
                 },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1364,12 +1309,6 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-e10s': {
                     'config_files': ["marionette/prod_config.py"],
                 },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
                 'mochitest': {
                     'config_files': ["unittests/linux_unittest.py"],
                 },
@@ -1513,12 +1452,6 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-e10s': {
                     'config_files': ["marionette/windows_config.py"],
                 },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1646,12 +1579,6 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-e10s': {
                     'config_files': ["marionette/windows_config.py"],
                 },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1778,12 +1705,6 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-e10s': {
                     'config_files': ["marionette/windows_config.py"],
                 },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -1908,12 +1829,6 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette-e10s': {
                     'config_files': ["marionette/windows_config.py"],
-                },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
                 },
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
@@ -2083,12 +1998,6 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-e10s': {
                     'config_files': ["marionette/windows_config.py"],
                 },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_windows_config.py"],
-                },
                 'mochitest': {
                     'config_files': ["unittests/win_unittest.py"],
                 },
@@ -2243,12 +2152,6 @@ PLATFORM_UNITTEST_VARS = {
                 'marionette-e10s': {
                     'config_files': ["marionette/prod_config.py"],
                 },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
                 'mochitest': {
                     'config_files': ["unittests/mac_unittest.py"],
                 },
@@ -2372,12 +2275,6 @@ PLATFORM_UNITTEST_VARS = {
                 },
                 'marionette-e10s': {
                     'config_files': ["marionette/prod_config.py"],
-                },
-                'media-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
-                },
-                'media-youtube-tests': {
-                    'config_files': ["mediatests/buildbot_posix_config.py"],
                 },
                 'mochitest': {
                     'config_files': ["unittests/mac_unittest.py"],
@@ -2598,16 +2495,6 @@ BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
 # bug 1358976 - Stop automatic triggers of nightly builds on mozilla-aurora
 BRANCHES['mozilla-aurora']['platforms'] = {}
 
-######### mozilla-esr45
-BRANCHES['mozilla-esr45']['repo_path'] = "releases/mozilla-esr45"
-BRANCHES['mozilla-esr45']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-esr45']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr45']['platforms']['macosx64']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr45']['platforms']['linux']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr45']['platforms']['linux64']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr45']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['mozilla-esr45']['platforms']['win64']['talos_slave_platforms'] = []
-
 ######### mozilla-esr52
 BRANCHES['mozilla-esr52']['repo_path'] = "releases/mozilla-esr52"
 BRANCHES['mozilla-esr52']['pgo_strategy'] = 'per-checkin'
@@ -2665,30 +2552,6 @@ for platform in PLATFORMS.keys():
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                         WEB_PLATFORM_TESTS_CHUNKED + WEB_PLATFORM_REFTESTS
 
-### Tests that only run on ESR45 ###
-for branch in BRANCHES.keys():
-    if branch == 'mozilla-esr45':
-        for platform in PLATFORMS.keys():
-            if platform not in ['linux', 'linux64', 'linux64-asan']:
-                continue
-            for slave_platform in PLATFORMS[platform]['slave_platforms']:
-                if slave_platform in BRANCHES[branch]['platforms'][platform]:
-                    BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
-                        REFTEST_NOACCEL_FOUR_CHUNKS + REFTEST_FOUR_CHUNKS
-                    BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
-                        REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS
-        for platform in PLATFORMS.keys():
-            for slave_platform in PLATFORMS[platform]['slave_platforms']:
-		if platform not in BRANCHES[branch]['platforms'].keys():
-		    continue
-                if slave_platform in BRANCHES[branch]['platforms'][platform]:
-                    # Use the unchunked mochitest-gl on ESR45 due to leaks when chunked
-                    for test_type in ('debug_unittest_suites', 'opt_unittest_suites'):
-                        for item in BRANCHES[branch]['platforms'][platform][slave_platform][test_type]:
-                            if item[0] == 'mochitest-gl':
-                                BRANCHES[branch]['platforms'][platform][slave_platform][test_type].remove(item)
-                        BRANCHES[branch]['platforms'][platform][slave_platform][test_type]+= MOCHITEST_WEBGL
-
 ### Tests Enabled in Gecko 48+ ###
 
 # Bug 1242682 - Split out mochitest-media in 48+
@@ -2721,7 +2584,6 @@ for platform in PLATFORMS.keys():
 ### Tests Enabled in Gecko 43+ ###
 
 # Enable e10s tests for Gecko 46+ on all eligible platforms
-trunk_gecko_version = BRANCHES['mozilla-central']['gecko_version']
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
@@ -2801,41 +2663,6 @@ for branch in BRANCHES.keys():
                 xpc_opt_suite = XPCSHELL_FOUR_CHUNKS[:]
             BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] += xpc_opt_suite
             BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += xpc_debug_suite
-
-# Enable mediatests on gecko >= 44 (bug 1209258)
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 44):
-    for platform in PLATFORMS.keys():
-        if platform not in branch['platforms']:
-            continue
-        for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm', 'win7_ix', 'win8_64', 'yosemite_r7'):
-            if slave_platform in branch['platforms'][platform]:
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIATESTS
-                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIATESTS
-
-# Enable mediatest-youtube-tests on gecko >= 46 (bug 1221963)
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
-    for platform in PLATFORMS.keys():
-        if platform not in branch['platforms']:
-            continue
-        for slave_platform in ('win7_ix', 'yosemite_r7'):
-            if slave_platform in branch['platforms'][platform]:
-                branch['platforms'][platform][slave_platform]['opt_unittest_suites'] += MEDIA_YOUTUBE_TESTS
-                branch['platforms'][platform][slave_platform]['debug_unittest_suites'] += MEDIA_YOUTUBE_TESTS
-
-
-# Bug 1223072 - disable media-tests on linux asan, debug (on development and release-stabilization branches)
-
-for slave_platform in ('ubuntu64_vm', 'ubuntu64-asan_vm'):
-    for platform in ('linux64', 'linux64-asan'):
-        for branch in BRANCHES.keys():
-            if platform not in BRANCHES[branch]['platforms']:
-                continue
-            if slave_platform in BRANCHES[branch]['platforms'][platform]:
-                if platform == 'linux64':
-                    BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] = [item for item in BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] if item not in MEDIATESTS]
-                elif platform == 'linux64-asan':
-                    BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] = [item for item in BRANCHES[branch]['platforms'][platform][slave_platform]['opt_unittest_suites'] if item not in MEDIATESTS]
-                    BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] = [item for item in BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] if item not in MEDIATESTS]
 
 
 # Enable browser chrome screenshots on try and m-c
@@ -3317,7 +3144,7 @@ for branch in BRANCHES.keys():
     for platform in BRANCHES[branch]['platforms'].keys():
         if platform not in ['win32']:
             continue
-        for slave_platform in BRANCHES[name]['platforms'][platform].keys():
+        for slave_platform in BRANCHES[branch]['platforms'][platform].keys():
             if slave_platform not in ['win7_ix', 'win7_vm', 'win7_vm_gfx']:
                 continue
             for test in ['opt_unittest_suites', 'debug_unittest_suites']:
