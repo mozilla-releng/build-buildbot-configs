@@ -59,8 +59,6 @@ BRANCHES = {
     },
 }
 
-TWIGS = [x for x in ACTIVE_PROJECT_BRANCHES if x not in ('mozilla-inbound', 'larch', 'autoland')]
-
 setMainFirefoxVersions(BRANCHES)
 
 # Talos
@@ -625,16 +623,6 @@ MOCHITEST_MEDIA_E10S = [
     }),
 ]
 
-MOCHITEST_WEBGL = [
-    ('mochitest-gl', {
-        'use_mozharness': True,
-        'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mochitest-suite', 'mochitest-gl'],
-        'blob_upload': True,
-        'script_maxtime': 5400,
-    }),
-]
-
 MOCHITEST_WEBGL_CHUNKED = [
     ('mochitest-gl', {
         'use_mozharness': True,
@@ -706,16 +694,6 @@ MOCHITEST_CLIPBOARD_E10S = [
 ### Mochitest Combinations ###
 MOCHITEST_5 = MOCHITEST_WO_BC + MOCHITEST_A11Y + MOCHITEST_CHROME
 MOCHITEST_10 = MOCHITEST_WO_BC_10 + MOCHITEST_A11Y + MOCHITEST_CHROME
-
-### Mozbase ###
-MOZBASE = [
-    ('mozbase', {
-        'use_mozharness': True,
-        'script_path': 'scripts/desktop_unittest.py',
-        'extra_args': ['--mozbase-suite', 'mozbase'],
-        'script_maxtime': 7200,
-    }),
-]
 
 ### Reftests ###
 CRASHTEST_E10S = [
@@ -2675,7 +2653,6 @@ for platform in PLATFORMS.keys():
 ### Tests Enabled in Gecko 43+ ###
 
 # Enable e10s tests for Gecko 46+ on all eligible platforms
-trunk_gecko_version = BRANCHES['mozilla-central']['gecko_version']
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
