@@ -157,6 +157,9 @@ PROJECT_BRANCHES = {
             'macosx64-devedition': {
                 'dep_signing_servers': 'nightly-signing',
             },
+            'linux64-devedition': {
+                'dep_signing_servers': 'nightly-signing',
+            },
             'linux64-debug': {
                 "slave_platforms": [],
             },
