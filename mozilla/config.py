@@ -73,6 +73,7 @@ GLOBAL_VARS = {
         'linux64-asan-debug': {},
         'linux64-av': {},
         'linux64-add-on-devel': {},
+        'linux64-devedition': {},
         'macosx64-debug': {},
         'macosx64-add-on-devel': {},
         'win32-debug': {},
@@ -657,6 +658,7 @@ PLATFORM_VARS = {
             # algorithm for nightlies
             'consider_for_nightly': False,
         },
+        'linux64-devedition': {},
         'macosx64': {
             'mozharness_python': '/tools/buildbot/bin/python',
             'reboot_command': ['scripts/external_tools/count_and_reboot.py',
@@ -2982,6 +2984,13 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
         if platform not in ['macosx64-debug']:
             continue
         del branch['platforms'][platform]
+
+# Bug 1362387 - remove linux64-devedition builds from Buildbot
+for branch in BRANCHES.keys():
+    for platform in BRANCHES[branch]['platforms'].keys():
+        if platform not in ['linux64-devedition']:
+            continue
+        del BRANCHES[branch]['platforms'][platform]
 
 if __name__ == "__main__":
     import sys
