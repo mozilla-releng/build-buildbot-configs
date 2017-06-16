@@ -2213,6 +2213,7 @@ BRANCHES['mozilla-release']['upload_mobile_symbols'] = True
 BRANCHES['mozilla-release']['enable_nightly'] = False
 BRANCHES['mozilla-release']['enable_blocklist_update'] = True
 BRANCHES['mozilla-release']['enabled_products'] = ['firefox', 'mobile']
+BRANCHES['mozilla-release']['enable_perproduct_builds'] = False
 ### Release Promotion
 BRANCHES['mozilla-release']['enable_release_promotion'] = {
     "firefox": True,
@@ -2384,7 +2385,7 @@ BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-15']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-15-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile', 'devedition']
-BRANCHES['mozilla-beta']['enable_perproduct_builds'] = True
+BRANCHES['mozilla-beta']['enable_perproduct_builds'] = False
 ### Release Promotion
 # enables/disables BB builders
 BRANCHES['mozilla-beta']['enable_release_promotion'] = {
