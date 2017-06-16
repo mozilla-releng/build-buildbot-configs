@@ -2732,7 +2732,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
     branch['perf-reftest_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['perf-reftest-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['g5-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-    branch['quantum-pageload-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+    branch['quantum-pageload-e10s_tests'] = (1, False, {}, WIN_ONLY)
 
 # Bug 1364157 - Disable non-e10s talos tests on 55+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
@@ -3229,6 +3229,20 @@ for platform in PLATFORMS.keys():
                 MOCHITEST_GPU_E10S + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_E10S + \
                     REFTEST_FOUR_CHUNKS + REFTEST_GPU_E10S + REFTEST_NOACCEL_E10S + \
                     REFTEST_NOACCEL_FOUR_CHUNKS
+# Bug 1370298 - Disable BB windows tests that are green in TC
+WIN_TC_56_NONGREEN_DEBUG_SUITES = ('reftest-gpu-e10s', 'mochitest-clipboard', 'mochitest-clipboard-e10s', 'mochitest-chrome', 'xpcshell')
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 56):
+    for platform in ('win32', 'win32-devedition'):
+        if platform not in branch['platforms']:
+            continue
+        for slave_platform in ['win7_vm', 'win7_vm_gfx']:
+            if slave_platform not in branch['platforms'][platform]:
+                continue
+            tests = branch['platforms'][platform][slave_platform]['debug_unittest_suites']
+            tests = [(suite_name, suite_config) for (suite_name, suite_config) in tests if any(
+                suite_name.startswith(s) for s in WIN_TC_56_NONGREEN_DEBUG_SUITES)]
+            branch['platforms'][platform][slave_platform]['debug_unittest_suites'] = tests
+
 
 if __name__ == "__main__":
     import sys
