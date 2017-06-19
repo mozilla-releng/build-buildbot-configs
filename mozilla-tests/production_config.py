@@ -116,10 +116,6 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-Beta',
         'mobile_tinderbox_tree': 'Mozilla-Beta',
     },
-    'mozilla-aurora': {
-        'tinderbox_tree': 'Mozilla-Aurora',
-        'mobile_tinderbox_tree': 'Mozilla-Aurora',
-    },
     'addontester': {
         'tinderbox_tree': 'AddonTester',
         'mobile_tinderbox_tree': 'AddonTester',

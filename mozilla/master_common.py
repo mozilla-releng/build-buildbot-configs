@@ -29,7 +29,6 @@ BRANCH_PRIORITIES = {
     'comm-beta': 2,
     'mozilla-central': 3,
     'comm-central': 3,
-    'mozilla-aurora': 3,
     'comm-aurora': 3,
     'comm-esr52': 3,
     # Unlisted branches are prioritized at this level
@@ -244,8 +243,6 @@ def setMainFirefoxVersions(BRANCHES):
         BRANCHES['mozilla-release']['gecko_version'] = get_gecko_version("mozilla-release")
     if 'mozilla-beta' in BRANCHES:
         BRANCHES['mozilla-beta']['gecko_version'] = get_gecko_version("mozilla-beta")
-    if 'mozilla-aurora' in BRANCHES:
-        BRANCHES['mozilla-aurora']['gecko_version'] = get_gecko_version("mozilla-aurora")
     if 'mozilla-central' in BRANCHES:
         BRANCHES['mozilla-central']['gecko_version'] = get_gecko_version("mozilla-central")
 
