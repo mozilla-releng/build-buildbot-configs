@@ -96,10 +96,6 @@ BRANCHES = {
         'tinderbox_tree': 'Mozilla-Beta',
         'mobile_tinderbox_tree': 'Mozilla-Beta',
     },
-    'mozilla-aurora': {
-        'tinderbox_tree': 'Mozilla-Aurora',
-        'mobile_tinderbox_tree': 'Mozilla-Aurora',
-    },
     'try': {
         'tinderbox_tree': 'Try',
         'stage_server': 'upload.trybld.productdelivery.prod.mozaws.net',

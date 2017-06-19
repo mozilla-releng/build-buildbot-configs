@@ -39,7 +39,6 @@ TALOS_TP_NEW_OPTS = {'plugins': {'32': 'zips/flash32_10_3_183_5.zip', '64':
 
 BRANCHES = {
     'mozilla-central':     {},
-    'mozilla-aurora':      {},
     'mozilla-release':     {},
     'mozilla-beta':        {},
     'mozilla-esr52': {
@@ -2510,12 +2509,6 @@ BRANCHES['mozilla-release']['platforms']['win64']['talos_slave_platforms'] = []
 ######### mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
 BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
-
-######### mozilla-aurora
-BRANCHES['mozilla-aurora']['repo_path'] = "releases/mozilla-aurora"
-BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-# bug 1358976 - Stop automatic triggers of nightly builds on mozilla-aurora
-BRANCHES['mozilla-aurora']['platforms'] = {}
 
 ######### mozilla-esr52
 BRANCHES['mozilla-esr52']['repo_path'] = "releases/mozilla-esr52"

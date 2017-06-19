@@ -28,7 +28,6 @@ else:
     ACTIVE_BRANCHES.extend([
         'mozilla-central',
         'mozilla-beta',
-        'mozilla-aurora',
         'mozilla-release',
         'mozilla-esr52',
     ])

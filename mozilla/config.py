@@ -2019,9 +2019,6 @@ BRANCHES = {
     'mozilla-beta': {
         'merge_builds': False,
     },
-    'mozilla-aurora': {
-        'merge_builds': False,
-    },
     'mozilla-esr52': {
         'merge_builds': False,
         'lock_platforms': True,
@@ -2570,61 +2567,6 @@ BRANCHES['mozilla-beta']['tc_indexes'] = {
     # TODO: fennec
 }
 
-######## mozilla-aurora
-BRANCHES['mozilla-aurora']['repo_path'] = 'releases/mozilla-aurora'
-# bug 1358976 - Stop automatic triggers of nightly builds on mozilla-aurora
-BRANCHES['mozilla-aurora']['enable_nightly'] = False
-BRANCHES['mozilla-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
-BRANCHES['mozilla-aurora']['enable_perproduct_builds'] = True
-BRANCHES['mozilla-aurora']['start_hour'] = [0]
-BRANCHES['mozilla-aurora']['start_minute'] = [40]
-BRANCHES['mozilla-aurora']['periodic_start_hours'] = range(1, 24, 6)
-BRANCHES['mozilla-aurora']['periodic_start_minute'] = 30
-# Enable PGO Builds on this branch
-BRANCHES['mozilla-aurora']['pgo_strategy'] = 'per-checkin'
-# Enable unit tests
-BRANCHES['mozilla-aurora']['enable_mac_a11y'] = True
-BRANCHES['mozilla-aurora']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['mozilla-aurora']['enable_l10n'] = True
-BRANCHES['mozilla-aurora']['l10nNightlyUpdate'] = True
-BRANCHES['mozilla-aurora']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                                 'macosx64', 'win64']
-BRANCHES['mozilla-aurora']['l10nDatedDirs'] = True
-BRANCHES['mozilla-aurora']['l10n_tree'] = 'fxaurora'
-#make sure it has an ending slash
-BRANCHES['mozilla-aurora']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/firefox/nightly/latest-mozilla-aurora-l10n/'
-BRANCHES['mozilla-aurora']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-mozilla-aurora'
-BRANCHES['mozilla-aurora']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.mozilla-aurora' % (GLOBAL_VARS['hgurl'])
-BRANCHES['mozilla-aurora']['enable_multi_locale'] = True
-BRANCHES['mozilla-aurora']['upload_mobile_symbols'] = True
-# Enable desktop repacks with mozharness
-BRANCHES['mozilla-aurora']['desktop_mozharness_repacks_enabled'] = True
-# If True, a complete update snippet for this branch will be generated and
-# uploaded to. Any platforms with 'debug' in them will not have snippets
-# generated.
-BRANCHES['mozilla-aurora']['updates_enabled'] = True
-BRANCHES['mozilla-aurora']['update_channel'] = 'aurora'
-BRANCHES['mozilla-aurora']['create_partial'] = True
-BRANCHES['mozilla-aurora']['create_partial_l10n'] = True
-# use mozilla-aurora-test when disabling updates for merges
-BRANCHES['mozilla-aurora']['enable_blocklist_update'] = True
-BRANCHES['mozilla-aurora']['enable_hsts_update'] = True
-BRANCHES['mozilla-aurora']['enable_hpkp_update'] = True
-BRANCHES['mozilla-aurora']['platforms']['android-api-15']['updates_enabled'] = True
-BRANCHES['mozilla-aurora']['platforms']['android-x86']['updates_enabled'] = True
-# aurora nightlies should use our nightly signing server
-BRANCHES['mozilla-aurora']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-aurora']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-aurora']['platforms']['win64']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['mozilla-aurora']['l10n_extra_configure_args'] = ['--with-macbundlename-prefix=Firefox']
-BRANCHES['mozilla-aurora']['enabled_products'] = ['firefox', 'mobile']
-
 ######## mozilla-esr52
 BRANCHES['mozilla-esr52']['repo_path'] = 'releases/mozilla-esr52'
 BRANCHES['mozilla-esr52']['update_channel'] = 'esr'
@@ -2888,8 +2830,7 @@ for name, branch in BRANCHES.items():
                 )]
 
 # Only test pretty names on train branches, not m-c or project branches.
-for branch in ("mozilla-aurora", "mozilla-beta", "mozilla-release",
-               "mozilla-esr52"):
+for branch in ("mozilla-beta", "mozilla-release", "mozilla-esr52"):
     for platform in ("linux", "linux64", "macosx64", "win32", "win64"):
         if platform in BRANCHES[branch]['platforms']:
             BRANCHES[branch]['platforms'][platform]['test_pretty_names'] = True
@@ -2901,8 +2842,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 45):
     branch['desktop_mozharness_builds_enabled'] = True
 
 # enable mozharness mobile builds on m-a, m-c, and m-c related branches
-ma_gecko_version = BRANCHES['mozilla-aurora']['gecko_version']
-for name, branch in items_before(BRANCHES, 'gecko_version', ma_gecko_version):
+mc_gecko_version = BRANCHES['mozilla-central']['gecko_version']
+for name, branch in items_before(BRANCHES, 'gecko_version', mc_gecko_version):
     for platform in branch['platforms'].keys():
         if 'android' in platform:
             # we don't want to disable the branch level item: "desktop_mozharness_builds_enabled"
