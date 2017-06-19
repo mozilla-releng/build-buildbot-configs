@@ -29,7 +29,6 @@ BRANCH_PRIORITIES = {
     'comm-beta': 2,
     'mozilla-central': 3,
     'comm-central': 3,
-    'comm-aurora': 3,
     'comm-esr52': 3,
     # Unlisted branches are prioritized at this level
     'autoland': 4,
@@ -250,7 +249,6 @@ def setMainFirefoxVersions(BRANCHES):
 def setMainCommVersions(BRANCHES):
     # MERGE DAY
     BRANCHES['comm-beta']['gecko_version'] = get_gecko_version("comm-beta")
-    BRANCHES['comm-aurora']['gecko_version'] = get_gecko_version("comm-aurora")
 
 
 # Typical usage pattern:

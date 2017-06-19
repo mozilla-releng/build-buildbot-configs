@@ -51,9 +51,6 @@ BRANCHES = {
     'comm-beta': {
         'tinderbox_tree': 'Thunderbird-Beta',
     },
-    'comm-aurora': {
-        'tinderbox_tree': 'Thunderbird-Aurora',
-    },
     'try-comm-central': {
         'stage_server': 'upload.trybld.productdelivery.prod.mozaws.net',
         'tinderbox_tree': 'Try-Comm-Central',
