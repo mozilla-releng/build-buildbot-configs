@@ -27,8 +27,6 @@ BRANCHES = {
     },
     'comm-beta': {
     },
-    'comm-aurora': {
-    },
     'comm-esr52': {
         'gecko_version': 52
     },
@@ -385,11 +383,6 @@ BRANCHES['comm-central']['pgo_strategy'] = None
 BRANCHES['comm-beta']['pgo_strategy'] = None
 BRANCHES['comm-beta']['repo_path'] = "releases/comm-beta"
 BRANCHES['comm-beta']['moz_repo_path'] = "releases/mozilla-beta"
-
-######## comm-aurora
-BRANCHES['comm-aurora']['pgo_strategy'] = None
-BRANCHES['comm-aurora']['repo_path'] = "releases/comm-aurora"
-BRANCHES['comm-aurora']['moz_repo_path'] = "releases/mozilla-aurora"
 
 ######## comm-esr52
 BRANCHES['comm-esr52']['pgo_strategy'] = None

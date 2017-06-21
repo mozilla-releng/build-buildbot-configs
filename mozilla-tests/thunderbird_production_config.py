@@ -20,9 +20,6 @@ BRANCHES = {
     'comm-beta': {
         'tinderbox_tree': 'Thunderbird-Beta',
     },
-    'comm-aurora': {
-        'tinderbox_tree': 'Thunderbird-Aurora',
-    },
     'try-comm-central': {
         'tinderbox_tree': 'Try-Comm-Central',
         'enable_mail_notifier': True,

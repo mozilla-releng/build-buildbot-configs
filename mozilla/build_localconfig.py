@@ -38,7 +38,6 @@ else:
     ACTIVE_THUNDERBIRD_BRANCHES.extend([
         'comm-central',
         'comm-beta',
-        'comm-aurora',
         'comm-esr52',
     ])
 if 'limit_projects' in master_config:

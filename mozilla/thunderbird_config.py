@@ -622,8 +622,6 @@ for platform in PLATFORM_VARS.values():
 BRANCHES = {
     'comm-central': {
     },
-    'comm-aurora': {
-    },
     'comm-beta': {
     },
     'comm-esr52': {
@@ -817,47 +815,6 @@ BRANCHES['comm-beta']['enable_nightly'] = False
 # generated.
 BRANCHES['comm-beta']['enable_blocklist_update'] = True
 BRANCHES['comm-beta']['file_update_on_closed_tree'] = False
-
-######## comm-aurora
-BRANCHES['comm-aurora']['moz_repo_path'] = 'releases/mozilla-aurora'
-BRANCHES['comm-aurora']['skip_blank_repos'] = True
-BRANCHES['comm-aurora']['call_client_py'] = True
-BRANCHES['comm-aurora']['repo_path'] = 'releases/comm-aurora'
-BRANCHES['comm-aurora']['l10n_repo_path'] = 'releases/l10n/mozilla-aurora'
-BRANCHES['comm-aurora']['start_hour'] = [0]
-BRANCHES['comm-aurora']['start_minute'] = [40]
-# Enable unit tests
-BRANCHES['comm-aurora']['enable_mac_a11y'] = True
-BRANCHES['comm-aurora']['unittest_build_space'] = 6
-# L10n configuration
-BRANCHES['comm-aurora']['enable_l10n'] = True
-BRANCHES['comm-aurora']['l10nNightlyUpdate'] = True
-BRANCHES['comm-aurora']['l10n_platforms'] = ['linux', 'linux64', 'win32',
-                                             'macosx64']
-BRANCHES['comm-aurora']['l10nDatedDirs'] = True
-BRANCHES['comm-aurora']['l10n_tree'] = 'tbaurora'
-#make sure it has an ending slash
-BRANCHES['comm-aurora']['l10nUploadPath'] = \
-    '/home/ftp/pub/mozilla.org/thunderbird/nightly/latest-comm-aurora-l10n/'
-BRANCHES['comm-aurora']['enUS_binaryURL'] = \
-    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-aurora'
-BRANCHES['comm-aurora']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/production/mozilla/l10n/all-locales.comm-aurora' % (GLOBAL_VARS['hgurl'])
-BRANCHES['comm-aurora']['enable_multi_locale'] = True
-# If True, a complete update snippet for this branch will be generated and
-# uploaded to. Any platforms with 'debug' in them will not have snippets
-# generated.
-BRANCHES['comm-aurora']['updates_enabled'] = True
-BRANCHES['comm-aurora']['update_channel'] = 'aurora'
-BRANCHES['comm-aurora']['create_partial'] = False
-BRANCHES['comm-aurora']['create_partial_l10n'] = False
-# use comm-aurora-test when disabling updates for merges
-BRANCHES['comm-aurora']['enable_blocklist_update'] = True
-BRANCHES['comm-aurora']['file_update_on_closed_tree'] = False
-BRANCHES['comm-aurora']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['comm-aurora']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['comm-aurora']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['comm-aurora']['platforms']['macosx64']['nightly_signing_servers'] = 'nightly-signing'
 
 ######## try
 # Try-specific configs
