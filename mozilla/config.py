@@ -2919,6 +2919,17 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
         if platform in branch['pgo_platforms']:
             branch['pgo_platforms'] = [p for p in branch['pgo_platforms'] if p != platform]
 
+# Bug 1351326 - patches to disable mac bb nightlies on trunk + m-c
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 56):
+    for platform in branch['platforms']:
+        if platform not in ['macosx64']:
+            continue
+        # Bug 1332930 Shutting off buildbot nighties shut off periodicupdates
+        branch['platforms'][platform]['enable_dep'] = False
+        branch['platforms'][platform]['enable_nightly'] = False
+        if platform in branch['pgo_platforms']:
+            branch['pgo_platforms'] = [p for p in branch['pgo_platforms'] if p != platform]
+
 # Bug 1361414 - disable buildbot macosx debug builds on trunk
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
     for platform in branch['platforms'].keys():
