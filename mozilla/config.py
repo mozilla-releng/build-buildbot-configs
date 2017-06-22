@@ -2944,6 +2944,13 @@ for branch in BRANCHES.keys():
             continue
         del BRANCHES[branch]['platforms'][platform]
 
+# Bug 1372241 - kill Linux and OS X buildbot-based addon devel builds everywhere
+for branch in BRANCHES.keys():
+    for platform in BRANCHES[branch]['platforms'].keys():
+        if platform not in ['linux64-add-on-devel', 'macosx64-add-on-devel']:
+            continue
+        del BRANCHES[branch]['platforms'][platform]
+
 if __name__ == "__main__":
     import sys
     import pprint
