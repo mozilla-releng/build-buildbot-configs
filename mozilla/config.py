@@ -72,10 +72,8 @@ GLOBAL_VARS = {
         'linux64-asan': {},
         'linux64-asan-debug': {},
         'linux64-av': {},
-        'linux64-add-on-devel': {},
         'linux64-devedition': {},
         'macosx64-debug': {},
-        'macosx64-add-on-devel': {},
         'win32-debug': {},
         'win64-debug': {},
         'android-api-15': {},
@@ -464,104 +462,6 @@ PLATFORM_VARS = {
             # algorithm for nightlies
             'consider_for_nightly': False,
         },
-        'linux64-add-on-devel': {
-            'mozharness_python': '/tools/buildbot/bin/python',
-            'reboot_command': [
-                '/tools/checkouts/mozharness/external_tools/count_and_reboot.py',
-                '-f', '../reboot_count.txt', '-n', '1', '-z'
-            ],
-            'mozharness_repo_cache': '/tools/checkouts/mozharness',
-            'tools_repo_cache': '/tools/checkouts/build-tools',
-            'mozharness_desktop_build': {
-                'script_name': 'scripts/fx_desktop_build.py',
-                'extra_args': [
-                    '--config', 'builds/releng_base_linux_64_builds.py',
-                    '--custom-build-variant-cfg', 'add-on-devel',
-                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
-                ],
-                'script_timeout': 3 * 3600,
-                'script_maxtime': int(5.5 * 3600),
-            },
-            'mozharness_desktop_l10n': {
-                'capable': True,
-                'scriptName': 'scripts/desktop_l10n.py',
-                'l10n_chunks': 6,
-                'use_credentials_file': True,
-                'script_timeout': 1800,
-                'script_maxtime': 2 * 3600,
-            },
-            'enable_nightly': False,
-            'product_name': 'firefox',
-            'unittest_platform': 'linux64-add-on-devel-opt',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'base_name': 'Linux x86-64 add-on-devel %(branch)s',
-            'mozconfig': 'linux64/%(branch)s/add-on-devel',
-            'src_mozconfig': 'browser/config/mozconfigs/linux64/add-on-devel',
-            'profiled_build': False,
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 14,
-            'upload_symbols': True,
-            'download_symbols': False,
-            'packageTests': False,
-            'slaves': SLAVES['mock'],
-            'platform_objdir': OBJDIR,
-            'stage_product': 'firefox',
-            'stage_platform': 'linux64-add-on-devel',
-            'update_platform': 'Linux_x86_64-gcc3',
-            'enable_ccache': True,
-            'enable_shared_checkouts': True,
-            'env': {
-                'DISPLAY': ':2',
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
-                'TOOLTOOL_HOME': '/builds',
-                'MOZ_OBJDIR': OBJDIR,
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-                'LC_ALL': 'C',
-                'PATH': '/tools/buildbot/bin:/usr/local/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/tools/git/bin:/tools/python27/bin:/tools/python27-mercurial/bin:/home/cltbld/bin',
-            },
-            'enable_build_analysis': True,
-            'updates_enabled': False,
-            'test_pretty_names': False,
-            'l10n_check_test': True,
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/linux64/releng.manifest',
-            'tooltool_script': ['/builds/tooltool.py'],
-            'use_mock': True,
-            'mock_target': 'mozilla-centos6-x86_64',
-            'mock_packages': \
-                       ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
-                        'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
-                        'gtk2-devel', 'libnotify-devel', 'yasm',
-                        'alsa-lib-devel', 'libcurl-devel',
-                        'wireless-tools-devel', 'libX11-devel',
-                        'libXt-devel', 'mesa-libGL-devel',
-                        'gnome-vfs2-devel', 'GConf2-devel', 'wget',
-                        'mpfr', # required for system compiler
-                        'xorg-x11-font*', # fonts required for PGO
-                        'imake', # required for makedepend!?!
-                        'gcc45_0moz3', 'gcc454_0moz1', 'gcc472_0moz1', 'gcc473_0moz1', 'yasm', 'ccache', # <-- from releng repo
-                        'dbus-x11',
-                        'pulseaudio-libs-devel',
-                        'gstreamer-devel', 'gstreamer-plugins-base-devel',
-                        'freetype-2.3.11-6.el6_1.8.x86_64',
-                        'freetype-devel-2.3.11-6.el6_1.8.x86_64',
-                        ],
-            'mock_copyin_files': [
-                ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
-                ('/home/cltbld/.hgrc', '/builds/.hgrc'),
-                ('/home/cltbld/.boto', '/builds/.boto'),
-                ('/builds/gapi.data', '/builds/gapi.data'),
-                ('/tools/tooltool.py', '/builds/tooltool.py'),
-                ('/builds/google-oauth-api.key', '/builds/google-oauth-api.key'),
-                ('/builds/relengapi.tok', '/builds/relengapi.tok'),
-                ('/builds/mozilla-desktop-geoloc-api.key', '/builds/mozilla-desktop-geoloc-api.key'),
-                ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
-                ('/usr/local/lib/hgext', '/usr/local/lib/hgext'),
-            ],
-        },
         'linux64-asan-debug': {
             'mozharness_python': '/tools/buildbot/bin/python',
             'reboot_command': [
@@ -795,67 +695,6 @@ PLATFORM_VARS = {
             # must be overridden explicitly.
             'nightly_signing_servers': 'dep-signing',
             'dep_signing_servers': 'dep-signing',
-            'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
-            'enable_ccache': True,
-        },
-        'macosx64-add-on-devel': {
-            'mozharness_python': '/tools/buildbot/bin/python',
-            'reboot_command': ['scripts/external_tools/count_and_reboot.py',
-                               '-f', '../reboot_count.txt', '-n', '1', '-z'],
-            'tools_repo_cache': '/tools/checkouts/build-tools',
-            'mozharness_desktop_build': {
-                'script_name': 'scripts/fx_desktop_build.py',
-                'extra_args': [
-                    '--config', 'builds/releng_base_mac_64_builds.py',
-                    '--custom-build-variant-cfg', 'add-on-devel',
-                    '--config', GLOBAL_VARS['mozharness_configs']['balrog'],
-                ],
-                'script_timeout': 3 * 3600,
-                'script_maxtime': int(5.5 * 3600),
-            },
-            'mozharness_desktop_l10n': {
-                'capable': True,
-                'scriptName': 'scripts/desktop_l10n.py',
-                'l10n_chunks': 8,
-                'use_credentials_file': True,
-                'script_timeout': 1800,
-                'script_maxtime': 3 * 3600,
-            },
-            'product_name': 'firefox',
-            'unittest_platform': 'macosx64-add-on-devel-opt',
-            'app_name': 'browser',
-            'brand_name': 'Minefield',
-            'base_name': 'OS X 10.7  add-on-devel %(branch)s',
-            'mozconfig': 'macosx64/%(branch)s/add-on-devel',
-            'src_mozconfig': 'browser/config/mozconfigs/macosx-universal/add-on-devel',
-            'packageTests': True,
-            'profiled_build': False,
-            'builds_before_reboot': localconfig.BUILDS_BEFORE_REBOOT,
-            'build_space': 12,
-            'upload_symbols': True,
-            'download_symbols': True,
-            'slaves': SLAVES['macosx64-lion'],
-            'platform_objdir': OBJDIR,
-            'stage_product': 'firefox',
-            'stage_platform': 'macosx64-add-on-devel',
-            'update_platform': 'Darwin_x86_64-gcc3',
-            'enable_shared_checkouts': True,
-            'env': {
-                'MOZ_OBJDIR': OBJDIR,
-                'HG_SHARE_BASE_DIR': '/builds/hg-shared',
-                'TOOLTOOL_CACHE': '/builds/tooltool_cache',
-                'TOOLTOOL_HOME': '/builds',
-                'CHOWN_ROOT': '~/bin/chown_root',
-                'CHOWN_REVERT': '~/bin/chown_revert',
-                'LC_ALL': 'C',
-                'PATH': '/tools/python/bin:/tools/buildbot/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin',
-                'CCACHE_DIR': '/builds/ccache',
-                'CCACHE_COMPRESS': '1',
-                'CCACHE_UMASK': '002',
-            },
-            'updates_enabled': False,
-            'enable_opt_unittests': False,
-            'test_pretty_names': False,
             'tooltool_manifest_src': 'browser/config/tooltool-manifests/macosx64/releng.manifest',
             'enable_ccache': True,
         },
@@ -2879,14 +2718,14 @@ mr_gecko_version = BRANCHES['mozilla-release']['gecko_version']
 # Note: for now, we will lock this to m-b but eventually we will want to replace mr_gecko_version
 # with a static version so that this can ride the trains to esr
 for name, branch in items_before(BRANCHES, 'gecko_version', mr_gecko_version):
-    for platform in ['linux64-add-on-devel', 'macosx64-add-on-devel', 'win32-add-on-devel', 'win64-add-on-devel']:
+    for platform in ['win32-add-on-devel', 'win64-add-on-devel']:
         if platform in branch['platforms']:
             del branch['platforms'][platform]
 for name, branch in items_at_least(BRANCHES, 'gecko_version', mr_gecko_version):
     if name in  ['mozilla-beta', 'mozilla-release', 'mozilla-esr52']:
         continue
     else:
-        for platform in ['linux64-add-on-devel', 'macosx64-add-on-devel', 'win32-add-on-devel', 'win64-add-on-devel']:
+        for platform in ['win32-add-on-devel', 'win64-add-on-devel']:
             if platform in branch['platforms']:
                 del branch['platforms'][platform]
 
@@ -2944,12 +2783,6 @@ for branch in BRANCHES.keys():
             continue
         del BRANCHES[branch]['platforms'][platform]
 
-# Bug 1372241 - kill Linux and OS X buildbot-based addon devel builds everywhere
-for branch in BRANCHES.keys():
-    for platform in BRANCHES[branch]['platforms'].keys():
-        if platform not in ['linux64-add-on-devel', 'macosx64-add-on-devel']:
-            continue
-        del BRANCHES[branch]['platforms'][platform]
 
 if __name__ == "__main__":
     import sys
