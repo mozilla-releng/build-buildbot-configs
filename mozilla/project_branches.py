@@ -111,7 +111,7 @@ PROJECT_BRANCHES = {
     # 'holly': {},
 
     'jamun': {
-        'gecko_version': 53,
+        'gecko_version': 56,
         'watch_all_branches': True,
         'desktop_mozharness_builds_enabled': True,
         'use_mozharness_repo_cache': False,
@@ -121,7 +121,7 @@ PROJECT_BRANCHES = {
         # platforms[platform]["slave_platforms"] item override below
         'enable_opt_unittests': False,
         'enable_debug_unittests': False,
-        'enable_talos': True,
+        'enable_talos': False,
         ##
         'lock_platforms': True,
         'platforms': {
@@ -139,47 +139,34 @@ PROJECT_BRANCHES = {
             'win32': {
                 'dep_signing_servers': 'release-signing',
                 "slave_platforms": [],
+                "enable_dep": False,
             },
             'win64': {
                 'dep_signing_servers': 'release-signing',
                 "slave_platforms": [],
+                "enable_dep": False,
             },
             'macosx64': {
                 'dep_signing_servers': 'release-signing',
                 "slave_platforms": [],
+                "enable_dep": False,
             },
             'win32-devedition': {
                 'dep_signing_servers': 'nightly-signing',
+                "enable_dep": False,
             },
             'win64-devedition': {
                 'dep_signing_servers': 'nightly-signing',
+                "enable_dep": False,
             },
             'macosx64-devedition': {
                 'dep_signing_servers': 'nightly-signing',
+                "enable_dep": False,
             },
             'linux64-devedition': {
                 'dep_signing_servers': 'nightly-signing',
+                "enable_dep": False,
             },
-            'linux64-debug': {
-                "slave_platforms": [],
-            },
-            'linux64-asan': {
-                "slave_platforms": [],
-            },
-            'linux64-asan-debug': {
-                "slave_platforms": [],
-            },
-            'macosx64-debug': {
-                "slave_platforms": [],
-            },
-            'win32-debug': {
-                "slave_platforms": [],
-            },
-            'win64-debug': {
-                "slave_platforms": [],
-            },
-            'android-api-15': {},
-            'android-x86': {},
         },
         'pgo_strategy': 'per-checkin',
         'enable_release_promotion': {
