@@ -91,14 +91,14 @@ PROJECT_BRANCHES = {
     # Disabled by bug 1363047
     # 'cypress': {},
     'date': {
-        'enable_talos': False,
+        'enable_talos': True,
         'lock_platforms': True,
         'merge_builds': False,
         'platforms': {
-            'linux': {},
-            'linux64': {},
-            'linux64-debug': {},
-            'android-api-15': {},
+            'win32': {},
+            'win32-debug': {},
+            'win64': {},
+            'win64-debug': {},
         },
     },
     # Disabled by bug 1363047
