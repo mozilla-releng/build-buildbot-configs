@@ -2162,22 +2162,39 @@ BRANCHES['mozilla-release']['tc_indexes'] = {
         "linux": {
             "signed": "gecko.v2.mozilla-release.signed-nightly.revision.{rev}.firefox-l10n.linux-opt.en-US",
             "unsigned": "gecko.v2.mozilla-release.revision.{rev}.firefox-l10n.linux-opt.en-US",
+            "ci_system": "tc",
         },
         "linux64": {
             "signed": "gecko.v2.mozilla-release.signed-nightly.revision.{rev}.firefox-l10n.linux64-opt.en-US",
             "unsigned": "gecko.v2.mozilla-release.revision.{rev}.firefox-l10n.linux64-opt.en-US",
+            "ci_system": "tc",
         },
         "macosx64": {
             "signed": "gecko.v2.mozilla-release.revision.{rev}.firefox.macosx64-opt",
             "unsigned": "gecko.v2.mozilla-release.revision.{rev}.firefox.macosx64-opt",
+            "ci_system": "bb",
+            # Uncomment when TC is tier-1
+            # "ci_system": "tc",
+            # "repackage": "gecko.v2.mozilla-release.revision.{rev}.firefox-l10n.macosx64-nightly-repackage.en-US",
+            # "repackage-signing": "gecko.v2.mozilla-release.revision.{rev}.firefox-l10n.macosx64-nightly-repackage-signing.en-US",
         },
         "win32": {
             "signed": "gecko.v2.mozilla-release.revision.{rev}.firefox.win32-opt",
             "unsigned": "gecko.v2.mozilla-release.revision.{rev}.firefox.win32-opt",
+            "ci_system": "bb",
+            # Uncomment when TC is tier-1
+            # "ci_system": "tc",
+            # "repackage": "gecko.v2.mozilla-release.revision.{rev}.firefox-l10n.win32-nightly-repackage.en-US",
+            # "repackage-signing": "gecko.v2.mozilla-release.revision.{rev}.firefox-l10n.win32-nightly-repackage-signing.en-US",
         },
         "win64": {
             "signed": "gecko.v2.mozilla-release.revision.{rev}.firefox.win64-opt",
             "unsigned": "gecko.v2.mozilla-release.revision.{rev}.firefox.win64-opt",
+            "ci_system": "bb",
+            # Uncomment when TC is tier-1
+            # "ci_system": "tc",
+            # "repackage": "gecko.v2.mozilla-release.revision.{rev}.firefox-l10n.win64-nightly-repackage.en-US",
+            # "repackage-signing": "gecko.v2.mozilla-release.revision.{rev}.firefox-l10n.win64-nightly-repackage-signing.en-US",
         },
     },
     # TODO: fennec
@@ -2359,44 +2376,78 @@ BRANCHES['mozilla-beta']['tc_indexes'] = {
         "linux": {
             "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.firefox-l10n.linux-opt.en-US",
             "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.linux-opt.en-US",
+            "ci_system": "tc",
         },
         "linux64": {
             "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.firefox-l10n.linux64-opt.en-US",
             "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.linux64-opt.en-US",
+            "ci_system": "tc",
         },
         "macosx64": {
             "signed": "gecko.v2.mozilla-beta.revision.{rev}.firefox.macosx64-opt",
             "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.macosx64-opt",
+            "ci_system": "bb",
+            # Uncomment when TC is tier-1
+            # "repackage": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.macosx64-nightly-repackage.en-US",
+            # "repackage-signing": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.macosx64-nightly-repackage-signing.en-US",
+            # "ci_system": "tc",
         },
         "win32": {
             "signed": "gecko.v2.mozilla-beta.revision.{rev}.firefox.win32-opt",
             "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.win32-opt",
+            "ci_system": "bb",
+            # Uncomment when TC is tier-1
+            # "repackage": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.win32-nightly-repackage.en-US",
+            # "repackage-signing": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.win32-nightly-repackage-signing.en-US",
+            # "ci_system": "tc",
         },
         "win64": {
             "signed": "gecko.v2.mozilla-beta.revision.{rev}.firefox.win64-opt",
             "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.win64-opt",
+            "ci_system": "bb",
+            # Uncomment when TC is tier-1
+            # "repackage": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.win64-nightly-repackage.en-US",
+            # "repackage-signing": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.win64-nightly-repackage-signing.en-US",
+            # "ci_system": "tc",
         },
     },
     "devedition": {
         "linux": {
             "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.devedition-l10n.linux-opt.en-US",
             "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.devedition-l10n.linux-opt.en-US",
+            "ci_system": "tc",
         },
         "linux64": {
             "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.devedition-l10n.linux64-opt.en-US",
             "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.devedition-l10n.linux64-opt.en-US",
+            "ci_system": "tc",
         },
         "macosx64": {
             "signed": "gecko.v2.mozilla-beta.revision.{rev}.devedition.macosx64-opt",
             "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.devedition.macosx64-opt",
+            "ci_system": "bb",
+            # Uncomment when TC is tier-1
+            # "repackage": "gecko.v2.mozilla-beta.revision.{rev}.devedition-l10n.macosx64-nightly-repackage.en-US",
+            # "repackage-signing": "gecko.v2.mozilla-beta.revision.{rev}.devedition-l10n.macosx64-nightly-repackage-signing.en-US",
+            # "ci_system": "tc",
         },
         "win32": {
             "signed": "gecko.v2.mozilla-beta.revision.{rev}.devedition.win32-opt",
             "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.devedition.win32-opt",
+            "ci_system": "bb",
+            # Uncomment when TC is tier-1
+            # "repackage": "gecko.v2.mozilla-beta.revision.{rev}.devedition-l10n.win32-nightly-repackage.en-US",
+            # "repackage-signing": "gecko.v2.mozilla-beta.revision.{rev}.devedition-l10n.win32-nightly-repackage-signing.en-US",
+            # "ci_system": "tc",
         },
         "win64": {
             "signed": "gecko.v2.mozilla-beta.revision.{rev}.devedition.win64-opt",
             "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.devedition.win64-opt",
+            "ci_system": "bb",
+            # Uncomment when TC is tier-1
+            # "repackage": "gecko.v2.mozilla-beta.revision.{rev}.devedition-l10n.win64-nightly-repackage.en-US",
+            # "repackage-signing": "gecko.v2.mozilla-beta.revision.{rev}.devedition-l10n.win64-nightly-repackage-signing.en-US",
+            # "ci_system": "tc",
         },
     },
     # TODO: fennec
@@ -2508,22 +2559,27 @@ BRANCHES['mozilla-esr52']['tc_indexes'] = {
         "linux": {
             "signed": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.linux-opt",
             "unsigned": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.linux-opt",
+            "ci_system": "bb",
         },
         "linux64": {
             "signed": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.linux64-opt",
             "unsigned": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.linux64-opt",
+            "ci_system": "bb",
         },
         "macosx64": {
             "signed": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.macosx64-opt",
             "unsigned": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.macosx64-opt",
+            "ci_system": "bb",
         },
         "win32": {
             "signed": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.win32-opt",
             "unsigned": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.win32-opt",
+            "ci_system": "bb",
         },
         "win64": {
             "signed": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.win64-opt",
             "unsigned": "gecko.v2.mozilla-esr52.revision.{rev}.firefox.win64-opt",
+            "ci_system": "bb",
         },
     },
 }

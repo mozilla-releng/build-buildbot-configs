@@ -281,44 +281,60 @@ PROJECT_BRANCHES = {
                 "linux": {
                     "signed": "gecko.v2.jamun.signed-nightly.revision.{rev}.firefox-l10n.linux-opt.en-US",
                     "unsigned": "gecko.v2.jamun.revision.{rev}.firefox-l10n.linux-opt.en-US",
+                    "ci_system": "tc",
                 },
                 "linux64": {
                     "signed": "gecko.v2.jamun.signed-nightly.revision.{rev}.firefox-l10n.linux64-opt.en-US",
                     "unsigned": "gecko.v2.jamun.revision.{rev}.firefox-l10n.linux64-opt.en-US",
+                    "ci_system": "tc",
                 },
                 "macosx64": {
                     "signed": "gecko.v2.jamun.revision.{rev}.firefox.macosx64-opt",
                     "unsigned": "gecko.v2.jamun.revision.{rev}.firefox.macosx64-opt",
+                    "repackage": "gecko.v2.jamun.revision.{rev}.firefox-l10n.macosx64-nightly-repackage.en-US",
+                    "repackage-signing": "gecko.v2.jamun.revision.{rev}.firefox-l10n.macosx64-nightly-repackage-signing.en-US",
+                    "ci_system": "tc",
                 },
                 "win32": {
                     "signed": "gecko.v2.jamun.revision.{rev}.firefox.win32-opt",
                     "unsigned": "gecko.v2.jamun.revision.{rev}.firefox.win32-opt",
+                    "repackage": "gecko.v2.jamun.revision.{rev}.firefox-l10n.win32-nightly-repackage.en-US",
+                    "repackage-signing": "gecko.v2.jamun.revision.{rev}.firefox-l10n.win32-nightly-repackage-signing.en-US",
+                    "ci_system": "tc",
                 },
                 "win64": {
                     "signed": "gecko.v2.jamun.revision.{rev}.firefox.win64-opt",
                     "unsigned": "gecko.v2.jamun.revision.{rev}.firefox.win64-opt",
+                    "repackage": "gecko.v2.mozilla-release.revision.{rev}.firefox-l10n.win64-nightly-repackage.en-US",
+                    "repackage-signing": "gecko.v2.jamun.revision.{rev}.firefox-l10n.win64-nightly-repackage-signing.en-US",
+                    "ci_system": "tc",
                 },
             },
             "devedition": {
                 "linux": {
                     "signed": "gecko.v2.jamun.signed-nightly.revision.{rev}.devedition-l10n.linux-opt.en-US",
                     "unsigned": "gecko.v2.jamun.revision.{rev}.devedition-l10n.linux-opt.en-US",
+                    "ci_system": "tc",
                 },
                 "linux64": {
                     "signed": "gecko.v2.jamun.signed-nightly.revision.{rev}.devedition-l10n.linux64-opt.en-US",
                     "unsigned": "gecko.v2.jamun.revision.{rev}.devedition-l10n.linux64-opt.en-US",
+                    "ci_system": "tc",
                 },
                 "macosx64": {
                     "signed": "gecko.v2.jamun.revision.{rev}.devedition.macosx64-opt",
                     "unsigned": "gecko.v2.jamun.revision.{rev}.devedition.macosx64-opt",
+                    "ci_system": "tc",
                 },
                 "win32": {
                     "signed": "gecko.v2.jamun.revision.{rev}.devedition.win32-opt",
                     "unsigned": "gecko.v2.jamun.revision.{rev}.devedition.win32-opt",
+                    "ci_system": "tc",
                 },
                 "win64": {
                     "signed": "gecko.v2.jamun.revision.{rev}.devedition.win64-opt",
                     "unsigned": "gecko.v2.jamun.revision.{rev}.devedition.win64-opt",
+                    "ci_system": "tc",
                 },
             },
             # TODO: fennec
