@@ -2423,8 +2423,8 @@ BRANCHES['mozilla-beta']['tc_indexes'] = {
             "ci_system": "tc",
         },
         "macosx64": {
-            "signed": "gecko.v2.mozilla-beta.revision.{rev}.devedition.macosx64-opt",
-            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.devedition.macosx64-opt",
+            "signed": "gecko.v2.mozilla-beta.revision.{rev}.firefox.macosx64-devedition-opt",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.macosx64-devedition-opt",
             "ci_system": "bb",
             # Uncomment when TC is tier-1
             # "repackage": "gecko.v2.mozilla-beta.revision.{rev}.devedition-l10n.macosx64-nightly-repackage.en-US",
