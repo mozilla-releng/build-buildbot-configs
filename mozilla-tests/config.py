@@ -380,6 +380,11 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, WIN_ONLY),
     },
+    'perf-reftest-singletons-e10s': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'bloom_basic_singleton', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, ALL_TALOS_PLATFORMS),
+    },
 }
 
 BRANCH_UNITTEST_VARS = {
@@ -2713,14 +2718,14 @@ for platform in PLATFORMS.keys():
 
 # Enable talos g4 on 50+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
-    if branch.get('enable_talos') is False:
+    if not branch.get('enable_talos'):
         continue
     branch['g4_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['g4-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 # Enable talos perf-reftest, g5, quantum-pageload-e10s on 55+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
-    if branch.get('enable_talos') is False:
+    if not branch.get('enable_talos'):
         continue
     branch['perf-reftest_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['perf-reftest-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
@@ -2729,7 +2734,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
 
 # Bug 1364157 - Disable non-e10s talos tests on 55+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
-    if branch.get('enable_talos') is False:
+    if not branch.get('enable_talos'):
         continue
 
     branch['g1_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
@@ -2743,6 +2748,12 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
     branch['tp5o_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
     branch['xperf_tests'] = (0, False, {}, WIN7_ONLY)
     branch['perf-reftest_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
+
+# Enable talos perf-reftest-singeltons on 56+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 56):
+    if not branch.get('enable_talos'):
+        continue
+    branch['perf-reftest-singletons-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 ### Test suites that only run on Try ###
 
