@@ -1768,9 +1768,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win7_vm_gfx': {
-            'opt_unittest_suites': MOCHITEST_5 + MOCHITEST_BC_7 + MOCHITEST_WEBGL_CHUNKED + \
+            'opt_unittest_suites': MOCHITEST_5 + MOCHITEST_BC_7 + \
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK,
-            'debug_unittest_suites': MOCHITEST_5 + MOCHITEST_BC_7 + MOCHITEST_WEBGL_CHUNKED + \
+            'debug_unittest_suites': MOCHITEST_5 + MOCHITEST_BC_7 + \
                                      REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS,
             'suite_config': {
                 'mochitest-gpu': {
@@ -2866,9 +2866,9 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
                                                     MOCHITEST_E10S + MOCHITEST_BC_7_E10S + MOCHITEST_BC_7
 
     if 'win7_vm_gfx' in win32:
-        win32['win7_vm_gfx']['opt_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S + \
+        win32['win7_vm_gfx']['opt_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED_E10S + \
                                                        REFTEST_NOACCEL_E10S
-        win32['win7_vm_gfx']['debug_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S + \
+        win32['win7_vm_gfx']['debug_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED_E10S + \
                                                          REFTEST_NOACCEL_E10S_TWO_CHUNKS
 
 # Bug 1313499 - Run reftest-gpu-e10s on AWS on Gecko 53+
