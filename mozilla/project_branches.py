@@ -323,7 +323,7 @@ PROJECT_BRANCHES = {
                     "ci_system": "tc",
                 },
                 "win64": {
-                    "unsigned": "gecko.v2.jamun.revision.{rev}.devedition-l10n.win6win64.en-US",
+                    "unsigned": "gecko.v2.jamun.revision.{rev}.devedition-l10n.win64-opt.en-US",
                     "signed": "gecko.v2.jamun.signed-nightly.revision.{rev}.devedition-l10n.win64-opt.en-US",
                     "repackage": "gecko.v2.jamun.revision.{rev}.firefox-l10n.win64-devedition-nightly-repackage.en-US",
                     "repackage-signing": "gecko.v2.jamun.revision.{rev}.firefox-l10n.win64-devedition-nightly-repackage-signing.en-US",
