@@ -240,13 +240,14 @@ PROJECT_BRANCHES = {
             'devedition': 'devedition',
         },
         'signing_class': {
-            "firefox": "release-signing",
-            "devedition": "nightly-signing",
+            "firefox": "dep-signing",
+            "devedition": "dep-signing",
         },
         'signing_cert': {
-            "firefox": "release",
-            "devedition": "nightly",
+            "firefox": "dep",
+            "devedition": "dep",
         },
+        'moz_disable_mar_cert_verification': True,
         'accepted_mar_channel_id': {
             "firefox": "firefox-mozilla-beta",
             "devedition": "firefox-mozilla-aurora",
@@ -323,7 +324,7 @@ PROJECT_BRANCHES = {
                     "ci_system": "tc",
                 },
                 "win64": {
-                    "unsigned": "gecko.v2.jamun.revision.{rev}.devedition-l10n.win6win64.en-US",
+                    "unsigned": "gecko.v2.jamun.revision.{rev}.devedition-l10n.win64-opt.en-US",
                     "signed": "gecko.v2.jamun.signed-nightly.revision.{rev}.devedition-l10n.win64-opt.en-US",
                     "repackage": "gecko.v2.jamun.revision.{rev}.firefox-l10n.win64-devedition-nightly-repackage.en-US",
                     "repackage-signing": "gecko.v2.jamun.revision.{rev}.firefox-l10n.win64-devedition-nightly-repackage-signing.en-US",

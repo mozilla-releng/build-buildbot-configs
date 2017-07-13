@@ -258,31 +258,15 @@ WIN_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('win32', 'win32-deved
 WIN7_ONLY = ['win7_ix', 'win7_ix_devedition']
 
 SUITES = {
-    'xperf': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5n', '--sampleConfig', 'xperf.config', '--mozAfterPaint', '--xperf_path',
-                                  '"c:/Program Files/Microsoft Windows Performance Toolkit/xperf.exe"', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, WIN7_ONLY),
-    },
     'xperf-e10s': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5n', '--sampleConfig', 'xperf.config', '--mozAfterPaint', '--xperf_path',
                                   '"c:/Program Files/Microsoft Windows Performance Toolkit/xperf.exe"', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, WIN7_ONLY),
     },
-    'tp5o': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
-    },
     'tp5o-e10s': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o', '--mozAfterPaint', '--responsiveness', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
-    },
-    'g1': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o_scroll', '--filter', 'ignore_first:1', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
     'g1-e10s': {
@@ -290,44 +274,24 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tp5o_scroll', '--filter', 'ignore_first:1', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
     },
-    'g2': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'damp', '--filter', 'ignore_first:1', '--filter', 'median'],
-        'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
-    },
     'g2-e10s': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'damp', '--filter', 'ignore_first:1', '--filter', 'median'],
         'options': (TALOS_TP_NEW_OPTS, ALL_TALOS_PLATFORMS),
-    },
-    'g3': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_dom'],
-        'options': ({}, LINUX_ONLY),
     },
     'g3-e10s': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_dom'],
         'options': ({}, LINUX_ONLY),
     },
-    'g4': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'basic_compositor_video'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
-    },
     'g4-e10s': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'basic_compositor_video'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'g5-e10s': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_paint'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
-    },
-    'other': {
         'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'suites': GRAPH_CONFIG + ['--activeTests', 'ts_paint'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'other-e10s': {
@@ -335,19 +299,9 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'tscrollr:a11yr:ts_paint:tpaint', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
-    'svgr': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
-    },
     'svgr-e10s': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tsvgr:tsvgr_opacity', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
-    },
-    'dromaeojs': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom:kraken:v8_7'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'dromaeojs-e10s': {
@@ -355,28 +309,18 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'dromaeo_css:dromaeo_dom:kraken:v8_7'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
-    'chromez': {
-        'enable_by_default': True,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
-    },
     'chromez-e10s': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'tresize', '--mozAfterPaint', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
-    'perf-reftest': {
-        'enable_by_default': False,
-        'suites': GRAPH_CONFIG + ['--activeTests', 'bloom_basic:bloom_basic_ref', '--filter', 'ignore_first:5', '--filter', 'median'],
-        'options': ({}, ALL_TALOS_PLATFORMS),
-    },
     'perf-reftest-e10s': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'bloom_basic:bloom_basic_ref', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
     'quantum-pageload-e10s': {
-        'enable_by_default': False,
+        'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, WIN_ONLY),
     },
@@ -1824,9 +1768,9 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
         'win7_vm_gfx': {
-            'opt_unittest_suites': MOCHITEST_5 + MOCHITEST_BC_7 + MOCHITEST_WEBGL_CHUNKED + \
+            'opt_unittest_suites': MOCHITEST_5 + MOCHITEST_BC_7 + \
                                    REFTEST_NOACCEL + REFTEST_ONE_CHUNK,
-            'debug_unittest_suites': MOCHITEST_5 + MOCHITEST_BC_7 + MOCHITEST_WEBGL_CHUNKED + \
+            'debug_unittest_suites': MOCHITEST_5 + MOCHITEST_BC_7 + \
                                      REFTEST_NOACCEL_TWO_CHUNKS + REFTEST_TWO_CHUNKS,
             'suite_config': {
                 'mochitest-gpu': {
@@ -2716,39 +2660,6 @@ for platform in PLATFORMS.keys():
                         BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                             MOCHITEST_GPU + MOCHITEST_CLIPBOARD
 
-# Enable talos g4 on 50+
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 50):
-    if not branch.get('enable_talos'):
-        continue
-    branch['g4_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-    branch['g4-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-
-# Enable talos perf-reftest, g5, quantum-pageload-e10s on 55+
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
-    if not branch.get('enable_talos'):
-        continue
-    branch['perf-reftest_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-    branch['perf-reftest-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-    branch['g5-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
-    branch['quantum-pageload-e10s_tests'] = (1, False, {}, WIN_ONLY)
-
-# Bug 1364157 - Disable non-e10s talos tests on 55+
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
-    if not branch.get('enable_talos'):
-        continue
-
-    branch['g1_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-    branch['g2_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-    branch['g3_tests'] = (0, False, {}, LINUX_ONLY)
-    branch['g4_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-    branch['chromez_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-    branch['dromaeojs_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-    branch['other_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-    branch['svgr_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-    branch['tp5o_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-    branch['xperf_tests'] = (0, False, {}, WIN7_ONLY)
-    branch['perf-reftest_tests'] = (0, False, {}, ALL_TALOS_PLATFORMS)
-
 # Enable talos perf-reftest-singeltons on 56+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 56):
     if not branch.get('enable_talos'):
@@ -2955,9 +2866,9 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
                                                     MOCHITEST_E10S + MOCHITEST_BC_7_E10S + MOCHITEST_BC_7
 
     if 'win7_vm_gfx' in win32:
-        win32['win7_vm_gfx']['opt_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S + \
+        win32['win7_vm_gfx']['opt_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED_E10S + \
                                                        REFTEST_NOACCEL_E10S
-        win32['win7_vm_gfx']['debug_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED + MOCHITEST_WEBGL_CHUNKED_E10S + \
+        win32['win7_vm_gfx']['debug_unittest_suites'] += MOCHITEST_WEBGL_CHUNKED_E10S + \
                                                          REFTEST_NOACCEL_E10S_TWO_CHUNKS
 
 # Bug 1313499 - Run reftest-gpu-e10s on AWS on Gecko 53+
