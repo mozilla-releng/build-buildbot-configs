@@ -2662,7 +2662,7 @@ for platform in PLATFORMS.keys():
 
 # Enable talos perf-reftest-singeltons on 56+
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 56):
-    if not branch.get('enable_talos'):
+    if branch.get('enable_talos') is False:
         continue
     branch['perf-reftest-singletons-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
