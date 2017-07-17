@@ -94,6 +94,7 @@ PROJECT_BRANCHES = {
         'enable_talos': True,
         'lock_platforms': True,
         'merge_builds': False,
+        'pgo_strategy': 'periodic',
         'platforms': {
             'win32': {},
             'win32-debug': {},

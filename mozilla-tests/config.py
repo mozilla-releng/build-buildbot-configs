@@ -2472,7 +2472,7 @@ BRANCHES['mozilla-esr52']['platforms']['win64']['talos_slave_platforms'] = []
 
 ######## try
 BRANCHES['try']['repo_path'] = "try"
-BRANCHES['try']['pgo_strategy'] = None
+BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['watch_all_branches'] = True
 
