@@ -11,6 +11,7 @@ SlavePasswords = {
     "ubuntu64-asan_vm": "pass",
     "ubuntu64-asan_vm_lnx_large": "pass",
     "ubuntu64_hw": "pass",
+    "ubuntu64_hw_devedition": "pass",
     "ubuntu64_hw_stylo": "pass",
     "ubuntu64_hw_styloseq": "pass",
     "snowleopard": "pass",
