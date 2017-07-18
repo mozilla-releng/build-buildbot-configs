@@ -241,14 +241,14 @@ PROJECT_BRANCHES = {
             'devedition': 'devedition',
         },
         'signing_class': {
-            "firefox": "dep-signing",
-            "devedition": "dep-signing",
+            "firefox": "release-signing",
+            "devedition": "nightly-signing",
         },
         'signing_cert': {
-            "firefox": "dep",
-            "devedition": "dep",
+            "firefox": "release",
+            "devedition": "nightly",
         },
-        'moz_disable_mar_cert_verification': True,
+        'moz_disable_mar_cert_verification': False,
         'accepted_mar_channel_id': {
             "firefox": "firefox-mozilla-beta",
             "devedition": "firefox-mozilla-aurora",
