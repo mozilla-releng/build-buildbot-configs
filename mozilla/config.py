@@ -717,7 +717,7 @@ PLATFORM_VARS = {
             'mozharness_desktop_l10n': {
                 'capable': True,
                 'scriptName': 'scripts/desktop_l10n.py',
-                'l10n_chunks': 6,
+                'l10n_chunks': 20,
                 'use_credentials_file': True,
                 'script_timeout': 2 * 3600,
                 'script_maxtime': 3 * 3600,
@@ -789,7 +789,7 @@ PLATFORM_VARS = {
             'mozharness_desktop_l10n': {
                 'capable': True,
                 'scriptName': 'scripts/desktop_l10n.py',
-                'l10n_chunks': 6,
+                'l10n_chunks': 20,
                 'use_credentials_file': True,
                 'script_timeout': 2 * 3600,
                 'script_maxtime': 3 * 3600,
@@ -861,7 +861,7 @@ PLATFORM_VARS = {
             'mozharness_desktop_l10n': {
                 'capable': True,
                 'scriptName': 'scripts/desktop_l10n.py',
-                'l10n_chunks': 6,
+                'l10n_chunks': 20,
                 'use_credentials_file': True,
                 'script_timeout': 2 * 3600,
                 'script_maxtime': 3 * 3600,
@@ -919,7 +919,7 @@ PLATFORM_VARS = {
             'mozharness_desktop_l10n': {
                 'capable': True,
                 'scriptName': 'scripts/desktop_l10n.py',
-                'l10n_chunks': 6,
+                'l10n_chunks': 20,
                 'use_credentials_file': True,
                 'script_timeout': 2 * 3600,
                 'script_maxtime': 3 * 3600,
@@ -992,7 +992,7 @@ PLATFORM_VARS = {
             'mozharness_desktop_l10n': {
                 'capable': True,
                 'scriptName': 'scripts/desktop_l10n.py',
-                'l10n_chunks': 6,
+                'l10n_chunks': 20,
                 'use_credentials_file': True,
                 'script_timeout': 2 * 3600,
                 'script_maxtime': 3 * 3600,
@@ -1065,7 +1065,7 @@ PLATFORM_VARS = {
             'mozharness_desktop_l10n': {
                 'capable': True,
                 'scriptName': 'scripts/desktop_l10n.py',
-                'l10n_chunks': 6,
+                'l10n_chunks': 20,
                 'use_credentials_file': True,
                 'script_timeout': 2 * 3600,
                 'script_maxtime': 3 * 3600,
