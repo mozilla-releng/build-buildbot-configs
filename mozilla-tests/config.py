@@ -77,10 +77,8 @@ PLATFORMS = {
 
 }
 
-PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'yosemite_r7']
+PLATFORMS['macosx64']['slave_platforms'] = ['yosemite_r7']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
-PLATFORMS['macosx64']['snowleopard'] = {'name': "Rev4 MacOSX Snow Leopard 10.6",
-                                        'try_by_default': False}
 PLATFORMS['macosx64']['yosemite_r7'] = {'name': "Rev7 MacOSX Yosemite 10.10.5"}
 PLATFORMS['macosx64']['stage_product'] = 'firefox'
 PLATFORMS['macosx64']['mozharness_config'] = {
@@ -2090,130 +2088,6 @@ PLATFORM_UNITTEST_VARS = {
         'builds_before_reboot': 1,
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
-        'snowleopard': {
-            'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + REFTEST_ONE_CHUNK,
-            'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
-                                     MOCHITEST_5 + MOCHITEST_DT_8 + REFTEST_TWO_CHUNKS,
-            'suite_config': {
-                'mochitest-gpu': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-gpu-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-clipboard': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-clipboard-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'cppunit': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'gtest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'jittest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'marionette': {
-                    'config_files': ["marionette/prod_config.py"],
-                },
-                'marionette-e10s': {
-                    'config_files': ["marionette/prod_config.py"],
-                },
-                'mochitest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-a11y': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-browser-chrome': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-e10s-browser-chrome': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-browser-screenshots': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-chrome': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-devtools-chrome': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-e10s-devtools-chrome': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-gl': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-gl-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-jetpack': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-media': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-media-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mochitest-other': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mozbase': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'crashtest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'crashtest-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'jsreftest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'jsreftest-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'reftest': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'reftest-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'reftest-no-accel': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'reftest-no-accel-e10s': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'web-platform-tests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'web-platform-tests-e10s': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'web-platform-tests-reftests': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'web-platform-tests-reftests-e10s': {
-                    'config_files': ["web_platform_tests/prod_config.py"],
-                },
-                'webapprt-chrome': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'xpcshell': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-            },
-        },
         'yosemite_r7': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + REFTEST_ONE_CHUNK,
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'] + JITTEST + \
@@ -2507,10 +2381,6 @@ for platform in PLATFORMS.keys():
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 39):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
 
-            # These are not stable enough on OS X 10.6
-            if slave_platform == "snowleopard":
-                continue
-
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
@@ -2536,10 +2406,6 @@ for platform in PLATFORMS.keys():
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 42):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
 
-            # These are not stable enough on OS X 10.6
-            if slave_platform == "snowleopard":
-                continue
-
             if platform in BRANCHES[name]['platforms']:
                 if slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
@@ -2553,8 +2419,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 46):
         if platform not in branch['platforms']:
             continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
-            # e10s tests not supported on OSX 10.6 or WinXP
-            if slave_platform in ('snowleopard', 'xp_ix'):
+            # e10s tests not supported on WinXP
+            if slave_platform == 'xp_ix':
                 continue
 
             # Base set of test suites that are run across all platforms and flavors.
@@ -2648,9 +2514,6 @@ for platform in PLATFORMS.keys():
     for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
         if platform in BRANCHES[name]['platforms']:
             for slave_platform in PLATFORMS[platform]['slave_platforms']:
-                # e10s isn't supported on 10.6, so don't schedule tests
-                if slave_platform == "snowleopard":
-                    continue
                 if platform in BRANCHES[name]['platforms'] and slave_platform in BRANCHES[name]['platforms'][platform]:
                     BRANCHES[name]['platforms'][platform][slave_platform]['opt_unittest_suites'] += \
                         MOCHITEST_GPU + MOCHITEST_CLIPBOARD
@@ -2881,18 +2744,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
     if 'win7_vm_gfx' in win32:
         win32['win7_vm_gfx']['opt_unittest_suites'] += REFTEST_GPU_E10S
         win32['win7_vm_gfx']['debug_unittest_suites'] += REFTEST_GPU_E10S
-
-###
-# Bug 1269543 - Stop running tests on OS X 10.6 on Firefox 49+
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
-    if name in ['try']:
-        continue
-    for platform in branch['platforms'].keys():
-        if platform not in ['macosx64']:
-            continue
-        for slave_platform in ['snowleopard']:
-            del BRANCHES[name]['platforms'][platform][slave_platform]
-
 
 #Bug 1268542 - Disable Linux64 Debug builds and tests in buildbot
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 48):

@@ -46,9 +46,8 @@ PLATFORMS = {
 
 builder_prefix = "TB "
 
-PLATFORMS['macosx64']['slave_platforms'] = ['snowleopard', 'yosemite_r7']
+PLATFORMS['macosx64']['slave_platforms'] = ['yosemite_r7']
 PLATFORMS['macosx64']['env_name'] = 'mac-perf'
-PLATFORMS['macosx64']['snowleopard'] = {'name': builder_prefix + "Rev4 MacOSX Snow Leopard 10.6"}
 PLATFORMS['macosx64']['yosemite_r7'] = {'name': builder_prefix + "Rev7 MacOSX Yosemite 10.10.5"}
 PLATFORMS['macosx64']['stage_product'] = 'thunderbird'
 PLATFORMS['macosx64']['mozharness_config'] = {
@@ -268,18 +267,6 @@ PLATFORM_UNITTEST_VARS = {
         'builds_before_reboot': 1,
         'enable_opt_unittests': True,
         'enable_debug_unittests': True,
-        'snowleopard': {
-            'opt_unittest_suites': XPCSHELL[:],
-            'debug_unittest_suites': XPCSHELL[:],
-            'suite_config': {
-                'xpcshell': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-                'mozmill': {
-                    'config_files': ["unittests/mac_unittest.py"],
-                },
-            },
-        },
         'yosemite_r7': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'][:],
             'debug_unittest_suites': UNITTEST_SUITES['debug_unittest_suites'][:],
@@ -439,16 +426,6 @@ for platform in PLATFORMS.keys():
 for name, branch in items_before(BRANCHES, 'gecko_version', 34):
   if 'macosx64' in BRANCHES[name]['platforms']:
     BRANCHES[name]['platforms']['macosx64']['mac_res_subdir'] = 'MacOS'
-
-# Bug 1278102 - Stop running tests on OS X 10.6 on 49+
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 49):
-    if name in ['try']:
-        continue
-    for platform in branch['platforms'].keys():
-        if platform not in ['macosx64']:
-            continue
-        for slave_platform in ['snowleopard']:
-            del BRANCHES[name]['platforms'][platform][slave_platform]
 
 # mozmill-on-mozharness should ride the trains
 # Replace old trains with non-mozharness code.
