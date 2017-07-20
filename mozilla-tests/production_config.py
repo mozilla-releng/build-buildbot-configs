@@ -10,7 +10,6 @@ SLAVES = {
     'win8_64_devedition': {},
     'win10': {},
     'win10_64_devedition': {},
-    'snowleopard': {},
     'yosemite_r7': {},
     'yosemite_r7_devedition': {},
     'ubuntu32_vm': {},
@@ -45,9 +44,6 @@ for i in range(1, 102) + range(103, 207) + range(208, 398):  # Omit 102 for win1
 
 for i in range(1, 76):
     SLAVES['win10']['t-w1064-ix-%03i' % i] = {}
-
-for i in range(86, 93) + range(95, 98):  # slaves 0034&0093&0094&0153 have been decommed // Bug 1279394 // Bug 1292656
-    SLAVES['snowleopard']['t-snow-r4-%04i' % i] = {}
 
 for i in range(1, 393):
     SLAVES['yosemite_r7']['t-yosemite-r7-%04i' % i] = {}

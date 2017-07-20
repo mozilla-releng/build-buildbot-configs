@@ -12,8 +12,7 @@ seta_branches = ['mozilla-inbound', 'autoland', 'graphics']
 
 today = date.today().strftime("%Y-%m-%d")
 # android has different slave platforms within the same opt|debug list
-seta_platforms = {"Rev4 MacOSX Snow Leopard 10.6": ("macosx64", ["snowleopard"]),
-                  "Windows XP 32-bit": ("win32", ["xp_ix"]),
+seta_platforms = {"Windows XP 32-bit": ("win32", ["xp_ix"]),
                   "Windows 7 32-bit": ("win32", ["win7_ix"]),
                   "Windows 7 VM 32-bit": ("win32", ["win7_vm"]),
                   "Windows 7 VM-GFX 32-bit": ("win32", ["win7_vm_gfx"]),
