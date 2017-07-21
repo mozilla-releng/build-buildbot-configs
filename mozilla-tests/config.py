@@ -100,7 +100,6 @@ PLATFORMS['macosx64-devedition']['mozharness_config'] = {
     'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
     'config_file': 'talos/mac_config.py',
 }
-PLATFORMS['macosx64-devedition']['talos_slave_platforms'] = ['yosemite_r7_devedition']
 
 PLATFORMS['win32']['slave_platforms'] = ['xp_ix', 'win7_ix', 'win7_vm', 'win7_vm_gfx']
 PLATFORMS['win32']['talos_slave_platforms'] = ['win7_ix']
@@ -120,7 +119,6 @@ PLATFORMS['win32']['mozharness_config'] = {
 }
 
 PLATFORMS['win32-devedition']['slave_platforms'] = ['win7_ix_devedition', 'win7_vm_devedition', 'win7_vm_gfx_devedition']
-PLATFORMS['win32-devedition']['talos_slave_platforms'] = ['win7_ix_devedition']
 PLATFORMS['win32-devedition']['env_name'] = 'win32-perf'
 PLATFORMS['win32-devedition']['win7_ix_devedition'] = {'name': "Windows 7 32-bit DevEdition",
                                                       'try_by_default': False}
@@ -152,7 +150,6 @@ PLATFORMS['win64']['mozharness_config'] = {
 }
 
 PLATFORMS['win64-devedition']['slave_platforms'] = ['win8_64_devedition']
-PLATFORMS['win64-devedition']['talos_slave_platforms'] = ['win10_64_devedition']
 PLATFORMS['win64-devedition']['env_name'] = 'win64-perf'
 PLATFORMS['win64-devedition']['stage_product'] = 'firefox'
 PLATFORMS['win64-devedition']['win8_64_devedition'] = {'name': 'Windows 8 64-bit DevEdition',
@@ -217,7 +214,6 @@ PLATFORMS['linux64-stylosequential']['mozharness_config'] = {
 }
 
 PLATFORMS['linux64-devedition']['slave_platforms'] = []
-PLATFORMS['linux64-devedition']['talos_slave_platforms'] = ['ubuntu64_hw_devedition']
 PLATFORMS['linux64-devedition']['env_name'] = 'linux-perf'
 PLATFORMS['linux64-devedition']['ubuntu64_hw_devedition'] = {'name': 'Ubuntu HW 12.04 x64 devedition'}
 PLATFORMS['linux64-devedition']['stage_product'] = 'firefox'
@@ -320,6 +316,11 @@ SUITES = {
     'quantum-pageload-e10s': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, WIN_ONLY),
+    },
+    'quantum-pageload-stylo-e10s': {
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median', '--stylo'],
         'options': ({}, WIN_ONLY),
     },
     'perf-reftest-singletons-e10s': {
@@ -2528,6 +2529,7 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 56):
     if branch.get('enable_talos') is False:
         continue
     branch['perf-reftest-singletons-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+    branch['quantum-pageload-stylo-e10s_tests'] = (1, False, {}, WIN_ONLY)
 
 ### Test suites that only run on Try ###
 
@@ -2904,7 +2906,7 @@ for branch in BRANCHES.keys():
                 #  we don't need debug tests for devedition
                 BRANCHES[branch]['platforms'][str(platform + '-devedition')][str(slave_platform + '_devedition')]['debug_unittest_suites'] = []
     else:
-  	for p in BRANCHES[branch]['platforms'].keys():
+        for p in BRANCHES[branch]['platforms'].keys():
             if p in ['macosx64-devedition', 'win32-devedition', 'win64-devedition']:
                 del BRANCHES[branch]['platforms'][p]
 
