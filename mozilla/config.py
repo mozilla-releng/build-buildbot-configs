@@ -2298,6 +2298,7 @@ BRANCHES['mozilla-beta']['platforms']['macosx64-devedition']['dep_signing_server
 BRANCHES['mozilla-beta']['platforms']['win32-devedition']['dep_signing_servers'] = 'nightly-signing'
 BRANCHES['mozilla-beta']['platforms']['win64-devedition']['dep_signing_servers'] = 'nightly-signing'
 # used by releasetasks
+BRANCHES['mozilla-beta']['binary_transparency_enabled'] = True
 BRANCHES['mozilla-beta']['bouncer_enabled'] = True
 BRANCHES['mozilla-beta']['updates_builder_enabled'] = True
 BRANCHES['mozilla-beta']['update_verify_enabled'] = True
