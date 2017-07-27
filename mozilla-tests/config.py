@@ -234,10 +234,10 @@ for platform, platform_config in PLATFORMS.iteritems():
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
-ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'win32-devedition', 'macosx64', 'macosx64-devedition', 'win64', 'win64-devedition', 'linux64-stylo', 'linux64-stylosequential', 'linux64-devedition'))
-LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'linux64-stylo', 'linux64-stylosequential', 'linux64-devedition'))
-WIN_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('win32', 'win32-devedition', 'win64', 'win64-devedition'))
-WIN7_ONLY = ['win7_ix', 'win7_ix_devedition']
+ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'macosx64', 'win64', 'linux64-stylo', 'linux64-stylosequential'))
+LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'linux64-stylo', 'linux64-stylosequential'))
+WIN_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('win32', 'win64'))
+WIN7_ONLY = ['win7_ix']
 
 SUITES = {
     'xperf-e10s': {
