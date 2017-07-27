@@ -17,18 +17,6 @@ import localconfig
 reload(localconfig)
 from localconfig import SLAVES, TRY_SLAVES, GLOBAL_VARS, GRAPH_CONFIG
 
-# we only need to load SETA config on test scheduler master
-# it doesn't impact other masters
-from buildbot.util import json
-master_config = json.load(open('master_config.json'))
-tests_scheduler = False
-if 'tests_scheduler' in master_config['name']:
-    tests_scheduler = True
-if tests_scheduler:
-    import config_seta
-    reload(config_seta)
-    from config_seta import loadSkipConfig
-
 MOZHARNESS_REBOOT_CMD = ['scripts/external_tools/count_and_reboot.py',
                          '-f', '../reboot_count.txt',
                          '-n', '1', '-z']
@@ -2357,9 +2345,6 @@ BRANCHES['jamun']['platforms']['macosx64']['talos_slave_platforms'] = []
 BRANCHES['jamun']['platforms']['linux']['talos_slave_platforms'] = []
 BRANCHES['jamun']['platforms']['linux64']['talos_slave_platforms'] = []
 BRANCHES['jamun']['platforms']['win64']['talos_slave_platforms'] = []
-
-if tests_scheduler:
-    loadSkipConfig(BRANCHES, "desktop")
 
 ### Tests Enabled In Gecko 39+ ###
 
