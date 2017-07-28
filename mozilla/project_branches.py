@@ -198,6 +198,7 @@ PROJECT_BRANCHES = {
             "firefox": "releases/bouncer_firefox_beta.py",
             "devedition": "releases/bouncer_firefox_devedition.py",
         },
+        'binary_transparency_enabled': True,
         'bouncer_enabled': True,
         'updates_builder_enabled': True,
         'update_verify_enabled': True,
