@@ -234,10 +234,10 @@ for platform, platform_config in PLATFORMS.iteritems():
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
-ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'win32-devedition', 'macosx64', 'macosx64-devedition', 'win64', 'win64-devedition', 'linux64-stylo', 'linux64-stylosequential', 'linux64-devedition'))
-LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'linux64-stylo', 'linux64-stylosequential', 'linux64-devedition'))
-WIN_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('win32', 'win32-devedition', 'win64', 'win64-devedition'))
-WIN7_ONLY = ['win7_ix', 'win7_ix_devedition']
+ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'macosx64', 'win64', 'linux64-stylo', 'linux64-stylosequential'))
+LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'linux64-stylo', 'linux64-stylosequential'))
+WIN_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('win32', 'win64'))
+WIN7_ONLY = ['win7_ix']
 
 SUITES = {
     'xperf-e10s': {
@@ -309,6 +309,21 @@ SUITES = {
     'quantum-pageload-stylo-e10s': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median', '--stylo'],
+        'options': ({}, WIN_ONLY),
+    },
+    'tp6-e10s': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, WIN_ONLY),
+    },
+    'tp6-stylo-e10s': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median', '--stylo'],
+        'options': ({}, WIN_ONLY),
+    },
+    'tp6-stylo-threads-e10s': {
+        'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median', '--stylo-threads'],
         'options': ({}, WIN_ONLY),
     },
     'perf-reftest-singletons-e10s': {
@@ -2515,6 +2530,11 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 56):
         continue
     branch['perf-reftest-singletons-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
     branch['quantum-pageload-stylo-e10s_tests'] = (1, False, {}, WIN_ONLY)
+    branch['tp6-stylo-threads-e10s_tests'] = (1, False, {}, WIN_ONLY)
+
+    if name in ['try']:
+        branch['tp6-stylo-e10s_tests'] = (1, False, {}, WIN_ONLY)
+        branch['tp6-e10s_tests'] = (1, False, {}, WIN_ONLY)
 
 ### Test suites that only run on Try ###
 
