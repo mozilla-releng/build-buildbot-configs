@@ -191,8 +191,8 @@ PROJECT_BRANCHES = {
             "devedition": ("linux", "linux64", "win32", "win64", "macosx64"),
         },
         # temp balrog
-        'balrog_api_root': 'http://ec2-54-196-167-74.compute-1.amazonaws.com:7070/api',
-        'funsize_balrog_api_root': 'http://ec2-54-196-167-74.compute-1.amazonaws.com:7070/api',
+        'balrog_api_root': 'http://ec2-54-159-98-221.compute-1.amazonaws.com:8080/api',
+        'funsize_balrog_api_root': 'http://ec2-54-159-98-221.compute-1.amazonaws.com:8080/api',
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': {
             "firefox": "releases/bouncer_firefox_beta.py",
