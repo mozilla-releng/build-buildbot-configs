@@ -242,7 +242,7 @@ PLATFORM_VARS = {
                                   ('/builds/tooltool.token', '/builds/tooltool.token'),
                                   ('/builds/release-s3.credentials', '/builds/release-s3.credentials'),
                                   ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
-                                  ('/builds/gapi.data', '/builds/geoloc-api.key')]
+                                  ('/builds/google-api.key', '/builds/google-api.key')]
         },
         'linux64': {
             'product_name': 'seamonkey',
@@ -298,7 +298,7 @@ PLATFORM_VARS = {
                                   ('/builds/tooltool.token', '/builds/tooltool.token'),
                                   ('/builds/release-s3.credentials', '/builds/release-s3.credentials'),
                                   ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
-                                  ('/builds/gapi.data', '/builds/geoloc-api.key')]
+                                  ('/builds/google-api.key', '/builds/google-api.key')]
         },
         'macosx64': {
             'product_name': 'seamonkey',
@@ -430,8 +430,7 @@ PLATFORM_VARS = {
                                   ('/builds/tooltool.token', '/builds/tooltool.token'),
                                   ('/builds/release-s3.credentials', '/builds/release-s3.credentials'),
                                   ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
-                                  ('/builds/gapi.data', '/builds/gapi.data'),
-                                  ('/builds/gapi.data', '/builds/geoloc-api.key')]
+                                  ('/builds/google-api.key', '/builds/google-api.key')]
         },
         'macosx64-debug': {
             'product_name': 'seamonkey',
