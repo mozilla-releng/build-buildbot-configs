@@ -174,7 +174,7 @@ PROJECT_BRANCHES = {
             "firefox": True,
             "devedition": True,
         },
-        'build_tools_repo_path': 'users/raliiev_mozilla.com/tools-fake',
+        'build_tools_repo_path': 'users/jlorenzo_mozilla.com/tools-fake',
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "single_locale_branch_config": {
