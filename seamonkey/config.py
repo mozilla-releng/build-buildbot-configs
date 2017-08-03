@@ -7,6 +7,7 @@ SLAVES = {
     'linux64': ['sea-vm-linux64-%i' % x for x in [1]],
     'win32': ['sea-win32-%02i' % x for x in [1,2,3,4]] + #iX machines
              ['sea-vm-win32-%i' % x for x in range(1,5)],
+    'win64': [],
     'macosx64': #['cb-sea-miniosx64-%02i' % x for x in [1,2,3]] +
                 ['sea-mini-osx64-%i' % x for x in [1,3]],
     'mock': ['sea-hp-linux64-%i' % x for x in range(2,14)],
@@ -386,6 +387,49 @@ PLATFORM_VARS = {
             'stage_product': 'seamonkey',
             'enable_pymake': True,
         },
+        'win64': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
+            'base_name': 'WINNT 6.1 x86-64 %(branch)s',
+            'mozconfig': 'win64/%(branch)s/nightly',
+            'src_mozconfig': 'suite/config/mozconfigs/win64/nightly',
+            'profiled_build': False,
+            'builds_before_reboot': BUILDS_BEFORE_REBOOT,
+            'build_space': 14,
+            'upload_symbols': True,
+            'download_symbols': True,
+            'packageTests': True,
+            'slaves': SLAVES['win64'],
+            'platform_objdir': OBJDIR,
+            'mochitest_leak_threshold': 484,
+            'crashtest_leak_threshold': 484,
+            'stage_platform': 'win64',
+            'update_platform': 'WINNT_x86-64-msvc',
+            'enable_shared_checkouts': True,
+            'env': {
+                'CVS_RSH': 'ssh',
+                'MOZ_OBJDIR': OBJDIR,
+                'SYMBOL_SERVER_HOST': 'symbolpush.mozilla.org',
+                'SYMBOL_SERVER_USER': 'seabld',
+                'SYMBOL_SERVER_PATH': SYMBOL_SERVER_PATH,
+                'POST_SYMBOL_UPLOAD_CMD': SYMBOL_SERVER_POST_UPLOAD_CMD,
+                'PYTHON': 'python2.7.exe',
+                'SYMBOL_SERVER_SSH_KEY': "/c/Documents and Settings/seabld/.ssh/seabld_dsa",
+                # Source server support, bug 506702
+                'PDBSTR_PATH': '/c/Program Files/Debugging Tools for Windows/srcsrv/pdbstr.exe',
+                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'PATH': "${MOZILLABUILD}nsis-3.0b1;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+            },
+            'enable_opt_unittests': False,
+            'enable_checktests': True,
+            'tooltool_manifest_src': 'suite/config/tooltool-manifests/win64/releng.manifest',
+            'tooltool_script': ['python2.7', 'd:/mozilla-build/tooltool.py'],
+            'tooltool_token': 'e:/builds/tooltool.token',
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
+            'enable_pymake': True,
+        },
         'linux-debug': {
             'product_name': 'seamonkey',
             'app_name': 'suite',
@@ -500,6 +544,39 @@ PLATFORM_VARS = {
             'stage_product': 'seamonkey',
             'enable_pymake': True,
         },
+        'win64-debug': {
+            'product_name': 'seamonkey',
+            'app_name': 'suite',
+            'brand_name': 'SeaMonkey',
+            'base_name': 'WINNT 6.1 x86-64 %(branch)s leak test',
+            'mozconfig': 'win64/%(branch)s/debug',
+            'src_mozconfig': 'suite/config/mozconfigs/win64/debug',
+            'profiled_build': False,
+            'builds_before_reboot': BUILDS_BEFORE_REBOOT,
+            'download_symbols': True,
+            'build_space': 9,
+            'slaves': SLAVES['win64'],
+            'platform_objdir': OBJDIR,
+            'enable_shared_checkouts': True,
+            'stage_platform': 'win64-debug',
+            'env': {
+                'CVS_RSH': 'ssh',
+                'MOZ_OBJDIR': OBJDIR,
+                'XPCOM_DEBUG_BREAK': 'stack-and-abort',
+                'MOZ_CRASHREPORTER_NO_REPORT': '1',
+                'HG_SHARE_BASE_DIR': 'e:/builds/hg-shared',
+                'PATH': "${MOZILLABUILD}nsis-3.0b1;${MOZILLABUILD}python27;${MOZILLABUILD}buildbotve\\scripts;${PATH}",
+                'PYTHON': 'python2.7.exe',
+            },
+            'enable_unittests': False,
+            'enable_checktests': True,
+            'tooltool_manifest_src': 'suite/config/tooltool-manifests/win64/releng.manifest',
+            'tooltool_script': ['python2.7', 'd:/mozilla-build/tooltool.py'],
+            'tooltool_token': 'e:/builds/tooltool.token',
+            'talos_masters': GLOBAL_VARS['talos_masters'],
+            'stage_product': 'seamonkey',
+            'enable_pymake': True,
+        },
 }
 
 for platform in PLATFORM_VARS.values():
@@ -552,7 +629,7 @@ BRANCHES['comm-central-trunk']['enable_codecoverage'] = False
 BRANCHES['comm-central-trunk']['enable_l10n'] = True
 BRANCHES['comm-central-trunk']['enable_l10n_onchange'] = True
 BRANCHES['comm-central-trunk']['l10nNightlyUpdate'] = True
-BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux', 'win32', 'macosx64']
+BRANCHES['comm-central-trunk']['l10n_platforms'] = ['linux', 'win32', 'macosx64', 'win64']
 BRANCHES['comm-central-trunk']['l10nDatedDirs'] = True
 BRANCHES['comm-central-trunk']['l10n_tree'] = 'sea22x'
 BRANCHES['comm-central-trunk']['mozilla_srcdir'] = 'mozilla'
