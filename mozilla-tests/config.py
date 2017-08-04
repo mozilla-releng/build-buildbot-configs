@@ -53,6 +53,7 @@ PLATFORMS = {
     'linux': {},
     'linux64': {},
     'linux64-asan': {},
+    'linux64-qr': {},
     'linux64-stylo': {},
     'linux64-stylosequential': {},
     'linux64-devedition': {},
@@ -177,6 +178,18 @@ PLATFORMS['linux64']['mozharness_config'] = {
     'config_file': 'talos/linux_config.py',
 }
 
+PLATFORMS['linux64-qr']['slave_platforms'] = []
+PLATFORMS['linux64-qr']['talos_slave_platforms'] = ['ubuntu64_hw_qr']
+PLATFORMS['linux64-qr']['env_name'] = 'linux-perf'
+PLATFORMS['linux64-qr']['ubuntu64_hw_qr'] = {'name': 'Ubuntu HW 12.04 x64 qr'}
+PLATFORMS['linux64-qr']['stage_product'] = 'firefox'
+PLATFORMS['linux64-qr']['mozharness_config'] = {
+    'mozharness_python': '/tools/buildbot/bin/python',
+    'hg_bin': 'hg',
+    'reboot_command': ['/tools/buildbot/bin/python'] + MOZHARNESS_REBOOT_CMD,
+    'config_file': 'talos/linux_config.py',
+}
+
 PLATFORMS['linux64-stylo']['slave_platforms'] = []
 PLATFORMS['linux64-stylo']['talos_slave_platforms'] = ['ubuntu64_hw_stylo']
 PLATFORMS['linux64-stylo']['env_name'] = 'linux-perf'
@@ -234,8 +247,8 @@ for platform, platform_config in PLATFORMS.iteritems():
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
-ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'macosx64', 'win64', 'linux64-stylo', 'linux64-stylosequential'))
-LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'linux64-stylo', 'linux64-stylosequential'))
+ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'macosx64', 'win64', 'linux64-qr', 'linux64-stylo', 'linux64-stylosequential'))
+LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'linux64-qr', 'linux64-stylo', 'linux64-stylosequential'))
 WIN_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('win32', 'win64'))
 WIN7_ONLY = ['win7_ix']
 
@@ -339,6 +352,7 @@ BRANCH_UNITTEST_VARS = {
     'platforms': {
         'linux': {},
         'linux64': {},
+        'linux64-qr': {},
         'linux64-stylo': {},
         'linux64-stylosequential': {},
         'linux64-devedition': {},
@@ -1220,6 +1234,14 @@ PLATFORM_UNITTEST_VARS = {
                },
            },
         },
+    },
+    'linux64-qr': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'builds_before_reboot': 1,
+        'unittest-env': {'DISPLAY': ':0'},
+        'ubuntu64_hw_qr': {},
     },
     'linux64-stylo': {
         'product_name': 'firefox',
@@ -2876,6 +2898,14 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 54):
                     if suite_name.startswith('mochitest-a11y'):
                         win32['win7_ix'][test_type].remove(t)
 
+
+# bug 1383712 - add buildernames for linux64-qr talos tests for mozilla-central and try branches
+for branch in BRANCHES.keys():
+    if branch in ['mozilla-central', 'try']:
+        continue
+    if 'linux64-qr' not in BRANCHES[branch]['platforms']:
+        continue
+    BRANCHES[branch]['platforms']['linux64-qr']['talos_slave_platforms'] = []
 
 # bug 1343316 - add buildernames for linux64-stylo talos tests for mozilla-central and try branches
 for branch in BRANCHES.keys():

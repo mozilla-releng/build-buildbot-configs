@@ -14,6 +14,7 @@ SlavePasswords = {
     "ubuntu64_hw_devedition": "pass",
     "ubuntu64_hw_stylo": "pass",
     "ubuntu64_hw_styloseq": "pass",
+    "ubuntu64_hw_qr": "pass",
     "snowleopard": "pass",
     "yosemite_r7": "pass",
     "yosemite_r7_devedition": "pass",
