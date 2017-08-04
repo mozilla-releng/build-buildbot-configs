@@ -18,6 +18,7 @@ SLAVES = {
     'ubuntu64_vm_lnx_large': {},
     'ubuntu64-asan_vm_lnx_large': {},
     'ubuntu64_hw': {},
+    'ubuntu64_hw_qr': {},
     'ubuntu64_hw_stylo': {},
     'ubuntu64_hw_devedition': {},
     'win64_vm': {},
@@ -71,6 +72,7 @@ SLAVES['ubuntu64_vm_armv7_mobile'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_vm_armv7_large'] = SLAVES['ubuntu64_vm_large']
 SLAVES['ubuntu64_vm_lnx_large'] = SLAVES['ubuntu64_vm_large']
 SLAVES['ubuntu64-asan_vm_lnx_large'] = SLAVES['ubuntu64_vm_large']
+SLAVES['ubuntu64_hw_qr'] = SLAVES['ubuntu64_hw']
 SLAVES['ubuntu64_hw_stylo'] = SLAVES['ubuntu64_hw']
 SLAVES['ubuntu64_hw_styloseq'] = SLAVES['ubuntu64_hw']
 SLAVES['ubuntu64_hw_devedition'] = SLAVES['ubuntu64_hw']
