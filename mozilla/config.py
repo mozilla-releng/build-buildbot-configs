@@ -2826,10 +2826,11 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 55):
             continue
         del branch['platforms'][platform]
 
-# Bug 1362387 - remove linux64-devedition builds from Buildbot
+# Bug 1362387, Bug 1387878 - remove devedition builds from Buildbot
 for branch in BRANCHES.keys():
     for platform in BRANCHES[branch]['platforms'].keys():
-        if platform not in ['linux64-devedition']:
+        if platform not in ['linux64-devedition', 'macosx64-devedition',
+                            'win32-devedition', 'win64-devedition']:
             continue
         del BRANCHES[branch]['platforms'][platform]
 
