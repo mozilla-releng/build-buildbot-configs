@@ -3024,6 +3024,17 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 56):
                 suite_name.startswith(s) for s in WIN_TC_56_NONGREEN_DEBUG_SUITES)]
             branch['platforms'][platform][slave_platform]['debug_unittest_suites'] = tests
 
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
+    for platform in branch['platforms']:
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform not in branch['platforms'][platform]:
+                continue
+            for test_type in ['opt_unittest_suites', 'debug_unittest_suites']:
+                for test in branch['platforms'][platform][slave_platform][test_type]:
+                   if "mochitest-clipboard" not in test[0]:
+                       continue
+                   test[1]['extra_args'][1] = 'plain-clipboard,chrome-clipboard,browser-chrome-clipboard'
+
 
 if __name__ == "__main__":
     import sys
