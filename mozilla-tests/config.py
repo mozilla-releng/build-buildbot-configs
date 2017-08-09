@@ -3031,7 +3031,8 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if slave_platform not in branch['platforms'][platform]:
                 continue
-            for idx, test in enumerate(branch['platforms'][platform][slave_platform][test_type]):
+            for test_type in ['opt_unittest_suites', 'debug_unittest_suites']:
+                for idx, test in enumerate(branch['platforms'][platform][slave_platform][test_type]):
                     if "mochitest-clipboard" not in test[0]:
                         continue
                     test = deepcopy(test)
