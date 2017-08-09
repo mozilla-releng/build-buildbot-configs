@@ -314,13 +314,23 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'bloom_basic:bloom_basic_ref', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
-    'tp6-e10s': {
+    'quantum-pageload-e10s': {
         'enable_by_default': True,
         'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, WIN_ONLY),
     },
-    'tp6-stylo-e10s': {
+    'quantum-pageload-stylo-e10s': {
         'enable_by_default': True,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median', '--stylo'],
+        'options': ({}, WIN_ONLY),
+    },
+    'tp6-e10s': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median'],
+        'options': ({}, WIN_ONLY),
+    },
+    'tp6-stylo-e10s': {
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'Quantum_1', '--filter', 'ignore_first:5', '--filter', 'median', '--stylo'],
         'options': ({}, WIN_ONLY),
     },
@@ -330,7 +340,7 @@ SUITES = {
         'options': ({}, WIN_ONLY),
     },
     'perf-reftest-singletons-e10s': {
-        'enable_by_default': True,
+        'enable_by_default': False,
         'suites': GRAPH_CONFIG + ['--activeTests', 'bloom_basic_singleton', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
@@ -2536,6 +2546,18 @@ for platform in PLATFORMS.keys():
                         BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                             MOCHITEST_GPU + MOCHITEST_CLIPBOARD
 
+# Enable talos perf-reftest-singeltons on 56+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 56):
+    if branch.get('enable_talos') is False:
+        continue
+    branch['perf-reftest-singletons-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+    branch['quantum-pageload-stylo-e10s_tests'] = (1, False, {}, WIN_ONLY)
+    branch['tp6-stylo-threads-e10s_tests'] = (1, False, {}, WIN_ONLY)
+
+    if name in ['try']:
+        branch['tp6-stylo-e10s_tests'] = (1, False, {}, WIN_ONLY)
+        branch['tp6-e10s_tests'] = (1, False, {}, WIN_ONLY)
+
 ### Test suites that only run on Try ###
 
 ride_trains_branches = []
@@ -3026,14 +3048,18 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 56):
 
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
     for platform in branch['platforms']:
+        if platform not in PLATFORMS:
+            continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if slave_platform not in branch['platforms'][platform]:
                 continue
             for test_type in ['opt_unittest_suites', 'debug_unittest_suites']:
-                for test in branch['platforms'][platform][slave_platform][test_type]:
-                   if "mochitest-clipboard" not in test[0]:
-                       continue
-                   test[1]['extra_args'][1] = 'plain-clipboard,chrome-clipboard,browser-chrome-clipboard'
+                for idx, test in enumerate(branch['platforms'][platform][slave_platform][test_type]):
+                    if "mochitest-clipboard" not in test[0]:
+                        continue
+                    test = deepcopy(test)
+                    branch['platforms'][platform][slave_platform][test_type][idx] = test
+                    test[1]['extra_args'][1] = 'plain-clipboard,chrome-clipboard,browser-chrome-clipboard'
 
 
 if __name__ == "__main__":
