@@ -3025,9 +3025,9 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 56):
             branch['platforms'][platform][slave_platform]['debug_unittest_suites'] = tests
 
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
-    if platform not in PLATFORMS:
-        continue
     for platform in branch['platforms']:
+        if platform not in PLATFORMS:
+            continue
         for slave_platform in PLATFORMS[platform]['slave_platforms']:
             if slave_platform not in branch['platforms'][platform]:
                 continue
@@ -3038,7 +3038,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
                     test = deepcopy(test)
                     branch['platforms'][platform][slave_platform][test_type][idx] = test
                     test[1]['extra_args'][1] = 'plain-clipboard,chrome-clipboard,browser-chrome-clipboard'
-
 
 if __name__ == "__main__":
     import sys
