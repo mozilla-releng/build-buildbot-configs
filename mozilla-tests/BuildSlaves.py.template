@@ -2,8 +2,6 @@ SlavePasswords = {
     "linux": "pass",
     "linux64": "pass",
     "ubuntu32_vm": "pass",
-    "ubuntu64_vm_mobile": "pass",
-    "ubuntu64_vm_armv7_mobile": "pass",
     "ubuntu64_vm": "pass",
     "ubuntu64_vm_large": "pass",
     "ubuntu64_vm_lnx_large": "pass",
