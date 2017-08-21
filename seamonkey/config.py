@@ -1,5 +1,5 @@
 from copy import deepcopy
-from master_common import items_before, setMainCommVersions
+from master_common import items_before, setMainCommVersions, get_gecko_version
 
 
 SLAVES = {
@@ -600,10 +600,14 @@ for platform in PLATFORM_VARS.values():
 BRANCHES = {
     'comm-central-trunk': {},
     'comm-beta': {},
+    'comm-esr': {},
     'comm-release': {},
 }
 
 setMainCommVersions(BRANCHES)
+
+# Set the COMM ESR version
+COMM_ESR_VER = BRANCHES["comm-esr"]["gecko_version"]
 
 # Copy global vars in first, then platform vars
 for branch in BRANCHES.keys():
@@ -707,6 +711,50 @@ BRANCHES['comm-beta']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMo
 # staging/production-dependent settings - all is production for us
 BRANCHES['comm-beta']['tinderbox_tree'] = 'SeaMonkey-Beta'
 BRANCHES['comm-beta']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey-Beta'
+
+######## comm-esr [ currently: 52 ]
+# This is a path, relative to HGURL, where the repository is located
+# HGURL + repo_path should be a valid repository
+BRANCHES['comm-esr']['repo_path'] = 'releases/comm-esr%d' % COMM_ESR_VER
+BRANCHES['comm-esr']['mozilla_repo_path'] = 'releases/mozilla-esr%d' % COMM_ESR_VER
+BRANCHES['comm-esr']['l10n_repo_path'] = 'releases/l10n/mozilla-esr%d' % COMM_ESR_VER
+BRANCHES['comm-esr']['enable_nightly'] = False
+BRANCHES['comm-esr']['start_hour'] = [0]
+BRANCHES['comm-esr']['start_minute'] = [30]
+BRANCHES['comm-esr']['enable_mac_a11y'] = True
+BRANCHES['comm-esr']['unittest_build_space'] = 6
+BRANCHES['comm-esr']['enable_blocklist_update'] = False # for now
+BRANCHES['comm-esr']['blocklist_update_on_closed_tree'] = True
+# And code coverage
+BRANCHES['comm-esr']['enable_codecoverage'] = False
+# L10n configuration
+BRANCHES['comm-esr']['enable_l10n'] = False
+BRANCHES['comm-esr']['enable_l10n_onchange'] = True
+BRANCHES['comm-esr']['l10nNightlyUpdate'] = True
+BRANCHES['comm-esr']['l10n_platforms'] = ['linux', 'win32', 'macosx64']
+BRANCHES['comm-esr']['l10nDatedDirs'] = True
+BRANCHES['comm-esr']['l10n_tree'] = 'sea_esr'
+BRANCHES['comm-esr']['mozilla_srcdir'] = 'mozilla'
+#make sure it has an ending slash
+BRANCHES['comm-esr']['l10nUploadPath'] = \
+    '/home/ftp/pub/mozilla.org/seamonkey/nightly/latest-comm-esr%d-l10n/' % COMM_ESR_VER
+BRANCHES['comm-esr']['enUS_binaryURL'] = \
+    GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-esr%d' % COMM_ESR_VER
+BRANCHES['comm-esr']['allLocalesFile'] = 'suite/locales/all-locales'
+BRANCHES['comm-esr']['localesURL'] = \
+    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-esr' % (GLOBAL_VARS['hgurl'])
+# If True, a complete update snippet for this branch will be generated and
+# uploaded to. Any platforms with 'debug' in them will not have snippets
+# generated.
+BRANCHES['comm-esr']['create_snippet'] = True
+BRANCHES['comm-esr']['update_channel'] = 'release'
+BRANCHES['comm-esr']['create_partial'] = True
+BRANCHES['comm-esr']['create_partial_l10n'] = True
+BRANCHES['comm-esr']['aus2_base_upload_dir'] = '/opt/aus2/incoming/2/SeaMonkey/comm-esr%d'
+BRANCHES['comm-esr']['aus2_base_upload_dir_l10n'] = '/opt/aus2/incoming/2/SeaMonkey/comm-esr%d'
+# staging/production-dependent settings - all is production for us
+BRANCHES['comm-esr']['tinderbox_tree'] = 'SeaMonkey-Esr%d' % COMM_ESR_VER
+BRANCHES['comm-esr']['packaged_unittest_tinderbox_tree'] = 'SeaMonkey-Esr%d' % COMM_ESR_VER
 
 ######## comm-release
 # This is a path, relative to HGURL, where the repository is located

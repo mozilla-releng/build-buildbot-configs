@@ -3,5 +3,6 @@
     "mozilla-beta": 54,
     "mozilla-central": 55,
     "comm-release": 53,
+    "comm-esr": 52,
     "comm-beta": 54
 }
