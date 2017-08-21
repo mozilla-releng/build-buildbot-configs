@@ -2746,25 +2746,16 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
         if 'linux64-asan' in platform:
             del branch['platforms'][platform]
 
-# mozilla-central's gecko version
-mr_gecko_version = BRANCHES['mozilla-release']['gecko_version']
-# Bug 1135781 - generate builds per checkin on beta/release/esr that allow unsigned add-ons
-#   essentially:
-#      1) rm all no-add-on-sign builds from any branch less than m-r's gecko_version
-#      2) rm all no-add-on-sign builds from any branch at least m-r's gecko_version
-# Note: for now, we will lock this to m-b but eventually we will want to replace mr_gecko_version
-# with a static version so that this can ride the trains to esr
-for name, branch in items_before(BRANCHES, 'gecko_version', mr_gecko_version):
+# Bug 1391283 - remove addon devel builds from beta
+# remove from esr, releaes as this rides the trains
+for name, branch in items_before(BRANCHES, 'gecko_version', 55 ):
     for platform in ['win32-add-on-devel', 'win64-add-on-devel']:
         if platform in branch['platforms']:
             del branch['platforms'][platform]
-for name, branch in items_at_least(BRANCHES, 'gecko_version', mr_gecko_version):
-    if name in  ['mozilla-beta', 'mozilla-release', 'mozilla-esr52']:
-        continue
-    else:
-        for platform in ['win32-add-on-devel', 'win64-add-on-devel']:
-            if platform in branch['platforms']:
-                del branch['platforms'][platform]
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 56):
+     for platform in ['win32-add-on-devel', 'win64-add-on-devel']:
+        if platform in branch['platforms']:
+            del branch['platforms'][platform]
 
 # Bug 1293730 - Fennec x86 builds as tier 1
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 51):
