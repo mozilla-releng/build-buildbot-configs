@@ -2375,13 +2375,17 @@ BRANCHES['mozilla-beta']['update_verify_requires_cdn_push'] = True
 BRANCHES['mozilla-beta']['tc_indexes'] = {
     "firefox": {
         "linux": {
-            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.linux-opt.en-US",
-            "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.firefox-l10n.linux-opt.en-US",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.linux-opt",
+            "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.firefox.linux-opt",
+            "repackage": "gecko.v2.mozilla-beta.nightly.revision.{rev}.firefox.linux-nightly-repackage",
+            "repackage-signing": "gecko.v2.mozilla-beta.nightly.revision.{rev}.firefox.linux-nightly-repackage-signing",
             "ci_system": "tc",
         },
         "linux64": {
-            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.linux64-opt.en-US",
-            "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.firefox-l10n.linux64-opt.en-US",
+            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.linux64-opt",
+            "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.firefox.linux64-opt",
+            "repackage": "gecko.v2.mozilla-beta.nightly.revision.{rev}.firefox.linux64-nightly-repackage",
+            "repackage-signing": "gecko.v2.mozilla-beta.nightly.revision.{rev}.firefox.linux64-nightly-repackage-signing",
             "ci_system": "tc",
         },
         "macosx64": {
@@ -2406,13 +2410,17 @@ BRANCHES['mozilla-beta']['tc_indexes'] = {
     },
     "devedition": {
         "linux": {
-            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.devedition-l10n.linux-opt.en-US",
+            "unsigned": "gecko.v2.mozilla-beta.nightly.revision.{rev}.devedition.linux-opt",
             "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.devedition-l10n.linux-opt.en-US",
+            "repackage": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.linux-devedition-nightly-repackage.en-US",
+            "repackage-signing": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.linux-devedition-nightly-repackage-signing.en-US",
             "ci_system": "tc",
         },
         "linux64": {
-            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.devedition-l10n.linux64-opt.en-US",
+            "unsigned": "gecko.v2.mozilla-beta.nightly.revision.{rev}.devedition.linux64-opt",
             "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.devedition-l10n.linux64-opt.en-US",
+            "repackage": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.linux64-devedition-nightly-repackage.en-US",
+            "repackage-signing": "gecko.v2.mozilla-beta.revision.{rev}.firefox-l10n.linux64-devedition-nightly-repackage-signing.en-US",
             "ci_system": "tc",
         },
         "macosx64": {
