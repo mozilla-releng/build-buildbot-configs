@@ -2461,15 +2461,15 @@ BRANCHES['mozilla-beta']['update_verify_requires_cdn_push'] = True
 BRANCHES['mozilla-beta']['tc_indexes'] = {
     "firefox": {
         "linux": {
-            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.linux-opt",
-            "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.firefox.linux-opt",
+            "unsigned": "gecko.v2.mozilla-beta.nightly.revision.{rev}.firefox.linux-opt",
+            "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.firefox-l10n.linux-opt.en-US",
             "repackage": "gecko.v2.mozilla-beta.nightly.revision.{rev}.firefox.linux-nightly-repackage",
             "repackage-signing": "gecko.v2.mozilla-beta.nightly.revision.{rev}.firefox.linux-nightly-repackage-signing",
             "ci_system": "tc",
         },
         "linux64": {
-            "unsigned": "gecko.v2.mozilla-beta.revision.{rev}.firefox.linux64-opt",
-            "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.firefox.linux64-opt",
+            "unsigned": "gecko.v2.mozilla-beta.nightly.revision.{rev}.firefox.linux64-opt",
+            "signed": "gecko.v2.mozilla-beta.signed-nightly.revision.{rev}.firefox-l10n.linux64-opt.en-US",
             "repackage": "gecko.v2.mozilla-beta.nightly.revision.{rev}.firefox.linux64-nightly-repackage",
             "repackage-signing": "gecko.v2.mozilla-beta.nightly.revision.{rev}.firefox.linux64-nightly-repackage-signing",
             "ci_system": "tc",
