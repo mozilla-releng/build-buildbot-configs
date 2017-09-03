@@ -76,11 +76,9 @@ GLOBAL_VARS = {
         'macosx64-debug': {},
         'win32-debug': {},
         'win64-debug': {},
-        # TODO Bug 1389420. Delete api-15 once Firefox 56 reaches release
         'android-api-15': {},
-        'android-api-15-debug': {},
-        'android-api-16': {},
         'android-x86': {},
+        'android-api-15-debug': {},
     },
     'pgo_strategy': None,
     'pgo_platforms': ('linux', 'win32', 'win64',),
@@ -2321,9 +2319,7 @@ BRANCHES['mozilla-beta']['enable_nightly'] = False
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
 BRANCHES['mozilla-beta']['enable_blocklist_update'] = True
-# TODO Bug 1389420. Delete api-15 once Firefox 56 reaches release
 BRANCHES['mozilla-beta']['platforms']['android-api-15']['enable_dep'] = True
-BRANCHES['mozilla-beta']['platforms']['android-api-16']['enable_dep'] = True
 BRANCHES['mozilla-beta']['platforms']['android-api-15-debug']['enable_dep'] = True
 BRANCHES['mozilla-beta']['enabled_products'] = ['firefox', 'mobile', 'devedition']
 BRANCHES['mozilla-beta']['enable_perproduct_builds'] = False
@@ -2413,7 +2409,7 @@ BRANCHES['mozilla-beta']['beetmover_buckets'] = {
 }
 BRANCHES['mozilla-beta']['uptake_monitoring_platforms'] = {
     "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
-    "fennec": ("android-api-16", "android-x86"),
+    "fennec": ("android-api-15", "android-x86"),
     "devedition": ("linux", "linux64", "win32", "win64", "macosx64"),
 }
 BRANCHES['mozilla-beta']['signing_class'] = {
