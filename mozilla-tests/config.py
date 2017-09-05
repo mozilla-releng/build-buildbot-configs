@@ -123,7 +123,7 @@ PLATFORMS['win32-devedition']['mozharness_config'] = {
     'config_file': 'talos/windows_config.py',
 }
 
-PLATFORMS['win64']['slave_platforms'] = ['win8_64']
+PLATFORMS['win64']['slave_platforms'] = ['win8_64', 'win10_64']
 PLATFORMS['win64']['talos_slave_platforms'] = ['win10_64']
 PLATFORMS['win64']['env_name'] = 'win64-perf'
 PLATFORMS['win64']['stage_product'] = 'firefox'
@@ -138,7 +138,7 @@ PLATFORMS['win64']['mozharness_config'] = {
     'config_file': 'talos/windows_config.py',
 }
 
-PLATFORMS['win64-devedition']['slave_platforms'] = ['win8_64_devedition']
+PLATFORMS['win64-devedition']['slave_platforms'] = ['win8_64_devedition', 'win10_64_devedition']
 PLATFORMS['win64-devedition']['env_name'] = 'win64-perf'
 PLATFORMS['win64-devedition']['stage_product'] = 'firefox'
 PLATFORMS['win64-devedition']['win8_64_devedition'] = {'name': 'Windows 8 64-bit DevEdition',
@@ -3207,6 +3207,33 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
                     test = deepcopy(test)
                     branch['platforms'][platform][slave_platform][test_type][idx] = test
                     test[1]['extra_args'][1] = 'plain-clipboard,chrome-clipboard,browser-chrome-clipboard'
+
+#Bug 1393198 - add buildbot configs for running remaining windows 8 tests on windows 10
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
+    for platform in branch['platforms']:
+        if platform not in PLATFORMS:
+            continue
+        for slave_platform in ['win8_64', 'win8_64_devedition']:
+            if slave_platform not in branch['platforms'][platform]:
+                continue
+            for test_type in ['opt_unittest_suites', 'debug_unittest_suites']:
+                wp = slave_platform.replace("win8", "win10")
+                branch['platforms'][platform][wp][test_type] = []
+                for idx, test in enumerate(branch['platforms'][platform][slave_platform][test_type]):
+                    test = deepcopy(test)
+                    branch['platforms'][platform][wp][test_type].append(test)
+
+#Bug 1393198 - add buildbot configs for running remaining windows 8 tests on windows 10 - remove them on non trunk branches
+# and leave on beta
+for name, branch in items_before(BRANCHES, 'gecko_version', 56):
+    for platform in branch['platforms']:
+        if platform not in PLATFORMS:
+            continue
+        for slave_platform in ['win10_64', 'win10_64_devedition']:
+            if slave_platform not in branch['platforms'][platform]:
+                continue
+            for test_type in ['opt_unittest_suites', 'debug_unittest_suites']:
+                branch['platforms'][platform][slave_platform][test_type] = []
 
 if __name__ == "__main__":
     import sys
