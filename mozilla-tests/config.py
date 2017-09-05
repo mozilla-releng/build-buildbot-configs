@@ -2082,7 +2082,129 @@ PLATFORM_UNITTEST_VARS = {
         'enable_debug_unittests': True,
         'win10_64': {
             'opt_unittest_suites': [],
-            'debug_unittest_suites': []
+            'debug_unittest_suites': [],
+            'suite_config': {
+                'mochitest-gpu': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gpu-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-clipboard-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'cppunit': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'gtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jittest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'marionette': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
+                'marionette-e10s': {
+                    'config_files': ["marionette/windows_config.py"],
+                },
+                'mochitest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-a11y': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-e10s-browser-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-browser-screenshots': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-devtools-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-e10s-devtools-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gl': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-gl-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-jetpack': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-media': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-media-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mochitest-other': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'mozbase': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'crashtest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jsreftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'jsreftest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-qr-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-no-accel': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'reftest-no-accel-e10s': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'web-platform-tests': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-reftests': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'web-platform-tests-reftests-e10s': {
+                    'config_files': ["web_platform_tests/prod_config_windows.py"],
+                },
+                'webapprt-chrome': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+                'xpcshell': {
+                    'config_files': ["unittests/win_unittest.py"],
+                },
+            },
         },
         'win8_64': {
             'opt_unittest_suites': UNITTEST_SUITES['opt_unittest_suites'] + JITTEST + MARIONETTE + \
