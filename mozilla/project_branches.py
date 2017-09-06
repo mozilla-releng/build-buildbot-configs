@@ -187,7 +187,7 @@ PROJECT_BRANCHES = {
         },
         'uptake_monitoring_platforms': {
             "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
-            "fennec": ("android-api-15", "android-api-16", "android-x86"),
+            "fennec": ("android-api-15", "android-x86"),
             "devedition": ("linux", "linux64", "win32", "win64", "macosx64"),
         },
         # temp balrog
