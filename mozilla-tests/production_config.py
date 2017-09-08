@@ -24,7 +24,7 @@ SLAVES = {
     'win64_vm': {},
 }
 
-for i in range(1, 41):  # Bug 1297173 // Bug 1299468 // Bug 1317723 //Bug 1337394
+for i in range(1, 2) + range(3, 41):  # Bug 1297173 // Bug 1299468 // Bug 1317723 //Bug 1337394 //Bug 1395682
     SLAVES['xp_ix']['t-xp32-ix-%03i' % i] = {}
 
 for i in range(1, 151):   #  Move 111 machines from Windows 7 pool to Windows XP and Windows 8 // Bug 1297173 // Bug 1299468
