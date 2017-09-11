@@ -340,6 +340,12 @@ for platform in releaseConfig['enUSPlatforms']:
         mock_copyin_files=pf.get('mock_copyin_files', None),
         mozillaDir=branchConfig.get('mozilla_dir', None),
         mozillaSrcDir=branchConfig.get('mozilla_srcdir', None),
+        balrog_api_root=config.get('balrog_api_root', None),
+        balrog_username=config.get('balrog_username', None),
+        balrog_submitter_extra_args=pf.get('balrog_submitter_extra_args', []),
+        balrog_credentials_file=config.get('balrog_credentials_file', None),
+        balrog_submit_type='release',
+        balrog_submit=pf.get('balrog_submit', False),
     )
 
     builders.append({
@@ -400,6 +406,12 @@ for platform in releaseConfig['enUSPlatforms']:
             mock_copyin_files=pf.get('mock_copyin_files'),
             mozillaDir=branchConfig.get('mozilla_dir', None),
             mozillaSrcDir=branchConfig.get('mozilla_srcdir', None),
+            balrog_api_root=config.get('balrog_api_root', None),
+            balrog_username=config.get('balrog_username', None),
+            balrog_submitter_extra_args=pf.get('balrog_submitter_extra_args', []),
+            balrog_credentials_file=config.get('balrog_credentials_file', None),
+            balrog_submit_type='release',
+            balrog_submit=pf.get('balrog_submit', False),
         )
 
         builders.append({

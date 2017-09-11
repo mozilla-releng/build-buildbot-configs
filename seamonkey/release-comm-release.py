@@ -110,3 +110,6 @@ releaseConfig['majorUpdateRepoPath']        = None
 # Mock
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux', 'linux64')
+
+# Balrog Submission
+releaseConfig['balrog_submit'] = True
