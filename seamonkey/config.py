@@ -826,3 +826,11 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 53):
     if 'macosx64' in branch['platforms']:
         branch['platforms']['macosx64']['src_mozconfig'] = 'suite/config/mozconfigs/macosx-universal/nightly'
         branch['platforms']['macosx64']['platform_objdir'] = '%s/i386' % OBJDIR
+
+# Bug 1352820 - Set the RelBranch for ESR builds
+for branch in BRANCHES:
+    if branch == 'comm-esr':
+        use_relbranch = 'THUNDERBIRD_52_VERBRANCH'
+    else:
+        use_relbranch = 'default'
+    BRANCHES[branch]['mozilla_relbranch'] = use_relbranch
