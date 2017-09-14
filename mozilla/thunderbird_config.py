@@ -964,6 +964,11 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 53):
         branch['platforms']['macosx64']['src_mozconfig'] = 'mail/config/mozconfigs/macosx-universal/nightly'
         branch['platforms']['macosx64']['platform_objdir'] = '%s/i386' % OBJDIR
 
+# Support cross-channel l10n in 57+ -- Bug 1397721
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
+    if 'l10n_repo_path' not in branch:
+        continue
+    branch['l10n_repo_path'] = 'l10n-central'
 
 if __name__ == "__main__":
     import sys
