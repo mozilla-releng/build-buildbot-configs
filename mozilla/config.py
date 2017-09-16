@@ -2203,6 +2203,8 @@ BRANCHES['mozilla-release']['tc_indexes'] = {
     },
     # TODO: fennec
 }
+# Recompress complete MARs from LZMA to BZ2 for versions >= 56.0
+BRANCHES['mozilla-release']['lzma_to_bz2'] = True
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
@@ -2445,6 +2447,8 @@ BRANCHES['mozilla-beta']['tc_indexes'] = {
     },
     # TODO: fennec
 }
+# Recompress complete MARs from LZMA to BZ2 for versions >= 56.0
+BRANCHES['mozilla-beta']['lzma_to_bz2'] = False
 
 ######## mozilla-esr52
 BRANCHES['mozilla-esr52']['repo_path'] = 'releases/mozilla-esr52'
@@ -2576,6 +2580,8 @@ BRANCHES['mozilla-esr52']['tc_indexes'] = {
         },
     },
 }
+# Recompress complete MARs from LZMA to BZ2 for versions >= 56.0
+BRANCHES['mozilla-esr52']['lzma_to_bz2'] = False
 
 ######## try
 # Try-specific configs
