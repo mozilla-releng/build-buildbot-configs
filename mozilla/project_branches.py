@@ -333,6 +333,7 @@ PROJECT_BRANCHES = {
             },
             # TODO: fennec
         },
+        'lzma_to_bz2': True,
     },
     'larch': {
         'lock_platforms': True,
