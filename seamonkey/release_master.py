@@ -20,9 +20,15 @@ from release.platforms import buildbot2ftp
 
 # this is where all of our important configuration is stored. build number,
 # version number, sign-off revisions, etc.
+USE_CONFIG = None
+releaseConfig = None
+release_module_name = 'release-comm-beta'
+
 import release_config
-reload(release_config)
-from release_config import *
+if hasattr(release_config, 'USE_CONFIG'):
+    release_module_name = release_config.USE_CONFIG
+
+releaseConfig = __import__(release_module_name).releaseConfig
 
 # for the 'build' step we use many of the same vars as the nightlies do.
 # we import those so we don't have to duplicate them in release_config
