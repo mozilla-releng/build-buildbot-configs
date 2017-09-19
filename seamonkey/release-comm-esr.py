@@ -49,7 +49,7 @@ releaseConfig['chatzillaRepoPath']          = 'chatzilla' # leave empty if chatz
 releaseConfig['chatzillaRepoRevision']      = 'SEA2_48_RELBRANCH'
 releaseConfig['chatzillaRelbranchOverride'] = ''
 #  L10n repositories
-releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-esr52'
+releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-release'
 releaseConfig['l10nRelbranchOverride']      = ''
 releaseConfig['l10nRevisionFile']           = 'l10n-changesets-comm-esr'
 #  Support repositories
