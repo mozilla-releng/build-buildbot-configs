@@ -174,7 +174,7 @@ PROJECT_BRANCHES = {
             "firefox": True,
             "devedition": True,
         },
-        'build_tools_repo_path': 'users/jlorenzo_mozilla.com/tools-fake',
+        'build_tools_repo_path': 'users/bhearsum_mozilla.com/tools',
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "single_locale_branch_config": {
@@ -191,8 +191,8 @@ PROJECT_BRANCHES = {
             "devedition": ("linux", "linux64", "win32", "win64", "macosx64"),
         },
         # temp balrog
-        'balrog_api_root': 'http://ec2-54-159-98-221.compute-1.amazonaws.com:8080/api',
-        'funsize_balrog_api_root': 'http://ec2-54-159-98-221.compute-1.amazonaws.com:8080/api',
+        'balrog_api_root': 'http://54.90.211.22:8080/api',
+        'funsize_balrog_api_root': 'http://54.90.211.22:8080/api',
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': {
             "firefox": "releases/bouncer_firefox_beta.py",
