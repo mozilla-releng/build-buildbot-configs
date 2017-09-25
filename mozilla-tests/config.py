@@ -61,9 +61,11 @@ PLATFORMS = {
     'macosx64-devedition':{},
     'win32': {},
     'win32-devedition': {},
+    'win32-stylo-disabled': {},
     'win64': {},
+    'win64-asan': {},
     'win64-devedition':{},
-
+    'win64-stylo-disabled': {},
 }
 
 PLATFORMS['macosx64']['slave_platforms'] = ['yosemite_r7']
@@ -123,6 +125,19 @@ PLATFORMS['win32-devedition']['mozharness_config'] = {
     'config_file': 'talos/windows_config.py',
 }
 
+PLATFORMS['win32-stylo-disabled']['slave_platforms'] = ['win7_ix_stylo_disabled']
+PLATFORMS['win32-stylo-disabled']['talos_slave_platforms'] = ['win7_ix_stylo_disabled']
+PLATFORMS['win32-stylo-disabled']['env_name'] = 'win32-perf'
+PLATFORMS['win32-stylo-disabled']['win7_ix_stylo_disabled'] = {'name': 'Windows 7 32-bit stylo disabled',
+                                                       'try_by_default': False}
+PLATFORMS['win32-stylo-disabled']['stage_product'] = 'firefox'
+PLATFORMS['win32-stylo-disabled']['mozharness_config'] = {
+    'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+    'hg_bin': 'c:\\mozilla-build\\hg\\hg',
+    'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
+    'config_file': 'talos/windows_config.py',
+}
+
 PLATFORMS['win64']['slave_platforms'] = ['win8_64', 'win10_64']
 PLATFORMS['win64']['talos_slave_platforms'] = ['win10_64']
 PLATFORMS['win64']['env_name'] = 'win64-perf'
@@ -132,6 +147,31 @@ PLATFORMS['win64']['win8_64'] = {'name': 'Windows 8 64-bit',
 PLATFORMS['win64']['win10_64'] = {'name': 'Windows 10 64-bit',
                                   'try_by_default': True}
 PLATFORMS['win64']['mozharness_config'] = {
+    'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+    'hg_bin': 'c:\\mozilla-build\\hg\\hg',
+    'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
+    'config_file': 'talos/windows_config.py',
+}
+
+PLATFORMS['win64-asan']['slave_platforms'] = ['win10_64_asan']
+PLATFORMS['win64-asan']['talos_slave_platforms'] = []
+PLATFORMS['win64-asan']['env_name'] = 'win64-perf'
+PLATFORMS['win64-asan']['win10_64_asan'] = {'name': 'Windows 10 64-bit asan'}
+PLATFORMS['win64-asan']['stage_product'] = 'firefox'
+PLATFORMS['win64-asan']['mozharness_config'] = {
+    'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
+    'hg_bin': 'c:\\mozilla-build\\hg\\hg',
+    'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
+    'config_file': 'talos/windows_config.py',
+}
+
+PLATFORMS['win64-stylo-disabled']['slave_platforms'] = ['win10_64_stylo_disabled']
+PLATFORMS['win64-stylo-disabled']['talos_slave_platforms'] = ['win10_64_stylo_disabled']
+PLATFORMS['win64-stylo-disabled']['env_name'] = 'win64-perf'
+PLATFORMS['win64-stylo-disabled']['win10_64_stylo_disabled'] = {'name': 'Windows 10 64-bit stylo disabled',
+                                                       'try_by_default': False}
+PLATFORMS['win64-stylo-disabled']['stage_product'] = 'firefox'
+PLATFORMS['win64-stylo-disabled']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
     'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
@@ -247,9 +287,9 @@ for platform, platform_config in PLATFORMS.iteritems():
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
-ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'macosx64', 'win64', 'linux64-qr', 'linux64-stylo', 'linux64-stylosequential'))
+ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'macosx64', 'win64', 'linux64-qr', 'linux64-stylo', 'linux64-stylosequential', 'win32-stylo-disabled', 'win64-stylo-disabled'))
 LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'linux64-qr', 'linux64-stylo', 'linux64-stylosequential'))
-WIN_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('win32', 'win64'))
+WIN_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('win32', 'win64', 'win32-stylo-disabled', 'win64-stylo-disabled'))
 WIN7_ONLY = ['win7_ix']
 
 SUITES = {
@@ -488,8 +528,11 @@ BRANCH_UNITTEST_VARS = {
         'macosx64-devedition':{},
         'win32': {},
         'win32-devedition':{},
+        'win32-stylo-disabled': {},
         'win64':{},
+        'win64-asan': {},
         'win64-devedition': {},
+        'win64-stylo-disabled':{},
     },
 }
 
@@ -2070,6 +2113,20 @@ PLATFORM_UNITTEST_VARS = {
             'debug_unittest_suites': [],
         },
     },
+    'win32-stylo-disabled': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'builds_before_reboot': 1,
+        'env_name': 'win32-perf-unittest',
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'win7_ix_stylo_disabled': {
+            'opt_unittest_suites': [],
+            'debug_unittest_suites': [],
+            'suite_config': {},
+        },
+    },
     'win64': {
         'product_name': 'firefox',
         'app_name': 'browser',
@@ -2337,6 +2394,20 @@ PLATFORM_UNITTEST_VARS = {
             },
         },
     },
+    'win64-asan': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'builds_before_reboot': 1,
+        'env_name': 'win64-perf-unittest',
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'win10_64_asan': {
+            'opt_unittest_suites': [],
+            'debug_unittest_suites': [],
+            'suite_config': {},
+        },
+    },
     'win64-devedition': {
         'product_name': 'firefox',
         'app_name': 'browser',
@@ -2354,6 +2425,20 @@ PLATFORM_UNITTEST_VARS = {
         'win10_64_devedition': {
             'opt_unittest_suites': [],
             'debug_unittest_suites': [],
+        },
+    },
+    'win64-stylo-disabled': {
+        'product_name': 'firefox',
+        'app_name': 'browser',
+        'brand_name': 'Minefield',
+        'builds_before_reboot': 1,
+        'env_name': 'win64-perf-unittest',
+        'enable_opt_unittests': True,
+        'enable_debug_unittests': True,
+        'win10_64_stylo_disabled': {
+            'opt_unittest_suites': [],
+            'debug_unittest_suites': [],
+            'suite_config': {},
         },
     },
     'macosx64': {
@@ -3252,6 +3337,57 @@ for branch in BRANCHES.keys():
     if 'linux64-devedition' not in BRANCHES[branch]['platforms']:
         continue
     BRANCHES[branch]['platforms']['linux64-devedition']['talos_slave_platforms'] = []
+
+
+### bug 1397829 - add buildernames for stylo-disabled tests which run on hardware, win7 and win10
+trunk_branches = []
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
+    if name == 'oak':
+        continue
+    trunk_branches.append(name)
+
+platforms = ['win32-stylo-disabled', 'win64-stylo-disabled', 'win64-asan']
+tests_to_be_ignored = ['web-platform-tests', 'devtools-chrome']
+
+for branch in BRANCHES.keys():
+    for platform in platforms:
+        if platform not in BRANCHES[branch]['platforms'].keys():
+            continue
+
+        x = BRANCHES[branch]['platforms'][platform]
+
+        # Windows 7
+        if platform == 'win32-stylo-disabled':
+            x['talos_slave_platforms'] = ['win7_ix_stylo_disabled']
+            # copy the regular tests we run on Windows 7 HW
+            x['win7_ix_stylo_disabled'] = deepcopy(BRANCHES[branch]['platforms']['win32']['win7_ix'])
+            for test in ['opt_unittest_suites', 'debug_unittest_suites']:
+                x['win7_ix_stylo_disabled'][test] = [i for i in x['win7_ix_stylo_disabled'][test] \
+                                                     if not any(u in i[0] for u in tests_to_be_ignored)]
+        # Windows 10
+        if platform == 'win64-stylo-disabled':
+            x['talos_slave_platforms'] = ['win10_64_stylo_disabled']
+            # copy the regular tests we run on Windows 10 HW
+            x['win10_64_stylo_disabled'] = deepcopy(BRANCHES[branch]['platforms']['win64']['win10_64'])
+            for test in ['opt_unittest_suites', 'debug_unittest_suites']:
+                x['win10_64_stylo_disabled'][test] = [i for i in x['win10_64_stylo_disabled'][test] \
+                                                      if not any(u in i[0] for u in tests_to_be_ignored)]
+
+        if platform == 'win64-asan':
+            x['win10_64_asan'] = deepcopy(BRANCHES[branch]['platforms']['win64']['win10_64'])
+            for test in ['opt_unittest_suites', 'debug_unittest_suites']:
+                x['win10_64_asan'][test] = [i for i in x['win10_64_asan'][test] \
+                                            if not any(u in i[0] for u in tests_to_be_ignored)]
+
+        if branch not in trunk_branches:
+            del BRANCHES[branch]['platforms'][platform]
+
+#limit tests on Win10 asan to m-c and try
+for branch in BRANCHES.keys():
+    if branch in ['mozilla-central', 'try']:
+        continue
+    if 'win64-asan' in BRANCHES[branch]['platforms'].keys():
+        del BRANCHES[branch]['platforms']['win64-asan']
 
 # Ash-specific branch config. Please add any new buildbot test scheduling changes above this block.
 for platform in PLATFORMS.keys():
