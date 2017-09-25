@@ -21,6 +21,7 @@ SlavePasswords = {
     "win7": "pass",
     "win7_ix": "pass",
     "win7_ix_devedition": "pass",
+    "win7_ix_stylo_disabled": "pass",
     "win7_vm": "pass",
     "win7_vm_devedition": "pass",
     "win7_vm_gfx": "pass",
@@ -31,6 +32,8 @@ SlavePasswords = {
     "win10": "pass",
     "win10_64": "pass",
     "win10_64_devedition": "pass",
+    "win10_64_stylo_disabled": "pass",
+    "win10_64_asan": "pass",
     "w764": "pass",
     "win64_vm": "pass",
 }

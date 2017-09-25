@@ -9,6 +9,7 @@ SLAVES = {
     'win8': {},
     'win8_64_devedition': {},
     'win10': {},
+    'win10_64_asan': {},
     'win10_64_devedition': {},
     'yosemite_r7': {},
     'yosemite_r7_devedition': {},
@@ -21,7 +22,9 @@ SLAVES = {
     'ubuntu64_hw_qr': {},
     'ubuntu64_hw_stylo': {},
     'ubuntu64_hw_devedition': {},
+    'win7_ix_stylo_disabled': {},
     'win64_vm': {},
+    'win10_64_stylo_disabled': {},
 }
 
 for i in range(3, 11):  # Bug 1297173 // Bug 1299468 // Bug 1317723 // Bug 1337394 // Bug 1395682 // Bug 1367102
@@ -67,6 +70,10 @@ for i in range(1, 3):
 SLAVES['ubuntu64-asan_vm'] = SLAVES['ubuntu64_vm']
 SLAVES['win8_64'] = SLAVES['win8']
 SLAVES['win10_64'] = SLAVES['win10']
+SLAVES['win10_64_asan'] = SLAVES['win10']
+SLAVES['win10_64_devedition'] = SLAVES['win10']
+SLAVES['win10_64_stylo_disabled'] = SLAVES['win10']
+SLAVES['win7_ix_stylo_disabled'] = SLAVES['win7_ix']
 SLAVES['ubuntu64_vm_mobile'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_vm_armv7_mobile'] = SLAVES['ubuntu64_vm']
 SLAVES['ubuntu64_vm_armv7_large'] = SLAVES['ubuntu64_vm_large']
@@ -81,7 +88,6 @@ SLAVES['win7_ix_devedition'] = SLAVES['win7_ix']
 SLAVES['win7_vm_devedition'] = SLAVES['win7_vm']
 SLAVES['win7_vm_gfx_devedition'] = SLAVES['win7_vm_gfx']
 SLAVES['win8_64_devedition'] = SLAVES['win8']
-SLAVES['win10_64_devedition'] = SLAVES['win10']
 
 TRY_SLAVES = {}
 
