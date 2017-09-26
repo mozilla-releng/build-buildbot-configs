@@ -396,18 +396,9 @@ PROJECT_BRANCHES = {
     },
     'graphics': {
         'enable_perproduct_builds': False,
-        'lock_platforms': True,
         'mozharness_tag': 'default',
         'enable_opt_unittests': True,
-        'enable_talos': False,
-        'platforms': {
-            'linux64': {},
-            'linux64-debug': {},
-            'macosx64': {},
-            'macosx64-debug': {},
-            'win64': {},
-            'win64-debug': {},
-        },
+        'enable_talos': True,
     },
 }
 
