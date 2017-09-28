@@ -389,6 +389,7 @@ PROJECT_BRANCHES = {
         'mozharness_tag': 'default',
         'enable_opt_unittests': True,
         'enable_talos': True,
+        'pgo_strategy': 'periodic',
     },
 }
 
