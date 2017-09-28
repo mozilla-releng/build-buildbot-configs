@@ -383,14 +383,12 @@ PROJECT_BRANCHES = {
         'mozharness_tag': 'default',
         'enable_opt_unittests': True,
         'enable_talos': True,
-        'pgo_strategy': 'periodic',
     },
     'graphics': {
         'enable_perproduct_builds': False,
         'mozharness_tag': 'default',
         'enable_opt_unittests': True,
         'enable_talos': True,
-        'pgo_strategy': 'periodic',
     },
 }
 
