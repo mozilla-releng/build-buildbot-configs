@@ -2804,13 +2804,6 @@ for branch in BRANCHES.keys():
             continue
         del BRANCHES[branch]['platforms'][platform]
 
-# Bug 1379789- disable buildbot windows builds on date
-for name, branch in [('date', BRANCHES['date'])]:
-    for platform in branch['platforms'].keys():
-        if not platform.startswith('win'):
-            continue
-        del branch['platforms'][platform]
-
 # Support cross-channel l10n in 57+ -- Bug 1397721
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
     if 'l10n_repo_path' not in branch:

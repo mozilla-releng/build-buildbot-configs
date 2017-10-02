@@ -2852,8 +2852,8 @@ for branch in BRANCHES.keys():
             BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += xpc_debug_suite
 
 
-# Enable browser chrome screenshots on try, m-c and date
-for branch_name in ('try', 'mozilla-central', 'date'):
+# Enable browser chrome screenshots on try, m-c and maple
+for branch_name in ('try', 'mozilla-central', 'maple'):
     branch = BRANCHES[branch_name]
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
