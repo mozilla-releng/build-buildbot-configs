@@ -13,7 +13,7 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
-        'branch_projects': ['spidermonkey_tier_1'],
+        'branch_projects': [],
     },
     #'services-central': {},  # Bug 1010674
     # 'alder': {},
@@ -59,7 +59,7 @@ PROJECT_BRANCHES = {
         'talos_suites': {
             'xperf': 1,
         },
-        'branch_projects': ['spidermonkey_tier_1'],
+        'branch_projects': [],
     },
     #'birch': {},  # Bug 1010674
 # Bug 1308544 - Enable automation jobs on Cedar twig
