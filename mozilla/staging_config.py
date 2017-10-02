@@ -117,9 +117,5 @@ BRANCH_PROJECTS = {
     'spidermonkey_tier_1': {
         'scripts_repo': 'https://hg.mozilla.org/users/stage-ffxbld/tools',
         'idle_slaves': 0,
-    },
-    'spidermonkey_try': {
-        'scripts_repo': 'https://hg.mozilla.org/users/stage-ffxbld/tools',
-        'idle_slaves': 0,
-    },
+    }
 }

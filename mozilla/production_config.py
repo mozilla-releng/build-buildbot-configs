@@ -129,11 +129,7 @@ BRANCH_PROJECTS = {
     'spidermonkey_tier_1': {
         'scripts_repo': 'https://hg.mozilla.org/build/tools',
         'idle_slaves': 0,
-    },
-    'spidermonkey_try': {
-        'scripts_repo': 'https://hg.mozilla.org/build/tools',
-        'idle_slaves': 0,
-    },
+    }
 }
 
 if __name__ == "__main__":

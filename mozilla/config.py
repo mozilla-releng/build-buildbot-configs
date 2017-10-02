@@ -1805,43 +1805,7 @@ BRANCH_PROJECTS = {
             'macosx64-debug': {},
         },
         'hgurl': 'https://hg.mozilla.org/',
-    },
-
-    # Try server builds only triggered on changes to the spidermonkey source
-    'spidermonkey_try': {
-        'enable_try': True,
-        'watch_all_branches': True,
-        'try_by_default': {
-            'plain': set(['win32', 'win64']),
-            'plaindebug': set(['win32-debug', 'win64-debug']),
-            'rootanalysis': True, # all platforms for which it is defined
-            'compacting': set(['linux64-debug', 'win32-debug']),
-            'arm-sim': True,
-            'arm64-sim': True,
-            'arm-sim-osx': set([]),
-        },
-        'variants': {
-            'linux': [],
-            'linux-debug': ['arm-sim'],
-            'linux64':  [],
-            'linux64-debug':  ['rootanalysis', 'compacting', 'warnaserrdebug', 'arm64-sim'],
-            'win32': ['compacting', 'plain'],
-            'win32-debug': ['compacting', 'plaindebug'],
-            'win64': ['compacting', 'plain'],
-            'win64-debug': ['compacting', 'plaindebug'],
-        },
-        'platforms': {
-            'linux': {},
-            'linux-debug': {},
-            'linux64': {},
-            'linux64-debug': {},
-            'win32': {},
-            'win32-debug': {},
-            'win64': {},
-            'win64-debug': {},
-        },
-        'hgurl': 'https://hg.mozilla.org/',
-    },
+    }
 }
 
 apply_localconfig(BRANCH_PROJECTS, localconfig.BRANCH_PROJECTS)
@@ -1878,7 +1842,7 @@ BRANCHES = {
         },
     },
     'try': {
-        'branch_projects': ['spidermonkey_try'],
+        'branch_projects': [],
         # The following platforms are not part of the default set,
         # so only run on Try.
         'extra_platforms': {
@@ -2686,7 +2650,14 @@ for branch in ACTIVE_PROJECT_BRANCHES:
 # Expand out the branch_projects into a full PROJECT object per branch. This
 # must come after the BRANCHES configuration above, so that
 # BRANCHES[*]['enable_try'] is set when appropriate.
+# Bug 1401549 - Disable Buildbot Windows Spidermonkey jobs on Firefox >= 57
+non_trunk_branches = []
+for name, branch in items_before(BRANCHES, 'gecko_version', 57):
+    non_trunk_branches.append(name)
+
 for b, branch in BRANCHES.items():
+    if b not in non_trunk_branches:
+        continue
     for name in branch.get('branch_projects', []):
         branch_project = BRANCH_PROJECTS[name]
         if branch.get('enable_try', False) != branch_project.get('enable_try', False):
@@ -2833,18 +2804,17 @@ for branch in BRANCHES.keys():
             continue
         del BRANCHES[branch]['platforms'][platform]
 
-# Bug 1379789- disable buildbot windows builds on date
-for name, branch in [('date', BRANCHES['date'])]:
-    for platform in branch['platforms'].keys():
-        if not platform.startswith('win'):
-            continue
-        del branch['platforms'][platform]
-
 # Support cross-channel l10n in 57+ -- Bug 1397721
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
     if 'l10n_repo_path' not in branch:
         continue
     branch['l10n_repo_path'] = 'l10n-central'
+
+# Bug 1401549 - Disable Buildbot Windows Spidermonkey jobs
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
+    if 'branch_projects' not in BRANCHES[name].keys():
+        continue
+    BRANCHES[name]['branch_projects'] = [i for i in BRANCHES[name]['branch_projects'] if i != 'spidermonkey_tier_1']
 
 if __name__ == "__main__":
     import sys

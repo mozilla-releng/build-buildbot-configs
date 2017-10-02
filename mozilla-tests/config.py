@@ -128,7 +128,7 @@ PLATFORMS['win32-devedition']['mozharness_config'] = {
 PLATFORMS['win32-stylo-disabled']['slave_platforms'] = ['win7_ix_stylo_disabled']
 PLATFORMS['win32-stylo-disabled']['talos_slave_platforms'] = ['win7_ix_stylo_disabled']
 PLATFORMS['win32-stylo-disabled']['env_name'] = 'win32-perf'
-PLATFORMS['win32-stylo-disabled']['win7_ix_stylo_disabled'] = {'name': 'Windows 7 32-bit stylo disabled',
+PLATFORMS['win32-stylo-disabled']['win7_ix_stylo_disabled'] = {'name': 'Windows 7 32-bit stylo-disabled',
                                                        'try_by_default': False}
 PLATFORMS['win32-stylo-disabled']['stage_product'] = 'firefox'
 PLATFORMS['win32-stylo-disabled']['mozharness_config'] = {
@@ -168,7 +168,7 @@ PLATFORMS['win64-asan']['mozharness_config'] = {
 PLATFORMS['win64-stylo-disabled']['slave_platforms'] = ['win10_64_stylo_disabled']
 PLATFORMS['win64-stylo-disabled']['talos_slave_platforms'] = ['win10_64_stylo_disabled']
 PLATFORMS['win64-stylo-disabled']['env_name'] = 'win64-perf'
-PLATFORMS['win64-stylo-disabled']['win10_64_stylo_disabled'] = {'name': 'Windows 10 64-bit stylo disabled',
+PLATFORMS['win64-stylo-disabled']['win10_64_stylo_disabled'] = {'name': 'Windows 10 64-bit stylo-disabled',
                                                        'try_by_default': False}
 PLATFORMS['win64-stylo-disabled']['stage_product'] = 'firefox'
 PLATFORMS['win64-stylo-disabled']['mozharness_config'] = {
@@ -2852,8 +2852,8 @@ for branch in BRANCHES.keys():
             BRANCHES[branch]['platforms'][platform][slave_platform]['debug_unittest_suites'] += xpc_debug_suite
 
 
-# Enable browser chrome screenshots on try, m-c and date
-for branch_name in ('try', 'mozilla-central', 'date'):
+# Enable browser chrome screenshots on try, m-c and maple
+for branch_name in ('try', 'mozilla-central', 'maple'):
     branch = BRANCHES[branch_name]
     for platform in PLATFORMS.keys():
         if platform not in branch['platforms']:
