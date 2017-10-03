@@ -26,7 +26,7 @@ releaseConfig['mozilla_srcdir']      = 'mozilla'
 releaseConfig['version']             = '52.4.0'
 releaseConfig['appVersion']          = '52.4.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'THUNDERBIRD_52_4_0'
 releaseConfig['partialUpdates']      = {
 
@@ -67,7 +67,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr52',
         'path': 'releases/mozilla-esr52',
-        'revision': 'cce71d51e710',
+        'revision': '4926d82489d8',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
