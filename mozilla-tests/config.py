@@ -511,6 +511,16 @@ SUITES = {
         'suites': GRAPH_CONFIG + ['--activeTests', 'bloom_basic_singleton', '--filter', 'ignore_first:5', '--filter', 'median'],
         'options': ({}, ALL_TALOS_PLATFORMS),
     },
+    'speedometer-e10s': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'speedometer'],
+        'options': ({}, ALL_TALOS_PLATFORMS),
+    },
+    'speedometer-stylo-disabled-e10s': {
+        'enable_by_default': False,
+        'suites': GRAPH_CONFIG + ['--activeTests', 'speedometer'],
+        'options': ({}, ALL_TALOS_PLATFORMS),
+    },
 }
 
 BRANCH_UNITTEST_VARS = {
@@ -2879,6 +2889,13 @@ for platform in PLATFORMS.keys():
                     if slave_platform != 'ubuntu64_vm':
                         BRANCHES[name]['platforms'][platform][slave_platform]['debug_unittest_suites'] += \
                             MOCHITEST_GPU + MOCHITEST_CLIPBOARD
+
+# Enable talos speedometer on 58+
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 58):
+    if branch.get('enable_talos') is False:
+        continue
+    branch['speedometer-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
+    branch['speedometer-stylo-disabled-e10s_tests'] = (1, False, {}, ALL_TALOS_PLATFORMS)
 
 # Enable talos Stylo on 57+ for m-c and try
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
