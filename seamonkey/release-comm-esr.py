@@ -39,7 +39,7 @@ releaseConfig['mozillaRelbranchOverride']   = 'THUNDERBIRD_52_VERBRANCH' # put G
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
 releaseConfig['inspectorRepoRevision']      = 'DOMI_2_0_17'
-releaseConfig['inspectorRelbranchOverride'] = ''
+releaseConfig['inspectorRelbranchOverride'] = 'SEA_COMM524_20170918_RELBRANCH'
 #   Venkman
 releaseConfig['venkmanRepoPath']            = '' # leave empty if venkman is not to be tagged
 releaseConfig['venkmanRepoRevision']        = ''
@@ -47,10 +47,10 @@ releaseConfig['venkmanRelbranchOverride']   = ''
 #   Chatzilla
 releaseConfig['chatzillaRepoPath']          = 'chatzilla' # leave empty if chatzilla is not to be tagged
 releaseConfig['chatzillaRepoRevision']      = 'SEA2_48_RELBRANCH'
-releaseConfig['chatzillaRelbranchOverride'] = ''
+releaseConfig['chatzillaRelbranchOverride'] = 'SEA_COMM524_20170918_RELBRANCH'
 #  L10n repositories
 releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRelbranchOverride']      = ''
+releaseConfig['l10nRelbranchOverride']      = 'SEA_COMM524_20170918_RELBRANCH'
 releaseConfig['l10nRevisionFile']           = 'l10n-changesets-comm-esr'
 #  Support repositories
 #   not used yet
