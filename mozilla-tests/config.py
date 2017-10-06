@@ -126,7 +126,7 @@ PLATFORMS['win32-devedition']['mozharness_config'] = {
 }
 
 PLATFORMS['win32-stylo-disabled']['slave_platforms'] = ['win7_ix_stylo_disabled']
-PLATFORMS['win32-stylo-disabled']['talos_slave_platforms'] = ['win7_ix_stylo_disabled']
+PLATFORMS['win32-stylo-disabled']['talos_slave_platforms'] = []
 PLATFORMS['win32-stylo-disabled']['env_name'] = 'win32-perf'
 PLATFORMS['win32-stylo-disabled']['win7_ix_stylo_disabled'] = {'name': 'Windows 7 32-bit stylo-disabled',
                                                        'try_by_default': False}
@@ -166,7 +166,7 @@ PLATFORMS['win64-asan']['mozharness_config'] = {
 }
 
 PLATFORMS['win64-stylo-disabled']['slave_platforms'] = ['win10_64_stylo_disabled']
-PLATFORMS['win64-stylo-disabled']['talos_slave_platforms'] = ['win10_64_stylo_disabled']
+PLATFORMS['win64-stylo-disabled']['talos_slave_platforms'] = []
 PLATFORMS['win64-stylo-disabled']['env_name'] = 'win64-perf'
 PLATFORMS['win64-stylo-disabled']['win10_64_stylo_disabled'] = {'name': 'Windows 10 64-bit stylo-disabled',
                                                        'try_by_default': False}
@@ -287,9 +287,9 @@ for platform, platform_config in PLATFORMS.iteritems():
         else:
             platform_config[slave_platform]['try_slaves'] = platform_config[slave_platform]['slaves']
 
-ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'macosx64', 'win64', 'linux64-qr', 'linux64-stylo', 'linux64-stylosequential', 'win32-stylo-disabled', 'win64-stylo-disabled'))
+ALL_TALOS_PLATFORMS = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'win32', 'macosx64', 'win64', 'linux64-qr', 'linux64-stylo', 'linux64-stylosequential'))
 LINUX_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('linux64', 'linux64-qr', 'linux64-stylo', 'linux64-stylosequential'))
-WIN_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('win32', 'win64', 'win32-stylo-disabled', 'win64-stylo-disabled'))
+WIN_ONLY = get_talos_slave_platforms(PLATFORMS, platforms=('win32', 'win64'))
 WIN7_ONLY = ['win7_ix']
 
 SUITES = {
