@@ -13,7 +13,7 @@ releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 releaseConfig['version']                    = '2.49.1'
 releaseConfig['appVersion']                 = '2.49.1'
 releaseConfig['milestone']                  = '52.4'
-releaseConfig['buildNumber']                = 2 
+releaseConfig['buildNumber']                = 3
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_49_1'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.48'
@@ -28,7 +28,7 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-esr' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-esr52'
-releaseConfig['sourceRepoRevision']         = 'a673ebc149c5'
+releaseConfig['sourceRepoRevision']         = '207682396dfc'
 releaseConfig['relbranchOverride']          = 'SEAMONKEY_2_49_ESR_RELBRANCH'
 releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
