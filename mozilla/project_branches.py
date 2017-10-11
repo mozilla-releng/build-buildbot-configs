@@ -149,6 +149,7 @@ PROJECT_BRANCHES = {
         'enable_release_promotion': {
             "firefox": True,
             "devedition": True,
+            "fennec": True,
         },
         'build_tools_repo_path': 'users/asasaki_mozilla.com/tools',
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
