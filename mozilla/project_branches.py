@@ -149,6 +149,7 @@ PROJECT_BRANCHES = {
         'enable_release_promotion': {
             "firefox": True,
             "devedition": True,
+            "fennec": True,
         },
         'build_tools_repo_path': 'users/asasaki_mozilla.com/tools',
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
@@ -173,6 +174,7 @@ PROJECT_BRANCHES = {
         'bouncer_submitter_config': {
             "firefox": "releases/bouncer_firefox_beta.py",
             "devedition": "releases/bouncer_firefox_devedition.py",
+            "fennec": "releases/bouncer_fennec_beta.py",
         },
         'binary_transparency_enabled': True,
         'bouncer_enabled': True,
@@ -186,31 +188,37 @@ PROJECT_BRANCHES = {
         'postrelease_version_bump_config': {
             "firefox": 'releases/dev_postrelease_firefox_beta.py',
             "devedition": 'disabled',
+            "fennec": 'releases/dev_postrelease_fennec_beta.py',
         },
         'uptake_monitoring_enabled': True,
         'uptake_monitoring_config': {
             "firefox": 'releases/bouncer_firefox_beta.py',
             "devedition": 'releases/bouncer_firefox_devedition.py',
+            "fennec": "releases/bouncer_fennec_beta.py",
         },
         'postrelease_bouncer_aliases_enabled': True,
         'postrelease_bouncer_aliases_config': {
             "firefox": 'releases/bouncer_firefox_beta.py',
             "devedition": 'releases/bouncer_firefox_devedition.py',
+            "fennec": "releases/bouncer_fennec_beta.py",
         },
         'postrelease_mark_as_shipped_enabled': True,
         'postrelease_mark_as_shipped_config': {
             "firefox": 'releases/dev_postrelease_firefox_beta.py',
             "devedition": 'releases/dev_postrelease_firefox_beta.py',
+            "fennec": 'releases/dev_postrelease_fennec_beta.py',
         },
         'push_to_candidates_enabled': True,
         'updates_config': {
             "firefox": 'releases/dev_updates_firefox_beta.py',
             "devedition": 'releases/dev_updates_firefox_devedition.py',
+            "fennec": "",
         },
         'beetmover_credentials': '/builds/dev-beetmover-s3.credentials',
         'beetmover_buckets': {
             'firefox': 'net-mozaws-stage-delivery-firefox',
             'devedition': 'net-mozaws-stage-delivery-archive',
+            'fennec': 'net-mozaws-stage-delivery-archive',
         },
         'stage_product': {
             'firefox': 'firefox',
@@ -220,19 +228,23 @@ PROJECT_BRANCHES = {
         'signing_class': {
             "firefox": "release-signing",
             "devedition": "nightly-signing",
+            "fennec": "dep-signing",
         },
         'signing_cert': {
             "firefox": "release",
             "devedition": "nightly",
+            "fennec": "depend",
         },
         'moz_disable_mar_cert_verification': False,
         'accepted_mar_channel_id': {
             "firefox": "firefox-mozilla-beta",
             "devedition": "firefox-mozilla-aurora",
+            # TODO: fennec
         },
         'root_home_dir': {
             "firefox": "desktop",
             "devedition": "desktop",
+            "fennec": "mobile",
         },
         'enabled_products': ['firefox', 'mobile', 'devedition'],
         'push_to_releases_automatic': False,
