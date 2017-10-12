@@ -159,8 +159,8 @@ PROJECT_BRANCHES = {
             "devedition": "dev-mozilla-beta_devedition",
         },
         'release_channel_mappings': {
-            "firefox": [["^.*$", ["beta-dev"]]],
-            "devedition": [["^.*$", ["aurora-dev"]]],
+            "firefox": [["^.*$", ["beta"]]],
+            "devedition": [["^.*$", ["aurora"]]],
         },
         'uptake_monitoring_platforms': {
             "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
@@ -251,8 +251,8 @@ PROJECT_BRANCHES = {
         'merge_builds': False,
         'snap_enabled': {"firefox": True, "devedition": False},
         'update_verify_channel': {
-            'firefox': 'beta-dev-cdntest',
-            'devedition': 'aurora-dev-cdntest',
+            'firefox': 'beta-cdntest',
+            'devedition': 'aurora-cdntest',
         },
         'tc_indexes': {
             "firefox": {
@@ -403,8 +403,8 @@ PROJECT_BRANCHES = {
             "devedition": "dev-mozilla-beta_devedition",
         },
         'release_channel_mappings': {
-            "firefox": [["^.*$", ["beta-dev"]]],
-            "devedition": [["^.*$", ["aurora-dev"]]],
+            "firefox": [["^.*$", ["beta"]]],
+            "devedition": [["^.*$", ["aurora"]]],
         },
         'uptake_monitoring_platforms': {
             "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
@@ -484,8 +484,8 @@ PROJECT_BRANCHES = {
         'merge_builds': False,
         'snap_enabled': {"firefox": True, "devedition": False},
         'update_verify_channel': {
-            'firefox': 'beta-dev-cdntest',
-            'devedition': 'aurora-dev-cdntest',
+            'firefox': 'beta-cdntest',
+            'devedition': 'aurora-cdntest',
         },
         'tc_indexes': {
             "firefox": {
