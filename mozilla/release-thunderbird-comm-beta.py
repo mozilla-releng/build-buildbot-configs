@@ -109,6 +109,7 @@ releaseConfig['S3Bucket']            = 'net-mozaws-prod-delivery-archive'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'https://aus4.mozilla.org'
 releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
+releaseConfig['marSignatureFormat']  = 'mar_sha384'
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
 releaseConfig['updateVerifyChunks']  = 6
