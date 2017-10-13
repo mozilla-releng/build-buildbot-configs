@@ -25,7 +25,7 @@ releaseConfig['mozilla_srcdir']      = 'mozilla'
 releaseConfig['version']             = '56.0b4'
 releaseConfig['appVersion']          = '56.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 12
+releaseConfig['buildNumber']         = 13
 releaseConfig['baseTag']             = 'THUNDERBIRD_56_0b4'
 releaseConfig['partialUpdates']      = {
 
