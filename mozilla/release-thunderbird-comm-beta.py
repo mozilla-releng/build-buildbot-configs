@@ -25,7 +25,7 @@ releaseConfig['mozilla_srcdir']      = 'mozilla'
 releaseConfig['version']             = '56.0b4'
 releaseConfig['appVersion']          = '56.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 13
+releaseConfig['buildNumber']         = 14
 releaseConfig['baseTag']             = 'THUNDERBIRD_56_0b4'
 releaseConfig['partialUpdates']      = {
 
@@ -109,6 +109,7 @@ releaseConfig['S3Bucket']            = 'net-mozaws-prod-delivery-archive'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['ausServerUrl']        = 'https://aus4.mozilla.org'
 releaseConfig['releaseNotesUrl']     = 'http://live.mozillamessaging.com/thunderbird/releasenotes?locale=%locale%&platform=%platform%&version=%version%'
+releaseConfig['marSignatureFormat']  = 'mar_sha384'
 releaseConfig['testOlderPartials']   = False
 releaseConfig['promptWaitTime']      = None
 releaseConfig['updateVerifyChunks']  = 6
@@ -156,7 +157,7 @@ releaseConfig['bouncer_aliases']     = {
 }
 
 # Misc configuration
-releaseConfig['enableAutomaticPushToMirrors'] = True
+releaseConfig['enableAutomaticPushToMirrors'] = False
 releaseConfig['use_mock'] = True
 releaseConfig['mock_platforms'] = ('linux','linux64')
 releaseConfig['extra_signing_env'] = {'TOOLTOOL_DIR': '%(basedir)s/comm-beta'}
