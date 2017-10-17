@@ -175,6 +175,8 @@ PLATFORM_VARS = {
                         # version is available, but we don't want it for Firefox builds.
                         'freetype-2.3.11-6.el6_1.8.i686', 'freetype-devel-2.3.11-6.el6_1.8.i686',
                         'freetype-2.3.11-6.el6_1.8.x86_64',
+                        # gtk3 neeeded for update verify step
+                        'tooltool-gtk3-1-1.18bc52b0599b1308b667e282abb45f47597bfc98a5140cfcab8da71dacf89dd76d0dee22a04ce26fe7ad1f04e2d6596991f9e5b01fd2aaaab5542965f596b0e6.i686',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),
@@ -245,6 +247,8 @@ PLATFORM_VARS = {
                         'gstreamer-devel', 'gstreamer-plugins-base-devel',
                         'freetype-2.3.11-6.el6_1.8.x86_64',
                         'freetype-devel-2.3.11-6.el6_1.8.x86_64',
+                        # gtk3 neeeded for update verify step
+                        'tooltool-gtk3-1-1.3915f8ec396c56a8a92e6f9695b70f09ce9d1582359d1258e37e3fd43a143bc974410e4cfc27f500e095f34a8956206e0ebf799b7287f0f38def0d5e34ed71c9.x86_64',
                         ],
             'mock_copyin_files': [
                 ('/home/cltbld/.ssh', '/home/mock_mozilla/.ssh'),

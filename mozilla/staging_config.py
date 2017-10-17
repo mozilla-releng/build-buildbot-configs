@@ -34,7 +34,10 @@ GLOBAL_VARS = {
     'download_base_url': 'http://ftp.stage.mozaws.net/pub/firefox',
     'mobile_download_base_url': 'http://ftp.stage.mozaws.net/pub/mobile',
     'graph_server': None,
+    'balrog_vpn_proxy': 'balrogStageVPNProxy',
     'balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
+    # Used by special docker workers with balrogVpnProxy feature enabled
+    'funsize_balrog_api_root': 'http://balrog/api',
     'balrog_username': 'balrog-stage-ffxbld',
     'build_tools_repo_path': 'users/stage-ffxbld/tools',
     'base_clobber_url': 'https://api-pub-build.allizom.org/clobberer/lastclobber',
