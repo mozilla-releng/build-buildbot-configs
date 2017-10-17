@@ -555,7 +555,8 @@ PROJECT_BRANCHES = {
             },
             # TODO: fennec
         },
-        'lzma_to_bz2': True,
+        # Disable when running beta staging releases
+        'lzma_to_bz2': False,
     },
     'larch': {
         'lock_platforms': True,
