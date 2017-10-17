@@ -45,6 +45,7 @@ GLOBAL_VARS = {
     'download_base_url': 'http://archive.mozilla.org/pub/firefox',
     'mobile_download_base_url': 'http://archive.mozilla.org/pub/mobile',
     'graph_server': None,
+    'balrog_vpn_proxy': 'balrogVPNProxy',
     'balrog_api_root': 'https://aus4-admin.mozilla.org/api',
     # Used by special docker workers with balrogVpnProxy feature enabled
     'funsize_balrog_api_root': 'http://balrog/api',
