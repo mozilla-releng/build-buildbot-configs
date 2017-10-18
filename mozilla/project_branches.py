@@ -395,7 +395,7 @@ PROJECT_BRANCHES = {
             "firefox": True,
             "devedition": True,
         },
-        'build_tools_repo_path': 'users/bhearsum_mozilla.com/tools',
+        'build_tools_repo_path': 'users/stage-ffxbld/tools',
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "single_locale_branch_config": {
