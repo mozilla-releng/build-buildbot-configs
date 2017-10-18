@@ -10,7 +10,7 @@ GRAPH_CONFIG = ['--resultsServer', 'graphs.allizom.org',
 GLOBAL_VARS = {
     'tinderbox_tree': 'MozillaTest',
     'mobile_tinderbox_tree': 'MobileTest',
-    'build_tools_repo_path': 'build/tools',
+    'build_tools_repo_path': 'users/stage-ffxbld/tools',
     'mozharness_repo': 'https://hg.mozilla.org/build/mozharness',
     'mozharness_tag': 'production',
     'blob_upload': True,
