@@ -27,7 +27,7 @@ SLAVES = {
     'win10_64_stylo_disabled': {},
 }
 
-for i in range(3, 11):  # Bug 1297173 // Bug 1299468 // Bug 1317723 // Bug 1337394 // Bug 1395682 // Bug 1367102
+for i in range(3, 26):  # Bug 1297173 // Bug 1299468 // Bug 1317723 // Bug 1337394 // Bug 1395682 // Bug 1367102 // Bug 1410024
     SLAVES['xp_ix']['t-xp32-ix-%03i' % i] = {}
 
 for i in range(1, 151):   #  Move 111 machines from Windows 7 pool to Windows XP and Windows 8 // Bug 1297173 // Bug 1299468
@@ -43,7 +43,7 @@ for i in range(1, 201):
 for i in range(1, 101):
     SLAVES['win7_vm_gfx']['g-w732-ec2-%03i' % i] = {}
 
-for i in range(1, 102) + range(103, 116):  # Omit 102 for win10 // Bug 1191481 // Bug 1255812 // Bug 1299468 // Bug 1317723 //Bug1397225 //Bug1397879 //Bug1398238 //Bug1398884 //Bug 1399910
+for i in range(1, 100):  # Omit 102 for win10 // Bug 1191481 // Bug 1255812 // Bug 1299468 // Bug 1317723 //Bug1397225 //Bug1397879 //Bug1398238 //Bug1398884 //Bug 1399910
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
 
 for i in range(1, 316):
