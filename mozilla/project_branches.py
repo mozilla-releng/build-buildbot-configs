@@ -414,7 +414,7 @@ PROJECT_BRANCHES = {
         # temp balrog
         'balrog_vpn_proxy': 'balrogStageVPNProxy',
         'balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
-        'funsize_balrog_api_root': 'http://balrog/api',
+        'funsize_balrog_api_root': 'https://balrog-admin.stage.mozaws.net/api',
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': {
             "firefox": "releases/bouncer_firefox_release.py",
