@@ -251,8 +251,8 @@ PROJECT_BRANCHES = {
         'merge_builds': False,
         'snap_enabled': {"firefox": True, "devedition": False},
         'update_verify_channel': {
-            'firefox': 'beta-cdntest',
-            'devedition': 'aurora-cdntest',
+            'firefox': 'beta-localtest',
+            'devedition': 'aurora-localtest',
         },
         'tc_indexes': {
             "firefox": {
@@ -485,8 +485,8 @@ PROJECT_BRANCHES = {
         'merge_builds': False,
         'snap_enabled': {"firefox": True, "devedition": False},
         'update_verify_channel': {
-            'firefox': 'beta-cdntest',
-            'devedition': 'aurora-cdntest',
+            'firefox': 'beta-localtest',
+            'devedition': 'aurora-localtest',
         },
         'tc_indexes': {
             "firefox": {
