@@ -399,7 +399,7 @@ PROJECT_BRANCHES = {
         "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
         "single_locale_branch_config": {
-            "firefox": "dev-mozilla-beta",
+            "firefox": "dev-mozilla-release",
             "devedition": "dev-mozilla-beta_devedition",
         },
         'release_channel_mappings': {
@@ -417,7 +417,7 @@ PROJECT_BRANCHES = {
         'funsize_balrog_api_root': 'http://balrog/api',
         'tuxedoServerUrl': 'https://admin-bouncer.stage.mozaws.net/api',
         'bouncer_submitter_config': {
-            "firefox": "releases/bouncer_firefox_beta.py",
+            "firefox": "releases/bouncer_firefox_release.py",
             "devedition": "releases/bouncer_firefox_devedition.py",
         },
         'binary_transparency_enabled': True,
@@ -430,27 +430,27 @@ PROJECT_BRANCHES = {
             "fennec": True,
         },
         'postrelease_version_bump_config': {
-            "firefox": 'releases/dev_postrelease_firefox_beta.py',
+            "firefox": 'releases/dev_postrelease_firefox_release.py',
             "devedition": 'disabled',
         },
         'uptake_monitoring_enabled': True,
         'uptake_monitoring_config': {
-            "firefox": 'releases/bouncer_firefox_beta.py',
+            "firefox": 'releases/bouncer_firefox_release.py',
             "devedition": 'releases/bouncer_firefox_devedition.py',
         },
         'postrelease_bouncer_aliases_enabled': True,
         'postrelease_bouncer_aliases_config': {
-            "firefox": 'releases/bouncer_firefox_beta.py',
+            "firefox": 'releases/bouncer_firefox_release.py',
             "devedition": 'releases/bouncer_firefox_devedition.py',
         },
         'postrelease_mark_as_shipped_enabled': True,
         'postrelease_mark_as_shipped_config': {
-            "firefox": 'releases/dev_postrelease_firefox_beta.py',
+            "firefox": 'releases/dev_postrelease_firefox_release.py',
             "devedition": 'releases/dev_postrelease_firefox_beta.py',
         },
         'push_to_candidates_enabled': True,
         'updates_config': {
-            "firefox": 'releases/dev_updates_firefox_beta.py',
+            "firefox": 'releases/dev_updates_firefox_release.py',
             "devedition": 'releases/dev_updates_firefox_devedition.py',
         },
         'beetmover_credentials': '/builds/dev-beetmover-s3.credentials',
@@ -473,7 +473,7 @@ PROJECT_BRANCHES = {
         },
         'moz_disable_mar_cert_verification': False,
         'accepted_mar_channel_id': {
-            "firefox": "firefox-mozilla-beta",
+            "firefox": "firefox-mozilla-release",
             "devedition": "firefox-mozilla-aurora",
         },
         'root_home_dir': {
@@ -485,7 +485,7 @@ PROJECT_BRANCHES = {
         'merge_builds': False,
         'snap_enabled': {"firefox": True, "devedition": False},
         'update_verify_channel': {
-            'firefox': 'beta-localtest',
+            'firefox': 'release-localtest',
             'devedition': 'aurora-localtest',
         },
         'tc_indexes': {
