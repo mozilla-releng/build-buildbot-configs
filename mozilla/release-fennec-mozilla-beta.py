@@ -54,7 +54,7 @@ releaseConfig['sourceRepositories']  = {
 }
 #  L10n repositories
 releaseConfig['l10nRelbranch']       = None
-releaseConfig['l10nRepoPath']        = 'releases/l10n/mozilla-beta'
+releaseConfig['l10nRepoPath']        = 'l10n-central'
 releaseConfig['l10nRevisionFile']    = 'l10n-changesets_mobile-beta.json'
 releaseConfig['l10nJsonFile']        = releaseConfig['l10nRevisionFile']
 #  Support repositories
