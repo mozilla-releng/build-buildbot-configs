@@ -25,7 +25,7 @@ releaseConfig['mozilla_srcdir']      = 'mozilla'
 releaseConfig['version']             = '57.0b1'
 releaseConfig['appVersion']          = '57.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 1
+releaseConfig['buildNumber']         = 2
 releaseConfig['baseTag']             = 'THUNDERBIRD_57_0b1'
 releaseConfig['partialUpdates']      = {
 
@@ -51,7 +51,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': 'db8e69aa984c',
+        'revision': 'caffea3f41f8',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
