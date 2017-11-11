@@ -160,7 +160,9 @@ GLOBAL_VARS = {
                             # SeaMonkey needs these for update runs until Bug 1057920 is fixed.
                             'cvs', 'rsh',
                             ],
-    'mock_packages_x86-64' : ['autoconf213', 'python', 'zip', 'mozilla-python27-mercurial', 'git', 'ccache',
+    'mock_packages_x86-64' : ['autoconf213', 'python', 'zip',
+                            'mozilla-python27-mercurial-3.9.1-1.el6',
+                            'git-1.7.9.4-2.el6', 'ccache',
                             'glibc-static', 'libstdc++-static', 'perl-Test-Simple', 'perl-Config-General',
                             'gtk2-devel', 'libnotify-devel', 'yasm',
                             'alsa-lib-devel', 'libcurl-devel',
@@ -177,7 +179,7 @@ GLOBAL_VARS = {
                             'freetype-2.3.11-6.el6_1.8.x86_64',
                             'freetype-devel-2.3.11-6.el6_1.8.x86_64',
                             # SeaMonkey needs these for update runs until Bug 1057920 is fixed.
-                            'cvs', 'rsh',
+                            'cvs', 'rsh', 'zlib', 'zlib-devel',
                             ],
 }
 
