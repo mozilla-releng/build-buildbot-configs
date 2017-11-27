@@ -252,6 +252,7 @@ PLATFORM_VARS = {
                                   ('/home/seabld/.hgrc', '/builds/.hgrc'),
                                   ('/tools/tooltool.py', '/builds/tooltool.py'),
                                   ('/builds/tooltool.token', '/builds/tooltool.token'),
+                                  ('/builds/balrog.token', '/builds/balrog.token'),
                                   ('/builds/release-s3.credentials', '/builds/release-s3.credentials'),
                                   ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                                   ('/builds/google-api.key', '/builds/google-api.key')]
@@ -503,6 +504,7 @@ PLATFORM_VARS = {
                                   ('/home/seabld/.hgrc', '/builds/.hgrc'),
                                   ('/tools/tooltool.py', '/builds/tooltool.py'),
                                   ('/builds/tooltool.token', '/builds/tooltool.token'),
+                                  ('/builds/balrog.token', '/builds/balrog.token'),
                                   ('/builds/release-s3.credentials', '/builds/release-s3.credentials'),
                                   ('/builds/crash-stats-api.token', '/builds/crash-stats-api.token'),
                                   ('/builds/google-api.key', '/builds/google-api.key')]
