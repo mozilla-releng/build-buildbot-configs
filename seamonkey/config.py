@@ -241,7 +241,7 @@ PLATFORM_VARS = {
             'tooltool_token': '/builds/tooltool.token',
             'balrog_credentials_file': '/builds/balrog.token',
             'balrog_submitter_extra_args': [],
-            'balrog_submit': False,
+            'balrog_submit': True,
             'talos_masters': GLOBAL_VARS['talos_masters'],
             'stage_product': 'seamonkey',
             'enable_pymake': False,
