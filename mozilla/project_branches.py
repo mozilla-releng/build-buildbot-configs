@@ -158,6 +158,21 @@ PROJECT_BRANCHES = {
             "firefox": "dev-mozilla-beta",
             "devedition": "dev-mozilla-beta_devedition",
         },
+        "partner_repacks_platforms": {
+            "firefox": ("linux", "linux64", "win32", "win64", "macosx64")
+        },
+        "eme_free_repacks_platforms": {
+            "firefox": ("win32", "win64", "macosx64")
+        },
+        "partner_repack_config": {
+            "firefox": {
+                "script_name": "scripts/desktop_partner_repacks.py",
+                "extra_args": [
+                    "--cfg", "partner_repacks/release_mozilla-release_desktop.py",
+                    "--s3cfg", "NO_UPLOADS_IN_STAGING",
+                ],
+            },
+        },
         'release_channel_mappings': {
             "firefox": [["^.*$", ["beta"]]],
             "devedition": [["^.*$", ["aurora"]]],
