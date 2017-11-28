@@ -2100,7 +2100,7 @@ BRANCHES['mozilla-release']['partner_repacks_platforms'] = {
     "firefox": ("linux", "linux64", "win32", "win64", "macosx64")
 }
 BRANCHES['mozilla-release']['eme_free_repacks_platforms'] = {
-    "firefox": ("linux", "linux64", "win32", "win64", "macosx64")
+    "firefox": ("win32", "win64", "macosx64")
 }
 BRANCHES['mozilla-release']['partner_repack_config'] = {
     "firefox": {
@@ -2316,7 +2316,7 @@ BRANCHES['mozilla-beta']['partner_repacks_platforms'] = {
     "firefox": ("linux", "linux64", "win32", "win64", "macosx64")
 }
 BRANCHES['mozilla-beta']['eme_free_repacks_platforms'] = {
-    "firefox": ("linux", "linux64", "win32", "win64", "macosx64")
+    "firefox": ("win32", "win64", "macosx64")
 }
 BRANCHES['mozilla-beta']['partner_repack_config'] = {
     "firefox": {
