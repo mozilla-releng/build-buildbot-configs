@@ -105,6 +105,7 @@ GLOBAL_VARS = {
     'pip_server': 'http://pypi.pub.build.mozilla.org/pub',
     'graph_server': None,
     'build_tools_repo_path': 'users/Callek_gmail.com/tools',
+    'all_locales_file': 'suite/locales/all-locales',
     # 'build_tools_repo_path': 'build/tools',
     'base_clobber_url': 'http://callek.net/always_clobber.php',
     # List of talos masters to notify of new builds,
