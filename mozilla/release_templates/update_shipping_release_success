@@ -1,4 +1,4 @@
-%(releaseName)s: Updates available on release
-Updates to %(releaseName)s are available on the release channel now.
+%(releaseName)s: Scheduled changes are ready for signoff on release
+Updates to %(releaseName)s are scheduled on the release channel now.
 
 -buildbot
