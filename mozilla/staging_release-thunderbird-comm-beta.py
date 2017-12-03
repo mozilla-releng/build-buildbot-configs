@@ -152,7 +152,7 @@ releaseConfig['updateChannels'] = {
 releaseConfig['doPartnerRepacks']    = False
 
 # Tuxedo/Bouncer configuration
-releaseConfig['tuxedoServerUrl']     = 'https://admin-bouncer.stage.mozaws.net/api'
+releaseConfig['tuxedoServerUrl']     = 'https://admin-bouncer-releng.stage.mozaws.net/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_thunderbird.py'
 releaseConfig['bouncer_aliases']     = {
     'Thunderbird-%(version)s': 'thunderbird-beta-latest',
