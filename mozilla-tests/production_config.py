@@ -33,17 +33,17 @@ for i in range(3, 26):  # Bug 1297173 // Bug 1299468 // Bug 1317723 // Bug 13373
 for i in range(1, 151):   #  Move 111 machines from Windows 7 pool to Windows XP and Windows 8 // Bug 1297173 // Bug 1299468
     SLAVES['win7_ix']['t-w732-ix-%03i' % i] = {}
 
-for i in range(1, 101) + range(102, 600):  # Omit 101 due to win7 golden issues // Bug 1223509
+for i in range(1, 101) + range(102, 202):  # Omit 101 due to win7 golden issues // Bug 1223509
     SLAVES['win7_vm']['t-w732-spot-%03i' % i] = {}
 
-for i in range(1, 201):
+for i in range(1, 26) + range(101, 126):
     SLAVES['win7_vm_gfx']['g-w732-spot-%03i' % i] = {}
 
 # Bug 1302530 - Add ondemand g-w732 instances
 for i in range(1, 101):
     SLAVES['win7_vm_gfx']['g-w732-ec2-%03i' % i] = {}
 
-for i in range(1, 100):  # Omit 102 for win10 // Bug 1191481 // Bug 1255812 // Bug 1299468 // Bug 1317723 //Bug1397225 //Bug1397879 //Bug1398238 //Bug1398884 //Bug 1399910
+for i in range(2, 3) + range(13, 63):  # Omit 102 for win10 // Bug 1191481 // Bug 1255812 // Bug 1299468 // Bug 1317723 //Bug1397225 //Bug1397879 //Bug1398238 //Bug1398884 //Bug 1399910
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
 
 for i in range(1, 316):
@@ -52,13 +52,13 @@ for i in range(1, 316):
 for i in range(1, 393):
     SLAVES['yosemite_r7']['t-yosemite-r7-%04i' % i] = {}
 
-for i in range(1, 800) + range(1000, 1100):
+for i in range(1, 51) + range(300, 350):
     SLAVES['ubuntu32_vm']['tst-linux32-spot-%03i' % i] = {}
 
 for i in range(1, 200) + range(301, 500) + range(601, 800) + range(901, 1100) + range(1201, 1452):  # Bug 1252248
     SLAVES['ubuntu64_vm_large']['tst-emulator64-spot-%03i' % i] = {}
 
-for i in range(1, 2601):  # Bug 1252248
+for i in range(1, 26) + range(300, 326):  # Bug 1252248 #1393774
     SLAVES['ubuntu64_vm']['tst-linux64-spot-%03i' % i] = {}
 
 for i in range(1, 90):       #Bug 1337394

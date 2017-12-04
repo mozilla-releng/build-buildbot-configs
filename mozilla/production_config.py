@@ -1,12 +1,11 @@
 MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(1,7) + range(43,44) + range(50,55) + \
-                  range(56,69) + range(70,72) + range(73,87) + range(88,95)]   # Omit 72 for bld-lion-r5 // Bug 1402830
+                  range(56,69) + range(70,72)]   # Omit 72 for bld-lion-r5 // Bug 1402830
 
 WIN64_REV2     = ['b-2008-ec2-%04d' % x for x in range(1, 31)] + \
-                 ['b-2008-spot-%03d' % x for x in range(1, 201)]
+                 ['b-2008-spot-%03d' % x for x in range(1, 51) + range(101, 151)]
 
 LINUX64_EC2    = ['bld-linux64-ec2-%03d' % x for x in range(1, 50) + range(301, 350)] + \
-                 ['bld-linux64-spot-%03d' % x for x in range(1, 300) + range(300, 600)] + \
-                 ['bld-linux64-spot-%d' % x for x in range(1000, 1100)]
+                 ['bld-linux64-spot-%03d' % x for x in range(1, 101) + range(300, 351)]
 
 LINUX64_AV_EC2 = ['av-linux64-ec2-%03d' % x for x in range(1,5)] + \
     ['av-linux64-spot-%03d' % x for x in range(1,5)]
@@ -20,12 +19,10 @@ SLAVES = {
 
 TRY_MAC64       = []
 TRY_LINUX64_EC2 = ['try-linux64-ec2-%03d' % x for x in range(1, 60) + range(301,340)] + \
-                  ['try-linux64-spot-%03d' % x for x in range(1, 200) + range(300,500)] + \
-                  ['try-linux64-spot-%d' % x for x in range(1000, 1100)]
+                  ['try-linux64-spot-%03d' % x for x in range(1, 11) + range(300,310)]
 TRY_WIN64_REV2  = ['y-2008-ec2-%04d' % x for x in range(1, 31)] + \
-                  ['y-2008-spot-%03d' % x for x in range(1, 201)]
-TRY_LION        = ['bld-lion-r5-%03d' % x for x in range(8,10) + range(11,14) + range(15,27)] + \
-                  ['bld-lion-r5-%03d' % x for x in range(29,31) + range(32,37) + range(95,97)]   # Omit 7,10,14 and 28 for bld-lion-r5 // Bug 1402830
+                  ['y-2008-spot-%03d' % x for x in range(1, 81) + range(101, 120)]
+TRY_LION        = ['bld-lion-r5-%03d' % x for x in range(8,10) + range(11,14) + range(15,23)] # Omit 7,10,14 and 28 for bld-lion-r5 // Bug 1402830
 
 if set(TRY_WIN64_REV2).intersection(WIN64_REV2):
     raise Exception('TRY_WIN64_REV2 and WIN64_REV2 overlap')
