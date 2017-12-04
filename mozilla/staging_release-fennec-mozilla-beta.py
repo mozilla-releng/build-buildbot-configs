@@ -162,7 +162,7 @@ releaseConfig['enableAutomaticPushToMirrors'] = True
 releaseConfig['partialUpdates']      = {}
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 # Tuxedo/Bouncer configuration
-releaseConfig['tuxedoServerUrl']     = 'https://admin-bouncer.stage.mozaws.net/api'
+releaseConfig['tuxedoServerUrl']     = 'https://admin-bouncer-releng.stage.mozaws.net/api'
 releaseConfig['bouncer_submitter_config'] = 'releases/bouncer_fennec.py'
 releaseConfig['bouncerServer']       = 'download.mozilla.org'
 releaseConfig['bouncer_aliases'] = {
