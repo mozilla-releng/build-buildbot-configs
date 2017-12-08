@@ -22,11 +22,11 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['relbranchPrefix']     = 'THUNDERBIRD'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '58.0b1'
+releaseConfig['version']             = '58.0b2'
 releaseConfig['appVersion']          = '58.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
-releaseConfig['buildNumber']         = 3
-releaseConfig['baseTag']             = 'THUNDERBIRD_58_0b1'
+releaseConfig['buildNumber']         = 1
+releaseConfig['baseTag']             = 'THUNDERBIRD_58_0b2'
 releaseConfig['partialUpdates']      = {
 
     '57.0b2': {
@@ -41,10 +41,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'THUNDERBIRD_57_0b1',
     },
 
-    '56.0b4': {
-        'appVersion': '56.0',
-        'buildNumber': 14,
-        'baseTag': 'THUNDERBIRD_56_0b4',
+    '58.0b1': {
+        'appVersion': '58.0',
+        'buildNumber': 3,
+        'baseTag': 'THUNDERBIRD_58_0b1',
     },
 
 }
@@ -57,7 +57,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-beta',
         'path': 'releases/comm-beta',
-        'revision': 'b66dc48ecfb5',
+        'revision': 'd75a75d200f7',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -74,7 +74,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-beta',
         'path': 'releases/mozilla-beta',
-        'revision': 'c2375c4f2414',
+        'revision': 'b3fab1230d9d',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
