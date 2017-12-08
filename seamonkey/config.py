@@ -690,7 +690,7 @@ BRANCHES['comm-central-trunk']['enUS_binaryURL'] = \
     GLOBAL_VARS['download_base_url'] + '/nightly/latest-comm-central-trunk'
 BRANCHES['comm-central-trunk']['allLocalesFile'] = 'suite/locales/all-locales'
 BRANCHES['comm-central-trunk']['localesURL'] = \
-    '%s/build/buildbot-configs/raw-file/seamonkey-production/seamonkey/l10n/all-locales.comm-central' % (GLOBAL_VARS['hgurl'])
+    '%s/comm-central/raw-file/tip/suite/locales/all-locales' % (GLOBAL_VARS['hgurl'])
 # If True, a complete update snippet for this branch will be generated and
 # uploaded to. Any platforms with 'debug' in them will not have snippets
 # generated.
