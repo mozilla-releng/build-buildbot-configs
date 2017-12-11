@@ -3469,6 +3469,36 @@ for name, branch in items_before(BRANCHES, 'gecko_version', 56):
             for test_type in ['opt_unittest_suites', 'debug_unittest_suites']:
                 branch['platforms'][platform][slave_platform][test_type] = []
 
+
+### Bug 1423055 - disable some Buildbot testing so we can enable the full suite of tests on project-branches
+# compute the list of opt and debug tests that we still want to keep
+opt = []
+debug = []
+opt_tests = [REFTEST_ONE_CHUNK, REFTEST_E10S, REFTEST_NOACCEL, REFTEST_NOACCEL_E10S, MOCHITEST_MEDIA_E10S,MOCHITEST_CLIPBOARD, MOCHITEST_CLIPBOARD_E10S]
+debug_tests = [REFTEST_TWO_CHUNKS, REFTEST_E10S_TWO_CHUNKS, REFTEST_NOACCEL_TWO_CHUNKS, REFTEST_NOACCEL_E10S_TWO_CHUNKS, MOCHITEST_MEDIA_E10S, MOCHITEST_CLIPBOARD, MOCHITEST_CLIPBOARD_E10S]
+
+for i in opt_tests:
+    opt.append(i[0])
+for j in debug_tests:
+    debug.append(j[0])
+
+# drop a significant amount of buildbot tests for Fx>52
+for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
+    # skip try as buildbot testing is still useful for now
+    if name in ['try']:
+        continue
+    for platform in branch['platforms']:
+        if platform not in PLATFORMS:
+            continue
+        for slave_platform in PLATFORMS[platform]['slave_platforms']:
+            if slave_platform not in branch['platforms'][platform]:
+                continue
+            tests = branch['platforms'][platform][slave_platform]
+
+            tests['opt_unittest_suites'] = [t for t in tests['opt_unittest_suites'] if t in opt]
+            tests['debug_unittest_suites'] = [t for t in tests['debug_unittest_suites'] if t in debug]
+
+
 if __name__ == "__main__":
     import sys
     import pprint
