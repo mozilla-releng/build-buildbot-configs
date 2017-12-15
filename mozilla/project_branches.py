@@ -197,12 +197,12 @@ PROJECT_BRANCHES = {
         'update_verify_enabled': True,
         'postrelease_version_bump_enabled': {
             "firefox": True,
-            "devedition": False,
+            "devedition": True,
             "fennec": True,
         },
         'postrelease_version_bump_config': {
             "firefox": 'releases/dev_postrelease_firefox_beta.py',
-            "devedition": 'disabled',
+            "devedition": 'releases/dev_postrelease_firefox_beta.py',
             "fennec": 'releases/dev_postrelease_fennec_beta.py',
         },
         'uptake_monitoring_enabled': True,
