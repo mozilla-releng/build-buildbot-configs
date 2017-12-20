@@ -61,7 +61,185 @@ PROJECT_BRANCHES = {
         },
         'branch_projects': [],
     },
-    #'birch': {},  # Bug 1010674
+    'birch': {
+        'gecko_version': 58,
+        'watch_all_branches': True,
+        'desktop_mozharness_builds_enable': True,
+        'use_mozharness_repo_cache': False,
+        'branch_projects': [],
+        'enable_opt_unittests': False,
+        'enable_debug_unittests': False,
+        'enable_talos': True,
+        'platforms': {
+            'linux': {
+                'dep_signing_servers': 'release-signing',
+                "slave_platforms": [],
+                "enable_dep": False,
+            },
+            'linux64': {
+                'dep_signing_servers': 'release-signing',
+                "slave_platforms": [],
+                "enable_dep": False,
+            },
+            'win32': {
+                'dep_signing_servers': 'release-signing',
+                "slave_platforms": [],
+                "enable_dep": False,
+            },
+            'win64': {
+                'dep_signing_servers': 'release-signing',
+                "slave_platforms": [],
+                "enable_dep": False,
+            },
+            'macosx64': {
+                'dep_signing_servers': 'release-signing',
+                "slave_platforms": [],
+                "enable_dep": False,
+            },
+        },
+        'pgo_strategy': 'per-checkin',
+        'enable_release_promotion': {
+            "firefox": True,
+            "fennec": True,
+        },
+        'build_tools_repo_path': 'users/bhearsum_mozilla.com/tools',
+        "release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
+        "l10n_release_platforms": ("linux", "linux64", "win32", "win64", "macosx64"),
+        "single_locale_branch_config": {
+            "firefox": "dev-mozilla-release",
+        },
+        "partner_repacks_platforms": {
+            "firefox": ("linux", "linux64", "win32", "win64", "macosx64")
+        },
+        "eme_free_repacks_platforms": {
+            "firefox": ("win32", "win64", "macosx64")
+        },
+        "partner_repack_config": {
+            "firefox": {
+                "script_name": "scripts/desktop_partner_repacks.py",
+                "extra_args": [
+                    "--cfg", "partner_repacks/release_mozilla-release_desktop.py",
+                    "--s3cfg", "NO_UPLOADS_IN_STAGING",
+                ],
+            },
+        },
+        'release_channel_mappings': {
+            "firefox": [
+                [r"^\d+\.0$", ["beta", "release"]],  # RC, 45.0
+                [r"^\d+\.\d+\.\d+$", ["release"]],  # Other (dot releaseas), 45.0.4
+            ]
+        },
+        'uptake_monitoring_platforms': {
+            "firefox": ("linux", "linux64", "win32", "win64", "macosx64"),
+            "fennec": ("android-api-16", "android-x86"),
+        },
+        # temp balrog
+        'balrog_api_root': 'http://54.90.211.22:8080/api',
+        'funsize_balrog_api_root': 'http://54.90.211.22:8080/api',
+        'tuxedoServerUrl': 'https://admin-bouncer-releng.stage.mozaws.net/api',
+        'bouncer_submitter_config': {
+            "firefox": "releases/bouncer_firefox_release.py",
+            "fennec": "releases/bouncer_fennec_release.py",
+        },
+        'binary_transparency_enabled': True,
+        'bouncer_enabled': True,
+        'updates_builder_enabled': True,
+        'update_verify_enabled': True,
+        'postrelease_version_bump_enabled': {
+            "firefox": True,
+            "fennec": True,
+        },
+        'postrelease_version_bump_config': {
+            "firefox": 'releases/dev_postrelease_firefox_release_birch.py',
+            "fennec": 'releases/dev_postrelease_fennec_release.py',
+        },
+        'uptake_monitoring_enabled': True,
+        'uptake_monitoring_config': {
+            "firefox": 'releases/bouncer_firefox_release.py',
+            "fennec": "releases/bouncer_fennec_release.py",
+        },
+        'postrelease_bouncer_aliases_enabled': True,
+        'postrelease_bouncer_aliases_config': {
+            "firefox": 'releases/bouncer_firefox_release.py',
+            "fennec": "releases/bouncer_fennec_release.py",
+        },
+        'postrelease_mark_as_shipped_enabled': True,
+        'postrelease_mark_as_shipped_config': {
+            "firefox": 'releases/dev_postrelease_firefox_release_birch.py',
+            "fennec": 'releases/dev_postrelease_fennec_release.py',
+        },
+        'push_to_candidates_enabled': True,
+        'updates_config': {
+            "firefox": 'releases/dev_updates_firefox_release_birch.py',
+            "fennec": "",
+        },
+        'beetmover_credentials': '/builds/dev-beetmover-s3.credentials',
+        'beetmover_buckets': {
+            'firefox': 'net-mozaws-stage-delivery-firefox',
+            'fennec': 'net-mozaws-stage-delivery-archive',
+        },
+        'stage_product': {
+            'firefox': 'firefox',
+            'fennec': 'mobile',
+        },
+        'signing_class': {
+            "firefox": "release-signing",
+            "fennec": "dep-signing",
+        },
+        'signing_cert': {
+            "firefox": "release",
+            "fennec": "depend",
+        },
+        'moz_disable_mar_cert_verification': False,
+        'root_home_dir': {
+            "firefox": "desktop",
+            "fennec": "mobile",
+        },
+        'enabled_products': ['firefox', 'mobile'],
+        'push_to_releases_automatic': False,
+        'merge_builds': False,
+        'snap_enabled': {"firefox": True},
+        'update_verify_channel': {
+            'firefox': 'release-localtest',
+        },
+        'tc_indexes': {
+            "firefox": {
+                "linux": {
+                    "unsigned": "gecko.v2.birch.nightly.revision.{rev}.firefox.linux-opt",
+                    "signed": "gecko.v2.birch.signed-nightly.revision.{rev}.firefox-l10n.linux-opt.en-US",
+                    "repackage-signing": "gecko.v2.birch.nightly.revision.{rev}.firefox.linux-nightly-repackage-signing",
+                    "ci_system": "tc",
+                },
+                "linux64": {
+                    "unsigned": "gecko.v2.birch.nightly.revision.{rev}.firefox.linux64-opt",
+                    "signed": "gecko.v2.birch.signed-nightly.revision.{rev}.firefox-l10n.linux64-opt.en-US",
+                    "repackage-signing": "gecko.v2.birch.nightly.revision.{rev}.firefox.linux64-nightly-repackage-signing",
+                    "ci_system": "tc",
+                },
+                "macosx64": {
+                    "unsigned": "gecko.v2.birch.nightly.revision.{rev}.firefox.macosx64-opt",
+                    "signed": "gecko.v2.birch.signed-nightly.revision.{rev}.firefox-l10n.macosx64-opt.en-US",
+                    "repackage": "gecko.v2.birch.nightly.revision.{rev}.firefox.macosx64-nightly-repackage",
+                    "repackage-signing": "gecko.v2.birch.nightly.revision.{rev}.firefox.macosx64-nightly-repackage-signing",
+                    "ci_system": "tc",
+                },
+                "win32": {
+                    "unsigned": "gecko.v2.birch.revision.{rev}.firefox-l10n.win32-opt.en-US",
+                    "signed": "gecko.v2.birch.signed-nightly.revision.{rev}.firefox-l10n.win32-opt.en-US",
+                    "repackage-signing": "gecko.v2.birch.revision.{rev}.firefox-l10n.win32-nightly-repackage-signing.en-US",
+                    "ci_system": "tc",
+                },
+                "win64": {
+                    "unsigned": "gecko.v2.birch.revision.{rev}.firefox-l10n.win64-opt.en-US",
+                    "signed": "gecko.v2.birch.signed-nightly.revision.{rev}.firefox-l10n.win64-opt.en-US",
+                    "repackage-signing": "gecko.v2.birch.revision.{rev}.firefox-l10n.win64-nightly-repackage-signing.en-US",
+                    "ci_system": "tc",
+                },
+            },
+            # TODO: fennec
+        },
+        'lzma_to_bz2': True,
+    },
 # Bug 1308544 - Enable automation jobs on Cedar twig
     'cedar': {
         'enable_perproduct_builds': False,
