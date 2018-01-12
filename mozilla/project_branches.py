@@ -238,7 +238,7 @@ PROJECT_BRANCHES = {
             },
             # TODO: fennec
         },
-        'lzma_to_bz2': True,
+        'lzma_to_bz2': False,
     },
 # Bug 1308544 - Enable automation jobs on Cedar twig
     'cedar': {
@@ -514,7 +514,7 @@ PROJECT_BRANCHES = {
             },
             # TODO: fennec
         },
-        'lzma_to_bz2': True,
+        'lzma_to_bz2': False,
     },
     # Disabled by bug 1363047
     # 'elm': {},

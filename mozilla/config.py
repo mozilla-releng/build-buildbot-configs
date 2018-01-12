@@ -2161,8 +2161,8 @@ BRANCHES['mozilla-release']['tc_indexes'] = {
     },
     # TODO: fennec
 }
-# Recompress complete MARs from LZMA to BZ2 for versions >= 56.0
-BRANCHES['mozilla-release']['lzma_to_bz2'] = True
+# Recompress complete MARs from LZMA to BZ2 for updates from versions < 56.0. We did this until 57.0.4.
+BRANCHES['mozilla-release']['lzma_to_bz2'] = False
 
 ######## mozilla-beta
 BRANCHES['mozilla-beta']['repo_path'] = 'releases/mozilla-beta'
