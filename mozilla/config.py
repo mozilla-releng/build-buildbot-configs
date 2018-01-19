@@ -2225,10 +2225,10 @@ BRANCHES['mozilla-beta']['uptake_monitoring_config'] = {
     "fennec": 'releases/bouncer_fennec_beta.py',
 }
 BRANCHES['mozilla-beta']['postrelease_version_bump_config'] = {
-    "firefox": 'releases/postrelease_firefox_beta.py',
     # configs are generic so can be reused
+    "firefox": 'releases/postrelease_firefox_beta.py',
     "fennec": 'releases/postrelease_firefox_beta.py',
-    "devedition": "disabled",
+    "devedition": 'releases/postrelease_firefox_beta.py',
 }
 BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_config'] = {
     "firefox": 'releases/bouncer_firefox_beta.py',
@@ -2268,7 +2268,7 @@ BRANCHES['mozilla-beta']['updates_builder_enabled'] = True
 BRANCHES['mozilla-beta']['update_verify_enabled'] = True
 BRANCHES['mozilla-beta']['postrelease_version_bump_enabled'] = {
     "firefox": True,
-    "devedition": False,
+    "devedition": True,
     "fennec": True,
 }
 BRANCHES['mozilla-beta']['postrelease_bouncer_aliases_enabled'] = True
