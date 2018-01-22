@@ -756,6 +756,10 @@ BRANCHES['comm-central']['platforms']['linux64']['nightly_signing_servers'] = 'n
 BRANCHES['comm-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-central']['platforms']['win64']['nightly_signing_servers'] = 'nightly-signing'
 BRANCHES['comm-central']['platforms']['macosx64']['nightly_signing_servers'] = 'nightly-signing'
+del BRANCHES['comm-central']['platforms']['linux-debug']
+del BRANCHES['comm-central']['platforms']['linux64-debug']
+del BRANCHES['comm-central']['platforms']['win32-debug']
+del BRANCHES['comm-central']['platforms']['macosx64-debug']
 
 ######## comm-esr52
 BRANCHES['comm-esr52']['repo_path'] = 'releases/comm-esr52'
