@@ -974,6 +974,14 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
         continue
     branch['l10n_repo_path'] = 'l10n-central'
 
+
+for name, branch in BRANCHES.items():
+    # Level 3 Branches
+    if name in ('comm-central', 'comm-beta', 'comm-esr52'):
+        for platform in branch['platforms'].values():
+            platform['env']['MOZ_SCM_LEVEL'] = '3'
+
+
 if __name__ == "__main__":
     import sys
     import pprint
