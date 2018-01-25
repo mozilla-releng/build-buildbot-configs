@@ -123,7 +123,9 @@ releaseConfig['updateChannels'] = {
     # ruleId needs to be updated with the ID from AUS
     "release": {
         "versionRegex": r"^.*$",
-        "ruleId": "thunderbird-esr52",
+        # https://bugzilla.mozilla.org/show_bug.cgi?id=1426790
+        # Alias: thunderbird-esr52
+        "ruleId": "516",
         "patcherConfig": "mozEsr52-thunderbird-branch-patcher2.cfg",
         "localTestChannel": "release-localtest",
         "cdnTestChannel": "release-cdntest",
