@@ -10,6 +10,7 @@ SLAVES = {
     'win8_64_devedition': {},
     'win10': {},
     'win10_64_asan': {},
+    'win10_64_ccov': {},
     'win10_64_devedition': {},
     'yosemite_r7': {},
     'yosemite_r7_devedition': {},
@@ -71,6 +72,7 @@ SLAVES['ubuntu64-asan_vm'] = SLAVES['ubuntu64_vm']
 SLAVES['win8_64'] = SLAVES['win8']
 SLAVES['win10_64'] = SLAVES['win10']
 SLAVES['win10_64_asan'] = SLAVES['win10']
+SLAVES['win10_64_ccov'] = SLAVES['win10']
 SLAVES['win10_64_devedition'] = SLAVES['win10']
 SLAVES['win10_64_stylo_disabled'] = SLAVES['win10']
 SLAVES['win7_ix_stylo_disabled'] = SLAVES['win7_ix']
