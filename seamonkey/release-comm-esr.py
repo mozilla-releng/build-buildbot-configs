@@ -10,17 +10,17 @@ releaseConfig['appName']                    = 'suite'
 releaseConfig['binaryName']                 = releaseConfig['brandName']
 releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 #  Current version info
-releaseConfig['version']                    = '2.49.1'
-releaseConfig['appVersion']                 = '2.49.1'
-releaseConfig['milestone']                  = '52.4'
-releaseConfig['buildNumber']                = 4
-releaseConfig['baseTag']                    = 'SEAMONKEY_2_49_1'
+releaseConfig['version']                    = '2.49.2'
+releaseConfig['appVersion']                 = '2.49.2'
+releaseConfig['milestone']                  = '52.6.0'
+releaseConfig['buildNumber']                = 1
+releaseConfig['baseTag']                    = 'SEAMONKEY_2_49_2'
 #  Old version info
-releaseConfig['oldVersion']                 = '2.48'
-releaseConfig['oldAppVersion']              = '2.48'
-releaseConfig['oldBuildNumber']             = 1
-releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_48'
-releaseConfig['oldRepoPath']                = 'releases/comm-release'
+releaseConfig['oldVersion']                 = '2.49.1'
+releaseConfig['oldAppVersion']              = '2.49.1'
+releaseConfig['oldBuildNumber']             = 4
+releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_49_1'
+releaseConfig['oldRepoPath']                = 'releases/comm-esr52'
 #  Next (nightly) version info
 #     not yet available
 #  Repository configuration, for tagging
@@ -28,13 +28,13 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-esr' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-esr52'
-releaseConfig['sourceRepoRevision']         = 'ee27fc820b4f'
+releaseConfig['sourceRepoRevision']         = '7699f602fdc5'
 releaseConfig['relbranchOverride']          = 'SEAMONKEY_2_49_ESR_RELBRANCH'
 releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-esr52'
-releaseConfig['mozillaRepoRevision']        = '4926d82489d8'
+releaseConfig['mozillaRepoRevision']        = 'ec540cbe2082'
 releaseConfig['mozillaRelbranchOverride']   = 'THUNDERBIRD_52_VERBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
@@ -50,7 +50,7 @@ releaseConfig['chatzillaRepoRevision']      = 'SEA2_48_RELBRANCH'
 releaseConfig['chatzillaRelbranchOverride'] = 'SEA_COMM524_20170918_RELBRANCH'
 #  L10n repositories
 releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRelbranchOverride']      = 'SEA_COMM524_20170918_RELBRANCH'
+releaseConfig['l10nRelbranchOverride']      = ''
 releaseConfig['l10nRevisionFile']           = 'l10n-changesets-comm-esr'
 #  Support repositories
 #   not used yet
