@@ -20,7 +20,7 @@ releaseConfig['oldVersion']                 = '2.49.1'
 releaseConfig['oldAppVersion']              = '2.49.1'
 releaseConfig['oldBuildNumber']             = 4
 releaseConfig['oldBaseTag']                 = 'SEAMONKEY_2_49_1'
-releaseConfig['oldRepoPath']                = 'releases/comm-release'
+releaseConfig['oldRepoPath']                = 'releases/comm-esr52'
 #  Next (nightly) version info
 #     not yet available
 #  Repository configuration, for tagging
