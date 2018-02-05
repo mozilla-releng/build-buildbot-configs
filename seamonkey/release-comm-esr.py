@@ -28,14 +28,14 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-esr' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-esr52'
-releaseConfig['sourceRepoRevision']         = '7699f602fdc5'
+releaseConfig['sourceRepoRevision']         = '9c40ac238ea4'
 releaseConfig['relbranchOverride']          = ''
 releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-esr52'
-releaseConfig['mozillaRepoRevision']        = 'ec540cbe2082'
-releaseConfig['mozillaRelbranchOverride']   = '' # put Gecko relbranch here that we base upon
+releaseConfig['mozillaRepoRevision']        = 'dd82ad8e5ed0'
+releaseConfig['mozillaRelbranchOverride']   = 'THUNDERBIRD_52_VERBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
 releaseConfig['inspectorRepoRevision']      = 'DOMI_2_0_17'
