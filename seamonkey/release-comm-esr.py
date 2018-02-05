@@ -28,8 +28,8 @@ releaseConfig['skip_tag']                   = False
 releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-esr' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-esr52'
-releaseConfig['sourceRepoRevision']         = '9c40ac238ea4'
-releaseConfig['relbranchOverride']          = ''
+releaseConfig['sourceRepoRevision']         = 'bdc07d168d8e'
+releaseConfig['relbranchOverride']          = 'SEAMONKEY_2_49_ESR_RELBRANCH'
 releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
 #   Mozilla
