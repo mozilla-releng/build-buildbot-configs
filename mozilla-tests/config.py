@@ -64,7 +64,6 @@ PLATFORMS = {
     'win32-stylo-disabled': {},
     'win64': {},
     'win64-asan': {},
-    'win64-ccov': {},
     'win64-devedition':{},
     'win64-stylo-disabled': {},
 }
@@ -160,18 +159,6 @@ PLATFORMS['win64-asan']['env_name'] = 'win64-perf'
 PLATFORMS['win64-asan']['win10_64_asan'] = {'name': 'Windows 10 64-bit asan'}
 PLATFORMS['win64-asan']['stage_product'] = 'firefox'
 PLATFORMS['win64-asan']['mozharness_config'] = {
-    'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
-    'hg_bin': 'c:\\mozilla-build\\hg\\hg',
-    'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
-    'config_file': 'talos/windows_config.py',
-}
-
-PLATFORMS['win64-ccov']['slave_platforms'] = ['win10_64_ccov']
-PLATFORMS['win64-ccov']['env_name'] = 'win64-perf'
-PLATFORMS['win64-ccov']['win10_64_ccov'] = {'name': 'Windows 10 64-bit Code Coverage',
-                                                       'try_by_default': False}
-PLATFORMS['win64-ccov']['stage_product'] = 'firefox'
-PLATFORMS['win64-ccov']['mozharness_config'] = {
     'mozharness_python': ['c:/mozilla-build/python27/python', '-u'],
     'hg_bin': 'c:\\mozilla-build\\hg\\hg',
     'reboot_command': ['c:/mozilla-build/python27/python', '-u'] + MOZHARNESS_REBOOT_CMD,
@@ -630,7 +617,6 @@ BRANCH_UNITTEST_VARS = {
         'win32-stylo-disabled': {},
         'win64':{},
         'win64-asan': {},
-        'win64-ccov': {},
         'win64-devedition': {},
         'win64-stylo-disabled':{},
     },
@@ -2473,20 +2459,6 @@ PLATFORM_UNITTEST_VARS = {
             'suite_config': {},
         },
     },
-    'win64-ccov': {
-        'product_name': 'firefox',
-        'app_name': 'browser',
-        'brand_name': 'Minefield',
-        'builds_before_reboot': 1,
-        'env_name': 'win64-perf-unittest',
-        'enable_opt_unittests': True,
-        'enable_debug_unittests': True,
-        'win10_64_ccov': {
-            'opt_unittest_suites': [],
-            'debug_unittest_suites': [],
-            'suite_config': {},
-        },
-    },
     'win64-devedition': {
         'product_name': 'firefox',
         'app_name': 'browser',
@@ -3608,19 +3580,6 @@ for name, branch in items_at_least(BRANCHES, 'gecko_version', 53):
 
             tests['opt_unittest_suites'] = [t for t in tests['opt_unittest_suites'] if t in opt]
             tests['debug_unittest_suites'] = [t for t in tests['debug_unittest_suites'] if t in debug]
-
-# Bug 1417496 - Enable reftests for Windows coverage build
-for name, branch in items_at_least(BRANCHES, 'gecko_version', 57):
-    for platform in branch['platforms']:
-        if platform not in PLATFORMS:
-            continue
-        if platform == 'win64-ccov':
-            if name not in ['mozilla-central', 'try']:
-                BRANCHES[name]['platforms'][platform] = {}
-            else:
-                BRANCHES[name]['platforms'][platform]['win10_64_ccov']['opt_unittest_suites'] = []
-                BRANCHES[name]['platforms'][platform]['win10_64_ccov']['debug_unittest_suites'] = REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS
-
 
 
 if __name__ == "__main__":
