@@ -537,6 +537,11 @@ builders.append({
 
 for platform in sorted(releaseConfig['verifyConfigs'].keys()):
     pf = branchConfig['platforms'][platform]
+    tooltool_list = nightly_config.GLOBAL_VARS.get('tooltool_url_list',
+                                                   [])
+    manifest = "%s%s/raw-file/tip/%s" % (nightly_config.GLOBAL_VARS.get('hgurl', 'https://hg.mozilla.org'),
+                             releaseConfig['sourceRepoPath'],
+                             releaseConfig['tooltoolmanifests'][platform])
     update_verify_factory = UpdateVerifyFactory(
         env=pf.get('env'),
         hgHost=branchConfig['hghost'],
@@ -548,6 +553,12 @@ for platform in sorted(releaseConfig['verifyConfigs'].keys()):
         mock_target=pf.get('mock_target', None),
         mock_packages=pf.get('mock_packages', None),
         mock_copyin_files=pf.get('mock_copyin_files', None),
+        tooltool_manifest_src=releaseConfig['tooltoolmanifests'][platform],
+        tooltool_url_list=tooltool_list,
+        tooltool_script=pf.get('tooltool_script', None),
+        tooltool_token=pf.get('tooltool_token', None),
+        manifest_url=manifest,
+        platform=platform,
     )
 
     builders.append({

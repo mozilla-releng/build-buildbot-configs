@@ -96,6 +96,13 @@ releaseConfig['mozconfigs']                 = {
     'win32': 'suite/config/mozconfigs/win32/release',
 }
 
+releaseConfig['tooltoolmanifests']                 = {
+    'linux': 'suite/config/tooltool-manifests/linux32/releng.manifest',
+    'linux64': 'suite/config/tooltool-manifests/linux64/releng.manifest',
+    'macosx64': 'suite/config/tooltool-manifests/macosx-universal/releng.manifest',
+    'win32': 'suite/config/tooltool-manifests/win32/releng.manifest',
+}
+
 # Source step requires a properly configured source tree in order
 # to upload the tarball.  re: bug 1118778
 releaseConfig['source_mozconfig'] = 'suite/config/mozconfigs/linux64/source'
