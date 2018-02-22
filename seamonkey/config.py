@@ -544,6 +544,7 @@ PLATFORM_VARS = {
             'enable_unittests': True,
             'enable_checktests': True,
             'tooltool_manifest_src': 'suite/config/tooltool-manifests/linux64/releng.manifest',
+            'test_tooltool_manifest_src': 'testing/config/tooltool-manifests/linux64/releng.manifest',
             'tooltool_script': ['/builds/tooltool.py'], 
             'tooltool_token': '/builds/tooltool.token',
             'talos_masters': GLOBAL_VARS['talos_masters'],
