@@ -46,7 +46,7 @@ for i in range(1, 101):
 for i in range(2, 3) + range(13, 63):  # Omit 102 for win10 // Bug 1191481 // Bug 1255812 // Bug 1299468 // Bug 1317723 //Bug1397225 //Bug1397879 //Bug1398238 //Bug1398884 //Bug 1399910
     SLAVES['win8']['t-w864-ix-%03i' % i] = {}
 
-for i in range(1, 316):
+for i in range(1, 138) + range (139, 316): # Omit 138 // Bug 1419698
     SLAVES['win10']['t-w1064-ix-%03i' % i] = {}
 
 for i in range(1, 393):
