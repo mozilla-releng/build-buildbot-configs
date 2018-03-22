@@ -23,11 +23,11 @@ releaseConfig['appName']             = 'mail'
 releaseConfig['relbranchPrefix']     = 'THUNDERBIRD'
 releaseConfig['mozilla_srcdir']      = 'mozilla'
 #  Current version info
-releaseConfig['version']             = '52.6.0'
-releaseConfig['appVersion']          = '52.6.0'
+releaseConfig['version']             = '52.7.0'
+releaseConfig['appVersion']          = '52.7.0'
 releaseConfig['milestone']           = releaseConfig['appVersion']
 releaseConfig['buildNumber']         = 1
-releaseConfig['baseTag']             = 'THUNDERBIRD_52_6_0'
+releaseConfig['baseTag']             = 'THUNDERBIRD_52_7_0'
 releaseConfig['partialUpdates']      = {
 
     '52.5.2': {
@@ -42,10 +42,10 @@ releaseConfig['partialUpdates']      = {
         'baseTag': 'THUNDERBIRD_52_5_0',
     },
 
-    '52.4.0': {
-        'appVersion': '52.4.0',
-        'buildNumber': 3,
-        'baseTag': 'THUNDERBIRD_52_4_0',
+    '52.6.0': {
+        'appVersion': '52.6.0',
+        'buildNumber': 1,
+        'baseTag': 'THUNDERBIRD_52_6_0',
     },
 
 }
@@ -57,7 +57,7 @@ releaseConfig['sourceRepositories']  = {
     'comm': {
         'name': 'comm-esr52',
         'path': 'releases/comm-esr52',
-        'revision': '490869ee85a2',
+        'revision': '3e8c587bb542',
         'relbranch': None,
         'bumpFiles': {
             'mail/config/version.txt': {
@@ -73,7 +73,7 @@ releaseConfig['sourceRepositories']  = {
     'mozilla': {
         'name': 'mozilla-esr52',
         'path': 'releases/mozilla-esr52',
-        'revision': 'ec540cbe2082',
+        'revision': 'c72669e3e30c',
         'relbranch': None,
         'bumpFiles': {
             'config/milestone.txt': {
