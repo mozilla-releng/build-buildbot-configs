@@ -751,15 +751,16 @@ BRANCHES['comm-central']['create_partial'] = False
 BRANCHES['comm-central']['create_partial_l10n'] = False
 BRANCHES['comm-central']['enable_blocklist_update'] = True
 BRANCHES['comm-central']['file_update_on_closed_tree'] = False
-BRANCHES['comm-central']['platforms']['linux']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['comm-central']['platforms']['linux64']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['comm-central']['platforms']['win32']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['comm-central']['platforms']['win64']['nightly_signing_servers'] = 'nightly-signing'
-BRANCHES['comm-central']['platforms']['macosx64']['nightly_signing_servers'] = 'nightly-signing'
-del BRANCHES['comm-central']['platforms']['linux-debug']
-del BRANCHES['comm-central']['platforms']['linux64-debug']
-del BRANCHES['comm-central']['platforms']['win32-debug']
-del BRANCHES['comm-central']['platforms']['macosx64-debug']
+# Thunderbird no longer builds succesfully on buildbot, so don't try building it
+for platform in BRANCHES['comm-central']['platforms'].keys():
+    if platform != 'linux64':
+        del BRANCHES['comm-central']['platforms'][platform]
+# This keeps the 'TB Linux x86-64 comm-central periodic' builder around
+# while disabling all other builders
+BRANCHES['comm-central']['enable_nightly'] = False
+BRANCHES['comm-central']['enable_periodic'] = False
+BRANCHES['comm-central']['platforms']['linux64']['enable_dep'] = False
+
 
 ######## comm-esr52
 BRANCHES['comm-esr52']['repo_path'] = 'releases/comm-esr52'
