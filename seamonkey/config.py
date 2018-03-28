@@ -676,28 +676,11 @@ PLATFORM_VARS = {
         },
 }
 
-# bug 1416996 - Enable the building of stylo only for comm-central and
-#               only for linux, linux-debug and linux64
-#
-PLATFORMS_TO_BUILD_STYLO = ['linux', 'linux-debug', 'linux64']
-
-for plat in PLATFORMS_TO_BUILD_STYLO:
-    if plat.endswith('-debug'):
-        plat_with_stylo = "%s-stylo-%s" % tuple(plat.split("-"))
-    else:
-        plat_with_stylo = '%s-stylo' % plat
-    PLATFORM_VARS[plat_with_stylo] = deepcopy(PLATFORM_VARS[plat])
-    PLATFORM_VARS[plat_with_stylo].update(
-        {'base_name': '%s stylo' % PLATFORM_VARS[plat]['base_name'],
-         'mozconfig': '%s-stylo' % PLATFORM_VARS[plat]['mozconfig'],
-         'src_mozconfig': '%s-stylo' % PLATFORM_VARS[plat]['src_mozconfig'],
-         'enable_checktests': True})
-
 for platform in PLATFORM_VARS.values():
-    if 'env' not in platform:
-        platform['env'] = deepcopy(GLOBAL_ENVS)
-    else:
-        platform['env'].update((k, v) for k, v in GLOBAL_ENVS.items() if k not in platform['env'])
+  if 'env' not in platform:
+    platform['env'] = deepcopy(GLOBAL_ENVS)
+  else:
+    platform['env'].update((k, v) for k, v in GLOBAL_ENVS.items() if k not in platform['env'])
 
 # All branches that are to be built MUST be listed here, along with their
 # platforms (if different from the default set).
@@ -721,18 +704,8 @@ for branch in BRANCHES.keys():
             continue
         BRANCHES[branch][key] = deepcopy(value)
 
-    if branch.startswith('comm-central'):
-        for plat in PLATFORMS_TO_BUILD_STYLO:
-            if plat.endswith('-debug'):
-                plat = "%s-stylo-%s" % tuple(plat.split("-"))
-            else:
-                plat = "%s-stylo" % plat
-            BRANCHES[branch]['platforms'].update({plat: {}})
-
     for platform, platform_config in PLATFORM_VARS.items():
         if platform in BRANCHES[branch]['platforms']:
-            # also check if the platform ends in stylo and we're
-            # in the comm-central branch
             for key, value in platform_config.items():
                 value = deepcopy(value)
                 if isinstance(value, str):
