@@ -679,7 +679,7 @@ PLATFORM_VARS = {
 # bug 1416996 - Enable the building of stylo only for comm-central and
 #               only for linux, linux-debug and linux64
 #
-PLATFORMS_TO_BUILD_STYLO = ['linux']
+PLATFORMS_TO_BUILD_STYLO = ['linux', 'linux-debug', 'linux64']
 
 for plat in PLATFORMS_TO_BUILD_STYLO:
     if plat.endswith('-debug'):
