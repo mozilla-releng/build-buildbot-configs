@@ -691,8 +691,7 @@ for plat in PLATFORMS_TO_BUILD_STYLO:
         {'base_name': '%s stylo' % PLATFORM_VARS[plat]['base_name'],
          'mozconfig': '%s-stylo' % PLATFORM_VARS[plat]['mozconfig'],
          'src_mozconfig': '%s-stylo' % PLATFORM_VARS[plat]['src_mozconfig'],
-         'enable_checktests': True,
-         'stage_platform': plat_with_stylo, })
+         'enable_checktests': True})
 
 for platform in PLATFORM_VARS.values():
     if 'env' not in platform:
