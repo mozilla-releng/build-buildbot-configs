@@ -13,7 +13,7 @@ releaseConfig['oldBinaryName']              = releaseConfig['binaryName']
 releaseConfig['version']                    = '2.49.3'
 releaseConfig['appVersion']                 = '2.49.3'
 releaseConfig['milestone']                  = '52.7.0'
-releaseConfig['buildNumber']                = 1
+releaseConfig['buildNumber']                = 2
 releaseConfig['baseTag']                    = 'SEAMONKEY_2_49_3'
 #  Old version info
 releaseConfig['oldVersion']                 = '2.49.2'
@@ -29,17 +29,17 @@ releaseConfig['relbranchPrefix']            = 'SEA_COMM'
 releaseConfig['sourceRepoName']             = 'comm-esr' # buildbot branch name
 releaseConfig['sourceRepoPath']             = 'releases/comm-esr52'
 releaseConfig['sourceRepoRevision']         = '5c558e38444a'
-releaseConfig['relbranchOverride']          = ''
+releaseConfig['relbranchOverride']          = 'SEA_COMM5270_20180329_RELBRANCH'
 releaseConfig['productVersionFile']         = 'suite/config/version.txt'
 #releaseConfig['productVersionFile']         = ''
 #   Mozilla
 releaseConfig['mozillaRepoPath']            = 'releases/mozilla-esr52'
-releaseConfig['mozillaRepoRevision']        = 'c72669e3e30c'
+releaseConfig['mozillaRepoRevision']        = '6c7b3cc4609f'
 releaseConfig['mozillaRelbranchOverride']   = 'THUNDERBIRD_52_VERBRANCH' # put Gecko relbranch here that we base upon
 #   Inspector
 releaseConfig['inspectorRepoPath']          = 'dom-inspector' # leave empty if inspector is not to be tagged
 releaseConfig['inspectorRepoRevision']      = 'DOMI_2_0_17'
-releaseConfig['inspectorRelbranchOverride'] = ''
+releaseConfig['inspectorRelbranchOverride'] = 'SEA_COMM5270_20180329_RELBRANCH'
 #   Venkman
 releaseConfig['venkmanRepoPath']            = '' # leave empty if venkman is not to be tagged
 releaseConfig['venkmanRepoRevision']        = ''
@@ -47,10 +47,10 @@ releaseConfig['venkmanRelbranchOverride']   = ''
 #   Chatzilla
 releaseConfig['chatzillaRepoPath']          = 'chatzilla' # leave empty if chatzilla is not to be tagged
 releaseConfig['chatzillaRepoRevision']      = 'SEA2_48_RELBRANCH'
-releaseConfig['chatzillaRelbranchOverride'] = ''
+releaseConfig['chatzillaRelbranchOverride'] = 'SEA_COMM5270_20180329_RELBRANCH'
 #  L10n repositories
 releaseConfig['l10nRepoPath']               = 'releases/l10n/mozilla-release'
-releaseConfig['l10nRelbranchOverride']      = ''
+releaseConfig['l10nRelbranchOverride']      = 'SEA_COMM5270_20180329_RELBRANCH'
 releaseConfig['l10nRevisionFile']           = 'l10n-changesets-comm-esr'
 #  Support repositories
 #   not used yet
