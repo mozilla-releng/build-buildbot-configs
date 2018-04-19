@@ -354,9 +354,14 @@ for platform in releaseConfig['enUSPlatforms']:
         balrog_submit=pf.get('balrog_submit', False),
     )
 
+    if platform.startswith('macosx'):
+        use_slave = 'relosx64'
+    else:
+        use_slave = pf['slaves']
+
     builders.append({
         'name': '%s_build' % platform,
-        'slavenames': pf['slaves'],
+        'slavenames': use_slave, 
         'category': 'release',
         'builddir': builderPrefix('%s_build' % platform),
         'slavebuilddir': reallyShort(builderPrefix('%s_build' % platform)),
@@ -420,9 +425,14 @@ for platform in releaseConfig['enUSPlatforms']:
             balrog_submit=pf.get('balrog_submit', False),
         )
 
+        if platform.startswith('macosx'):
+            l10n_slave = 'relosx64'
+        else:
+            l10n_slave = branchConfig['l10n_slaves'][platform]
+ 
         builders.append({
             'name': '%s_repack' % platform,
-            'slavenames': branchConfig['l10n_slaves'][platform],
+            'slavenames': l10n_slave,
             'category': 'release',
             'builddir': builderPrefix('%s_repack' % platform),
             'slavebuilddir': reallyShort(builderPrefix('%s_repack' % platform)),
@@ -461,10 +471,10 @@ for platform in releaseConfig['l10nPlatforms']:
     )
 
     verifySlavePlat = 'macosx64'
-
+    verify_slave = 'relosx64'
     builders.append({
         'name': '%s_l10n_verification' % platform,
-        'slavenames': branchConfig['platforms'][verifySlavePlat]['slaves'],
+        'slavenames': verify_slave,
         'category': 'release',
         'builddir': builderPrefix('%s_l10n_verification' % platform),
         'slavebuilddir': reallyShort(builderPrefix('%s_l10n_verification' % platform)),
@@ -561,9 +571,14 @@ for platform in sorted(releaseConfig['verifyConfigs'].keys()):
         platform=platform,
     )
 
+    if platform.startswith('macosx'):
+        verify_update_slave = 'relosx64'
+    else:
+        verify_update_slave = branchConfig['platforms'][platform]['slaves']
+
     builders.append({
         'name': '%s_update_verify' % platform,
-        'slavenames': branchConfig['platforms'][platform]['slaves'],
+        'slavenames': verify_update_slave,
         'category': 'release',
         'builddir': builderPrefix('%s_update_verify' % platform),
         'slavebuilddir': reallyShort(builderPrefix('%s_update_verify' % platform)),
