@@ -1,5 +1,5 @@
-MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(1,7) + range(43,44) + range(50,55) + \
-                  range(56,69) + range(70,72)]   # Omit 72 for bld-lion-r5 // Bug 1402830
+MAC_LION_MINIS = ['bld-lion-r5-%03d' % x for x in range(1,7) + range(43,44) + range(50,54) + \
+                  range(56,69) + range(70,72)]   # Omit 72 - Bug 1402830 // Omit 54 - Bug 1455729
 
 WIN64_REV2     = ['b-2008-ec2-%04d' % x for x in range(1, 31)] + \
                  ['b-2008-spot-%03d' % x for x in range(1, 51) + range(101, 151)]
