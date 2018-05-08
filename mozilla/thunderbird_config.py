@@ -824,6 +824,14 @@ BRANCHES['comm-beta']['enable_nightly'] = False
 # generated.
 BRANCHES['comm-beta']['enable_blocklist_update'] = True
 BRANCHES['comm-beta']['file_update_on_closed_tree'] = False
+# Thunderbird no longer builds succesfully on buildbot, so don't try building it
+for platform in BRANCHES['comm-beta']['platforms'].keys():
+    if platform != 'linux64':
+        del BRANCHES['comm-beta']['platforms'][platform]
+# This keeps the 'TB Linux x86-64 comm-central periodic' builder around
+# while disabling all other builders
+BRANCHES['comm-beta']['enable_periodic'] = False
+BRANCHES['comm-beta']['platforms']['linux64']['enable_dep'] = False
 
 ######## try
 # Try-specific configs
