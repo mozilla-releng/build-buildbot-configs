@@ -1843,9 +1843,21 @@ BRANCHES = {
     },
     'try': {
         'branch_projects': [],
-        # The following platforms are not part of the default set,
-        # so only run on Try.
-        'extra_platforms': {
+        # Now that gecko 60+ is TC-only and nothing else active uses buildbot
+        # Make try pushes assume gecko 52! - Bug 1459249
+        'lock_platforms': True,
+        'gecko_version': 52,
+        'platforms': {
+            'linux': {},
+            'linux64': {},
+            'macosx64': {},
+            'win32': {},
+            'win64': {},
+            'linux-debug': {},
+            'linux64-debug': {},
+            'macosx64-debug': {},
+            'win32-debug': {},
+            'win64-debug': {},
         },
     },
 }
@@ -2554,6 +2566,8 @@ BRANCHES['try']['enable_merging'] = False
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['watch_all_branches'] = True
 BRANCHES['try']['pgo_strategy'] = 'try'
+BRANCHES['try']['enable_mac_a11y'] = True
+BRANCHES['try']['platforms']['macosx64']['platform_objdir'] = "%s/x86_64" % OBJDIR
 BRANCHES['try']['package_dir'] = '%(who)s-%(got_revision)s/'
 # This is a path, relative to HGURL, where the repository is located
 # HGURL  repo_path should be a valid repository
@@ -2568,6 +2582,7 @@ BRANCHES['try']['desktop_mozharness_repacks_enabled'] = True
 BRANCHES['try']['l10n_platforms'] = ['linux', 'linux64', 'win32', 'macosx64',
                                      'win64']
 BRANCHES['try']['enable_l10n_dep_scheduler'] = False
+BRANCHES['try']['enable_nightly'] = False
 BRANCHES['try']['l10nNightlyUpdate'] = False
 BRANCHES['try']['l10nDatedDirs'] = False
 # need this or the master.cfg will bail
@@ -2579,20 +2594,14 @@ BRANCHES['try']['platforms']['win64-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['macosx64']['slaves'] = TRY_SLAVES['macosx64-lion']
 BRANCHES['try']['platforms']['linux-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['linux64-debug']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux64-asan']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['linux64-asan-debug']['slaves'] = TRY_SLAVES['mock']
 BRANCHES['try']['platforms']['win32-debug']['slaves'] = TRY_SLAVES['win64-rev2']
 BRANCHES['try']['platforms']['macosx64-debug']['slaves'] = TRY_SLAVES['macosx64-lion']
-BRANCHES['try']['platforms']['android-api-15']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['android-api-15-debug']['slaves'] = TRY_SLAVES['mock']
-BRANCHES['try']['platforms']['android-x86']['slaves'] = TRY_SLAVES['mock']
 for platform in BRANCHES['try']['platforms'].keys():
     # Disable symbol upload across the board
     BRANCHES['try']['platforms'][platform]['upload_symbols'] = False
     # only one l10n builder
     if BRANCHES['try']['platforms'][platform].get('mozharness_desktop_l10n', {}).get('l10n_chunks'):
        BRANCHES['try']['platforms'][platform]['mozharness_desktop_l10n']['l10n_chunks'] = 1
-del BRANCHES['try']['platforms']['linux64-av']
 
 ######## generic branch configs
 for branch in ACTIVE_PROJECT_BRANCHES:
