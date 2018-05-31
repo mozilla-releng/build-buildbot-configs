@@ -26,9 +26,6 @@ TALOS_TP_NEW_OPTS = {'plugins': {'32': 'zips/flash32_10_3_183_5.zip', '64':
                      ['zips/tp5n.zip']}
 
 BRANCHES = {
-    'mozilla-central':     {},
-    'mozilla-release':     {},
-    'mozilla-beta':        {},
     'mozilla-esr52': {
         'gecko_version': 52,
         'platforms': {
@@ -2722,25 +2719,6 @@ for branch in BRANCHES.keys():
 
 # The following are exceptions to the defaults
 
-######## mozilla-central
-BRANCHES['mozilla-central']['branch_name'] = "Firefox"
-BRANCHES['mozilla-central']['repo_path'] = "mozilla-central"
-BRANCHES['mozilla-central']['build_branch'] = "1.9.2"
-BRANCHES['mozilla-central']['pgo_strategy'] = 'periodic'
-
-######### mozilla-release
-BRANCHES['mozilla-release']['repo_path'] = "releases/mozilla-release"
-BRANCHES['mozilla-release']['pgo_strategy'] = 'per-checkin'
-BRANCHES['mozilla-release']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['mozilla-release']['platforms']['macosx64']['talos_slave_platforms'] = []
-BRANCHES['mozilla-release']['platforms']['linux']['talos_slave_platforms'] = []
-BRANCHES['mozilla-release']['platforms']['linux64']['talos_slave_platforms'] = []
-BRANCHES['mozilla-release']['platforms']['win64']['talos_slave_platforms'] = []
-
-######### mozilla-beta
-BRANCHES['mozilla-beta']['repo_path'] = "releases/mozilla-beta"
-BRANCHES['mozilla-beta']['pgo_strategy'] = 'per-checkin'
-
 ######### mozilla-esr52
 BRANCHES['mozilla-esr52']['repo_path'] = "releases/mozilla-esr52"
 BRANCHES['mozilla-esr52']['pgo_strategy'] = 'per-checkin'
@@ -2757,13 +2735,6 @@ BRANCHES['try']['repo_path'] = "try"
 BRANCHES['try']['pgo_strategy'] = 'try'
 BRANCHES['try']['enable_try'] = True
 BRANCHES['try']['watch_all_branches'] = True
-
-######### jamun
-BRANCHES['jamun']['platforms']['win32']['talos_slave_platforms'] = []
-BRANCHES['jamun']['platforms']['macosx64']['talos_slave_platforms'] = []
-BRANCHES['jamun']['platforms']['linux']['talos_slave_platforms'] = []
-BRANCHES['jamun']['platforms']['linux64']['talos_slave_platforms'] = []
-BRANCHES['jamun']['platforms']['win64']['talos_slave_platforms'] = []
 
 ### Tests Enabled In Gecko 39+ ###
 
@@ -3448,54 +3419,6 @@ for branch in BRANCHES.keys():
     if 'win64-asan' in BRANCHES[branch]['platforms'].keys():
         del BRANCHES[branch]['platforms']['win64-asan']
 
-# Ash-specific branch config. Please add any new buildbot test scheduling changes above this block.
-for platform in PLATFORMS.keys():
-    if platform not in BRANCHES['ash']['platforms']:
-        continue
-
-    base_tests = CRASHTEST_E10S + JSREFTEST_E10S_TWO_CHUNKS + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
-                 MOCHITEST_CLIPBOARD_E10S + MOCHITEST_E10S + MOCHITEST_GPU_E10S + MOCHITEST_MEDIA_E10S + \
-                 MOCHITEST_WEBGL_CHUNKED_E10S + WEB_PLATFORM_REFTESTS_E10S
-
-    for slave_platform in PLATFORMS[platform]['slave_platforms']:
-        if slave_platform not in BRANCHES['ash']['platforms'][platform]:
-            continue
-
-        # Linux jobs are scheduled via in-tree Taskcluster configs, so no need for anything here.
-        if slave_platform == "yosemite_r7":
-            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S_TWO_CHUNKS + WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
-            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
-                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S + WEB_PLATFORM_TESTS_CHUNKED_E10S
-        if slave_platform == "win8_64":
-            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S_TWO_CHUNKS + REFTEST_NOACCEL_E10S_TWO_CHUNKS +\
-                    WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
-            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
-                base_tests + MOCHITEST_DT_8_E10S + REFTEST_E10S + REFTEST_NOACCEL_E10S +\
-                    WEB_PLATFORM_TESTS_CHUNKED_E10S
-        if slave_platform == "win7_ix":
-            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                MOCHITEST_CLIPBOARD_E10S + MOCHITEST_MEDIA_E10S
-            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
-                MOCHITEST_CLIPBOARD_E10S + MOCHITEST_MEDIA_E10S
-        if slave_platform == "win7_vm":
-            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                CRASHTEST_E10S + JSREFTEST_E10S_TWO_CHUNKS + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
-                MOCHITEST_DT_8_E10S + MOCHITEST_E10S + WEB_PLATFORM_REFTESTS_E10S + \
-                WEB_PLATFORM_TESTS_CHUNKED_MORE_E10S
-            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
-                CRASHTEST_E10S + JSREFTEST_E10S_TWO_CHUNKS + MARIONETTE_E10S + MOCHITEST_BC_7_E10S + \
-                MOCHITEST_DT_8_E10S + MOCHITEST_E10S + WEB_PLATFORM_REFTESTS_E10S + \
-                WEB_PLATFORM_TESTS_CHUNKED_E10S
-        if slave_platform == "win7_vm_gfx":
-            BRANCHES['ash']['platforms'][platform][slave_platform]['debug_unittest_suites'] = \
-                MOCHITEST_GPU_E10S + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_E10S_TWO_CHUNKS + \
-                    REFTEST_GPU_E10S + REFTEST_NOACCEL_E10S_TWO_CHUNKS
-            BRANCHES['ash']['platforms'][platform][slave_platform]['opt_unittest_suites'] = \
-                MOCHITEST_GPU_E10S + MOCHITEST_WEBGL_CHUNKED_E10S + REFTEST_E10S + \
-                    REFTEST_FOUR_CHUNKS + REFTEST_GPU_E10S + REFTEST_NOACCEL_E10S + \
-                    REFTEST_NOACCEL_FOUR_CHUNKS
 # Bug 1370298 - Disable BB windows tests that are green in TC
 WIN_TC_56_NONGREEN_DEBUG_SUITES = ('reftest-gpu-e10s', 'mochitest-clipboard', 'mochitest-clipboard-e10s', 'mochitest-chrome', 'xpcshell')
 for name, branch in items_at_least(BRANCHES, 'gecko_version', 56):

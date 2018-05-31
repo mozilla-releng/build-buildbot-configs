@@ -26,9 +26,6 @@ if 'limit_branches' in master_config:
 else:
     ACTIVE_BRANCHES = ACTIVE_PROJECT_BRANCHES[:]
     ACTIVE_BRANCHES.extend([
-        'mozilla-central',
-        'mozilla-beta',
-        'mozilla-release',
         'mozilla-esr52',
     ])
 if 'limit_tb_branches' in master_config:
