@@ -104,29 +104,9 @@ GLOBAL_VARS = {
 
 # Local branch overrides
 BRANCHES = {
-    'mozilla-central': {
-        'tinderbox_tree': 'Firefox',
-        'mobile_tinderbox_tree': 'Firefox',
-    },
-    'mozilla-release': {
-        'tinderbox_tree': 'Mozilla-Release',
-        'mobile_tinderbox_tree': 'Mozilla-Release',
-    },
     'mozilla-esr52': {
         'tinderbox_tree': 'Mozilla-Esr52',
         'mobile_tinderbox_tree': 'Mozilla-Esr52',
-    },
-    'mozilla-beta': {
-        'tinderbox_tree': 'Mozilla-Beta',
-        'mobile_tinderbox_tree': 'Mozilla-Beta',
-    },
-    'addontester': {
-        'tinderbox_tree': 'AddonTester',
-        'mobile_tinderbox_tree': 'AddonTester',
-    },
-    'addonbaselinetester': {
-        'tinderbox_tree': 'AddonTester',
-        'mobile_tinderbox_tree': 'AddonTester',
     },
     'try': {
         'tinderbox_tree': 'Try',
@@ -140,12 +120,6 @@ BRANCHES = {
     },
 }
 
-PLATFORM_VARS = {
-}
+PLATFORM_VARS = {}
 
-PROJECTS = {
-    'jetpack': {
-        'scripts_repo': 'https://hg.mozilla.org/build/tools',
-        'tinderbox_tree': 'Jetpack',
-    },
-}
+PROJECTS = {}

@@ -69,24 +69,6 @@ BUILDS_BEFORE_REBOOT = 5
 
 # Local branch overrides
 BRANCHES = {
-    'mozilla-central': {
-        'enable_blocklist_update': False,
-        'enable_hsts_update': False,
-        'enable_hpkp_update': False,
-        'file_update_on_closed_tree': False,
-    },
-    'mozilla-release': {
-        'enable_blocklist_update': False,
-        'enable_hsts_update': False,
-        'enable_hpkp_update': False,
-        'file_update_on_closed_tree': False,
-    },
-    'mozilla-beta': {
-        'enable_blocklist_update': False,
-        'enable_hsts_update': False,
-        'enable_hpkp_update': False,
-        'file_update_on_closed_tree': False,
-    },
     'mozilla-esr52': {
         'enable_blocklist_update': False,
         'enable_hsts_update': False,
@@ -103,18 +85,7 @@ BRANCHES = {
 
 PLATFORM_VARS = {}
 
-PROJECTS = {
-    'fuzzing': {
-        'scripts_repo': 'https://hg.mozilla.org/users/stage-ffxbld/tools',
-        'lithium_repo': 'https://github.com/MozillaSecurity/lithium.git',
-        'funfuzz_repo': 'https://github.com/MozillaSecurity/funfuzz.git',
-        'fuzzmanager_repo': 'https://github.com/MozillaSecurity/FuzzManager.git',
-        'fuzzing_remote_host': 'stage-ffxbld@pvtbuilds2.dmz.scl3.mozilla.com',
-        # Path needs extra leading slash due to optparse expansion on Win32
-        'fuzzing_base_dir': '//mnt/pvt_builds/staging/fuzzing/',
-        'idle_slaves': 0,
-    },
-}
+PROJECTS = {}
 
 BRANCH_PROJECTS = {
     'spidermonkey_tier_1': {

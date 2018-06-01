@@ -77,22 +77,9 @@ SYMBOL_SERVER_HOST = 'symbolpush.mozilla.org'
 
 # Local branch overrides
 BRANCHES = {
-    'mozilla-central': {
-        'tinderbox_tree': 'Firefox',
-        'mobile_tinderbox_tree': 'Mobile',
-        'mobile_build_failure_emails': ['<mobile-build-failures@mozilla.org>'],
-    },
-    'mozilla-release': {
-        'tinderbox_tree': 'Mozilla-Release',
-        'mobile_tinderbox_tree': 'Mozilla-Release',
-    },
     'mozilla-esr52': {
         'tinderbox_tree': 'Mozilla-Esr52',
         'mobile_tinderbox_tree': 'Mozilla-Esr52',
-    },
-    'mozilla-beta': {
-        'tinderbox_tree': 'Mozilla-Beta',
-        'mobile_tinderbox_tree': 'Mozilla-Beta',
     },
     'try': {
         'tinderbox_tree': 'Try',
@@ -110,17 +97,6 @@ BRANCHES = {
 PLATFORM_VARS = {}
 
 PROJECTS = {
-    'fuzzing': {
-        'scripts_repo': 'https://hg.mozilla.org/build/tools',
-        'lithium_repo': 'https://github.com/MozillaSecurity/lithium.git',
-        'funfuzz_repo': 'https://github.com/MozillaSecurity/funfuzz.git',
-        'fuzzmanager_repo': 'https://github.com/MozillaSecurity/FuzzManager.git',
-        'fuzzing_remote_host': 'ffxbld@pvtbuilds2.dmz.scl3.mozilla.com',
-        # Path needs extra leading slash due to optparse expansion on Win32
-        'fuzzing_base_dir': '//mnt/pvt_builds/fuzzing/',
-        # This is # of idle slaves per master
-        'idle_slaves': 2,
-    },
 }
 
 BRANCH_PROJECTS = {
