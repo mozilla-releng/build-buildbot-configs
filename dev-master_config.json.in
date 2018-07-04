@@ -17,7 +17,7 @@
   "http_port": @HTTP_PORT@,
   "master_dir": "@BASEDIR@/master",
   "release_branches": ["mozilla-release", "mozilla-beta"],
-  "thunderbird_release_branches": ["comm-beta", "comm-esr52"],
+  "thunderbird_release_branches": ["comm-esr52"],
   "name": "@MASTER_NAME@",
   "pb_port": @PB_PORT@,
   "role": "@ROLE@",
